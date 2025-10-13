@@ -93,7 +93,6 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
         }
         
         .btn-primary {
@@ -108,7 +107,10 @@
         .btn-sm {
             padding: 8px 16px;
             font-size: 0.9rem;
-            width: auto;
+        }
+        
+        .btn-block {
+            width: 100%;
         }
         
         .main-app {
@@ -138,7 +140,6 @@
         .page-title {
             color: var(--dark);
             font-size: 1.5rem;
-            margin-bottom: 5px;
         }
         
         .header-actions {
@@ -327,6 +328,16 @@
             color: #6b7280;
         }
         
+        .exchange-badge {
+            display: inline-block;
+            padding: 1px 6px;
+            border-radius: 8px;
+            font-size: 0.6rem;
+            background: #e5e7eb;
+            color: #6b7280;
+            margin-right: 4px;
+        }
+        
         .trading-panel {
             background: #f8fafc;
             padding: 15px;
@@ -415,6 +426,49 @@
             margin-bottom: 15px;
         }
         
+        .admin-only {
+            display: none;
+        }
+        
+        .user-admin .admin-only {
+            display: block;
+        }
+        
+        .prediction-history {
+            margin-top: 20px;
+        }
+        
+        .history-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            font-size: 0.8rem;
+        }
+        
+        .history-table th,
+        .history-table td {
+            padding: 10px;
+            text-align: right;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .history-table th {
+            background: #f8fafc;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .history-table tr:hover {
+            background: #f9fafb;
+        }
+        
+        .accuracy-badge {
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7rem;
+            font-weight: bold;
+        }
+        
         @media (max-width: 768px) {
             .container {
                 padding: 10px;
@@ -448,6 +502,10 @@
             .section {
                 padding: 15px;
             }
+            
+            .history-table {
+                font-size: 0.7rem;
+            }
         }
         
         @media (max-width: 480px) {
@@ -456,7 +514,7 @@
             }
             
             .stats-grid {
-                grid-template-columnons: 1fr;
+                grid-template-columns: 1fr;
             }
             
             .market-tabs {
@@ -490,7 +548,7 @@
                     <input type="password" id="password" class="form-control" required>
                 </div>
                 
-                <button type="submit" class="btn btn-primary">
+                <button type="submit" class="btn btn-primary btn-block">
                     ورود به سیستم
                 </button>
             </form>
@@ -570,29 +628,59 @@
                     <div class="market-tab" data-market="tehran">بورس تهران</div>
                     <div class="market-tab" data-market="forex">فارکس</div>
                     <div class="market-tab" data-market="commodity">کالاها</div>
+                    <div class="market-tab" data-market="indices">شاخص‌ها</div>
                 </div>
                 
+                <!-- ارزهای دیجیتال -->
                 <div class="market-content active" id="crypto-market">
                     <div class="form-group">
                         <label>صرافی</label>
                         <select class="form-control" id="cryptoExchange">
                             <option value="binance">Binance</option>
                             <option value="coingecko">CoinGecko</option>
+                            <option value="kucoin">KuCoin</option>
+                            <option value="xchief">XChief</option>
                         </select>
                     </div>
                     <div class="market-data-grid" id="cryptoData"></div>
                 </div>
                 
+                <!-- بورس تهران -->
                 <div class="market-content" id="tehran-market">
+                    <div class="form-group">
+                        <label>دسته‌بندی</label>
+                        <select class="form-control" id="tehranCategory">
+                            <option value="top">پربیننده‌ترین‌ها</option>
+                            <option value="technology">فناوری اطلاعات</option>
+                            <option value="bank">بانک‌ها</option>
+                            <option value="industry">صنایع</option>
+                            <option value="petrochemical">پتروشیمی</option>
+                        </select>
+                    </div>
                     <div class="market-data-grid" id="tehranData"></div>
                 </div>
                 
+                <!-- فارکس -->
                 <div class="market-content" id="forex-market">
+                    <div class="form-group">
+                        <label>بروکر</label>
+                        <select class="form-control" id="forexBroker">
+                            <option value="metatrader">MetaTrader</option>
+                            <option value="xchief">XChief</option>
+                            <option value="general">عمومی</option>
+                        </select>
+                    </div>
                     <div class="market-data-grid" id="forexData"></div>
                 </div>
                 
+                <!-- کالاها -->
                 <div class="market-content" id="commodity-market">
                     <div class="market-data-grid" id="commodityData"></div>
+                </div>
+                
+                <!-- شاخص‌ها -->
+                <div class="market-content" id="indices-market">
+                    <div class="market-data-grid" id="indicesData"></div>
                 </div>
             </div>
 
@@ -628,7 +716,18 @@
                                 <option value="5">5x</option>
                                 <option value="10" selected>10x</option>
                                 <option value="20">20x</option>
+                                <option value="50">50x</option>
                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>حد سود (%)</label>
+                            <input type="number" id="takeProfitPercent" class="form-control" value="10" min="1" max="100" step="0.5">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>حد ضرر (%)</label>
+                            <input type="number" id="stopLossPercent" class="form-control" value="5" min="1" max="100" step="0.5">
                         </div>
                     </div>
                     
@@ -664,7 +763,18 @@
                                 <option value="1d">1 روز</option>
                                 <option value="1w">1 هفته</option>
                                 <option value="1m">1 ماه</option>
+                                <option value="3m">3 ماه</option>
                             </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>هدف سود (%)</label>
+                            <input type="number" id="profitTarget" class="form-control" value="15" min="1" max="100" step="0.5">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>حد ضرر (%)</label>
+                            <input type="number" id="lossLimit" class="form-control" value="8" min="1" max="100" step="0.5">
                         </div>
                     </div>
                     
@@ -694,6 +804,7 @@
                             <option value="1h">1 ساعته</option>
                             <option value="4h">4 ساعته</option>
                             <option value="1d">روزانه</option>
+                            <option value="1w">هفتگی</option>
                         </select>
                     </div>
                     
@@ -703,6 +814,38 @@
                 </div>
 
                 <div id="analysisResults"></div>
+            </div>
+
+            <!-- تاریخچه پیش‌بینی‌ها (فقط برای ادمین) -->
+            <div class="section admin-only" id="prediction-history">
+                <h2 class="section-title">تاریخچه پیش‌بینی‌ها</h2>
+                
+                <div class="form-group">
+                    <label>بازه زمانی تحلیل</label>
+                    <select class="form-control" id="analysisPeriod">
+                        <option value="7">7 روز گذشته</option>
+                        <option value="30" selected>30 روز گذشته</option>
+                        <option value="90">90 روز گذشته</option>
+                    </select>
+                </div>
+                
+                <div class="prediction-history">
+                    <table class="history-table">
+                        <thead>
+                            <tr>
+                                <th>نماد</th>
+                                <th>تاریخ پیش‌بینی</th>
+                                <th>پیش‌بینی</th>
+                                <th>واقعیت</th>
+                                <th>دقت</th>
+                                <th>بازه زمانی</th>
+                            </tr>
+                        </thead>
+                        <tbody id="predictionTableBody">
+                            <!-- با JavaScript پر می‌شود -->
+                        </tbody>
+                    </table>
+                </div>
             </div>
         </div>
     </div>
@@ -736,6 +879,11 @@
                 document.getElementById('userLevel').textContent = `سطح: ${user.level}`;
                 document.getElementById('userAvatar').textContent = user.avatar;
                 
+                // نمایش بخش ادمین
+                if (username === "admin") {
+                    document.getElementById('mainApp').classList.add('user-admin');
+                }
+                
                 initializeDashboard();
             } else {
                 alert('نام کاربری یا رمز عبور اشتباه است!\n\nمدیر: admin/mousa123\nکاربر: user/trade2024');
@@ -764,11 +912,29 @@
             });
         });
 
+        // مدیریت تغییر صرافی/بروکر
+        document.getElementById('cryptoExchange').addEventListener('change', function() {
+            loadMarketData('crypto');
+        });
+
+        document.getElementById('tehranCategory').addEventListener('change', function() {
+            loadMarketData('tehran');
+        });
+
+        document.getElementById('forexBroker').addEventListener('change', function() {
+            loadMarketData('forex');
+        });
+
         // مقداردهی اولیه دشبورد
         async function initializeDashboard() {
             // بارگذاری اولیه داده‌ها
             await loadMarketData('crypto');
             await loadGlobalMarketCap();
+            
+            // بارگذاری تاریخچه پیش‌بینی برای ادمین
+            if (currentUser === 'admin') {
+                loadPredictionHistory();
+            }
             
             // تنظیم بروزرسانی خودکار هر 10 ثانیه
             updateInterval = setInterval(() => {
@@ -808,15 +974,44 @@
             } catch (error) {
                 console.error('Error fetching market cap:', error);
                 // داده‌های نمونه در صورت خطا
+                const randomChange = (Math.random() * 4 - 2).toFixed(2);
                 document.getElementById('marketCapValue').textContent = '2.15 تریلیون دلار';
-                document.getElementById('marketCapChange').textContent = 'تغییر 24h: +1.45%';
+                document.getElementById('marketCapChange').textContent = `تغییر 24h: ${randomChange}%`;
+                
+                const marketCapElement = document.getElementById('globalMarketCap');
+                if (parseFloat(randomChange) >= 0) {
+                    marketCapElement.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+                } else {
+                    marketCapElement.style.background = 'linear-gradient(135deg, #ef4444 0%, #dc2626 100%)';
+                }
             }
         }
 
         // بارگذاری داده‌های بازار
         async function loadMarketData(marketType) {
             try {
-                const data = await generateSampleData(marketType);
+                let data;
+                switch(marketType) {
+                    case 'crypto':
+                        const exchange = document.getElementById('cryptoExchange').value;
+                        data = await generateCryptoData(exchange);
+                        break;
+                    case 'tehran':
+                        const category = document.getElementById('tehranCategory').value;
+                        data = await generateTehranData(category);
+                        break;
+                    case 'forex':
+                        const broker = document.getElementById('forexBroker').value;
+                        data = await generateForexData(broker);
+                        break;
+                    case 'commodity':
+                        data = await generateCommodityData();
+                        break;
+                    case 'indices':
+                        data = await generateIndicesData();
+                        break;
+                }
+                
                 displayMarketData(marketType, data);
                 
                 // پر کردن dropdownها با نمادها
@@ -828,30 +1023,126 @@
             }
         }
 
-        // تولید داده‌های نمونه
-        async function generateSampleData(marketType) {
-            const data = {
-                crypto: [
-                    { symbol: 'BTCUSDT', name: 'بیت‌کوین', price: (Math.random() * 10000 + 50000).toFixed(2), change: (Math.random() * 10 - 5).toFixed(2), volume: (Math.random() * 100 + 20).toFixed(2) },
-                    { symbol: 'ETHUSDT', name: 'اتریوم', price: (Math.random() * 1000 + 3000).toFixed(2), change: (Math.random() * 8 - 4).toFixed(2), volume: (Math.random() * 500 + 100).toFixed(2) },
-                    { symbol: 'ADAUSDT', name: 'کاردانو', price: (Math.random() * 0.5 + 0.4).toFixed(4), change: (Math.random() * 15 - 7.5).toFixed(2), volume: (Math.random() * 1000 + 500).toFixed(2) }
+        // تولید داده‌های ارزهای دیجیتال
+        async function generateCryptoData(exchange) {
+            const baseData = [
+                { symbol: 'BTCUSDT', name: 'بیت‌کوین' },
+                { symbol: 'ETHUSDT', name: 'اتریوم' },
+                { symbol: 'ADAUSDT', name: 'کاردانو' },
+                { symbol: 'DOTUSDT', name: 'پولکادات' },
+                { symbol: 'LINKUSDT', name: 'چین لینک' },
+                { symbol: 'XRPUSDT', name: 'ریپل' },
+                { symbol: 'LTCUSDT', name: 'لایت‌کوین' },
+                { symbol: 'BCHUSDT', name: 'بیت‌کوین کش' },
+                { symbol: 'XLMUSDT', name: 'استلار' },
+                { symbol: 'XMRUSDT', name: 'مونرو' }
+            ];
+            
+            return baseData.map(item => ({
+                ...item,
+                exchange: exchange,
+                price: (Math.random() * 10000 + 50000).toFixed(2),
+                change: (Math.random() * 10 - 5).toFixed(2),
+                volume: (Math.random() * 100 + 20).toFixed(2)
+            }));
+        }
+
+        // تولید داده‌های بورس تهران
+        async function generateTehranData(category) {
+            const categories = {
+                'top': [
+                    { symbol: 'شپنا', name: 'پالایش نفت اصفهان' },
+                    { symbol: 'فملی', name: 'مس ایران' },
+                    { symbol: 'وبصادر', name: 'بانک صادرات' },
+                    { symbol: 'خساپا', name: 'خودروسازی سایپا' },
+                    { symbol: 'شتران', name: 'پالایش نفت تهران' }
                 ],
-                tehran: [
-                    { symbol: 'شپنا', name: 'پالایش نفت اصفهان', price: (Math.random() * 10000 + 1000).toFixed(0), change: (Math.random() * 5 - 2.5).toFixed(2), volume: (Math.random() * 100 + 10).toFixed(0) },
-                    { symbol: 'فملی', name: 'مس ایران', price: (Math.random() * 10000 + 1000).toFixed(0), change: (Math.random() * 5 - 2.5).toFixed(2), volume: (Math.random() * 100 + 10).toFixed(0) },
-                    { symbol: 'وبصادر', name: 'بانک صادرات', price: (Math.random() * 10000 + 1000).toFixed(0), change: (Math.random() * 5 - 2.5).toFixed(2), volume: (Math.random() * 100 + 10).toFixed(0) }
+                'technology': [
+                    { symbol: 'شبندر', name: 'پتروشیمی بندر' },
+                    { symbol: 'فولاد', name: 'فولاد مبارکه' },
+                    { symbol: 'کگل', name: 'گل گهر' }
                 ],
-                forex: [
-                    { symbol: 'EUR/USD', name: 'یورو/دلار', price: (Math.random() * 0.5 + 1.0).toFixed(4), change: (Math.random() * 2 - 1).toFixed(2), volume: (Math.random() * 50 + 10).toFixed(0) },
-                    { symbol: 'GBP/USD', name: 'پوند/دلار', price: (Math.random() * 0.5 + 1.2).toFixed(4), change: (Math.random() * 2 - 1).toFixed(2), volume: (Math.random() * 50 + 10).toFixed(0) }
+                'bank': [
+                    { symbol: 'وبصادر', name: 'بانک صادرات' },
+                    { symbol: 'وبملت', name: 'بانک ملت' },
+                    { symbol: 'وتجارت', name: 'بانک تجارت' }
                 ],
-                commodity: [
-                    { symbol: 'XAU/USD', name: 'طلا', price: (Math.random() * 500 + 1800).toFixed(2), change: (Math.random() * 3 - 1.5).toFixed(2), volume: (Math.random() * 30 + 5).toFixed(0) },
-                    { symbol: 'OIL/USD', name: 'نفت', price: (Math.random() * 50 + 70).toFixed(2), change: (Math.random() * 5 - 2.5).toFixed(2), volume: (Math.random() * 100 + 20).toFixed(0) }
+                'industry': [
+                    { symbol: 'خساپا', name: 'خودروسازی سایپا' },
+                    { symbol: 'خپارس', name: 'پارس خودرو' }
+                ],
+                'petrochemical': [
+                    { symbol: 'شپنا', name: 'پالایش نفت اصفهان' },
+                    { symbol: 'شتران', name: 'پالایش نفت تهران' }
                 ]
             };
             
-            return data[marketType] || [];
+            const stocks = categories[category] || categories.top;
+            
+            return stocks.map(item => ({
+                ...item,
+                category: category,
+                price: (Math.random() * 10000 + 1000).toFixed(0),
+                change: (Math.random() * 5 - 2.5).toFixed(2),
+                volume: (Math.random() * 100 + 10).toFixed(0)
+            }));
+        }
+
+        // تولید داده‌های فارکس
+        async function generateForexData(broker) {
+            const pairs = [
+                { symbol: 'EUR/USD', name: 'یورو/دلار' },
+                { symbol: 'GBP/USD', name: 'پوند/دلار' },
+                { symbol: 'USD/JPY', name: 'دلار/ین' },
+                { symbol: 'USD/CHF', name: 'دلار/فرانک' },
+                { symbol: 'AUD/USD', name: 'دلار استرالیا/دلار' },
+                { symbol: 'USD/CAD', name: 'دلار/دلار کانادا' }
+            ];
+            
+            return pairs.map(item => ({
+                ...item,
+                broker: broker,
+                price: (Math.random() * 0.5 + 1.0).toFixed(4),
+                change: (Math.random() * 2 - 1).toFixed(2),
+                volume: (Math.random() * 50 + 10).toFixed(0)
+            }));
+        }
+
+        // تولید داده‌های کالاها
+        async function generateCommodityData() {
+            const commodities = [
+                { symbol: 'XAU/USD', name: 'طلا' },
+                { symbol: 'XAG/USD', name: 'نقره' },
+                { symbol: 'XPT/USD', name: 'پلاتین' },
+                { symbol: 'OIL/USD', name: 'نفت خام' },
+                { symbol: 'NGAS/USD', name: 'گاز طبیعی' }
+            ];
+            
+            return commodities.map(item => ({
+                ...item,
+                price: (Math.random() * 500 + 1800).toFixed(2),
+                change: (Math.random() * 3 - 1.5).toFixed(2),
+                volume: (Math.random() * 30 + 5).toFixed(0)
+            }));
+        }
+
+        // تولید داده‌های شاخص‌ها
+        async function generateIndicesData() {
+            const indices = [
+                { symbol: 'DJI', name: 'داو جونز' },
+                { symbol: 'SPX', name: 'S&P 500' },
+                { symbol: 'IXIC', name: 'نزدک' },
+                { symbol: 'FTSE', name: 'فوتسی' },
+                { symbol: 'DAX', name: 'DAX آلمان' },
+                { symbol: 'TEDPIX', name: 'شاخص کل بورس تهران' }
+            ];
+            
+            return indices.map(item => ({
+                ...item,
+                price: (Math.random() * 10000 + 30000).toFixed(0),
+                change: (Math.random() * 4 - 2).toFixed(2),
+                volume: (Math.random() * 1000 + 500).toFixed(0)
+            }));
         }
 
         // نمایش داده‌های بازار
@@ -861,11 +1152,15 @@
             let html = '';
             data.forEach(item => {
                 const isPositive = parseFloat(item.change) >= 0;
+                const exchangeBadge = item.exchange ? `<span class="exchange-badge">${item.exchange}</span>` : '';
+                const categoryBadge = item.category ? `<span class="exchange-badge">${item.category}</span>` : '';
+                const brokerBadge = item.broker ? `<span class="exchange-badge">${item.broker}</span>` : '';
+                
                 html += `
                     <div class="market-data-card" data-symbol="${item.symbol}">
                         <div class="market-data-header">
                             <div class="market-data-name">${item.name}</div>
-                            <div class="market-data-symbol">${item.symbol}</div>
+                            <div class="market-data-symbol">${item.symbol} ${exchangeBadge}${categoryBadge}${brokerBadge}</div>
                         </div>
                         <div class="market-data-price">${parseFloat(item.price).toLocaleString()}${marketType === 'tehran' ? ' ریال' : '$'}</div>
                         <div class="market-data-change">
@@ -916,6 +1211,39 @@
             });
         }
 
+        // بارگذاری تاریخچه پیش‌بینی‌ها
+        function loadPredictionHistory() {
+            const history = [
+                { symbol: 'BTCUSDT', date: '۱۴۰۲/۱۰/۱۵', prediction: 'خرید', actual: 'خرید', accuracy: 95, timeframe: '۱ روزه' },
+                { symbol: 'ETHUSDT', date: '۱۴۰۲/۱۰/۱۴', prediction: 'فروش', actual: 'خرید', accuracy: 40, timeframe: '۲ روزه' },
+                { symbol: 'AAPL', date: '۱۴۰۲/۱۰/۱۲', prediction: 'خرید', actual: 'خرید', accuracy: 88, timeframe: '۳ روزه' },
+                { symbol: 'EUR/USD', date: '۱۴۰۲/۱۰/۱۰', prediction: 'فروش', actual: 'فروش', accuracy: 92, timeframe: '۱ هفته' },
+                { symbol: 'XAU/USD', date: '۱۴۰۲/۱۰/۰۸', prediction: 'خرید', actual: 'خرید', accuracy: 78, timeframe: '۲ هفته' },
+                { symbol: 'TSLA', date: '۱۴۰۲/۱۰/۰۵', prediction: 'فروش', actual: 'فروش', accuracy: 85, timeframe: '۳ روزه' }
+            ];
+            
+            let tableHtml = '';
+            history.forEach(item => {
+                const isAccurate = item.prediction === item.actual;
+                tableHtml += `
+                    <tr>
+                        <td>${item.symbol}</td>
+                        <td>${item.date}</td>
+                        <td>${item.prediction}</td>
+                        <td>${item.actual}</td>
+                        <td>
+                            <span class="accuracy-badge" style="background: ${isAccurate ? '#dcfce7' : '#fee2e2'}; color: ${isAccurate ? '#166534' : '#991b1b'};">
+                                ${item.accuracy}%
+                            </span>
+                        </td>
+                        <td>${item.timeframe}</td>
+                    </tr>
+                `;
+            });
+            
+            document.getElementById('predictionTableBody').innerHTML = tableHtml;
+        }
+
         // نمایش نوتیفیکیشن
         function showNotification(message, type = 'info') {
             const notificationsDiv = document.getElementById('notifications');
@@ -947,12 +1275,20 @@
             const symbol = document.getElementById('leverageSymbol').value;
             const capital = parseFloat(document.getElementById('leverageCapital').value);
             const leverage = parseInt(document.getElementById('leverageMultiplier').value);
+            const takeProfit = parseFloat(document.getElementById('takeProfitPercent').value);
+            const stopLoss = parseFloat(document.getElementById('stopLossPercent').value);
+            
+            const leveragedCapital = capital * leverage;
+            const potentialProfit = leveragedCapital * (takeProfit / 100);
+            const potentialLoss = leveragedCapital * (stopLoss / 100);
             
             const resultDiv = document.getElementById('leverageResult');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
                 <strong>نتایج تحلیل برای ${symbol}:</strong><br>
-                سرمایه اهرمی: ${(capital * leverage).toLocaleString()}$<br>
+                سرمایه اهرمی: ${leveragedCapital.toLocaleString()}$<br>
+                سود احتمالی: +${potentialProfit.toLocaleString()}$ (${takeProfit}%)<br>
+                ضرر احتمالی: -${potentialLoss.toLocaleString()}$ (${stopLoss}%)<br>
                 تحلیل: شرایط بازار مناسب تشخیص داده شد<br>
                 احتمال موفقیت: ۷۵٪
             `;
@@ -962,12 +1298,19 @@
         document.getElementById('calculateSpotTrade').addEventListener('click', function() {
             const symbol = document.getElementById('spotSymbol').value;
             const capital = parseFloat(document.getElementById('spotCapital').value);
+            const profitTarget = parseFloat(document.getElementById('profitTarget').value);
+            const lossLimit = parseFloat(document.getElementById('lossLimit').value);
+            
+            const potentialProfit = capital * (profitTarget / 100);
+            const potentialLoss = capital * (lossLimit / 100);
             
             const resultDiv = document.getElementById('spotResult');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
                 <strong>نتایج تحلیل برای ${symbol}:</strong><br>
                 سرمایه: ${capital.toLocaleString()}$<br>
+                سود هدف: +${potentialProfit.toLocaleString()}$ (${profitTarget}%)<br>
+                حد ضرر: -${potentialLoss.toLocaleString()}$ (${lossLimit}%)<br>
                 تحلیل: شرایط بازار مناسب است<br>
                 احتمال موفقیت: ۶۸٪
             `;
@@ -976,16 +1319,18 @@
         // تحلیل اتوماتیک
         document.getElementById('runAnalysis').addEventListener('click', function() {
             const symbol = document.getElementById('symbolSelect').value;
+            const timeframe = document.getElementById('timeframeSelect').value;
             const resultsDiv = document.getElementById('analysisResults');
             resultsDiv.innerHTML = `
                 <div class="notification success">
-                    تحلیل ${symbol} با موفقیت انجام شد
+                    تحلیل ${symbol} در بازه ${timeframe} با موفقیت انجام شد
                 </div>
                 <div class="trading-result">
                     <strong>نتایج تحلیل تکنیکال:</strong><br>
                     RSI: 45 (خنثی)<br>
                     MACD: صعودی<br>
                     میانگین متحرک: مثبت<br>
+                    حجم معاملات: افزایشی<br>
                     پیشنهاد: خرید با اعتماد ۸۲٪
                 </div>
             `;
@@ -997,15 +1342,10 @@
             document.getElementById('mainApp').style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
+            document.getElementById('mainApp').classList.remove('user-admin');
             currentUser = null;
             clearInterval(updateInterval);
         });
-
-        // بارگذاری اولیه
-        if (document.getElementById('cryptoData')) {
-            loadMarketData('crypto');
-            loadGlobalMarketCap();
-        }
     </script>
 </body>
 </html>
