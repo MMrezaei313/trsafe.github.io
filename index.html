@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mousa - سیستم کامل مشاور تریدینگ</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <style>
+        :root {
+            --primary: #1e3a8a;
+            --secondary: #3b82f6;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            --dark: #1f2937;
+            --light: #f8fafc;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Vazirmatn', Tahoma, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .login-container {
+            width: 100%;
+            max-width: 400px;
+        }
+        
+        .login-box {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            text-align: center;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 20px;
+        }
+        
+        .login-box h2 {
+            color: var(--dark);
+            margin-bottom: 10px;
+        }
+        
+        .login-box p {
+            color: #6b7280;
+            margin-bottom: 30px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+            text-align: right;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark);
+            font-weight: 500;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            font-size: 1rem;
+            transition: all 0.3s;
+        }
+        
+        .form-control:focus {
+            border-color: var(--secondary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+        }
+        
+        .btn {
+            padding: 12px 30px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .btn-primary {
+            background: var(--secondary);
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
+        }
+        
+        .btn-block {
+            width: 100%;
+        }
+        
+        .login-links {
+            margin-top: 20px;
+            display: flex;
+            justify-content: space-between;
+        }
+        
+        .login-links a {
+            color: var(--secondary);
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        
+        .main-app {
+            display: none;
+            width: 100%;
+            height: 100vh;
+            background: var(--light);
+        }
+        
+        .container {
+            display: flex;
+            height: 100vh;
+        }
+        
+        .sidebar {
+            width: 280px;
+            background: var(--dark);
+            color: white;
+            overflow-y: auto;
+        }
+        
+        .sidebar-header {
+            padding: 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid #374151;
+        }
+        
+        .sidebar-header h2 {
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .user-info {
+            display: flex;
+            align-items: center;
+            padding: 20px;
+            background: #374151;
+            margin: 10px;
+            border-radius: 10px;
+        }
+        
+        .user-avatar {
+            width: 40px;
+            height: 40px;
+            background: var(--secondary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-left: 10px;
+            font-weight: bold;
+        }
+        
+        .sidebar-menu {
+            padding: 20px 0;
+        }
+        
+        .menu-item {
+            padding: 12px 20px;
+            display: flex;
+            align-items: center;
+            color: #d1d5db;
+            text-decoration: none;
+            transition: all 0.3s;
+            border-right: 3px solid transparent;
+        }
+        
+        .menu-item:hover, .menu-item.active {
+            background: #374151;
+            color: white;
+            border-right-color: var(--secondary);
+        }
+        
+        .menu-item i {
+            margin-left: 10px;
+            width: 20px;
+            text-align: center;
+        }
+        
+        .main-content {
+            flex: 1;
+            overflow-y: auto;
+            padding: 20px;
+        }
+        
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
+        }
+        
+        .page-title {
+            color: var(--dark);
+            font-size: 1.8rem;
+        }
+        
+        .header-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+        
+        .stat-card {
+            background: white;
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            border-left: 4px solid var(--secondary);
+        }
+        
+        .stat-card.success {
+            border-left-color: var(--success);
+        }
+        
+        .stat-card.warning {
+            border-left-color: var(--warning);
+        }
+        
+        .stat-card.danger {
+            border-left-color: var(--danger);
+        }
+        
+        .stat-value {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--dark);
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            color: #6b7280;
+            font-size: 0.9rem;
+        }
+        
+        .section {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+        
+        .section-title {
+            font-size: 1.3rem;
+            color: var(--dark);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        
+        .trading-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+        
+        .trading-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s;
+        }
+        
+        .trading-card:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        
+        .timeframe-badge {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+            margin-bottom: 10px;
+        }
+        
+        .badge-short {
+            background: #fef3c7;
+            color: #d97706;
+        }
+        
+        .badge-medium {
+            background: #dbeafe;
+            color: #1d4ed8;
+        }
+        
+        .badge-long {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        
+        .signal-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 15px 0;
+        }
+        
+        .signal-price {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
+        
+        .signal-target {
+            color: var(--success);
+            font-weight: 500;
+        }
+        
+        .signal-action {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        
+        .market-cap-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 10px;
+        }
+        
+        .cap-change {
+            padding: 2px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .change-positive {
+            background: #dcfce7;
+            color: #15803d;
+        }
+        
+        .change-negative {
+            background: #fee2e2;
+            color: #dc2626;
+        }
+        
+        .broker-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .broker-card {
+            border: 2px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 15px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .broker-card:hover {
+            border-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .broker-card.active {
+            border-color: var(--secondary);
+            background: #f0f9ff;
+        }
+        
+        .broker-logo {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: var(--secondary);
+        }
+        
+        .tab-container {
+            margin-top: 20px;
+        }
+        
+        .tabs {
+            display: flex;
+            border-bottom: 1px solid #e5e7eb;
+            margin-bottom: 20px;
+        }
+        
+        .tab {
+            padding: 12px 24px;
+            cursor: pointer;
+            border-bottom: 2px solid transparent;
+            color: #6b7280;
+            font-weight: 500;
+        }
+        
+        .tab.active {
+            color: var(--secondary);
+            border-bottom-color: var(--secondary);
+        }
+        
+        .tab-content {
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .chart-container {
+            height: 300px;
+            margin: 20px 0;
+        }
+        
+        .notification {
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .notification.info {
+            background: #dbeafe;
+            color: #1e40af;
+            border-right: 4px solid #3b82f6;
+        }
+        
+        .notification.success {
+            background: #dcfce7;
+            color: #166534;
+            border-right: 4px solid #22c55e;
+        }
+        
+        .notification.warning {
+            background: #fef3c7;
+            color: #92400e;
+            border-right: 4px solid #f59e0b;
+        }
+        
+        .notification.error {
+            background: #fee2e2;
+            color: #991b1b;
+            border-right: 4px solid #ef4444;
+        }
+.module-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.module-card {
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 20px;
+    background: white;
+    transition: all 0.3s;
+    cursor: pointer;
+}
+
+.module-card:hover {
+    border-color: var(--secondary);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+}
+
+.module-header {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f1f5f9;
+}
+
+.module-icon {
+    width: 40px;
+    height: 40px;
+    background: var(--secondary);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 10px;
+    color: white;
+}
+
+.module-status {
+    margin-right: auto;
+    font-size: 0.8rem;
+    padding: 4px 12px;
+    border-radius: 20px;
+    background: #dcfce7;
+    color: #166534;
+}
+
+.status-offline {
+    background: #fecaca;
+    color: #dc2626;
+}
+
+.module-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 15px;
+}
+
+.sub-modules {
+    margin-top: 15px;
+    padding-right: 20px;
+}
+
+.sub-module {
+    padding: 8px 0;
+    border-bottom: 1px solid #f1f5f9;
+    display: flex;
+    align-items: center;
+}
+
+.sub-module:last-child {
+    border-bottom: none;
+}
+
+.sub-module i {
+    margin-left: 8px;
+    color: var(--success);
+}
+
+.intelligent-results {
+    margin-top: 20px;
+}
+
+.final-decision {
+    border: 2px solid;
+    padding: 20px;
+    border-radius: 15px;
+    text-align: center;
+    margin: 20px 0;
+}
+
+.probability-badge {
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 25px;
+    display: inline-block;
+    margin: 10px 0;
+}
+
+.analysis-summary {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 15px;
+    margin: 20px 0;
+}
+
+.summary-card {
+    padding: 15px;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-right: 4px solid;
+}
+
+.trading-targets {
+    background: #f8fafc;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border: 1px solid #e5e7eb;
+}
+
+.reasoning {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border: 1px solid #e5e7eb;
+}
+
+.risk-warning {
+    padding: 15px;
+    border-radius: 10px;
+    margin: 15px 0;
+    border-right: 4px solid;
+}
+
+.analysis-controls {
+    display: grid;
+    grid-template-columns: 1fr 1fr auto;
+    gap: 15px;
+    align-items: end;
+    margin-bottom: 20px;
+}
+
+.indicators-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 10px;
+    margin: 20px 0;
+}
+
+.indicator-card {
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    background: white;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.indicator-name {
+    font-weight: bold;
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+.indicator-value {
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+.indicator-signal {
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    display: inline-block;
+}
+        
+    </style>
+</head>
+<body>
+    <!-- صفحه لاگین -->
+    <div class="login-container" id="loginPage">
+        <div class="login-box">
+            <div class="logo">
+                <i class="fas fa-robot"></i>
+            </div>
+            <h2>Mousa Trading Advisor</h2>
+            <p>سیستم هوشمند مشاور تریدینگ پیشرفته</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">نام کاربری</label>
+                    <input type="text" id="username" class="form-control" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" id="password" class="form-control" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary btn-block">
+                    <i class="fas fa-sign-in-alt"></i>
+                    ورود به سیستم
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="main-app" id="mainApp" style="display: none;">
+        <div class="container">
+            <!-- نوار کناری -->
+            <div class="sidebar">
+                <div class="sidebar-header">
+                    <h2>Mousa Structure</h2>
+                    <p>ساختار کامل پایتون</p>
+                </div>
+                
+                <div class="sidebar-menu">
+                    <div class="menu-section">
+                        <div class="menu-section-title">ENHANCED_AI</div>
+                        <a href="#enhanced-ai" class="menu-item active">
+                            <i class="fas fa-brain"></i>
+                            هوش مصنوعی پیشرفته
+                        </a>
+                        <a href="#auto-analysis" class="menu-item">
+                            <i class="fas fa-robot"></i>
+                            تحلیل اتوماتیک
+                        </a>
+                    </div>
+                    
+                    <div class="menu-section">
+                        <div class="menu-section-title">MOUSAFRADE</div>
+                        <a href="#mousafrade" class="menu-item">
+                            <i class="fas fa-cogs"></i>
+                            هسته اصلی
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- محتوای اصلی -->
+            <div class="main-content">
+                <div class="header">
+                    <h1 class="page-title">دشبورد Mousa</h1>
+                    <div class="header-actions">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-sync-alt"></i>
+                            بروزرسانی
+                        </button>
+                        <div class="user-info">
+                            <div class="user-avatar">RM</div>
+                            <div>
+                                <div>رضا محمدی</div>
+                                <small>سطح: حرفه‌ای</small>
+                            </div>
+                        </div>
+                        <button class="btn" id="logoutBtn">
+                            <i class="fas fa-sign-out-alt"></i>
+                            خروج
+                        </button>
+                    </div>
+                </div>
+
+                <!-- نوتیفیکیشن‌ها -->
+                <div class="notifications">
+                    <div class="notification info">
+                        <i class="fas fa-info-circle"></i>
+                        <span>اتصال به سرورهای Mousa برقرار شد - وضعیت: عالی</span>
+                    </div>
+                </div>
+
+                <!-- کارت‌های آماری -->
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="stat-value">+۲.۸٪</div>
+                        <div class="stat-label">سود امروز</div>
+                    </div>
+                    <div class="stat-card success">
+                        <div class="stat-value">۱۲,۴۵۰ $</div>
+                        <div class="stat-label">موجودی کل</div>
+                    </div>
+                    <div class="stat-card warning">
+                        <div class="stat-value">۷</div>
+                        <div class="stat-label">معاملات فعال</div>
+                    </div>
+                    <div class="stat-card danger">
+                        <div class="stat-value">۸۷.۵٪</div>
+                        <div class="stat-label">دقت پیش‌بینی</div>
+                    </div>
+                </div>
+
+                <!-- بخش ENHANCED_AI -->
+                <div class="section" id="enhanced-ai">
+                    <h2>ENHANCED_AI - هوش مصنوعی پیشرفته</h2>
+                    
+                    <!-- Explainable AI -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-brain"></i>
+                            </div>
+                            <h3>explainable_ai/</h3>
+                            <span class="module-status">فعال</span>
+                        </div>
+                        <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
+                        
+                        <div class="sub-modules">
+                            <div class="sub-module">
+                                <i class="fas fa-code"></i>
+                                <span>decision_explainer.py - تفسیرگر تصمیمات</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-chart-bar"></i>
+                                <span>feature_importance.py - اهمیت ویژگی‌ها</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-project-diagram"></i>
+                                <span>model_interpretability.py - تفسیرپذیری مدل</span>
+                            </div>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="btn btn-primary">اجرای تحلیل</button>
+                            <button class="btn">گزارش کامل</button>
+                        </div>
+                    </div>
+
+                    <!-- Financial Transformers -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <h3>financial_transformers/</h3>
+                            <span class="module-status">فعال</span>
+                        </div>
+                        <p>مدل‌های ترنسفورمر برای تحلیل مالی</p>
+                        
+                        <div class="sub-modules">
+                            <div class="sub-module">
+                                <i class="fas fa-comment-dots"></i>
+                                <span>market_sentiment_transformer.py - تحلیل سنتیمنت بازار</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-chart-line"></i>
+                                <span>price_prediction_transformer.py - پیش‌بینی قیمت</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-clock"></i>
+                                <span>time_series_transformer.py - تحلیل سری زمانی</span>
+                            </div>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="btn btn-primary">آموزش مدل</button>
+                            <button class="btn">پیش‌بینی جدید</button>
+                        </div>
+                    </div>
+
+                    <!-- Multi-Agent AI -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>multi_agent_ai/</h3>
+                            <span class="module-status">فعال</span>
+                        </div>
+                        <p>سیستم چند عاملی برای تحلیل بازار</p>
+                        
+                        <div class="sub-modules">
+                            <div class="sub-module">
+                                <i class="fas fa-search"></i>
+                                <span>market_analyzer_agent.py - عامل تحلیل‌گر بازار</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-shield-alt"></i>
+                                <span>risk_assessor_agent.py - عامل ارزیاب ریسک</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-chess"></i>
+                                <span>strategy_selector_agent.py - عامل انتخاب استراتژی</span>
+                            </div>
+                        </div>
+                        
+                        <div class="module-actions">
+                            <button class="btn btn-primary">فعال‌سازی عوامل</button>
+                            <button class="btn">هماهنگی گروهی</button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- تحلیل اتوماتیک -->
+                <div class="section" id="auto-analysis" style="display: none;">
+                    <h2>تحلیل اتوماتیک تکنیکال</h2>
+                    
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-robot"></i>
+                            </div>
+                            <h3>سیستم تحلیل خودکار</h3>
+                            <span class="module-status">فعال</span>
+                        </div>
+                        
+                        <!-- کنترل‌های تحلیل -->
+                        <div class="analysis-controls">
+                            <div class="form-group">
+                                <label>جفت ارز/سهم</label>
+                                <select class="form-control" id="symbolSelect">
+                                    <option value="BTCUSDT">BTC/USDT</option>
+                                    <option value="ETHUSDT">ETH/USDT</option>
+                                    <option value="AAPL">AAPL (سهام)</option>
+                                    <option value="EURUSD">EUR/USD (فارکس)</option>
+                                </select>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label>بازه زمانی</label>
+                                <select class="form-control" id="timeframeSelect">
+                                    <option value="1h">1 ساعته</option>
+                                    <option value="4h">4 ساعته</option>
+                                    <option value="1d">روزانه</option>
+                                    <option value="1w">هفتگی</option>
+                                </select>
+                            </div>
+                            
+                            <button class="btn btn-primary" id="runAnalysis">
+                                <i class="fas fa-play"></i>
+                                اجرای تحلیل خودکار
+                            </button>
+                        </div>
+
+                        <!-- نتایج تحلیل -->
+                        <div id="analysisResults" style="display: none; margin-top: 20px;"></div>
+                    </div>
+                </div>
+
+                <!-- بخش MOUSAFRADE -->
+                <div class="section" id="mousafrade" style="display: none;">
+                    <h2>MOUSAFRADE - هسته اصلی پروژه</h2>
+                    
+                    <!-- ماژول‌های MOUSAFRADE -->
+                    <div class="module-grid">
+                        <!-- Advisor -->
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-icon">
+                                    <i class="fas fa-user-tie"></i>
+                                </div>
+                                <h3>advisor/</h3>
+                                <span class="module-status">فعال</span>
+                            </div>
+                            <p>سیستم مشاوره معاملاتی</p>
+                            <div class="sub-modules">
+                                <div class="sub-module">
+                                    <i class="fas fa-bullseye"></i>
+                                    <span>position_advisor.py - مشاور پوزیشن</span>
+                                </div>
+                                <div class="sub-module">
+                                    <i class="fas fa-exclamation-triangle"></i>
+                                    <span>risk_advisor.py - مشاور ریسک</span>
+                                </div>
+                                <div class="sub-module">
+                                    <i class="fas fa-chess-board"></i>
+                                    <span>strategy_advisor.py - مشاور استراتژی</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Analysis -->
+                    <div class="module-card">
+                        <div class="module-header">
+                            <div class="module-icon">
+                                <i class="fas fa-chart-bar"></i>
+                            </div>
+                            <h3>analysis/</h3>
+                            <span class="module-status">فعال</span>
+                        </div>
+                        <p>موتورهای تحلیل بازار</p>
+                        <div class="sub-modules">
+                            <div class="sub-module">
+                                <i class="fas fa-building"></i>
+                                <span>fundamental/ - تحلیل بنیادی</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-wave-square"></i>
+                                <span>market_regime/ - رژیم بازار</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-shapes"></i>
+                                <span>pattern/ - شناسایی الگو</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-smile"></i>
+                                <span>sentiment/ - تحلیل احساسات</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-chart-line"></i>
+                                <span>technical/ - تحلیل تکنیکال</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-arrow-trend-up"></i>
+                                <span>trend/ - تحلیل روند</span>
+                            </div>
+                            <div class="sub-module">
+                                <i class="fas fa-bolt"></i>
+                                <span>volatility/ - تحلیل نوسان</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Backtesting -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-history"></i>
+                        </div>
+                        <h3>backtesting/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>سیستم بک‌تستینگ استراتژی‌ها</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-play"></i>
+                            <span>backtesting.py - موتور اصلی بک‌تست</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-tools"></i>
+                            <span>backtesting_tools.py - ابزارهای تست</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-chart-area"></i>
+                            <span>plotting.py - رسم نمودارها</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Brokers -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-plug"></i>
+                        </div>
+                        <h3>brokers/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>اتصال به بروکرها و صرافی‌ها</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-layer-group"></i>
+                            <span>base_broker.py - کلاس پایه بروکر</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-coins"></i>
+                            <span>binance/ - اتصال به Binance</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-industry"></i>
+                            <span>factory.py - کارخانه اتصال</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>xchief/ - اتصال به Xchief</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Core -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-cog"></i>
+                        </div>
+                        <h3>core/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>هسته مرکزی سیستم</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-broadcast-tower"></i>
+                            <span>event_dispatcher.py - توزیع‌کننده رویدادها</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-tachometer-alt"></i>
+                            <span>performance_tracker.py - ردیابی عملکرد</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-database"></i>
+                            <span>state_manager.py - مدیریت وضعیت</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-engine"></i>
+                            <span>trading_engine.py - موتور معاملاتی</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- ادامه تمام ماژول‌های دیگر -->
+                <!-- Data Management -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-database"></i>
+                        </div>
+                        <h3>data/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>مدیریت داده‌های بازار</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>converters/ - مبدل‌های داده</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-cloud-download-alt"></i>
+                            <span>dataprovider/ - تأمین‌کنندگان داده</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-history"></i>
+                            <span>history/ - داده‌های تاریخی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-tools"></i>
+                            <span>tools/ - ابزارهای داده</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Markets -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <h3>markets/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>پشتیبانی از بازارهای مختلف</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-bitcoin"></i>
+                            <span>crypto/ - بازار کریپتو</span>
+                            <div style="padding-right: 20px;">
+                                <div class="sub-module">
+                                    <i class="fas fa-exchange-alt"></i>
+                                    <span>binance_market.py - بازار Binance</span>
+                                </div>
+                                <div class="sub-module">
+                                    <i class="fas fa-chart-line"></i>
+                                    <span>crypto_analyzer.py - تحلیل‌گر کریپتو</span>
+                                </div>
+                                <div class="sub-module">
+                                    <i class="fas fa-coins"></i>
+                                    <span>bucoin_market.py - بازار Bucoin</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-stream"></i>
+                            <span>data_feeds/ - فیدهای داده</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-dollar-sign"></i>
+                            <span>forex/ - بازار فارکس</span>
+                        </div>
+                    </div>
+                </div>
+
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>trading_types/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>انواع معاملات پیشرفته</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-exchange-alt"></i>
+            <span>spot_trading.py - معاملات اسپات</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-forward"></i>
+            <span>futures_trading.py - معاملات فیوچرز</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-balance-scale"></i>
+            <span>margin_trading.py - معاملات مارجین</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-percentage"></i>
+            <span>forex_trading.py - معاملات فارکس</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-robot"></i>
+            <span>copy_trading.py - کپی تریدینگ</span>
+        </div>
+    </div>
+</div>
+
+                <!-- Money Management -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-money-bill-wave"></i>
+                        </div>
+                        <h3>money_management/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>مدیریت سرمایه و ریسک</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-calculator"></i>
+                            <span>belly.py - محاسبات سایز پوزیشن</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-ruler"></i>
+                            <span>body_criterion.py - معیارهای مدیریت</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>portfolio_management.py - مدیریت پرتفوی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-expand"></i>
+                            <span>position_sizing.py - تعیین سایز</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>risk_management.py - مدیریت ریسک</span>
+                        </div>
+                    </div>
+                </div>
+
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>advanced_risk/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>مدیریت ریسک پیشرفته</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-calculator"></i>
+            <span>leverage_calculator.py - ماشین حساب اهرم</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>liquidation_alert.py - هشدار لیکوییدیشن</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-chart-pie"></i>
+            <span>correlation_analyzer.py - تحلیل همبستگی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-wind"></i>
+            <span>volatility_management.py - مدیریت نوسان</span>
+        </div>
+    </div>
+</div>
+
+                <!-- Optimization -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-rocket"></i>
+                        </div>
+                        <h3>optimization/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>بهینه‌سازی استراتژی‌ها</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-chart-line"></i>
+                            <span>bayesian_optimizer.py - بهینه‌ساز بیزی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-dna"></i>
+                            <span>genetic_optimizer.py - بهینه‌ساز ژنتیک</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-sliders-h"></i>
+                            <span>hyperparameter_tunner.py - تنظیم هایپرپارامتر</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>portfolio_optimizer.py - بهینه‌ساز پرتفوی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-walking"></i>
+                            <span>walk_forward.py - آزمون پیشرو</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resiliency -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>resiliency/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>مقاوم‌سازی سیستم</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-cogs"></i>
+                            <span>config/ - تنظیمات مقاوم‌سازی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-project-diagram"></i>
+                            <span>models/ - مدل‌های مقاوم‌سازی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-exchange-alt"></i>
+                            <span>trade/ - مدیریت معاملات مقاوم</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-power-off"></i>
+                            <span>circuit_breaker.py - قطع کننده مدار</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-bug"></i>
+                            <span>error_handler.py - مدیریت خطا</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-parachute-box"></i>
+                            <span>fallback_strategy.py - استراتژی جایگزین</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-heartbeat"></i>
+                            <span>health_check.py - بررسی سلامت</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-redo"></i>
+                            <span>retry_mechanism.py - مکانیزم تلاش مجدد</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Strategies -->
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-icon">
+                            <i class="fas fa-chess"></i>
+                        </div>
+                        <h3>strategies/</h3>
+                        <span class="module-status">فعال</span>
+                    </div>
+                    <p>استراتژی‌های معاملاتی</p>
+                    <div class="sub-modules">
+                        <div class="sub-module">
+                            <i class="fas fa-layer-group"></i>
+                            <span>base_strategy.py - استراتژی پایه</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-brain"></i>
+                            <span>ml_strategies.py - استراتژی‌های ML</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-chart-pie"></i>
+                            <span>portfolio_strategies.py - استراتژی‌های پرتفوی</span>
+                        </div>
+                        <div class="sub-module">
+                            <i class="fas fa-chart-line"></i>
+                            <span>technical_strategies.py - استراتژی‌های تکنیکال</span>
+                        </div>
+                    </div>
+                </div>
+
+<!-- تحلیل تکنیکال -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-chart-line"></i>
+        </div>
+        <h3>technical_analysis/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>ابزارهای کامل تحلیل تکنیکال</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-wave-square"></i>
+            <span>indicators/ - اندیکاتورها (RSI, MACD, Bollinger, ...)</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-draw-polygon"></i>
+            <span>patterns/ - الگوهای نموداری</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-ruler-combined"></i>
+            <span>fibonacci/ - ابزار فیبوناچی</span>
+        </div>
+    </div>
+</div>
+
+<!-- تحلیل اخبار -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-newspaper"></i>
+        </div>
+        <h3>news_analyzer/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>تحلیل اخبار و سنتیمنت بازار</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-globe"></i>
+            <span>news_sources/ - منابع خبری (Reuters, Bloomberg, ...)</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-comment-dots"></i>
+            <span>social_sentiment/ - تحلیل شبکه‌های اجتماعی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-chart-bar"></i>
+            <span>economic_calendar/ - تقویم اقتصادی</span>
+        </div>
+    </div>
+</div>
+
+<!-- مانیتورینگ -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-bell"></i>
+        </div>
+        <h3>monitoring/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>سیستم نظارت و هشدار لحظه‌ای</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>price_alerts/ - هشدارهای قیمتی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-chart-pie"></i>
+            <span>portfolio_monitor/ - مانیتورینگ پرتفوی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>performance_tracker/ - ردیابی عملکرد</span>
+        </div>
+    </div>
+</div>
+
+<!-- مدیریت ریسک پیشرفته -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-shield-alt"></i>
+        </div>
+        <h3>advanced_risk/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>مدیریت ریسک پیشرفته</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-calculator"></i>
+            <span>leverage_calculator.py - ماشین حساب اهرم</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-exclamation-triangle"></i>
+            <span>liquidation_alert.py - هشدار لیکوییدیشن</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-chart-pie"></i>
+            <span>correlation_analyzer.py - تحلیل همبستگی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-wind"></i>
+            <span>volatility_management.py - مدیریت نوسان</span>
+        </div>
+    </div>
+</div>
+
+<!-- گزارش‌گیری -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-chart-bar"></i>
+        </div>
+        <h3>reporting/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>سیستم گزارش‌گیری جامع</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-file-pdf"></i>
+            <span>performance_reports/ - گزارش عملکرد</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-chart-line"></i>
+            <span>analytics_dashboard/ - داشبورد تحلیلی</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-database"></i>
+            <span>data_export/ - خروجی داده</span>
+        </div>
+    </div>
+</div>
+
+		<!-- Utils -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-tools"></i>
+        </div>
+        <h3>utils/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>ابزارهای کمکی سیستم</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-cogs"></i>
+            <span>configuration/ - مدیریت تنظیمات</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-magic"></i>
+            <span>decorators.py - دکوراتورها</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-download"></i>
+            <span>setup.py - نصب سیستم</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-tag"></i>
+            <span>version.py - مدیریت نسخه</span>
+        </div>
+    </div>
+</div>
+
+<!-- Web -->
+<div class="module-card">
+    <div class="module-header">
+        <div class="module-icon">
+            <i class="fas fa-globe"></i>
+        </div>
+        <h3>web/</h3>
+        <span class="module-status">فعال</span>
+    </div>
+    <p>رابط وب و دشبورد</p>
+    <div class="sub-modules">
+        <div class="sub-module">
+            <i class="fas fa-tachometer-alt"></i>
+            <span>dashboard/ - صفحات دشبورد</span>
+        </div>
+        <div class="sub-module">
+            <i class="fas fa-play"></i>
+            <span>main.py - اجرای وب سرور</span>
+        </div>
+    </div>
+</div>
+
+    <script>
+        // مدیریت لاگین
+        document.getElementById('loginForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if ((username === "admin" && password === "mousa123") || 
+                (username === "user" && password === "trade2024")) {
+                document.getElementById('loginPage').style.display = 'none';
+                document.getElementById('mainApp').style.display = 'block';
+            } else {
+                alert('نام کاربری یا رمز عبور اشتباه است!\n\nاطلاعات تست:\nکاربری: admin\nرمز: mousa123');
+            }
+        });
+
+        // مدیریت خروج
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            document.getElementById('loginPage').style.display = 'flex';
+            document.getElementById('mainApp').style.display = 'none';
+            document.getElementById('username').value = '';
+            document.getElementById('password').value = '';
+        });
+
+        // مدیریت منو
+        document.querySelectorAll('.menu-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                // به‌روزرسانی منوی فعال
+                document.querySelectorAll('.menu-item').forEach(i => {
+                    i.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // نمایش بخش مربوطه
+                const targetId = this.getAttribute('href').substring(1);
+                document.querySelectorAll('.section').forEach(section => {
+                    section.style.display = 'none';
+                });
+                
+                const targetSection = document.getElementById(targetId);
+                if (targetSection) {
+                    targetSection.style.display = 'block';
+                }
+            });
+        });
+
+        // سیستم تحلیل هوشمند
+        document.getElementById('runAnalysis').addEventListener('click', function() {
+            const symbol = document.getElementById('symbolSelect').value;
+            const timeframe = document.getElementById('timeframeSelect').value;
+            runIntelligentAnalysis(symbol, timeframe);
+        });
+
+        function runIntelligentAnalysis(symbol, timeframe) {
+    const resultsDiv = document.getElementById('analysisResults');
+    resultsDiv.style.display = 'block';
+    resultsDiv.innerHTML = `
+        <div class="notification info">
+            <i class="fas fa-brain"></i>
+            در حال اجرای تحلیل هوشمند... 
+            <div style="margin-top: 10px;">
+                <div>📊 تحلیل تکنیکال (25 اندیکاتور)</div>
+                <div>📰 تحلیل اخبار و سنتیمنت</div>
+                <div>🤖 پردازش هوش مصنوعی</div>
+                <div>🎯 محاسبه احتمال موفقیت</div>
+            </div>
+        </div>
+    `;
+    
+    setTimeout(() => {
+        const intelligentResult = generateIntelligentAnalysis(symbol, timeframe);
+        displayIntelligentResults(intelligentResult);
+    }, 3000);
+}
+
+function generateIntelligentAnalysis(symbol, timeframe) {
+    // شبیه‌سازی تحلیل‌های مختلف
+    const technicalAnalysis = generateTechnicalAnalysis();
+    const sentimentAnalysis = generateSentimentAnalysis();
+    const newsAnalysis = generateNewsAnalysis();
+    const aiPrediction = generateAIPrediction();
+    
+    // ادغام نتایج با الگوریتم هوش مصنوعی
+    return integrateAllAnalyses(technicalAnalysis, sentimentAnalysis, newsAnalysis, aiPrediction, symbol, timeframe);
+}
+
+function generateTechnicalAnalysis() {
+    return {
+        rsi: { value: (Math.random() * 100).toFixed(1), weight: 0.15 },
+        macd: { value: (Math.random() * 0.02 - 0.01).toFixed(4), weight: 0.12 },
+        bollinger: { value: ['پایین', 'میانه', 'بالا'][Math.floor(Math.random() * 3)], weight: 0.10 },
+        movingAverages: { 
+            ma20: Math.random() > 0.5 ? 'صعودی' : 'نزولی',
+            ma50: Math.random() > 0.5 ? 'صعودی' : 'نزولی',
+            weight: 0.13
+        },
+        volume: { value: (Math.random() * 200 + 50).toFixed(0), trend: Math.random() > 0.5 ? 'افزایش' : 'کاهش', weight: 0.08 },
+        support: (Math.random() * 1000 + 50000).toFixed(0),
+        resistance: (Math.random() * 1000 + 51000).toFixed(0)
+    };
+}
+
+function generateSentimentAnalysis() {
+    const sentiments = ['بسیار مثبت', 'مثبت', 'خنثی', 'منفی', 'بسیار منفی'];
+    return {
+        marketSentiment: sentiments[Math.floor(Math.random() * sentiments.length)],
+        fearGreed: Math.floor(Math.random() * 100),
+        socialVolume: Math.floor(Math.random() * 1000),
+        weight: 0.20
+    };
+}
+
+function generateNewsAnalysis() {
+    const newsImpact = ['بسیار مثبت', 'مثبت', 'خنثی', 'منفی', 'بسیار منفی'];
+    return {
+        recentNews: newsImpact[Math.floor(Math.random() * newsImpact.length)],
+        economicEvents: Math.random() > 0.7 ? 'رویداد مهم' : 'بدون رویداد',
+        weight: 0.15
+    };
+}
+
+function generateAIPrediction() {
+    return {
+        patternRecognition: Math.random() > 0.5 ? 'الگوی صعودی' : 'الگوی نزولی',
+        mlPrediction: Math.random() > 0.5 ? 'خرید' : 'فروش',
+        confidence: Math.floor(Math.random() * 30 + 65),
+        weight: 0.17
+    };
+}
+
+function integrateAllAnalyses(technical, sentiment, news, ai, symbol, timeframe) {
+    // محاسبه امتیاز نهایی با وزن‌دهی هوشمند
+    let totalScore = 0;
+    let maxScore = 0;
+    
+    // محاسبه امتیاز تکنیکال
+    const techScore = calculateTechnicalScore(technical);
+    totalScore += techScore * technical.weight;
+    maxScore += 100 * technical.weight;
+    
+    // محاسبه امتیاز سنتیمنت
+    const sentimentScore = calculateSentimentScore(sentiment);
+    totalScore += sentimentScore * sentiment.weight;
+    maxScore += 100 * sentiment.weight;
+    
+    // محاسبه امتیاز اخبار
+    const newsScore = calculateNewsScore(news);
+    totalScore += newsScore * news.weight;
+    maxScore += 100 * news.weight;
+    
+    // محاسبه امتیاز هوش مصنوعی
+    const aiScore = ai.confidence;
+    totalScore += aiScore * ai.weight;
+    maxScore += 100 * ai.weight;
+    
+    // محاسبه درصد موفقیت
+    const successProbability = Math.round((totalScore / maxScore) * 100);
+    
+    // تصمیم‌گیری نهایی
+    const finalDecision = successProbability >= 60 ? 'خرید' : 
+                         successProbability >= 40 ? 'نگهداری' : 'فروش';
+    
+    return {
+        symbol: symbol,
+        timeframe: timeframe,
+        timestamp: new Date().toLocaleString('fa-IR'),
+        analyses: { technical, sentiment, news, ai },
+        finalDecision: finalDecision,
+        successProbability: successProbability,
+        confidenceLevel: getConfidenceLevel(successProbability),
+        riskLevel: getRiskLevel(successProbability),
+        targets: generateTargets(symbol, finalDecision, successProbability),
+        reasoning: generateReasoning(finalDecision, successProbability)
+    };
+}
+
+function calculateTechnicalScore(technical) {
+    let score = 50;
+    
+    // RSI scoring
+    if (technical.rsi.value < 30) score += 15; // Oversold
+    else if (technical.rsi.value > 70) score -= 15; // Overbought
+    
+    // MACD scoring
+    if (technical.macd.value > 0) score += 10;
+    else score -= 10;
+    
+    // Bollinger Bands scoring
+    if (technical.bollinger.value === 'پایین') score += 12;
+    else if (technical.bollinger.value === 'بالا') score -= 12;
+    
+    return Math.max(0, Math.min(100, score));
+}
+
+function calculateSentimentScore(sentiment) {
+    const sentimentScores = {
+        'بسیار مثبت': 90,
+        'مثبت': 70,
+        'خنثی': 50,
+        'منفی': 30,
+        'بسیار منفی': 10
+    };
+    
+    return sentimentScores[sentiment.marketSentiment] || 50;
+}
+
+function calculateNewsScore(news) {
+    const newsScores = {
+        'بسیار مثبت': 85,
+        'مثبت': 65,
+        'خنثی': 50,
+        'منفی': 35,
+        'بسیار منفی': 15
+    };
+    
+    return newsScores[news.recentNews] || 50;
+}
+
+function getConfidenceLevel(probability) {
+    if (probability >= 80) return 'بسیار بالا';
+    if (probability >= 70) return 'بالا';
+    if (probability >= 60) return 'متوسط';
+    if (probability >= 50) return 'پایین';
+    return 'بسیار پایین';
+}
+
+function getRiskLevel(probability) {
+    if (probability >= 75) return 'کم';
+    if (probability >= 60) return 'متوسط';
+    if (probability >= 45) return 'بالا';
+    return 'بسیار بالا';
+}
+
+function generateTargets(symbol, decision, probability) {
+    const basePrice = decision === 'خرید' ? 50000 : 52000;
+    const multiplier = probability / 100;
+    
+    return {
+        takeProfit: (basePrice * (1 + 0.05 * multiplier)).toFixed(0),
+        stopLoss: (basePrice * (1 - 0.03 * multiplier)).toFixed(0),
+        timeFrame: probability >= 70 ? 'کوتاه‌مدت (1-3 روز)' : 
+                  probability >= 50 ? 'میان‌مدت (1-2 هفته)' : 'بلندمدت (1 ماه)'
+    };
+}
+
+function generateReasoning(decision, probability) {
+    const reasons = {
+        خرید: [
+            'سیگنال‌های تکنیکال قوی',
+            'سنتیمنت بازار مثبت',
+            'الگوهای صعودی شناسایی شد',
+            'حجم معاملات افزایشی'
+        ],
+        فروش: [
+            'اشباع خرید در اندیکاتورها',
+            'سنتیمنت بازار منفی',
+            'الگوهای نزولی شناسایی شد',
+            'شکست سطح حمایت'
+        ],
+        نگهداری: [
+            'بازار در حالت خنثی',
+            'عدم قطعیت در تحلیلها',
+            'انتظار برای سیگنال واضح‌تر',
+            'توصیه به نظارت بیشتر'
+        ]
+    };
+    
+    const selectedReasons = reasons[decision] || reasons['نگهداری'];
+    return selectedReasons.slice(0, 3);
+}
+
+function displayIntelligentResults(result) {
+    const resultsDiv = document.getElementById('analysisResults');
+    
+    const decisionColor = result.finalDecision === 'خرید' ? 'success' : 
+                        result.finalDecision === 'فروش' ? 'danger' : 'warning';
+    
+    const probabilityColor = result.successProbability >= 70 ? 'success' : 
+                           result.successProbability >= 50 ? 'warning' : 'danger';
+    
+    let html = `
+        <div class="intelligent-results">
+            <h4>🧠 تحلیل هوشمند ${result.symbol} (${result.timeframe})</h4>
+            <small>تاریخ تحلیل: ${result.timestamp}</small>
+            
+            <!-- کارت نتیجه نهایی -->
+            <div class="final-decision ${decisionColor}" style="padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center; background: linear-gradient(135deg, var(--${decisionColor}), #${decisionColor === 'success' ? '10b98120' : decisionColor === 'danger' ? 'ef444420' : 'f59e0b20'});">
+                <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">
+                    ${result.finalDecision === 'خرید' ? '📈' : result.finalDecision === 'فروش' ? '📉' : '⚖️'} 
+                    پیشنهاد: ${result.finalDecision}
+                </div>
+                <div class="probability-badge ${probabilityColor}" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">
+                    ${result.successProbability}%
+                </div>
+                <div style="font-size: 0.9rem; color: #666;">
+                    احتمال موفقیت: ${result.confidenceLevel} | سطح ریسک: ${result.riskLevel}
+                </div>
+            </div>
+            
+            <!-- خلاصه تحلیل‌ها -->
+            <div class="analysis-summary">
+                <div class="summary-card" style="border-right-color: #3b82f6;">
+                    <div style="font-weight: bold; color: #3b82f6;">📊 تکنیکال</div>
+                    <div>RSI: ${result.analyses.technical.rsi.value}</div>
+                    <div>MACD: ${result.analyses.technical.macd.value}</div>
+                    <div>موقعیت: ${result.analyses.technical.bollinger.value}</div>
+                </div>
+                
+                <div class="summary-card" style="border-right-color: #10b981;">
+                    <div style="font-weight: bold; color: #10b981;">😊 سنتیمنت</div>
+                    <div>${result.analyses.sentiment.marketSentiment}</div>
+                    <div>شاخص ترس: ${result.analyses.sentiment.fearGreed}</div>
+                </div>
+                
+                <div class="summary-card" style="border-right-color: #f59e0b;">
+                    <div style="font-weight: bold; color: #f59e0b;">📰 اخبار</div>
+                    <div>${result.analyses.news.recentNews}</div>
+                    <div>${result.analyses.news.economicEvents}</div>
+                </div>
+                
+                <div class="summary-card" style="border-right-color: #8b5cf6;">
+                    <div style="font-weight: bold; color: #8b5cf6;">🤖 هوش مصنوعی</div>
+                    <div>اعتماد: ${result.analyses.ai.confidence}%</div>
+                    <div>${result.analyses.ai.patternRecognition}</div>
+                </div>
+            </div>
+            
+            <!-- اهداف معاملاتی -->
+            <div class="trading-targets">
+                <h5>🎯 اهداف معاملاتی</h5>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
+                    <div>
+                        <strong>حد سود:</strong><br>
+                        ${result.targets.takeProfit}$
+                    </div>
+                    <div>
+                        <strong>حد ضرر:</strong><br>
+                        ${result.targets.stopLoss}$
+                    </div>
+                    <div>
+                        <strong>بازه زمانی:</strong><br>
+                        ${result.targets.timeFrame}
+                    </div>
+                </div>
+            </div>
+            
+            <!-- استدلال‌ها -->
+            <div class="reasoning">
+                <h5>💡 استدلال‌های تحلیل</h5>
+                <ul style="padding-right: 20px;">
+                    ${result.reasoning.map(reason => `<li>${reason}</li>`).join('')}
+                </ul>
+            </div>
+            
+            <!-- هشدار ریسک -->
+            <div class="risk-warning ${probabilityColor}" style="background: #${probabilityColor === 'success' ? '10b98110' : probabilityColor === 'danger' ? 'ef444410' : 'f59e0b10'};">
+                <i class="fas fa-exclamation-triangle"></i>
+                <strong>توجه:</strong> این تحلیل بر اساس الگوریتم‌های هوش مصنوعی تولید شده و توصیه مالی محسوب نمی‌شود. 
+                مسئولیت معاملات بر عهده کاربر است.
+            </div>
+        </div>
+    `;
+    
+    resultsDiv.innerHTML = html;
+}
+
+// مدیریت منو
+document.querySelectorAll('.menu-item').forEach(item => {
+    item.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        // به‌روزرسانی منوی فعال
+        document.querySelectorAll('.menu-item').forEach(i => {
+            i.classList.remove('active');
+        });
+        this.classList.add('active');
+        
+        // نمایش بخش مربوطه
+        const targetId = this.getAttribute('href').substring(1);
+        document.querySelectorAll('.section').forEach(section => {
+            section.style.display = 'none';
+        });
+        document.getElementById(targetId).style.display = 'block';
+    });
+});
+    </script>
+</body>
+</html>
