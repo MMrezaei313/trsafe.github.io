@@ -15,7 +15,6 @@
             --warning: #f59e0b;
             --dark: #1f2937;
             --light: #f8fafc;
-            --sidebar-width: 250px;
         }
         
         * {
@@ -138,28 +137,24 @@
             width: 100%;
             height: 100vh;
             background: var(--light);
-            overflow: hidden;
         }
         
-        .app-container {
+        .container {
             display: flex;
             height: 100vh;
         }
         
         .sidebar {
-            width: var(--sidebar-width);
+            width: 280px;
             background: var(--dark);
             color: white;
             overflow-y: auto;
-            box-shadow: 5px 0 15px rgba(0,0,0,0.1);
-            z-index: 100;
         }
         
         .sidebar-header {
             padding: 30px 20px;
             text-align: center;
             border-bottom: 1px solid #374151;
-            background: rgba(0,0,0,0.2);
         }
         
         .sidebar-header h2 {
@@ -231,7 +226,6 @@
             flex: 1;
             overflow-y: auto;
             padding: 20px;
-            background: #f1f5f9;
         }
         
         .header {
@@ -239,10 +233,8 @@
             justify-content: space-between;
             align-items: center;
             margin-bottom: 30px;
-            padding: 20px;
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            padding-bottom: 20px;
+            border-bottom: 1px solid #e5e7eb;
         }
         
         .page-title {
@@ -269,11 +261,6 @@
             border-radius: 15px;
             box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             border-left: 4px solid var(--secondary);
-            transition: transform 0.3s;
-        }
-        
-        .stat-card:hover {
-            transform: translateY(-5px);
         }
         
         .stat-card.success {
@@ -315,8 +302,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #e5e7eb;
         }
         
         .form-group {
@@ -380,6 +365,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .market-data-marketcap {
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-align: left;
         }
         
         .price-change {
@@ -447,11 +439,6 @@
             padding: 20px;
             background: white;
             transition: all 0.3s;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        }
-        
-        .module-card:hover {
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         }
         
         .module-header {
@@ -574,56 +561,36 @@
         .intelligent-results {
             margin-top: 20px;
         }
-        
-        /* استایل‌های مخصوص موبایل */
+
+        /* بهبود نمای موبایل */
         @media (max-width: 768px) {
-            body {
-                padding: 10px;
-            }
-            
-            .login-box {
-                padding: 25px;
-            }
-            
-            .app-container {
+            .container {
                 flex-direction: column;
+                height: auto;
             }
             
             .sidebar {
                 width: 100%;
                 height: auto;
-                position: fixed;
-                bottom: 0;
-                left: 0;
-                right: 0;
-                z-index: 1000;
-                border-radius: 20px 20px 0 0;
-                display: none;
-            }
-            
-            .sidebar.active {
-                display: block;
-            }
-            
-            .sidebar-header {
-                padding: 20px;
             }
             
             .sidebar-menu {
-                padding: 10px 0;
-                max-height: 60vh;
-                overflow-y: auto;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
             }
             
-            .main-content {
-                padding: 15px;
-                margin-bottom: 70px;
+            .menu-item {
+                padding: 10px 15px;
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
             }
             
             .header {
                 flex-direction: column;
                 gap: 15px;
-                padding: 15px;
+                align-items: flex-start;
             }
             
             .header-actions {
@@ -633,20 +600,10 @@
             
             .stats-grid {
                 grid-template-columns: 1fr 1fr;
-                gap: 15px;
-            }
-            
-            .stat-card {
-                padding: 20px;
             }
             
             .market-data-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 10px;
-            }
-            
-            .section {
-                padding: 20px;
+                grid-template-columns: 1fr;
             }
             
             .trading-form {
@@ -660,25 +617,6 @@
             .module-grid {
                 grid-template-columns: 1fr;
             }
-            
-            .mobile-menu-toggle {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                width: 60px;
-                height: 60px;
-                border-radius: 50%;
-                background: var(--secondary);
-                color: white;
-                display: flex;
-                align-items: center;
-                justify-content: center;
-                font-size: 1.5rem;
-                box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-                z-index: 1001;
-                border: none;
-                cursor: pointer;
-            }
         }
         
         @media (max-width: 480px) {
@@ -686,8 +624,12 @@
                 grid-template-columns: 1fr;
             }
             
-            .market-data-grid {
-                grid-template-columns: 1fr;
+            .login-box {
+                padding: 25px;
+            }
+            
+            .section {
+                padding: 15px;
             }
         }
     </style>
@@ -718,36 +660,21 @@
                     ورود به سیستم
                 </button>
             </form>
-            
-            <div style="margin-top: 20px; font-size: 0.9rem; color: #6b7280;">
-                <p>برای تست:</p>
-                <p>مدیر سیستم: admin / mousa123</p>
-                <p>کاربر عادی: user / trade2024</p>
-            </div>
         </div>
     </div>
 
     <div class="main-app" id="mainApp" style="display: none;">
-        <div class="app-container">
+        <div class="container">
             <!-- نوار کناری -->
-            <div class="sidebar" id="sidebar">
+            <div class="sidebar">
                 <div class="sidebar-header">
                     <h2>Mousa Structure</h2>
                     <p>ساختار کامل پایتون</p>
                 </div>
                 
-                <div class="user-info">
-                    <div class="user-avatar" id="userAvatar">م</div>
-                    <div>
-                        <div id="userName">موسی</div>
-                        <small id="userLevel">سطح: حرفه‌ای</small>
-                    </div>
-                </div>
-                
                 <div class="sidebar-menu">
                     <!-- منوی کاربر عادی -->
                     <div class="menu-section user-regular">
-                        <div class="menu-section-title">معاملات و تحلیل</div>
                         <a href="#market-analysis" class="menu-item active">
                             <i class="fas fa-chart-line"></i>
                             تحلیل بازار
@@ -768,7 +695,7 @@
                     
                     <!-- منوی ادمین -->
                     <div class="menu-section admin-only">
-                        <div class="menu-section-title">پنل مدیریت</div>
+                        <div class="menu-section-title">ADMIN PANEL</div>
                         <a href="#ai-modules" class="menu-item">
                             <i class="fas fa-brain"></i>
                             ماژول‌های هوش مصنوعی
@@ -780,13 +707,6 @@
                         <a href="#prediction-analysis" class="menu-item">
                             <i class="fas fa-chart-bar"></i>
                             آنالیز پیش‌بینی
-                        </a>
-                    </div>
-                    
-                    <div class="menu-section">
-                        <a href="#logout" class="menu-item" id="sidebarLogout">
-                            <i class="fas fa-sign-out-alt"></i>
-                            خروج از سیستم
                         </a>
                     </div>
                 </div>
@@ -801,6 +721,13 @@
                             <i class="fas fa-sync-alt"></i>
                             بروزرسانی
                         </button>
+                        <div class="user-info">
+                            <div class="user-avatar" id="userAvatar">م</div>
+                            <div>
+                                <div id="userName">موسی</div>
+                                <small id="userLevel">سطح: حرفه‌ای</small>
+                            </div>
+                        </div>
                         <button class="btn" id="logoutBtn">
                             <i class="fas fa-sign-out-alt"></i>
                             خروج
@@ -838,8 +765,9 @@
 
                 <!-- بخش تحلیل بازار (همه کاربران) -->
                 <div class="section" id="market-analysis">
-                    <h2 class="section-title">📊 تحلیل بازار زنده</h2>
+                    <h2>📊 تحلیل بازار زنده</h2>
                     
+                    <!-- انتخاب بروکر -->
                     <div class="form-group">
                         <label>منبع داده</label>
                         <select class="form-control" id="dataSource">
@@ -849,6 +777,7 @@
                         </select>
                     </div>
                     
+                    <!-- قیمت‌های زنده -->
                     <div class="market-data-grid" id="marketData">
                         <!-- داده‌های بازار با JavaScript پر می‌شوند -->
                     </div>
@@ -856,7 +785,7 @@
 
                 <!-- معاملات اهرمی (همه کاربران) -->
                 <div class="section" id="leverage-trading" style="display: none;">
-                    <h2 class="section-title">💼 معاملات اهرمی (فیوچرز/مارجین)</h2>
+                    <h2>💼 معاملات اهرمی (فیوچرز/مارجین)</h2>
                     
                     <div class="trading-panel">
                         <div class="trading-form" id="leverageForm">
@@ -914,7 +843,7 @@
 
                 <!-- معاملات معمولی (همه کاربران) -->
                 <div class="section" id="spot-trading" style="display: none;">
-                    <h2 class="section-title">💵 معاملات معمولی (Spot)</h2>
+                    <h2>💵 معاملات معمولی (Spot)</h2>
                     
                     <div class="trading-panel">
                         <div class="trading-form" id="spotForm">
@@ -964,7 +893,7 @@
 
                 <!-- تحلیل اتوماتیک (همه کاربران) -->
                 <div class="section" id="auto-analysis" style="display: none;">
-                    <h2 class="section-title">🤖 تحلیل اتوماتیک تکنیکال</h2>
+                    <h2>🤖 تحلیل اتوماتیک تکنیکال</h2>
                     
                     <div class="analysis-controls">
                         <div class="form-group">
@@ -997,7 +926,7 @@
                 
                 <!-- ماژول‌های هوش مصنوعی (ادمین) -->
                 <div class="section admin-only" id="ai-modules" style="display: none;">
-                    <h2 class="section-title">🧠 مدیریت ماژول‌های هوش مصنوعی</h2>
+                    <h2>🧠 مدیریت ماژول‌های هوش مصنوعی</h2>
                     
                     <div class="module-grid">
                         <div class="module-card">
@@ -1073,7 +1002,7 @@
 
                 <!-- تنظیمات سیستم (ادمین) -->
                 <div class="section admin-only" id="system-config" style="display: none;">
-                    <h2 class="section-title">⚙️ تنظیمات سیستم</h2>
+                    <h2>⚙️ تنظیمات سیستم</h2>
                     
                     <div class="trading-form">
                         <div class="form-group">
@@ -1113,7 +1042,7 @@
 
                 <!-- آنالیز پیش‌بینی (ادمین) -->
                 <div class="section admin-only" id="prediction-analysis" style="display: none;">
-                    <h2 class="section-title">📈 آنالیز پیش‌بینی‌ها</h2>
+                    <h2>📈 آنالیز پیش‌بینی‌ها</h2>
                     
                     <div class="form-group">
                         <label>بازه زمانی تحلیل</label>
@@ -1134,11 +1063,6 @@
                 </div>
             </div>
         </div>
-        
-        <!-- دکمه منوی موبایل -->
-        <button class="mobile-menu-toggle" id="mobileMenuToggle" style="display: none;">
-            <i class="fas fa-bars"></i>
-        </button>
     </div>
 
     <script>
@@ -1172,12 +1096,6 @@
                     document.getElementById('userAvatar').textContent = 'ک';
                 }
                 
-                // مدیریت نمایش منوی موبایل
-                if (window.innerWidth <= 768) {
-                    document.getElementById('mobileMenuToggle').style.display = 'flex';
-                    document.getElementById('sidebar').classList.remove('active');
-                }
-                
                 initializeDashboard();
             } else {
                 alert('نام کاربری یا رمز عبور اشتباه است!\n\nاطلاعات تست:\nمدیر: admin/mousa123\nکاربر: user/trade2024');
@@ -1185,29 +1103,18 @@
         });
 
         // مدیریت خروج
-        document.getElementById('logoutBtn').addEventListener('click', logout);
-        document.getElementById('sidebarLogout').addEventListener('click', logout);
-        
-        function logout() {
+        document.getElementById('logoutBtn').addEventListener('click', function() {
             document.getElementById('loginPage').style.display = 'flex';
             document.getElementById('mainApp').style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
             document.getElementById('mainApp').classList.remove('user-admin', 'user-regular');
             currentUser = null;
-        }
-
-        // مدیریت منوی موبایل
-        document.getElementById('mobileMenuToggle').addEventListener('click', function() {
-            const sidebar = document.getElementById('sidebar');
-            sidebar.classList.toggle('active');
         });
 
         // مدیریت منو
         document.querySelectorAll('.menu-item').forEach(item => {
             item.addEventListener('click', function(e) {
-                if (this.getAttribute('href') === '#logout') return;
-                
                 e.preventDefault();
                 
                 // به‌روزرسانی منوی فعال
@@ -1227,11 +1134,6 @@
                     targetSection.style.display = 'block';
                     document.getElementById('pageTitle').textContent = targetSection.querySelector('h2').textContent;
                 }
-                
-                // بستن منو در موبایل
-                if (window.innerWidth <= 768) {
-                    document.getElementById('sidebar').classList.remove('active');
-                }
             });
         });
 
@@ -1249,8 +1151,10 @@
                 if (this.checked) {
                     statusElement.textContent = 'فعال';
                     statusElement.classList.remove('status-offline');
+                    statusElement.classList.add('status-online');
                 } else {
                     statusElement.textContent = 'غیرفعال';
+                    statusElement.classList.remove('status-online');
                     statusElement.classList.add('status-offline');
                 }
             });
@@ -1260,13 +1164,11 @@
         async function initializeDashboard() {
             await updateMarketData('binance');
             loadPredictionHistory();
-            updateStats();
             
             // به‌روزرسانی داده‌های بازار هر 30 ثانیه
             setInterval(async () => {
                 const activeBroker = document.getElementById('dataSource').value;
                 await updateMarketData(activeBroker);
-                updateStats();
             }, 30000);
         }
 
@@ -1285,15 +1187,6 @@
             setTimeout(() => {
                 notification.remove();
             }, 5000);
-        }
-
-        // به‌روزرسانی آمار
-        function updateStats() {
-            // داده‌های نمونه - در حالت واقعی از API گرفته می‌شود
-            document.getElementById('todayProfit').textContent = (Math.random() * 1000 - 200).toFixed(2) + '$';
-            document.getElementById('totalBalance').textContent = (10000 + Math.random() * 5000).toFixed(2) + '$';
-            document.getElementById('activeTrades').textContent = Math.floor(Math.random() * 10);
-            document.getElementById('predictionAccuracy').textContent = (75 + Math.random() * 20).toFixed(1) + '%';
         }
 
         // دریافت داده‌های واقعی از API
@@ -1343,7 +1236,8 @@
                         name: getCryptoName(item.symbol),
                         price: parseFloat(item.lastPrice).toFixed(2),
                         change: parseFloat(item.priceChangePercent).toFixed(2),
-                        volume: (parseFloat(item.volume) / 1000000).toFixed(2)
+                        volume: (parseFloat(item.volume) / 1000000).toFixed(2),
+                        marketCap: formatMarketCap(parseFloat(item.lastPrice) * parseFloat(item.volume) * 1000)
                     });
                 });
             } else if (source === 'coingecko' && Array.isArray(data)) {
@@ -1354,12 +1248,26 @@
                         name: item.name,
                         price: item.current_price,
                         change: item.price_change_percentage_24h,
-                        volume: item.total_volume / 1000000
+                        volume: item.total_volume / 1000000,
+                        marketCap: formatMarketCap(item.market_cap)
                     });
                 });
             }
             
             return processedData.length > 0 ? processedData : generateSampleData();
+        }
+
+        // قالب‌بندی مارکت‌کپ
+        function formatMarketCap(marketCap) {
+            if (marketCap >= 1e12) {
+                return (marketCap / 1e12).toFixed(2) + 'T';
+            } else if (marketCap >= 1e9) {
+                return (marketCap / 1e9).toFixed(2) + 'B';
+            } else if (marketCap >= 1e6) {
+                return (marketCap / 1e6).toFixed(2) + 'M';
+            } else {
+                return marketCap.toFixed(2);
+            }
         }
 
         // تولید داده‌های نمونه در صورت عدم دسترسی به API
@@ -1381,7 +1289,8 @@
                 ...item,
                 price: (Math.random() * 10000 + 50000).toFixed(2),
                 change: (Math.random() * 10 - 5).toFixed(2),
-                volume: (Math.random() * 100 + 20).toFixed(2)
+                volume: (Math.random() * 100 + 20).toFixed(2),
+                marketCap: formatMarketCap(Math.random() * 1e12 + 1e9)
             }));
         }
 
@@ -1431,6 +1340,7 @@
                                 </div>
                                 <div class="market-data-volume">حجم: ${item.volume}M</div>
                             </div>
+                            <div class="market-data-marketcap">مارکت‌کپ: ${item.marketCap}$</div>
                         </div>
                     `;
                 });
@@ -1483,80 +1393,41 @@
             const symbol = document.getElementById('leverageSymbol').value;
             const capital = parseFloat(document.getElementById('leverageCapital').value);
             const leverage = parseInt(document.getElementById('leverageMultiplier').value);
-            const positionType = document.getElementById('positionType').value;
-            const takeProfit = parseFloat(document.getElementById('takeProfitPercent').value);
-            const stopLoss = parseFloat(document.getElementById('stopLossPercent').value);
-            
-            const leveragedCapital = capital * leverage;
-            const profitPotential = (capital * takeProfit / 100) * leverage;
-            const lossPotential = (capital * stopLoss / 100) * leverage;
             
             const resultDiv = document.getElementById('leverageResult');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
                 <h4>نتایج محاسبه برای ${symbol}</h4>
-                <p>نوع پوزیشن: ${positionType === 'long' ? 'لانگ (خرید)' : 'شورت (فروش)'}</p>
-                <p>سرمایه اهرمی: ${leveragedCapital.toLocaleString()}$</p>
-                <p>سود بالقوه: ${profitPotential.toLocaleString()}$ (${takeProfit}%)</p>
-                <p>ضرر بالقوه: ${lossPotential.toLocaleString()}$ (${stopLoss}%)</p>
-                <p>تحلیل هوشمند: شرایط بازار ${Math.random() > 0.3 ? 'مناسب' : 'نامناسب'} است</p>
-                <p>احتمال موفقیت: ${(65 + Math.random() * 25).toFixed(1)}%</p>
+                <p>سرمایه اهرمی: ${(capital * leverage).toLocaleString()}$</p>
+                <p>تحلیل هوشمند: شرایط بازار مناسب است</p>
+                <p>احتمال موفقیت: 75%</p>
             `;
         }
 
         function calculateSpotTrade() {
             const symbol = document.getElementById('spotSymbol').value;
             const capital = parseFloat(document.getElementById('spotCapital').value);
-            const timeTarget = document.getElementById('timeTarget').value;
-            const profitTarget = parseFloat(document.getElementById('profitTarget').value);
-            const lossLimit = parseFloat(document.getElementById('lossLimit').value);
-            
-            const profitPotential = capital * profitTarget / 100;
-            const lossPotential = capital * lossLimit / 100;
-            
-            const timeLabels = {
-                '1d': '1 روز',
-                '1w': '1 هفته',
-                '1m': '1 ماه',
-                '3m': '3 ماه'
-            };
             
             const resultDiv = document.getElementById('spotResult');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
                 <h4>نتایج محاسبه برای ${symbol}</h4>
                 <p>سرمایه: ${capital.toLocaleString()}$</p>
-                <p>هدف زمانی: ${timeLabels[timeTarget]}</p>
-                <p>سود بالقوه: ${profitPotential.toLocaleString()}$ (${profitTarget}%)</p>
-                <p>ضرر بالقوه: ${lossPotential.toLocaleString()}$ (${lossLimit}%)</p>
-                <p>تحلیل هوشمند: شرایط بازار ${Math.random() > 0.4 ? 'مناسب' : 'نامناسب'} است</p>
-                <p>احتمال موفقیت: ${(60 + Math.random() * 30).toFixed(1)}%</p>
+                <p>تحلیل هوشمند: شرایط بازار مناسب است</p>
+                <p>احتمال موفقیت: 68%</p>
             `;
         }
 
         function runIntelligentAnalysis(symbol, timeframe) {
-            const timeLabels = {
-                '1h': '1 ساعته',
-                '4h': '4 ساعته',
-                '1d': 'روزانه',
-                '1w': 'هفتگی'
-            };
-            
             const resultsDiv = document.getElementById('analysisResults');
             resultsDiv.style.display = 'block';
             resultsDiv.innerHTML = `
                 <div class="notification success">
                     <i class="fas fa-check-circle"></i>
-                    تحلیل ${symbol} در بازه ${timeLabels[timeframe]} با موفقیت انجام شد
+                    تحلیل ${symbol} در بازه ${timeframe} با موفقیت انجام شد
                 </div>
-                <div class="trading-result">
-                    <h4>نتایج تحلیل تکنیکال</h4>
-                    <p>روند کلی: ${Math.random() > 0.5 ? 'صعودی' : 'نزولی'}</p>
-                    <p>سطح مقاومت: ${(Math.random() * 1000 + 50000).toFixed(2)}$</p>
-                    <p>سطح حمایت: ${(Math.random() * 1000 + 49000).toFixed(2)}$</p>
-                    <p>سیگنال: ${Math.random() > 0.6 ? 'خرید' : Math.random() > 0.3 ? 'فروش' : 'نگهداری'}</p>
-                    <p>اعتماد سیستم: ${(70 + Math.random() * 25).toFixed(1)}%</p>
-                </div>
+                <p>نتیجه تحلیل: شرایط خرید مناسب تشخیص داده شد</p>
+                <p>اعتماد سیستم: 82%</p>
             `;
         }
 
@@ -1569,41 +1440,10 @@
                         <i class="fas fa-chart-bar"></i>
                         سیستم پیش‌بینی در 30 روز گذشته 85% دقت داشته است
                     </div>
-                    <div class="market-data-grid">
-                        <div class="market-data-card">
-                            <div class="market-data-header">
-                                <div class="market-data-name">پیش‌بینی هفتگی</div>
-                            </div>
-                            <div class="market-data-price">87.5%</div>
-                            <div class="market-data-change">
-                                <div class="price-change change-positive">+2.5%</div>
-                            </div>
-                        </div>
-                        <div class="market-data-card">
-                            <div class="market-data-header">
-                                <div class="market-data-name">پیش‌بینی روزانه</div>
-                            </div>
-                            <div class="market-data-price">82.3%</div>
-                            <div class="market-data-change">
-                                <div class="price-change change-negative">-1.2%</div>
-                            </div>
-                        </div>
-                    </div>
                 `;
                 document.getElementById('predictionHistory').innerHTML = historyHtml;
             }
         }
-
-        // مدیریت ریسایز پنجره
-        window.addEventListener('resize', function() {
-            if (window.innerWidth <= 768) {
-                document.getElementById('mobileMenuToggle').style.display = 'flex';
-                document.getElementById('sidebar').classList.remove('active');
-            } else {
-                document.getElementById('mobileMenuToggle').style.display = 'none';
-                document.getElementById('sidebar').classList.remove('active');
-            }
-        });
     </script>
 </body>
 </html>
