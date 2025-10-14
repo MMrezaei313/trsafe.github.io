@@ -365,6 +365,13 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            margin-bottom: 5px;
+        }
+        
+        .market-data-marketcap {
+            font-size: 0.8rem;
+            color: #6b7280;
+            text-align: left;
         }
         
         .price-change {
@@ -553,6 +560,77 @@
         
         .intelligent-results {
             margin-top: 20px;
+        }
+
+        /* بهبود نمای موبایل */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+            }
+            
+            .sidebar {
+                width: 100%;
+                height: auto;
+            }
+            
+            .sidebar-menu {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            .menu-item {
+                padding: 10px 15px;
+                flex: 1;
+                min-width: 120px;
+                justify-content: center;
+            }
+            
+            .header {
+                flex-direction: column;
+                gap: 15px;
+                align-items: flex-start;
+            }
+            
+            .header-actions {
+                width: 100%;
+                justify-content: space-between;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .market-data-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .trading-form {
+                grid-template-columns: 1fr;
+            }
+            
+            .analysis-controls {
+                grid-template-columns: 1fr;
+            }
+            
+            .module-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .login-box {
+                padding: 25px;
+            }
+            
+            .section {
+                padding: 15px;
+            }
         }
     </style>
 </head>
@@ -1158,7 +1236,8 @@
                         name: getCryptoName(item.symbol),
                         price: parseFloat(item.lastPrice).toFixed(2),
                         change: parseFloat(item.priceChangePercent).toFixed(2),
-                        volume: (parseFloat(item.volume) / 1000000).toFixed(2)
+                        volume: (parseFloat(item.volume) / 1000000).toFixed(2),
+                        marketCap: formatMarketCap(parseFloat(item.lastPrice) * parseFloat(item.volume) * 1000)
                     });
                 });
             } else if (source === 'coingecko' && Array.isArray(data)) {
@@ -1169,12 +1248,26 @@
                         name: item.name,
                         price: item.current_price,
                         change: item.price_change_percentage_24h,
-                        volume: item.total_volume / 1000000
+                        volume: item.total_volume / 1000000,
+                        marketCap: formatMarketCap(item.market_cap)
                     });
                 });
             }
             
             return processedData.length > 0 ? processedData : generateSampleData();
+        }
+
+        // قالب‌بندی مارکت‌کپ
+        function formatMarketCap(marketCap) {
+            if (marketCap >= 1e12) {
+                return (marketCap / 1e12).toFixed(2) + 'T';
+            } else if (marketCap >= 1e9) {
+                return (marketCap / 1e9).toFixed(2) + 'B';
+            } else if (marketCap >= 1e6) {
+                return (marketCap / 1e6).toFixed(2) + 'M';
+            } else {
+                return marketCap.toFixed(2);
+            }
         }
 
         // تولید داده‌های نمونه در صورت عدم دسترسی به API
@@ -1196,7 +1289,8 @@
                 ...item,
                 price: (Math.random() * 10000 + 50000).toFixed(2),
                 change: (Math.random() * 10 - 5).toFixed(2),
-                volume: (Math.random() * 100 + 20).toFixed(2)
+                volume: (Math.random() * 100 + 20).toFixed(2),
+                marketCap: formatMarketCap(Math.random() * 1e12 + 1e9)
             }));
         }
 
@@ -1246,6 +1340,7 @@
                                 </div>
                                 <div class="market-data-volume">حجم: ${item.volume}M</div>
                             </div>
+                            <div class="market-data-marketcap">مارکت‌کپ: ${item.marketCap}$</div>
                         </div>
                     `;
                 });
@@ -1277,9 +1372,6 @@
                 showNotification('خطا در دریافت داده‌های بازار', 'error');
             }
         }
-
-        // بقیه توابع (calculateLeverageTrade, calculateSpotTrade, runIntelligentAnalysis, etc.)
-        // مشابه کد قبلی باقی می‌مانند اما برای کوتاه شدن پاسخ حذف شدند
 
         // نمونه‌ای از توابع محاسباتی
         document.getElementById('calculateLeverageTrade').addEventListener('click', function() {
@@ -1353,4 +1445,5 @@
             }
         }
     </script>
-</body> 
+</body>
+</html>
