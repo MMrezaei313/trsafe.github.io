@@ -185,18 +185,6 @@
             padding: 20px 0;
         }
         
-        .menu-section {
-            margin-bottom: 20px;
-        }
-        
-        .menu-section-title {
-            padding: 10px 20px;
-            font-size: 0.8rem;
-            color: #9ca3af;
-            font-weight: bold;
-            text-transform: uppercase;
-        }
-        
         .menu-item {
             padding: 12px 20px;
             display: flex;
@@ -242,7 +230,6 @@
         .header-actions {
             display: flex;
             gap: 10px;
-            align-items: center;
         }
         
         .stats-grid {
@@ -790,114 +777,6 @@
             font-size: 0.8rem;
             font-weight: bold;
         }
-        
-        .market-data-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .market-data-card {
-            padding: 15px;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border: 1px solid #e5e7eb;
-            transition: all 0.3s;
-            cursor: pointer;
-        }
-        
-        .market-data-card:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .market-data-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 10px;
-        }
-        
-        .market-data-name {
-            font-weight: bold;
-            font-size: 1rem;
-        }
-        
-        .market-data-symbol {
-            color: #6b7280;
-            font-size: 0.8rem;
-        }
-        
-        .market-data-price {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-        
-        .market-data-change {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        
-        .market-data-volume {
-            font-size: 0.8rem;
-            color: #6b7280;
-        }
-        
-        .trading-panel {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .trading-form {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 15px 0;
-        }
-        
-        .trading-result {
-            margin-top: 20px;
-            padding: 15px;
-            background: white;
-            border-radius: 10px;
-            display: none;
-        }
-        
-        .admin-only {
-            display: none;
-        }
-        
-        .user-admin .admin-only {
-            display: block;
-        }
-        
-        .prediction-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 20px;
-        }
-        
-        .prediction-table th, .prediction-table td {
-            padding: 12px 15px;
-            text-align: right;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .prediction-table th {
-            background: #f8fafc;
-            font-weight: bold;
-        }
-        
-        .prediction-table tr:hover {
-            background: #f9fafb;
-        }
     </style>
 </head>
 <body>
@@ -965,7 +844,7 @@
                             <i class="fas fa-chart-line"></i>
                             تحلیل بازار
                         </a>
-                        <a href="#prediction-analysis" class="menu-item admin-only">
+                        <a href="#prediction-analysis" class="menu-item">
                             <i class="fas fa-chart-bar"></i>
                             آنالیز پیش‌بینی
                         </a>
@@ -983,10 +862,10 @@
                             بروزرسانی
                         </button>
                         <div class="user-info">
-                            <div class="user-avatar" id="userAvatar">م</div>
+                            <div class="user-avatar">م</div>
                             <div>
-                                <div id="userName">موسی</div>
-                                <small id="userLevel">سطح: حرفه‌ای</small>
+                                <div>موسی</div>
+                                <small>سطح: حرفه‌ای</small>
                             </div>
                         </div>
                         <button class="btn" id="logoutBtn">
@@ -1028,143 +907,47 @@
                 <div class="section" id="market-analysis" style="display: none;">
                     <h2>📊 تحلیل بازار زنده</h2>
                     
-                    <!-- انتخاب بروکر -->
-                    <div class="broker-grid">
-                        <div class="broker-card active" data-broker="binance">
-                            <div class="broker-logo">
-                                <i class="fas fa-coins"></i>
-                            </div>
-                            <div>Binance</div>
-                        </div>
-                        <div class="broker-card" data-broker="metatrader">
-                            <div class="broker-logo">
-                                <i class="fas fa-chart-line"></i>
-                            </div>
-                            <div>MetaTrader</div>
-                        </div>
-                        <div class="broker-card" data-broker="xchief">
-                            <div class="broker-logo">
-                                <i class="fas fa-exchange-alt"></i>
-                            </div>
-                            <div>XChief</div>
-                        </div>
-                        <div class="broker-card" data-broker="coingecko">
-                            <div class="broker-logo">
-                                <i class="fas fa-dragon"></i>
-                            </div>
-                            <div>CoinGecko</div>
-                        </div>
-                    </div>
-                    
                     <!-- قیمت‌های زنده -->
-                    <div class="market-data-grid" id="marketData">
-                        <!-- داده‌های بازار با JavaScript پر می‌شوند -->
+                    <div class="live-prices" id="livePrices">
+                        <!-- قیمت‌ها با JavaScript پر می‌شوند -->
                     </div>
                     
-                    <!-- پنل معاملات فیوچرز/مارجین -->
-                    <div class="trading-panel">
-                        <h3>💼 معاملات اهرمی (فیوچرز/مارجین)</h3>
-                        <div class="trading-form" id="leverageForm">
+                    <!-- سیگنال‌های معاملاتی -->
+                    <div class="signal-grid" id="tradingSignals">
+                        <!-- سیگنال‌ها با JavaScript پر می‌شوند -->
+                    </div>
+                    
+                    <!-- ماشین حساب اهرمی -->
+                    <div class="leverage-calculator">
+                        <h3>🧮 ماشین حساب معاملات اهرمی</h3>
+                        <div class="calculator-grid">
                             <div class="form-group">
-                                <label>نماد معاملاتی</label>
-                                <select class="form-control" id="leverageSymbol">
-                                    <option value="BTCUSDT">BTC/USDT</option>
-                                    <option value="ETHUSDT">ETH/USDT</option>
-                                    <option value="XAUUSD">XAU/USD (طلا)</option>
-                                    <option value="EURUSD">EUR/USD</option>
-                                </select>
+                                <label>سرمایه اولیه ($)</label>
+                                <input type="number" id="initialCapital" class="form-control" value="1000" min="10" step="10">
                             </div>
-                            
-                            <div class="form-group">
-                                <label>نوع پوزیشن</label>
-                                <select class="form-control" id="positionType">
-                                    <option value="long">لانگ (خرید)</option>
-                                    <option value="short">شورت (فروش)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>مقدار سرمایه ($)</label>
-                                <input type="number" id="leverageCapital" class="form-control" value="1000" min="10" step="10">
-                            </div>
-                            
                             <div class="form-group">
                                 <label>اهرم</label>
-                                <select class="form-control" id="leverageMultiplier">
+                                <select id="leverage" class="form-control">
+                                    <option value="1">1x</option>
                                     <option value="5">5x</option>
                                     <option value="10" selected>10x</option>
                                     <option value="20">20x</option>
                                     <option value="50">50x</option>
+                                    <option value="100">100x</option>
                                 </select>
                             </div>
-                            
                             <div class="form-group">
-                                <label>حد سود (%)</label>
-                                <input type="number" id="takeProfitPercent" class="form-control" value="10" min="1" max="100" step="0.5">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>حد ضرر (%)</label>
-                                <input type="number" id="stopLossPercent" class="form-control" value="5" min="1" max="100" step="0.5">
+                                <label>درصد سود/ضرر</label>
+                                <input type="number" id="profitLossPercent" class="form-control" value="5" min="1" max="100" step="0.5">
                             </div>
                         </div>
-                        
-                        <button class="btn btn-primary" id="calculateLeverageTrade">
-                            <i class="fas fa-calculator"></i>
-                            محاسبه و تحلیل
-                        </button>
-                        
-                        <div class="trading-result" id="leverageResult">
-                            <!-- نتایج محاسبه -->
+                        <div class="form-group">
+                            <button class="btn btn-primary" id="calculateLeverage">
+                                <i class="fas fa-calculator"></i>
+                                محاسبه
+                            </button>
                         </div>
-                    </div>
-                    
-                    <!-- پنل معاملات معمولی -->
-                    <div class="trading-panel">
-                        <h3>💵 معاملات معمولی (Spot)</h3>
-                        <div class="trading-form" id="spotForm">
-                            <div class="form-group">
-                                <label>نماد معاملاتی</label>
-                                <select class="form-control" id="spotSymbol">
-                                    <option value="BTCUSDT">BTC/USDT</option>
-                                    <option value="ETHUSDT">ETH/USDT</option>
-                                    <option value="XAUUSD">XAU/USD (طلا)</option>
-                                    <option value="AAPL">AAPL (سهام)</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>مقدار سرمایه ($)</label>
-                                <input type="number" id="spotCapital" class="form-control" value="1000" min="10" step="10">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>هدف زمانی</label>
-                                <select class="form-control" id="timeTarget">
-                                    <option value="1d">1 روز</option>
-                                    <option value="1w">1 هفته</option>
-                                    <option value="1m">1 ماه</option>
-                                    <option value="3m">3 ماه</option>
-                                </select>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>هدف سود (%)</label>
-                                <input type="number" id="profitTarget" class="form-control" value="15" min="1" max="100" step="0.5">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label>حد ضرر (%)</label>
-                                <input type="number" id="lossLimit" class="form-control" value="8" min="1" max="100" step="0.5">
-                            </div>
-                        </div>
-                        
-                        <button class="btn btn-primary" id="calculateSpotTrade">
-                            <i class="fas fa-calculator"></i>
-                            محاسبه و تحلیل
-                        </button>
-                        
-                        <div class="trading-result" id="spotResult">
+                        <div id="leverageResult" style="margin-top: 15px; padding: 15px; background: white; border-radius: 10px; display: none;">
                             <!-- نتایج محاسبه -->
                         </div>
                     </div>
@@ -1318,29 +1101,13 @@
                 </div>
 
                 <!-- بخش آنالیز پیش‌بینی -->
-                <div class="section admin-only" id="prediction-analysis" style="display: none;">
+                <div class="section" id="prediction-analysis" style="display: none;">
                     <h2>📈 آنالیز پیش‌بینی‌ها</h2>
                     <p>مقایسه پیش‌بینی‌های انجام شده با اتفاق‌های افتاده در واقعیت</p>
                     
                     <div class="analysis-history" id="predictionHistory">
                         <!-- تاریخچه پیش‌بینی‌ها با JavaScript پر می‌شود -->
                     </div>
-                    
-                    <table class="prediction-table">
-                        <thead>
-                            <tr>
-                                <th>نماد</th>
-                                <th>تاریخ پیش‌بینی</th>
-                                <th>پیش‌بینی</th>
-                                <th>واقعیت</th>
-                                <th>دقت</th>
-                                <th>بازه زمانی</th>
-                            </tr>
-                        </thead>
-                        <tbody id="predictionTableBody">
-                            <!-- داده‌های جدول با JavaScript پر می‌شوند -->
-                        </tbody>
-                    </table>
                 </div>
 
                 <!-- بخش MOUSAFRADE -->
@@ -1470,7 +1237,7 @@
                             </div>
                             <div class="sub-module">
                                 <i class="fas fa-exchange-alt"></i>
-                                <span>xchief/ - اتصال به XChief</span>
+                                <span>xchief/ - اتصال به Xchief</span>
                             </div>
                         </div>
                     </div>
@@ -1490,22 +1257,9 @@
                 (username === "user" && password === "trade2024")) {
                 document.getElementById('loginPage').style.display = 'none';
                 document.getElementById('mainApp').style.display = 'block';
-                
-                // تنظیم اطلاعات کاربر
-                if (username === "admin") {
-                    document.getElementById('mainApp').classList.add('user-admin');
-                    document.getElementById('userName').textContent = 'مدیر سیستم';
-                    document.getElementById('userLevel').textContent = 'سطح: مدیر';
-                    document.getElementById('userAvatar').textContent = 'م';
-                } else {
-                    document.getElementById('userName').textContent = 'کاربر عادی';
-                    document.getElementById('userLevel').textContent = 'سطح: حرفه‌ای';
-                    document.getElementById('userAvatar').textContent = 'ک';
-                }
-                
                 initializeDashboard();
             } else {
-                alert('نام کاربری یا رمز عبور اشتباه است!\n\nاطلاعات تست:\nمدیر: admin/mousa123\nکاربر: user/trade2024');
+                alert('نام کاربری یا رمز عبور اشتباه است!\n\nاطلاعات تست:\nکاربری: admin\nرمز: mousa123');
             }
         });
 
@@ -1515,7 +1269,6 @@
             document.getElementById('mainApp').style.display = 'none';
             document.getElementById('username').value = '';
             document.getElementById('password').value = '';
-            document.getElementById('mainApp').classList.remove('user-admin');
         });
 
         // مدیریت منو
@@ -1542,17 +1295,6 @@
             });
         });
 
-        // مدیریت انتخاب بروکر
-        document.querySelectorAll('.broker-card').forEach(card => {
-            card.addEventListener('click', function() {
-                document.querySelectorAll('.broker-card').forEach(c => {
-                    c.classList.remove('active');
-                });
-                this.classList.add('active');
-                updateMarketData(this.dataset.broker);
-            });
-        });
-
         // سیستم تحلیل هوشمند
         document.getElementById('runAnalysis').addEventListener('click', function() {
             const symbol = document.getElementById('symbolSelect').value;
@@ -1560,218 +1302,130 @@
             runIntelligentAnalysis(symbol, timeframe);
         });
 
-        // محاسبات معاملات اهرمی
-        document.getElementById('calculateLeverageTrade').addEventListener('click', function() {
-            calculateLeverageTrade();
-        });
-
-        // محاسبات معاملات معمولی
-        document.getElementById('calculateSpotTrade').addEventListener('click', function() {
-            calculateSpotTrade();
+        // ماشین حساب اهرمی
+        document.getElementById('calculateLeverage').addEventListener('click', function() {
+            calculateLeverage();
         });
 
         // مقداردهی اولیه دشبورد
         function initializeDashboard() {
-            updateMarketData('binance');
+            updateLivePrices();
+            generateTradingSignals();
             loadPredictionHistory();
             
-            // به‌روزرسانی داده‌های بازار هر 15 ثانیه
-            setInterval(() => {
-                const activeBroker = document.querySelector('.broker-card.active').dataset.broker;
-                updateMarketData(activeBroker);
-            }, 15000);
+            // به‌روزرسانی قیمت‌ها هر 10 ثانیه
+            setInterval(updateLivePrices, 10000);
         }
 
-        // به‌روزرسانی داده‌های بازار
-        function updateMarketData(broker) {
-            // داده‌های نمونه برای 15 نماد مختلف
-            const marketData = [
-                { symbol: 'BTCUSDT', name: 'بیت‌کوین', price: (Math.random() * 10000 + 50000).toFixed(2), change: (Math.random() * 10 - 5).toFixed(2), volume: (Math.random() * 100 + 20).toFixed(0) },
-                { symbol: 'ETHUSDT', name: 'اتریوم', price: (Math.random() * 1000 + 3000).toFixed(2), change: (Math.random() * 8 - 4).toFixed(2), volume: (Math.random() * 500 + 100).toFixed(0) },
-                { symbol: 'ADAUSDT', name: 'کاردانو', price: (Math.random() * 0.5 + 0.4).toFixed(4), change: (Math.random() * 15 - 7.5).toFixed(2), volume: (Math.random() * 1000 + 500).toFixed(0) },
-                { symbol: 'DOTUSDT', name: 'پولکادات', price: (Math.random() * 10 + 6).toFixed(2), change: (Math.random() * 12 - 6).toFixed(2), volume: (Math.random() * 800 + 200).toFixed(0) },
-                { symbol: 'LINKUSDT', name: 'چین لینک', price: (Math.random() * 5 + 12).toFixed(2), change: (Math.random() * 10 - 5).toFixed(2), volume: (Math.random() * 600 + 150).toFixed(0) },
-                { symbol: 'XRPUSDT', name: 'ریپل', price: (Math.random() * 0.5 + 0.5).toFixed(4), change: (Math.random() * 8 - 4).toFixed(2), volume: (Math.random() * 2000 + 1000).toFixed(0) },
-                { symbol: 'LTCUSDT', name: 'لایت‌کوین', price: (Math.random() * 20 + 70).toFixed(2), change: (Math.random() * 7 - 3.5).toFixed(2), volume: (Math.random() * 400 + 100).toFixed(0) },
-                { symbol: 'BCHUSDT', name: 'بیت‌کوین کش', price: (Math.random() * 100 + 200).toFixed(2), change: (Math.random() * 9 - 4.5).toFixed(2), volume: (Math.random() * 300 + 80).toFixed(0) },
-                { symbol: 'XLMUSDT', name: 'استلار', price: (Math.random() * 0.1 + 0.1).toFixed(4), change: (Math.random() * 6 - 3).toFixed(2), volume: (Math.random() * 1500 + 500).toFixed(0) },
-                { symbol: 'XAUUSD', name: 'طلا', price: (Math.random() * 100 + 1900).toFixed(2), change: (Math.random() * 3 - 1.5).toFixed(2), volume: (Math.random() * 50 + 10).toFixed(0) },
-                { symbol: 'EURUSD', name: 'یورو/دلار', price: (Math.random() * 0.1 + 1.05).toFixed(4), change: (Math.random() * 2 - 1).toFixed(2), volume: (Math.random() * 100 + 30).toFixed(0) },
-                { symbol: 'GBPUSD', name: 'پوند/دلار', price: (Math.random() * 0.1 + 1.22).toFixed(4), change: (Math.random() * 2 - 1).toFixed(2), volume: (Math.random() * 80 + 20).toFixed(0) },
-                { symbol: 'AAPL', name: 'اپل', price: (Math.random() * 50 + 150).toFixed(2), change: (Math.random() * 5 - 2.5).toFixed(2), volume: (Math.random() * 10000 + 5000).toFixed(0) },
-                { symbol: 'TSLA', name: 'تسلا', price: (Math.random() * 100 + 200).toFixed(2), change: (Math.random() * 6 - 3).toFixed(2), volume: (Math.random() * 8000 + 2000).toFixed(0) },
-                { symbol: 'MSFT', name: 'مایکروسافت', price: (Math.random() * 50 + 300).toFixed(2), change: (Math.random() * 4 - 2).toFixed(2), volume: (Math.random() * 7000 + 3000).toFixed(0) }
+        // به‌روزرسانی قیمت‌های زنده
+        function updateLivePrices() {
+            const symbols = [
+                { symbol: 'BTC/USDT', name: 'بیت‌کوین', price: (Math.random() * 10000 + 50000).toFixed(2), change: (Math.random() * 10 - 5).toFixed(2) },
+                { symbol: 'ETH/USDT', name: 'اتریوم', price: (Math.random() * 1000 + 3000).toFixed(2), change: (Math.random() * 8 - 4).toFixed(2) },
+                { symbol: 'AAPL', name: 'اپل', price: (Math.random() * 50 + 150).toFixed(2), change: (Math.random() * 5 - 2.5).toFixed(2) },
+                { symbol: 'EUR/USD', name: 'یورو/دلار', price: (Math.random() * 0.1 + 1.05).toFixed(4), change: (Math.random() * 2 - 1).toFixed(2) },
+                { symbol: 'XAU/USD', name: 'طلا', price: (Math.random() * 100 + 1900).toFixed(2), change: (Math.random() * 3 - 1.5).toFixed(2) },
+                { symbol: 'TSLA', name: 'تسلا', price: (Math.random() * 100 + 200).toFixed(2), change: (Math.random() * 6 - 3).toFixed(2) }
             ];
             
             let html = '';
-            marketData.forEach(item => {
+            symbols.forEach(item => {
                 const isPositive = parseFloat(item.change) >= 0;
                 html += `
-                    <div class="market-data-card" data-symbol="${item.symbol}">
-                        <div class="market-data-header">
-                            <div class="market-data-name">${item.name}</div>
-                            <div class="market-data-symbol">${item.symbol}</div>
-                        </div>
-                        <div class="market-data-price">${item.price}$</div>
-                        <div class="market-data-change">
-                            <div class="price-change ${isPositive ? 'change-positive' : 'change-negative'}">
-                                ${isPositive ? '▲' : '▼'} ${Math.abs(item.change)}%
-                            </div>
-                            <div class="market-data-volume">حجم: ${item.change}M</div>
+                    <div class="price-card">
+                        <div class="price-symbol">${item.symbol}</div>
+                        <div class="price-name" style="font-size: 0.9rem; color: #6b7280; margin-bottom: 5px;">${item.name}</div>
+                        <div class="price-value">${item.price}$</div>
+                        <div class="price-change ${isPositive ? 'change-positive' : 'change-negative'}">
+                            ${isPositive ? '▲' : '▼'} ${Math.abs(item.change)}%
                         </div>
                     </div>
                 `;
             });
             
-            document.getElementById('marketData').innerHTML = html;
-            
-            // اضافه کردن event listener برای انتخاب نماد
-            document.querySelectorAll('.market-data-card').forEach(card => {
-                card.addEventListener('click', function() {
-                    const symbol = this.dataset.symbol;
-                    document.getElementById('leverageSymbol').value = symbol;
-                    document.getElementById('spotSymbol').value = symbol;
-                });
-            });
+            document.getElementById('livePrices').innerHTML = html;
         }
 
-        // محاسبه معاملات اهرمی
-        function calculateLeverageTrade() {
-            const symbol = document.getElementById('leverageSymbol').value;
-            const positionType = document.getElementById('positionType').value;
-            const capital = parseFloat(document.getElementById('leverageCapital').value);
-            const leverage = parseInt(document.getElementById('leverageMultiplier').value);
-            const takeProfitPercent = parseFloat(document.getElementById('takeProfitPercent').value);
-            const stopLossPercent = parseFloat(document.getElementById('stopLossPercent').value);
+        // تولید سیگنال‌های معاملاتی
+        function generateTradingSignals() {
+            const signals = [
+                { symbol: 'BTC/USDT', type: 'خرید', timeframe: 'کوتاه‌مدت', confidence: 78, price: '52,450', target: '54,200', stop: '51,100' },
+                { symbol: 'ETH/USDT', type: 'فروش', timeframe: 'میان‌مدت', confidence: 65, price: '3,250', target: '3,100', stop: '3,400' },
+                { symbol: 'AAPL', type: 'خرید', timeframe: 'بلندمدت', confidence: 82, price: '175.30', target: '185.00', stop: '170.00' },
+                { symbol: 'EUR/USD', type: 'فروش', timeframe: 'کوتاه‌مدت', confidence: 71, price: '1.0750', target: '1.0650', stop: '1.0820' }
+            ];
+            
+            let html = '';
+            signals.forEach(signal => {
+                const isBuy = signal.type === 'خرید';
+                html += `
+                    <div class="signal-card">
+                        <div class="signal-type ${isBuy ? 'buy' : 'sell'}">
+                            <i class="fas ${isBuy ? 'fa-arrow-up' : 'fa-arrow-down'}"></i>
+                            ${signal.type} (${signal.timeframe})
+                        </div>
+                        <div style="font-weight: bold; margin-bottom: 5px;">${signal.symbol}</div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>قیمت فعلی:</span>
+                            <span>${signal.price}$</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
+                            <span>هدف:</span>
+                            <span style="color: var(--success);">${signal.target}$</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
+                            <span>حد ضرر:</span>
+                            <span style="color: var(--danger);">${signal.stop}$</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; align-items: center;">
+                            <span>اعتماد:</span>
+                            <span class="accuracy-badge" style="background: ${signal.confidence >= 70 ? '#dcfce7' : signal.confidence >= 60 ? '#fef3c7' : '#fee2e2'}; 
+                                color: ${signal.confidence >= 70 ? '#166534' : signal.confidence >= 60 ? '#92400e' : '#991b1b'};">
+                                ${signal.confidence}%
+                            </span>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('tradingSignals').innerHTML = html;
+        }
+
+        // محاسبه اهرم
+        function calculateLeverage() {
+            const capital = parseFloat(document.getElementById('initialCapital').value);
+            const leverage = parseInt(document.getElementById('leverage').value);
+            const percent = parseFloat(document.getElementById('profitLossPercent').value);
             
             const leveragedCapital = capital * leverage;
-            const potentialProfit = leveragedCapital * (takeProfitPercent / 100);
-            const potentialLoss = leveragedCapital * (stopLossPercent / 100);
-            
-            // شبیه‌سازی تحلیل هوشمند
-            const analysisResult = generateIntelligentAnalysis(symbol, '4h');
+            const profit = leveragedCapital * (percent / 100);
+            const loss = leveragedCapital * (percent / 100);
             
             const resultDiv = document.getElementById('leverageResult');
             resultDiv.style.display = 'block';
             resultDiv.innerHTML = `
-                <h4>📊 نتایج تحلیل و محاسبه</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-                    <div style="padding: 15px; background: #f0f9ff; border-radius: 10px;">
-                        <strong>پوزیشن:</strong><br>
-                        ${positionType === 'long' ? 'لانگ (خرید)' : 'شورت (فروش)'}
-                    </div>
-                    <div style="padding: 15px; background: #f0f9ff; border-radius: 10px;">
+                <h4>نتایج محاسبه:</h4>
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 10px;">
+                    <div>
                         <strong>سرمایه اهرمی:</strong><br>
                         ${leveragedCapital.toLocaleString()}$
                     </div>
-                    <div style="padding: 15px; background: #dcfce7; border-radius: 10px;">
-                        <strong>سود احتمالی:</strong><br>
-                        <span style="color: var(--success);">+${potentialProfit.toLocaleString()}$</span>
+                    <div>
+                        <strong>سود احتمالی (${percent}%):</strong><br>
+                        <span style="color: var(--success);">+${profit.toLocaleString()}$</span>
                     </div>
-                    <div style="padding: 15px; background: #fee2e2; border-radius: 10px;">
-                        <strong>ضرر احتمالی:</strong><br>
-                        <span style="color: var(--danger);">-${potentialLoss.toLocaleString()}$</span>
+                    <div>
+                        <strong>ضرر احتمالی (${percent}%):</strong><br>
+                        <span style="color: var(--danger);">-${loss.toLocaleString()}$</span>
                     </div>
-                </div>
-                
-                <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 10px;">
-                    <h5>🧠 تحلیل هوشمند</h5>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-                        <span>احتمال موفقیت:</span>
-                        <span class="accuracy-badge" style="background: ${analysisResult.successProbability >= 70 ? '#dcfce7' : analysisResult.successProbability >= 50 ? '#fef3c7' : '#fee2e2'}; 
-                            color: ${analysisResult.successProbability >= 70 ? '#166534' : analysisResult.successProbability >= 50 ? '#92400e' : '#991b1b'};">
-                            ${analysisResult.successProbability}%
-                        </span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-                        <span>پیشنهاد سیستم:</span>
-                        <span style="font-weight: bold; color: ${analysisResult.finalDecision === 'خرید' ? 'var(--success)' : analysisResult.finalDecision === 'فروش' ? 'var(--danger)' : 'var(--warning)'}">
-                            ${analysisResult.finalDecision}
-                        </span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <strong>ریسک:</strong> ${analysisResult.riskLevel} | <strong>اعتماد:</strong> ${analysisResult.confidenceLevel}
+                    <div>
+                        <strong>نسبت سود/ریسک:</strong><br>
+                        1:${(leverage/10).toFixed(1)}
                     </div>
                 </div>
-                
                 <div style="margin-top: 15px; padding: 10px; background: #fef3c7; border-radius: 5px; font-size: 0.9rem;">
                     <i class="fas fa-exclamation-triangle"></i>
                     <strong>هشدار:</strong> معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
-                    ${analysisResult.successProbability < 60 ? 'تحلیل سیستم نشان‌دهنده ریسک بالاست. احتیاط کنید!' : ''}
-                </div>
-            `;
-        }
-
-        // محاسبه معاملات معمولی
-        function calculateSpotTrade() {
-            const symbol = document.getElementById('spotSymbol').value;
-            const capital = parseFloat(document.getElementById('spotCapital').value);
-            const timeTarget = document.getElementById('timeTarget').value;
-            const profitTarget = parseFloat(document.getElementById('profitTarget').value);
-            const lossLimit = parseFloat(document.getElementById('lossLimit').value);
-            
-            const potentialProfit = capital * (profitTarget / 100);
-            const potentialLoss = capital * (lossLimit / 100);
-            
-            // شبیه‌سازی تحلیل هوشمند
-            const analysisResult = generateIntelligentAnalysis(symbol, timeTarget);
-            
-            const timeTargetText = {
-                '1d': '1 روز',
-                '1w': '1 هفته', 
-                '1m': '1 ماه',
-                '3m': '3 ماه'
-            }[timeTarget];
-            
-            const resultDiv = document.getElementById('spotResult');
-            resultDiv.style.display = 'block';
-            resultDiv.innerHTML = `
-                <h4>📊 نتایج تحلیل و محاسبه</h4>
-                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin-top: 15px;">
-                    <div style="padding: 15px; background: #f0f9ff; border-radius: 10px;">
-                        <strong>هدف زمانی:</strong><br>
-                        ${timeTargetText}
-                    </div>
-                    <div style="padding: 15px; background: #f0f9ff; border-radius: 10px;">
-                        <strong>سرمایه:</strong><br>
-                        ${capital.toLocaleString()}$
-                    </div>
-                    <div style="padding: 15px; background: #dcfce7; border-radius: 10px;">
-                        <strong>سود هدف:</strong><br>
-                        <span style="color: var(--success);">+${potentialProfit.toLocaleString()}$ (${profitTarget}%)</span>
-                    </div>
-                    <div style="padding: 15px; background: #fee2e2; border-radius: 10px;">
-                        <strong>حد ضرر:</strong><br>
-                        <span style="color: var(--danger);">-${potentialLoss.toLocaleString()}$ (${lossLimit}%)</span>
-                    </div>
-                </div>
-                
-                <div style="margin-top: 20px; padding: 15px; background: #f8fafc; border-radius: 10px;">
-                    <h5>🧠 تحلیل هوشمند</h5>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-                        <span>احتمال موفقیت:</span>
-                        <span class="accuracy-badge" style="background: ${analysisResult.successProbability >= 70 ? '#dcfce7' : analysisResult.successProbability >= 50 ? '#fef3c7' : '#fee2e2'}; 
-                            color: ${analysisResult.successProbability >= 70 ? '#166534' : analysisResult.successProbability >= 50 ? '#92400e' : '#991b1b'};">
-                            ${analysisResult.successProbability}%
-                        </span>
-                    </div>
-                    <div style="display: flex; justify-content: space-between; align-items: center; margin: 10px 0;">
-                        <span>پیشنهاد سیستم:</span>
-                        <span style="font-weight: bold; color: ${analysisResult.finalDecision === 'خرید' ? 'var(--success)' : analysisResult.finalDecision === 'فروش' ? 'var(--danger)' : 'var(--warning)'}">
-                            ${analysisResult.finalDecision}
-                        </span>
-                    </div>
-                    <div style="margin-top: 10px;">
-                        <strong>ریسک:</strong> ${analysisResult.riskLevel} | <strong>اعتماد:</strong> ${analysisResult.confidenceLevel}
-                    </div>
-                </div>
-                
-                <div style="margin-top: 15px; padding: 10px; background: ${analysisResult.successProbability >= 60 ? '#dcfce7' : '#fef3c7'}; border-radius: 5px; font-size: 0.9rem;">
-                    <i class="fas ${analysisResult.successProbability >= 60 ? 'fa-check-circle' : 'fa-exclamation-triangle'}"></i>
-                    <strong>${analysisResult.successProbability >= 60 ? 'توصیه:' : 'هشدار:'}</strong> 
-                    ${analysisResult.successProbability >= 60 ? 
-                      'تحلیل سیستم نشان‌دهنده شرایط مناسب برای سرمایه‌گذاری است.' : 
-                      'تحلیل سیستم نشان‌دهنده ریسک بالاست. احتیاط کنید!'}
                 </div>
             `;
         }
@@ -1779,12 +1433,10 @@
         // بارگذاری تاریخچه پیش‌بینی‌ها
         function loadPredictionHistory() {
             const history = [
-                { symbol: 'BTCUSDT', date: '۱۴۰۲/۱۰/۱۵', prediction: 'خرید', actual: 'خرید', accuracy: 95, timeframe: '۱ روزه' },
-                { symbol: 'ETHUSDT', date: '۱۴۰۲/۱۰/۱۴', prediction: 'فروش', actual: 'خرید', accuracy: 40, timeframe: '۲ روزه' },
+                { symbol: 'BTC/USDT', date: '۱۴۰۲/۱۰/۱۵', prediction: 'خرید', actual: 'خرید', accuracy: 95, timeframe: '۱ روزه' },
+                { symbol: 'ETH/USDT', date: '۱۴۰۲/۱۰/۱۴', prediction: 'فروش', actual: 'خرید', accuracy: 40, timeframe: '۲ روزه' },
                 { symbol: 'AAPL', date: '۱۴۰۲/۱۰/۱۲', prediction: 'خرید', actual: 'خرید', accuracy: 88, timeframe: '۳ روزه' },
-                { symbol: 'EURUSD', date: '۱۴۰۲/۱۰/۱۰', prediction: 'فروش', actual: 'فروش', accuracy: 92, timeframe: '۱ هفته' },
-                { symbol: 'XAUUSD', date: '۱۴۰۲/۱۰/۰۸', prediction: 'خرید', actual: 'خرید', accuracy: 78, timeframe: '۲ هفته' },
-                { symbol: 'TSLA', date: '۱۴۰۲/۱۰/۰۵', prediction: 'فروش', actual: 'فروش', accuracy: 85, timeframe: '۳ روزه' }
+                { symbol: 'EUR/USD', date: '۱۴۰۲/۱۰/۱۰', prediction: 'فروش', actual: 'فروش', accuracy: 92, timeframe: '۱ هفته' }
             ];
             
             let html = '';
@@ -1822,32 +1474,9 @@
             });
             
             document.getElementById('predictionHistory').innerHTML = html;
-            
-            // پر کردن جدول پیش‌بینی‌ها
-            let tableHtml = '';
-            history.forEach(item => {
-                const isAccurate = item.prediction === item.actual;
-                tableHtml += `
-                    <tr>
-                        <td>${item.symbol}</td>
-                        <td>${item.date}</td>
-                        <td>${item.prediction}</td>
-                        <td>${item.actual}</td>
-                        <td>
-                            <span class="accuracy-badge" style="background: ${isAccurate ? '#dcfce7' : '#fee2e2'}; 
-                                color: ${isAccurate ? '#166534' : '#991b1b'};">
-                                ${item.accuracy}%
-                            </span>
-                        </td>
-                        <td>${item.timeframe}</td>
-                    </tr>
-                `;
-            });
-            
-            document.getElementById('predictionTableBody').innerHTML = tableHtml;
         }
 
-        // سیستم تحلیل هوشمند
+        // سیستم تحلیل هوشمند (کد قبلی)
         function runIntelligentAnalysis(symbol, timeframe) {
             const resultsDiv = document.getElementById('analysisResults');
             resultsDiv.style.display = 'block';
