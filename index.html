@@ -693,6 +693,14 @@
             font-size: 0.8rem;
             color: #6b7280;
         }
+
+        .modules-tab-content {
+            display: none;
+        }
+        
+        .modules-tab-content.active {
+            display: block;
+        }
     </style>
 </head>
 <body>
@@ -740,25 +748,13 @@
                             <i class="fas fa-brain"></i>
                             (هوش مصنوعی + هسته اصلی + اخبار + مارکت کپ)
                         </a>
-                        <a href="#tab-auto-analysis" class="menu-item">
+                        <a href="#tab-analysis-request" class="menu-item">
                             <i class="fas fa-robot"></i>
-                            (تحلیل اتوماتیک)
+                            (درخواست تحلیل)
                         </a>
-                        <a href="#tab-advanced-ai" class="menu-item">
-                            <i class="fas fa-microchip"></i>
-                            هوش مصنوعی پیشرفته
-                        </a>
-                        <a href="#tab-financial-transformers" class="menu-item">
-                            <i class="fas fa-project-diagram"></i>
-                            مدل‌های ترنسفورمر
-                        </a>
-                        <a href="#tab-multi-agent" class="menu-item">
-                            <i class="fas fa-robot"></i>
-                            سیستم چند عاملی
-                        </a>
-                        <a href="#tab-mousafrade-core" class="menu-item">
-                            <i class="fas fa-cog"></i>
-                            هسته اصلی MousaFrade
+                        <a href="#tab-modules" class="menu-item">
+                            <i class="fas fa-cogs"></i>
+                            ماژول‌ها
                         </a>
                     </div>
                 </div>
@@ -891,379 +887,6 @@
                             </div>
                         </div>
 
-                        <!-- ماژول‌های هوش مصنوعی پیشرفته -->
-                        <div class="admin-panel">
-                            <h3>🤖 هوش مصنوعی پیشرفته (ENHANCED_AI)</h3>
-                            <div class="module-grid">
-                                <!-- Explainable AI -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-brain"></i>
-                                        </div>
-                                        <h3>explainable_ai/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
-                                    
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-code"></i>
-                                            <span>decision_explainer.py - تفسیرگر تصمیمات</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chart-bar"></i>
-                                            <span>feature_importance.py - اهمیت ویژگی‌ها</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-project-diagram"></i>
-                                            <span>model_interpretability.py - تفسیرپذیری مدل</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌های پیشرفته:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">تفسیر تصمیمات با SHAP & LIME</div>
-                                            <div class="feature-item">تحلیل اهمیت ویژگی‌های جهانی و محلی</div>
-                                            <div class="feature-item">تفسیرپذیری مدل‌های پیچیده</div>
-                                            <div class="feature-item">تحلیل تعاملات ویژگی‌ها</div>
-                                            <div class="feature-item">داشبوردهای تعاملی</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Financial Transformers -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-project-diagram"></i>
-                                        </div>
-                                        <h3>financial_transformers/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>مدل‌های ترنسفورمر برای تحلیل مالی</p>
-                                    
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-comment-dots"></i>
-                                            <span>market_sentiment_transformer.py - تحلیل سنتیمنت بازار</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chart-line"></i>
-                                            <span>price_prediction_transformer.py - پیش‌بینی قیمت</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-clock"></i>
-                                            <span>time_series_transformer.py - تحلیل سری زمانی</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌های پیشرفته:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">تحلیل احساسات بازار با BERT</div>
-                                            <div class="feature-item">پیش‌بینی قیمت با عدم قطعیت</div>
-                                            <div class="feature-item">تحلیل سری‌های زمانی مالی</div>
-                                            <div class="feature-item">توجه چند مقیاسی</div>
-                                            <div class="feature-item">خروجی‌های احتمالاتی</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Multi-Agent AI -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-robot"></i>
-                                        </div>
-                                        <h3>multi_agent_ai/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>سیستم چند عاملی برای تحلیل بازار</p>
-                                    
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-search"></i>
-                                            <span>market_analyzer_agent.py - عامل تحلیل‌گر بازار</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-shield-alt"></i>
-                                            <span>risk_assessor_agent.py - عامل ارزیاب ریسک</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chess"></i>
-                                            <span>strategy_selector_agent.py - عامل انتخاب استراتژی</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌های پیشرفته:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">تحلیل شرایط بازار با اندیکاتورهای پیشرفته</div>
-                                            <div class="feature-item">ارزیابی ریسک چند بعدی</div>
-                                            <div class="feature-item">انتخاب استراتژی بهینه</div>
-                                            <div class="feature-item">همکاری بین عاملی</div>
-                                            <div class="feature-item">یادگیری تقویتی</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- هسته اصلی MousaFrade -->
-                        <div class="admin-panel">
-                            <h3>⚙️ هسته اصلی (MOUSAFRADE)</h3>
-                            <div class="mousafrade-grid">
-                                <!-- Advisor -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-user-tie"></i>
-                                        </div>
-                                        <h3>advisor/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>سیستم مشاوره معاملاتی</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-bullseye"></i>
-                                            <span>position_advisor.py - مشاور پوزیشن</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-exclamation-triangle"></i>
-                                            <span>risk_advisor.py - مشاور ریسک</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chess-board"></i>
-                                            <span>strategy_advisor.py - مشاور استراتژی</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">مدیریت پوزیشن هوشمند</div>
-                                            <div class="feature-item">ارزیابی ریسک بلادرنگ</div>
-                                            <div class="feature-item">توصیه استراتژی‌های بهینه</div>
-                                            <div class="feature-item">تحلیل شرایط بازار</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Analysis -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-chart-bar"></i>
-                                        </div>
-                                        <h3>analysis/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>موتورهای تحلیل بازار</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-building"></i>
-                                            <span>fundamental/ - تحلیل بنیادی</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-wave-square"></i>
-                                            <span>market_regime/ - رژیم بازار</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-shapes"></i>
-                                            <span>pattern/ - شناسایی الگو</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-smile"></i>
-                                            <span>sentiment/ - تحلیل احساسات</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chart-line"></i>
-                                            <span>technical/ - تحلیل تکنیکال</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-arrow-trend-up"></i>
-                                            <span>trend/ - تحلیل روند</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-bolt"></i>
-                                            <span>volatility/ - تحلیل نوسان</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">تحلیل بنیادی کمی و کیفی</div>
-                                            <div class="feature-item">شناسایی رژیم‌های بازار</div>
-                                            <div class="feature-item">تشخیص الگوهای قیمتی</div>
-                                            <div class="feature-item">تحلیل احساسات بازار</div>
-                                            <div class="feature-item">تحلیل تکنیکال پیشرفته</div>
-                                            <div class="feature-item">تحلیل روند چند زمانی</div>
-                                            <div class="feature-item">اندازه‌گیری نوسانات</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Backtesting -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-history"></i>
-                                        </div>
-                                        <h3>backtesting/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>سیستم بک‌تستینگ استراتژی‌ها</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-play"></i>
-                                            <span>backtesting.py - موتور اصلی بک‌تست</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-tools"></i>
-                                            <span>backtesting_tools.py - ابزارهای تست</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-chart-area"></i>
-                                            <span>plotting.py - رسم نمودارها</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">بک‌تست استراتژی‌ها</div>
-                                            <div class="feature-item">ابزارهای تحلیل عملکرد</div>
-                                            <div class="feature-item">رسم نمودارهای تحلیلی</div>
-                                            <div class="feature-item">شبیه‌سازی بازار واقعی</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Brokers -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-plug"></i>
-                                        </div>
-                                        <h3>brokers/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>اتصال به بروکرها و صرافی‌ها</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-layer-group"></i>
-                                            <span>base_broker.py - کلاس پایه بروکر</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-coins"></i>
-                                            <span>binance/ - اتصال به Binance</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-industry"></i>
-                                            <span>factory.py - کارخانه اتصال</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-exchange-alt"></i>
-                                            <span>xchief/ - اتصال به Xchief</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">اتصال به Binance</div>
-                                            <div class="feature-item">اتصال به Xchief</div>
-                                            <div class="feature-item">کارخانه اتصال یکپارچه</div>
-                                            <div class="feature-item">مدیریت API ها</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Core -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-cog"></i>
-                                        </div>
-                                        <h3>core/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>هسته مرکزی سیستم</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-broadcast-tower"></i>
-                                            <span>event_dispatcher.py - توزیع‌کننده رویدادها</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-tachometer-alt"></i>
-                                            <span>performance_tracker.py - ردیابی عملکرد</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-database"></i>
-                                            <span>state_manager.py - مدیریت وضعیت</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-engine"></i>
-                                            <span>trading_engine.py - موتور معاملاتی</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">توزیع رویدادهای سیستم</div>
-                                            <div class="feature-item">ردیابی عملکرد بلادرنگ</div>
-                                            <div class="feature-item">مدیریت وضعیت سیستم</div>
-                                            <div class="feature-item">موتور معاملاتی پیشرفته</div>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <!-- Data Management -->
-                                <div class="module-card">
-                                    <div class="module-header">
-                                        <div class="module-icon">
-                                            <i class="fas fa-database"></i>
-                                        </div>
-                                        <h3>data/</h3>
-                                        <span class="module-status">فعال</span>
-                                    </div>
-                                    <p>مدیریت داده‌های بازار</p>
-                                    <div class="sub-modules">
-                                        <div class="sub-module">
-                                            <i class="fas fa-exchange-alt"></i>
-                                            <span>converters/ - مبدل‌های داده</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-cloud-download-alt"></i>
-                                            <span>dataprovider/ - تأمین‌کنندگان داده</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-history"></i>
-                                            <span>history/ - داده‌های تاریخی</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-tools"></i>
-                                            <span>tools/ - ابزارهای داده</span>
-                                        </div>
-                                    </div>
-
-                                    <div class="module-details">
-                                        <h4>ویژگی‌ها:</h4>
-                                        <div class="feature-list">
-                                            <div class="feature-item">مبدل‌های داده پیشرفته</div>
-                                            <div class="feature-item">تأمین‌کنندگان داده متعدد</div>
-                                            <div class="feature-item">مدیریت داده‌های تاریخی</div>
-                                            <div class="feature-item">ابزارهای پردازش داده</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
                         <!-- داده‌های بازار و تحلیل حجم -->
                         <div class="admin-panel">
                             <h3>📊 داده‌های بازار و تحلیل حجم</h3>
@@ -1287,10 +910,10 @@
                     </div>
                 </div>
 
-                <!-- تب ۲: تحلیل اتوماتیک -->
-                <div class="tab-content" id="tab-auto-analysis">
+                <!-- تب ۲: درخواست تحلیل -->
+                <div class="tab-content" id="tab-analysis-request">
                     <div class="section">
-                        <h2>(تحلیل اتوماتیک)</h2>
+                        <h2>(درخواست تحلیل)</h2>
                         
                         <div class="module-card">
                             <div class="module-header">
@@ -1336,483 +959,519 @@
                     </div>
                 </div>
 
-                <!-- تب ۳: هوش مصنوعی پیشرفته -->
-                <div class="tab-content" id="tab-advanced-ai">
-                    <div class="section">
-                        <h2>🤖 هوش مصنوعی پیشرفته (ENHANCED_AI)</h2>
+                <!-- تب ۳: ماژول‌ها -->
+                <div class="tab-content" id="tab-modules">
+                    <!-- محتوای ماژول‌ها فقط برای ادمین قابل مشاهده است -->
+                    <div class="section admin-only" id="modules-admin-panel" style="display: none;">
+                        <h2>🧩 ماژول‌های سیستم Mousa</h2>
+                        <p>مدیریت و مشاهده تمام ماژول‌های سیستم - فقط برای مدیران سیستم</p>
                         
-                        <div class="module-grid">
-                            <!-- Explainable AI -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-brain"></i>
-                                    </div>
-                                    <h3>explainable_ai/</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">94.2%</div>
-                                        <div class="metric-label">دقت تفسیر</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">87ms</div>
-                                        <div class="metric-label">زمان پاسخ</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">256</div>
-                                        <div class="metric-label">ویژگی‌ها</div>
-                                    </div>
-                                </div>
+                        <div class="tab-container">
+                            <div class="tabs">
+                                <div class="tab active" data-tab="enhanced-ai">هوش مصنوعی پیشرفته</div>
+                                <div class="tab" data-tab="financial-transformers">مدل‌های ترنسفورمر</div>
+                                <div class="tab" data-tab="multi-agent">سیستم چند عاملی</div>
+                                <div class="tab" data-tab="mousafrade-core">هسته اصلی</div>
+                            </div>
+                            
+                            <!-- محتوای تب‌های ماژول‌ها -->
+                            <div class="modules-tab-content active" id="tab-enhanced-ai">
+                                <div class="admin-panel">
+                                    <h3>🤖 هوش مصنوعی پیشرفته (ENHANCED_AI)</h3>
+                                    <div class="module-grid">
+                                        <!-- Explainable AI -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-brain"></i>
+                                                </div>
+                                                <h3>explainable_ai/</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
+                                            
+                                            <div class="sub-modules">
+                                                <div class="sub-module">
+                                                    <i class="fas fa-code"></i>
+                                                    <span>decision_explainer.py - تفسیرگر تصمیمات</span>
+                                                </div>
+                                                <div class="sub-module">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                    <span>feature_importance.py - اهمیت ویژگی‌ها</span>
+                                                </div>
+                                                <div class="sub-module">
+                                                    <i class="fas fa-project-diagram"></i>
+                                                    <span>model_interpretability.py - تفسیرپذیری مدل</span>
+                                                </div>
+                                            </div>
 
-                                <div class="module-actions">
-                                    <button class="btn btn-primary">
-                                        <i class="fas fa-play"></i>
-                                        اجرای تحلیل
-                                    </button>
-                                    <button class="btn">
-                                        <i class="fas fa-chart-bar"></i>
-                                        مشاهده گزارش
-                                    </button>
+                                            <div class="module-details">
+                                                <h4>ویژگی‌های پیشرفته:</h4>
+                                                <div class="feature-list">
+                                                    <div class="feature-item">تفسیر تصمیمات با SHAP & LIME</div>
+                                                    <div class="feature-item">تحلیل اهمیت ویژگی‌های جهانی و محلی</div>
+                                                    <div class="feature-item">تفسیرپذیری مدل‌های پیچیده</div>
+                                                    <div class="feature-item">تحلیل تعاملات ویژگی‌ها</div>
+                                                    <div class="feature-item">داشبوردهای تعاملی</div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Decision Explainer -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-code"></i>
+                                                </div>
+                                                <h3>decision_explainer.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>تفسیرگر تصمیمات پیشرفته</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">94.2%</div>
+                                                    <div class="metric-label">دقت تفسیر</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">87ms</div>
+                                                    <div class="metric-label">زمان پاسخ</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">256</div>
+                                                    <div class="metric-label">ویژگی‌ها</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">تحلیل SHAP & LIME</div>
+                                                <div class="feature-item">تفسیر تصمیمات پیچیده</div>
+                                                <div class="feature-item">داشبوردهای تعاملی</div>
+                                                <div class="feature-item">تحلیل عوامل کلیدی</div>
+                                            </div>
+
+                                            <div class="agent-status">
+                                                <div class="status-indicator"></div>
+                                                <span>در حال پردازش داده‌های بازار</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Feature Importance -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-chart-bar"></i>
+                                                </div>
+                                                <h3>feature_importance.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>تحلیل اهمیت ویژگی‌ها</p>
+                                            
+                                            <div class="feature-list">
+                                                <div class="feature-item">اهمیت‌سنجی جهانی و محلی</div>
+                                                <div class="feature-item">تحلیل پایداری ویژگی‌ها</div>
+                                                <div class="feature-item">شناسایی تعاملات</div>
+                                                <div class="feature-item">تحلیل اهمیت زمانی</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Model Interpretability -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-project-diagram"></i>
+                                                </div>
+                                                <h3>model_interpretability.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>تفسیرپذیری مدل‌های پیچیده</p>
+                                            
+                                            <div class="feature-list">
+                                                <div class="feature-item">تفسیر مدل‌های ترنسفورمر</div>
+                                                <div class="feature-item">تحلیل مرز تصمیم‌گیری</div>
+                                                <div class="feature-item">توضیح‌های متقابل</div>
+                                                <div class="feature-item">تحلیل موارد مشابه</div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
+                            
+                            <div class="modules-tab-content" id="tab-financial-transformers">
+                                <div class="admin-panel">
+                                    <h3>🧠 مدل‌های ترنسفورمر مالی</h3>
+                                    <div class="module-grid">
+                                        <!-- Market Sentiment Transformer -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-comment-dots"></i>
+                                                </div>
+                                                <h3>market_sentiment_transformer.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>تحلیل احساسات بازار با BERT پیشرفته</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">89.7%</div>
+                                                    <div class="metric-label">دقت تحلیل</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">1.2M</div>
+                                                    <div class="metric-label">داده آموزشی</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">768</div>
+                                                    <div class="metric-label">ابعاد مدل</div>
+                                                </div>
+                                            </div>
 
-                            <!-- Decision Explainer -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-code"></i>
+                                            <div class="feature-list">
+                                                <div class="feature-item">پردازش زبان طبیعی پیشرفته</div>
+                                                <div class="feature-item">تحلیل چند منبعی</div>
+                                                <div class="feature-item">شناسایی ناهنجاری‌ها</div>
+                                                <div class="feature-item">توجه به زمینه مالی</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Price Prediction Transformer -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-chart-line"></i>
+                                                </div>
+                                                <h3>price_prediction_transformer.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>پیش‌بینی قیمت با عدم قطعیت</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">82.3%</div>
+                                                    <div class="metric-label">دقت پیش‌بینی</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">5</div>
+                                                    <div class="metric-label">افق زمانی</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">128</div>
+                                                    <div class="metric-label">ابعاد مدل</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">پیش‌بینی چند افقی</div>
+                                                <div class="feature-item">خروجی احتمالاتی</div>
+                                                <div class="feature-item">توجه چند مقیاسی</div>
+                                                <div class="feature-item">کدگذاری موقعیتی</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Time Series Transformer -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-clock"></i>
+                                                </div>
+                                                <h3>time_series_transformer.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>تحلیل سری‌های زمانی مالی</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">85.1%</div>
+                                                    <div class="metric-label">دقت تحلیل</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">60</div>
+                                                    <div class="metric-label">طول دنباله</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">64</div>
+                                                    <div class="metric-label">ابعاد مدل</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">تحلیل چند زمانی</div>
+                                                <div class="feature-item">پیش‌بینی چند مرحله‌ای</div>
+                                                <div class="feature-item">کدگذاری موقعیتی زمانی</div>
+                                                <div class="feature-item">توجه به الگوهای زمانی</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3>decision_explainer.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>تفسیرگر تصمیمات پیشرفته</p>
-                                
-                                <div class="feature-list">
-                                    <div class="feature-item">تحلیل SHAP & LIME</div>
-                                    <div class="feature-item">تفسیر تصمیمات پیچیده</div>
-                                    <div class="feature-item">داشبوردهای تعاملی</div>
-                                    <div class="feature-item">تحلیل عوامل کلیدی</div>
-                                </div>
-
-                                <div class="agent-status">
-                                    <div class="status-indicator"></div>
-                                    <span>در حال پردازش داده‌های بازار</span>
                                 </div>
                             </div>
+                            
+                            <div class="modules-tab-content" id="tab-multi-agent">
+                                <div class="admin-panel">
+                                    <h3>🤝 سیستم چند عاملی هوشمند</h3>
+                                    <div class="module-grid">
+                                        <!-- Market Analyzer Agent -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-search"></i>
+                                                </div>
+                                                <h3>market_analyzer_agent.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>عامل تحلیل‌گر شرایط بازار</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">25</div>
+                                                    <div class="metric-label">اندیکاتورها</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">92.1%</div>
+                                                    <div class="metric-label">دقت تشخیص</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">5</div>
+                                                    <div class="metric-label">شرایط بازار</div>
+                                                </div>
+                                            </div>
 
-                            <!-- Feature Importance -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-chart-bar"></i>
+                                            <div class="feature-list">
+                                                <div class="feature-item">تحلیل شرایط بازار</div>
+                                                <div class="feature-item">شناسایی سطوح حمایت/مقاومت</div>
+                                                <div class="feature-item">تشخیص ناهنجاری‌ها</div>
+                                                <div class="feature-item">اندازه‌گیری قدرت روند</div>
+                                            </div>
+
+                                            <div class="agent-status">
+                                                <div class="status-indicator"></div>
+                                                <span>در حال تحلیل ۱۵ جفت ارز</span>
+                                            </div>
+                                        </div>
+
+                                        <!-- Risk Assessor Agent -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-shield-alt"></i>
+                                                </div>
+                                                <h3>risk_assessor_agent.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>عامل ارزیاب ریسک پیشرفته</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">6</div>
+                                                    <div class="metric-label">انواع ریسک</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">95.3%</div>
+                                                    <div class="metric-label">دقت ارزیابی</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">2%</div>
+                                                    <div class="metric-label">VaR</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">ارزیابی ریسک چند بعدی</div>
+                                                <div class="feature-item">محاسبه VaR و Expected Shortfall</div>
+                                                <div class="feature-item">تست استرس</div>
+                                                <div class="feature-item">تحلیل همبستگی</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Strategy Selector Agent -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-chess"></i>
+                                                </div>
+                                                <h3>strategy_selector_agent.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>عامل انتخاب استراتژی بهینه</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">12</div>
+                                                    <div class="metric-label">استراتژی‌ها</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">88.7%</div>
+                                                    <div class="metric-label">دقت انتخاب</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">15.2%</div>
+                                                    <div class="metric-label">بازدهی</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">انتخاب استراتژی بهینه</div>
+                                                <div class="feature-item">یادگیری تقویتی</div>
+                                                <div class="feature-item">تحلیل عملکرد تاریخی</div>
+                                                <div class="feature-item">سازگاری با شرایط بازار</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3>feature_importance.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>تحلیل اهمیت ویژگی‌ها</p>
-                                
-                                <div class="feature-list">
-                                    <div class="feature-item">اهمیت‌سنجی جهانی و محلی</div>
-                                    <div class="feature-item">تحلیل پایداری ویژگی‌ها</div>
-                                    <div class="feature-item">شناسایی تعاملات</div>
-                                    <div class="feature-item">تحلیل اهمیت زمانی</div>
                                 </div>
                             </div>
+                            
+                            <div class="modules-tab-content" id="tab-mousafrade-core">
+                                <div class="admin-panel">
+                                    <h3>⚙️ هسته اصلی MousaFrade</h3>
+                                    <div class="mousafrade-grid">
+                                        <!-- Trading Engine -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-engine"></i>
+                                                </div>
+                                                <h3>trading_engine.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>موتور معاملاتی پیشرفته</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">3ms</div>
+                                                    <div class="metric-label">تأخیر</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">99.9%</div>
+                                                    <div class="metric-label">پایداری</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">50</div>
+                                                    <div class="metric-label">معامله/ثانیه</div>
+                                                </div>
+                                            </div>
 
-                            <!-- Model Interpretability -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-project-diagram"></i>
+                                            <div class="feature-list">
+                                                <div class="feature-item">اجرای معاملات با تأخیر کم</div>
+                                                <div class="feature-item">مدیریت موقعیت‌ها</div>
+                                                <div class="feature-item">کنترل ریسک بلادرنگ</div>
+                                                <div class="feature-item">لاگ‌گیری کامل</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Event Dispatcher -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-broadcast-tower"></i>
+                                                </div>
+                                                <h3>event_dispatcher.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>توزیع‌کننده رویدادهای سیستم</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">1.2K</div>
+                                                    <div class="metric-label">رویداد/ثانیه</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">15</div>
+                                                    <div class="metric-label">مشترکین</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">0.5ms</div>
+                                                    <div class="metric-label">تأخیر</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">توزیع رویدادهای بلادرنگ</div>
+                                                <div class="feature-item">مدیریت مشترکین</div>
+                                                <div class="feature-item">فیلتر کردن رویدادها</div>
+                                                <div class="feature-item">پشتیبانی از اولویت‌ها</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- Performance Tracker -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-tachometer-alt"></i>
+                                                </div>
+                                                <h3>performance_tracker.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>ردیابی عملکرد سیستم</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">150</div>
+                                                    <div class="metric-label">متریک‌ها</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">99.9%</div>
+                                                    <div class="metric-label">دقت</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">1s</div>
+                                                    <div class="metric-label">بروزرسانی</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">ردیابی متریک‌های عملکرد</div>
+                                                <div class="feature-item">تحلیل کارایی سیستم</div>
+                                                <div class="feature-item">هشدارهای خودکار</div>
+                                                <div class="feature-item">گزارش‌های تحلیلی</div>
+                                            </div>
+                                        </div>
+
+                                        <!-- State Manager -->
+                                        <div class="module-card">
+                                            <div class="module-header">
+                                                <div class="module-icon">
+                                                    <i class="fas fa-database"></i>
+                                                </div>
+                                                <h3>state_manager.py</h3>
+                                                <span class="module-status">فعال</span>
+                                            </div>
+                                            <p>مدیریت وضعیت سیستم</p>
+                                            
+                                            <div class="performance-metrics">
+                                                <div class="metric">
+                                                    <div class="metric-value">500</div>
+                                                    <div class="metric-label">وضعیت‌ها</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">99.9%</div>
+                                                    <div class="metric-label">پایداری</div>
+                                                </div>
+                                                <div class="metric">
+                                                    <div class="metric-value">10ms</div>
+                                                    <div class="metric-label">بازیابی</div>
+                                                </div>
+                                            </div>
+
+                                            <div class="feature-list">
+                                                <div class="feature-item">مدیریت وضعیت توزیع‌شده</div>
+                                                <div class="feature-item">پشتیبان‌گیری خودکار</div>
+                                                <div class="feature-item">بازیابی سریع</div>
+                                                <div class="feature-item">همگام‌سازی بلادرنگ</div>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <h3>model_interpretability.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>تفسیرپذیری مدل‌های پیچیده</p>
-                                
-                                <div class="feature-list">
-                                    <div class="feature-item">تفسیر مدل‌های ترنسفورمر</div>
-                                    <div class="feature-item">تحلیل مرز تصمیم‌گیری</div>
-                                    <div class="feature-item">توضیح‌های متقابل</div>
-                                    <div class="feature-item">تحلیل موارد مشابه</div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div>
 
-                <!-- تب ۴: مدل‌های ترنسفورمر مالی -->
-                <div class="tab-content" id="tab-financial-transformers">
-                    <div class="section">
-                        <h2>🧠 مدل‌های ترنسفورمر مالی</h2>
-                        
-                        <div class="module-grid">
-                            <!-- Market Sentiment Transformer -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-comment-dots"></i>
-                                    </div>
-                                    <h3>market_sentiment_transformer.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>تحلیل احساسات بازار با BERT پیشرفته</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">89.7%</div>
-                                        <div class="metric-label">دقت تحلیل</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">1.2M</div>
-                                        <div class="metric-label">داده آموزشی</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">768</div>
-                                        <div class="metric-label">ابعاد مدل</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">پردازش زبان طبیعی پیشرفته</div>
-                                    <div class="feature-item">تحلیل چند منبعی</div>
-                                    <div class="feature-item">شناسایی ناهنجاری‌ها</div>
-                                    <div class="feature-item">توجه به زمینه مالی</div>
-                                </div>
-                            </div>
-
-                            <!-- Price Prediction Transformer -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-chart-line"></i>
-                                    </div>
-                                    <h3>price_prediction_transformer.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>پیش‌بینی قیمت با عدم قطعیت</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">82.3%</div>
-                                        <div class="metric-label">دقت پیش‌بینی</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">5</div>
-                                        <div class="metric-label">افق زمانی</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">128</div>
-                                        <div class="metric-label">ابعاد مدل</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">پیش‌بینی چند افقی</div>
-                                    <div class="feature-item">خروجی احتمالاتی</div>
-                                    <div class="feature-item">توجه چند مقیاسی</div>
-                                    <div class="feature-item">کدگذاری موقعیتی</div>
-                                </div>
-                            </div>
-
-                            <!-- Time Series Transformer -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-clock"></i>
-                                    </div>
-                                    <h3>time_series_transformer.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>تحلیل سری‌های زمانی مالی</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">85.1%</div>
-                                        <div class="metric-label">دقت تحلیل</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">60</div>
-                                        <div class="metric-label">طول دنباله</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">64</div>
-                                        <div class="metric-label">ابعاد مدل</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">تحلیل چند زمانی</div>
-                                    <div class="feature-item">پیش‌بینی چند مرحله‌ای</div>
-                                    <div class="feature-item">کدگذاری موقعیتی زمانی</div>
-                                    <div class="feature-item">توجه به الگوهای زمانی</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- تب ۵: سیستم چند عاملی -->
-                <div class="tab-content" id="tab-multi-agent">
-                    <div class="section">
-                        <h2>🤝 سیستم چند عاملی هوشمند</h2>
-                        
-                        <div class="module-grid">
-                            <!-- Market Analyzer Agent -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-search"></i>
-                                    </div>
-                                    <h3>market_analyzer_agent.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>عامل تحلیل‌گر شرایط بازار</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">25</div>
-                                        <div class="metric-label">اندیکاتورها</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">92.1%</div>
-                                        <div class="metric-label">دقت تشخیص</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">5</div>
-                                        <div class="metric-label">شرایط بازار</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">تحلیل شرایط بازار</div>
-                                    <div class="feature-item">شناسایی سطوح حمایت/مقاومت</div>
-                                    <div class="feature-item">تشخیص ناهنجاری‌ها</div>
-                                    <div class="feature-item">اندازه‌گیری قدرت روند</div>
-                                </div>
-
-                                <div class="agent-status">
-                                    <div class="status-indicator"></div>
-                                    <span>در حال تحلیل ۱۵ جفت ارز</span>
-                                </div>
-                            </div>
-
-                            <!-- Risk Assessor Agent -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-shield-alt"></i>
-                                    </div>
-                                    <h3>risk_assessor_agent.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>عامل ارزیاب ریسک پیشرفته</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">6</div>
-                                        <div class="metric-label">انواع ریسک</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">95.3%</div>
-                                        <div class="metric-label">دقت ارزیابی</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">2%</div>
-                                        <div class="metric-label">VaR</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">ارزیابی ریسک چند بعدی</div>
-                                    <div class="feature-item">محاسبه VaR و Expected Shortfall</div>
-                                    <div class="feature-item">تست استرس</div>
-                                    <div class="feature-item">تحلیل همبستگی</div>
-                                </div>
-                            </div>
-
-                            <!-- Strategy Selector Agent -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-chess"></i>
-                                    </div>
-                                    <h3>strategy_selector_agent.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>عامل انتخاب استراتژی بهینه</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">12</div>
-                                        <div class="metric-label">استراتژی‌ها</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">88.7%</div>
-                                        <div class="metric-label">دقت انتخاب</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">15.2%</div>
-                                        <div class="metric-label">بازدهی</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">انتخاب استراتژی بهینه</div>
-                                    <div class="feature-item">یادگیری تقویتی</div>
-                                    <div class="feature-item">تحلیل عملکرد تاریخی</div>
-                                    <div class="feature-item">سازگاری با شرایط بازار</div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- تب ۶: هسته اصلی MousaFrade -->
-                <div class="tab-content" id="tab-mousafrade-core">
-                    <div class="section">
-                        <h2>⚙️ هسته اصلی MousaFrade</h2>
-                        
-                        <div class="mousafrade-grid">
-                            <!-- Trading Engine -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-engine"></i>
-                                    </div>
-                                    <h3>trading_engine.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>موتور معاملاتی پیشرفته</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">3ms</div>
-                                        <div class="metric-label">تأخیر</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">99.9%</div>
-                                        <div class="metric-label">پایداری</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">50</div>
-                                        <div class="metric-label">معامله/ثانیه</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">اجرای معاملات با تأخیر کم</div>
-                                    <div class="feature-item">مدیریت موقعیت‌ها</div>
-                                    <div class="feature-item">کنترل ریسک بلادرنگ</div>
-                                    <div class="feature-item">لاگ‌گیری کامل</div>
-                                </div>
-                            </div>
-
-                            <!-- Event Dispatcher -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-broadcast-tower"></i>
-                                    </div>
-                                    <h3>event_dispatcher.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>توزیع‌کننده رویدادهای سیستم</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">1.2K</div>
-                                        <div class="metric-label">رویداد/ثانیه</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">15</div>
-                                        <div class="metric-label">مشترکین</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">0.5ms</div>
-                                        <div class="metric-label">تأخیر</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">توزیع رویدادهای بلادرنگ</div>
-                                    <div class="feature-item">مدیریت مشترکین</div>
-                                    <div class="feature-item">فیلتر کردن رویدادها</div>
-                                    <div class="feature-item">پشتیبانی از اولویت‌ها</div>
-                                </div>
-                            </div>
-
-                            <!-- Performance Tracker -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-tachometer-alt"></i>
-                                    </div>
-                                    <h3>performance_tracker.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>ردیابی عملکرد سیستم</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">150</div>
-                                        <div class="metric-label">متریک‌ها</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">99.9%</div>
-                                        <div class="metric-label">دقت</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">1s</div>
-                                        <div class="metric-label">بروزرسانی</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">ردیابی متریک‌های عملکرد</div>
-                                    <div class="feature-item">تحلیل کارایی سیستم</div>
-                                    <div class="feature-item">هشدارهای خودکار</div>
-                                    <div class="feature-item">گزارش‌های تحلیلی</div>
-                                </div>
-                            </div>
-
-                            <!-- State Manager -->
-                            <div class="module-card">
-                                <div class="module-header">
-                                    <div class="module-icon">
-                                        <i class="fas fa-database"></i>
-                                    </div>
-                                    <h3>state_manager.py</h3>
-                                    <span class="module-status">فعال</span>
-                                </div>
-                                <p>مدیریت وضعیت سیستم</p>
-                                
-                                <div class="performance-metrics">
-                                    <div class="metric">
-                                        <div class="metric-value">500</div>
-                                        <div class="metric-label">وضعیت‌ها</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">99.9%</div>
-                                        <div class="metric-label">پایداری</div>
-                                    </div>
-                                    <div class="metric">
-                                        <div class="metric-value">10ms</div>
-                                        <div class="metric-label">بازیابی</div>
-                                    </div>
-                                </div>
-
-                                <div class="feature-list">
-                                    <div class="feature-item">مدیریت وضعیت توزیع‌شده</div>
-                                    <div class="feature-item">پشتیبان‌گیری خودکار</div>
-                                    <div class="feature-item">بازیابی سریع</div>
-                                    <div class="feature-item">همگام‌سازی بلادرنگ</div>
-                                </div>
-                            </div>
+                    <!-- برای کاربران عادی -->
+                    <div class="section" id="modules-user-panel">
+                        <h2>ماژول‌های سیستم</h2>
+                        <p>شما دسترسی به مشاهده ماژول‌های سیستم را ندارید. برای دسترسی کامل با مدیر سیستم تماس بگیرید.</p>
+                        <div class="notification info">
+                            <i class="fas fa-info-circle"></i>
+                            <span>برای دسترسی به جزئیات ماژول‌ها، از حساب ادمین استفاده کنید.</span>
                         </div>
                     </div>
                 </div>
@@ -1836,6 +1495,8 @@
                 document.getElementById('userAvatar').textContent = 'ا';
                 document.getElementById('admin-panel').style.display = 'block';
                 document.getElementById('user-panel').style.display = 'none';
+                document.getElementById('modules-admin-panel').style.display = 'block';
+                document.getElementById('modules-user-panel').style.display = 'none';
                 initializeAdminPanel();
             } 
             // بررسی لاگین کاربر عادی
@@ -1847,6 +1508,8 @@
                 document.getElementById('userAvatar').textContent = 'م';
                 document.getElementById('admin-panel').style.display = 'none';
                 document.getElementById('user-panel').style.display = 'block';
+                document.getElementById('modules-admin-panel').style.display = 'none';
+                document.getElementById('modules-user-panel').style.display = 'block';
             } else {
                 alert('نام کاربری یا رمز عبور اشتباه است!\n\nاطلاعات تست:\nادمین: admin / mousa123\nکاربر: user / trade2024');
             }
@@ -1881,6 +1544,25 @@
                 if (targetTab) {
                     targetTab.classList.add('active');
                 }
+            });
+        });
+
+        // مدیریت تب‌های ماژول‌ها
+        document.querySelectorAll('.tab[data-tab]').forEach(tab => {
+            tab.addEventListener('click', function() {
+                const tabId = this.getAttribute('data-tab');
+                
+                // به‌روزرسانی تب‌های فعال
+                document.querySelectorAll('.tab[data-tab]').forEach(t => {
+                    t.classList.remove('active');
+                });
+                this.classList.add('active');
+                
+                // نمایش محتوای تب مربوطه
+                document.querySelectorAll('.modules-tab-content').forEach(content => {
+                    content.classList.remove('active');
+                });
+                document.getElementById(`tab-${tabId}`).classList.add('active');
             });
         });
 
