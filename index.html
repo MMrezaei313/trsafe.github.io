@@ -473,30 +473,6 @@
             transform: translateX(26px);
         }
         
-        .news-feed {
-            max-height: 400px;
-            overflow-y: auto;
-            margin-top: 15px;
-        }
-        
-        .news-item {
-            padding: 12px;
-            border-bottom: 1px solid #e5e7eb;
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-        }
-        
-        .news-item:last-child {
-            border-bottom: none;
-        }
-        
-        .news-source {
-            font-size: 0.8rem;
-            color: #6b7280;
-            margin-bottom: 5px;
-        }
-        
         .market-data {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -639,6 +615,13 @@
             margin: 15px 0;
             border-right: 4px solid;
         }
+
+        .mousafrade-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -738,12 +721,12 @@
                             <div class="stat-label">ماژول‌های فعال</div>
                         </div>
                         <div class="stat-card warning">
-                            <div class="stat-value" id="newsCount">-</div>
-                            <div class="stat-label">اخبار جدید</div>
-                        </div>
-                        <div class="stat-card danger">
                             <div class="stat-value" id="volumeChange">-</div>
                             <div class="stat-label">تغییر حجم معاملات</div>
+                        </div>
+                        <div class="stat-card danger">
+                            <div class="stat-value" id="aiAccuracy">-</div>
+                            <div class="stat-label">دقت هوش مصنوعی</div>
                         </div>
                     </div>
 
@@ -821,85 +804,291 @@
                             </div>
                         </div>
 
-                        <!-- نمایش اخبار -->
+                        <!-- ماژول‌های هوش مصنوعی پیشرفته -->
                         <div class="admin-panel">
-                            <h3>📰 اخبار مالی لحظه‌ای</h3>
-                            <div class="news-feed" id="newsFeed">
-                                <!-- اخبار با JavaScript پر می‌شوند -->
-                            </div>
-                        </div>
-
-                        <!-- داده‌های بازار -->
-                        <div class="admin-panel">
-                            <h3>📊 داده‌های بازار جهانی</h3>
-                            <div class="market-data" id="marketData">
-                                <!-- داده‌های بازار با JavaScript پر می‌شوند -->
-                            </div>
-                        </div>
-
-                        <!-- تحلیل حجم معاملات -->
-                        <div class="admin-panel">
-                            <h3>📈 تحلیل حجم معاملات</h3>
-                            <div id="volumeAnalysis">
-                                <!-- تحلیل حجم با JavaScript پر می‌شود -->
-                            </div>
-                        </div>
-
-                        <!-- ماژول‌های هوش مصنوعی و هسته اصلی -->
-                        <div class="admin-panel">
-                            <h3>🤖 ماژول‌های فعال سیستم</h3>
+                            <h3>🤖 هوش مصنوعی پیشرفته (ENHANCED_AI)</h3>
                             <div class="module-grid">
-                                <!-- Enhanced AI -->
+                                <!-- Explainable AI -->
                                 <div class="module-card">
                                     <div class="module-header">
                                         <div class="module-icon">
                                             <i class="fas fa-brain"></i>
                                         </div>
-                                        <h3>ENHANCED_AI</h3>
+                                        <h3>explainable_ai/</h3>
                                         <span class="module-status">فعال</span>
                                     </div>
-                                    <p>سیستم هوش مصنوعی پیشرفته</p>
+                                    <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
+                                    
                                     <div class="sub-modules">
                                         <div class="sub-module">
-                                            <i class="fas fa-project-diagram"></i>
-                                            <span>مدل‌های ترنسفورمر مالی</span>
-                                        </div>
-                                        <div class="sub-module">
-                                            <i class="fas fa-robot"></i>
-                                            <span>سیستم چند عاملی</span>
+                                            <i class="fas fa-code"></i>
+                                            <span>decision_explainer.py - تفسیرگر تصمیمات</span>
                                         </div>
                                         <div class="sub-module">
                                             <i class="fas fa-chart-bar"></i>
-                                            <span>تحلیل سنتیمنت بازار</span>
+                                            <span>feature_importance.py - اهمیت ویژگی‌ها</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-project-diagram"></i>
+                                            <span>model_interpretability.py - تفسیرپذیری مدل</span>
                                         </div>
                                     </div>
                                 </div>
 
-                                <!-- MousaFrade Core -->
+                                <!-- Financial Transformers -->
                                 <div class="module-card">
                                     <div class="module-header">
                                         <div class="module-icon">
-                                            <i class="fas fa-cogs"></i>
+                                            <i class="fas fa-project-diagram"></i>
                                         </div>
-                                        <h3>MOUSAFRADE</h3>
+                                        <h3>financial_transformers/</h3>
                                         <span class="module-status">فعال</span>
                                     </div>
-                                    <p>هسته اصلی سیستم معاملاتی</p>
+                                    <p>مدل‌های ترنسفورمر برای تحلیل مالی</p>
+                                    
                                     <div class="sub-modules">
                                         <div class="sub-module">
-                                            <i class="fas fa-user-tie"></i>
-                                            <span>سیستم مشاوره معاملاتی</span>
+                                            <i class="fas fa-comment-dots"></i>
+                                            <span>market_sentiment_transformer.py - تحلیل سنتیمنت بازار</span>
                                         </div>
                                         <div class="sub-module">
                                             <i class="fas fa-chart-line"></i>
-                                            <span>موتورهای تحلیل بازار</span>
+                                            <span>price_prediction_transformer.py - پیش‌بینی قیمت</span>
                                         </div>
                                         <div class="sub-module">
-                                            <i class="fas fa-shield-alt"></i>
-                                            <span>مدیریت ریسک پیشرفته</span>
+                                            <i class="fas fa-clock"></i>
+                                            <span>time_series_transformer.py - تحلیل سری زمانی</span>
                                         </div>
                                     </div>
                                 </div>
+
+                                <!-- Multi-Agent AI -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-robot"></i>
+                                        </div>
+                                        <h3>multi_agent_ai/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>سیستم چند عاملی برای تحلیل بازار</p>
+                                    
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-search"></i>
+                                            <span>market_analyzer_agent.py - عامل تحلیل‌گر بازار</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-shield-alt"></i>
+                                            <span>risk_assessor_agent.py - عامل ارزیاب ریسک</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-chess"></i>
+                                            <span>strategy_selector_agent.py - عامل انتخاب استراتژی</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- هسته اصلی MousaFrade -->
+                        <div class="admin-panel">
+                            <h3>⚙️ هسته اصلی (MOUSAFRADE)</h3>
+                            <div class="mousafrade-grid">
+                                <!-- Advisor -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-user-tie"></i>
+                                        </div>
+                                        <h3>advisor/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>سیستم مشاوره معاملاتی</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-bullseye"></i>
+                                            <span>position_advisor.py - مشاور پوزیشن</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-exclamation-triangle"></i>
+                                            <span>risk_advisor.py - مشاور ریسک</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-chess-board"></i>
+                                            <span>strategy_advisor.py - مشاور استراتژی</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Analysis -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-chart-bar"></i>
+                                        </div>
+                                        <h3>analysis/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>موتورهای تحلیل بازار</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-building"></i>
+                                            <span>fundamental/ - تحلیل بنیادی</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-wave-square"></i>
+                                            <span>market_regime/ - رژیم بازار</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-shapes"></i>
+                                            <span>pattern/ - شناسایی الگو</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-smile"></i>
+                                            <span>sentiment/ - تحلیل احساسات</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-chart-line"></i>
+                                            <span>technical/ - تحلیل تکنیکال</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-arrow-trend-up"></i>
+                                            <span>trend/ - تحلیل روند</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-bolt"></i>
+                                            <span>volatility/ - تحلیل نوسان</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Backtesting -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-history"></i>
+                                        </div>
+                                        <h3>backtesting/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>سیستم بک‌تستینگ استراتژی‌ها</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-play"></i>
+                                            <span>backtesting.py - موتور اصلی بک‌تست</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-tools"></i>
+                                            <span>backtesting_tools.py - ابزارهای تست</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-chart-area"></i>
+                                            <span>plotting.py - رسم نمودارها</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Brokers -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-plug"></i>
+                                        </div>
+                                        <h3>brokers/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>اتصال به بروکرها و صرافی‌ها</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-layer-group"></i>
+                                            <span>base_broker.py - کلاس پایه بروکر</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-coins"></i>
+                                            <span>binance/ - اتصال به Binance</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-industry"></i>
+                                            <span>factory.py - کارخانه اتصال</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            <span>xchief/ - اتصال به Xchief</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Core -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-cog"></i>
+                                        </div>
+                                        <h3>core/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>هسته مرکزی سیستم</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-broadcast-tower"></i>
+                                            <span>event_dispatcher.py - توزیع‌کننده رویدادها</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-tachometer-alt"></i>
+                                            <span>performance_tracker.py - ردیابی عملکرد</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-database"></i>
+                                            <span>state_manager.py - مدیریت وضعیت</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-engine"></i>
+                                            <span>trading_engine.py - موتور معاملاتی</span>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- Data Management -->
+                                <div class="module-card">
+                                    <div class="module-header">
+                                        <div class="module-icon">
+                                            <i class="fas fa-database"></i>
+                                        </div>
+                                        <h3>data/</h3>
+                                        <span class="module-status">فعال</span>
+                                    </div>
+                                    <p>مدیریت داده‌های بازار</p>
+                                    <div class="sub-modules">
+                                        <div class="sub-module">
+                                            <i class="fas fa-exchange-alt"></i>
+                                            <span>converters/ - مبدل‌های داده</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-cloud-download-alt"></i>
+                                            <span>dataprovider/ - تأمین‌کنندگان داده</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-history"></i>
+                                            <span>history/ - داده‌های تاریخی</span>
+                                        </div>
+                                        <div class="sub-module">
+                                            <i class="fas fa-tools"></i>
+                                            <span>tools/ - ابزارهای داده</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- داده‌های بازار و تحلیل حجم -->
+                        <div class="admin-panel">
+                            <h3>📊 داده‌های بازار و تحلیل حجم</h3>
+                            <div class="market-data" id="marketData">
+                                <!-- داده‌های بازار با JavaScript پر می‌شوند -->
+                            </div>
+                            <div id="volumeAnalysis" style="margin-top: 20px;">
+                                <!-- تحلیل حجم با JavaScript پر می‌شود -->
                             </div>
                         </div>
                     </div>
@@ -1035,7 +1224,6 @@
         document.getElementById('refreshBtn').addEventListener('click', function() {
             const isAdmin = document.getElementById('userName').textContent === 'مدیر سیستم';
             if (isAdmin) {
-                loadNewsFeed();
                 loadMarketData();
                 loadVolumeAnalysis();
                 updateStats();
@@ -1054,7 +1242,6 @@
 
         // مقداردهی اولیه پنل ادمین
         function initializeAdminPanel() {
-            loadNewsFeed();
             loadMarketData();
             loadVolumeAnalysis();
             updateStats();
@@ -1064,7 +1251,6 @@
             
             // به‌روزرسانی هر 30 ثانیه
             setInterval(() => {
-                loadNewsFeed();
                 loadMarketData();
                 loadVolumeAnalysis();
                 updateStats();
@@ -1080,12 +1266,15 @@
             ];
             
             toggles.forEach(toggleId => {
-                document.getElementById(toggleId).addEventListener('change', function() {
-                    const status = this.checked ? 'فعال' : 'غیرفعال';
-                    const moduleName = this.parentElement.previousElementSibling.textContent;
-                    showNotification(`ماژول ${moduleName} ${status} شد`, 'success');
-                    updateStats();
-                });
+                const toggleElement = document.getElementById(toggleId);
+                if (toggleElement) {
+                    toggleElement.addEventListener('change', function() {
+                        const status = this.checked ? 'فعال' : 'غیرفعال';
+                        const moduleName = this.parentElement.previousElementSibling.textContent;
+                        showNotification(`ماژول ${moduleName} ${status} شد`, 'success');
+                        updateStats();
+                    });
+                }
             });
         }
 
@@ -1093,86 +1282,13 @@
         function updateStats() {
             const activeModules = document.querySelectorAll('input[type="checkbox"]:checked').length;
             const totalMarketCap = (1.8 + Math.random() * 0.4).toFixed(1) + 'T';
-            const newsCount = Math.floor(Math.random() * 20) + 5;
-            const volumeChange = (Math.random() * 10 - 5).toFixed(1) + '%';
+            const volumeChange = (Math.random() * 10 - 2).toFixed(1) + '%';
+            const aiAccuracy = (85 + Math.random() * 10).toFixed(1) + '%';
             
             document.getElementById('activeModules').textContent = activeModules;
             document.getElementById('totalMarketCap').textContent = totalMarketCap;
-            document.getElementById('newsCount').textContent = newsCount;
             document.getElementById('volumeChange').textContent = volumeChange;
-        }
-
-        // بارگذاری اخبار
-        function loadNewsFeed() {
-            const newsFeed = document.getElementById('newsFeed');
-            const isReutersEnabled = document.getElementById('toggleReuters')?.checked ?? false;
-            const isBBCEnabled = document.getElementById('toggleBBC')?.checked ?? false;
-            const isShahrKhabarEnabled = document.getElementById('toggleShahrKhabar')?.checked ?? false;
-            
-            let newsHTML = '';
-            
-            if (isReutersEnabled) {
-                newsHTML += `
-                    <div class="news-item">
-                        <i class="fas fa-newspaper" style="color: #ff6b35;"></i>
-                        <div>
-                            <div class="news-source">رویترز - ۲ دقیقه پیش</div>
-                            <div>بیت‌کوین با رشد ۳.۲ درصدی به ۵۲,۴۵۰ دلار رسید - تحلیلگران هدف ۵۵,۰۰۰ دلار را پیش‌بینی می‌کنند</div>
-                        </div>
-                    </div>
-                    <div class="news-item">
-                        <i class="fas fa-newspaper" style="color: #ff6b35;"></i>
-                        <div>
-                            <div class="news-source">رویترز - ۱۵ دقیقه پیش</div>
-                            <div>بانک مرکزی اروپا نرخ بهره را بدون تغییر نگه داشت - تاثیر مثبت بر یورو</div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            if (isBBCEnabled) {
-                newsHTML += `
-                    <div class="news-item">
-                        <i class="fas fa-globe" style="color: #bb1919;"></i>
-                        <div>
-                            <div class="news-source">بی‌بی‌سی - ۵ دقیقه پیش</div>
-                            <div>تحلیلگران: بازار سهام آمریکا در آستانه اصلاح قیمت - نگرانی از تورم ادامه دار</div>
-                        </div>
-                    </div>
-                    <div class="news-item">
-                        <i class="fas fa-globe" style="color: #bb1919;"></i>
-                        <div>
-                            <div class="news-source">بی‌بی‌سی - ۲۵ دقیقه پیش</div>
-                            <div>تورم انگلیس به پایین‌ترین سطح در دو سال گذشته رسید - پوند تحت تاثیر قرار گرفت</div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            if (isShahrKhabarEnabled) {
-                newsHTML += `
-                    <div class="news-item">
-                        <i class="fas fa-building" style="color: #2e86ab;"></i>
-                        <div>
-                            <div class="news-source">شهر خبر - ۱۰ دقیقه پیش</div>
-                            <div>شاخص کل بورس تهران با رشد ۱۲۰۰ واحدی همراه شد - گروه فلزات اساسی پیشتاز</div>
-                        </div>
-                    </div>
-                    <div class="news-item">
-                        <i class="fas fa-building" style="color: #2e86ab;"></i>
-                        <div>
-                            <div class="news-source">شهر خبر - ۳۰ دقیقه پیش</div>
-                            <div>پیش‌بینی افزایش قیمت در گروه خودرویی - تحلیل تکنیکال مثبت</div>
-                        </div>
-                    </div>
-                `;
-            }
-            
-            if (newsHTML === '') {
-                newsHTML = '<div class="notification warning">همه منابع خبری غیرفعال هستند</div>';
-            }
-            
-            newsFeed.innerHTML = newsHTML;
+            document.getElementById('aiAccuracy').textContent = aiAccuracy;
         }
 
         // بارگذاری داده‌های بازار
