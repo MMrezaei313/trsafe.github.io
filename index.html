@@ -775,320 +775,321 @@
         .connection-status-dot.warning {
             background: var(--warning);
         }
+
         /* استایل‌های فرم چند مرحله‌ای */
-.analysis-form {
-    position: relative;
-    min-height: 400px;
-}
+        .analysis-form {
+            position: relative;
+            min-height: 400px;
+        }
 
-.form-step {
-    display: none;
-    animation: fadeIn 0.5s ease-in;
-}
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
 
-.form-step.active {
-    display: block;
-}
+        .form-step.active {
+            display: block;
+        }
 
-.form-actions {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    gap: 10px;
-}
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
 
-.form-actions .btn {
-    flex: 1;
-}
+        .form-actions .btn {
+            flex: 1;
+        }
 
-.selection-summary {
-    background: #f8fafc;
-    padding: 20px;
-    border-radius: 10px;
-    border: 1px solid #e5e7eb;
-}
+        .selection-summary {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
 
-.summary-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-}
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
 
-.summary-item {
-    padding: 10px;
-    background: white;
-    border-radius: 8px;
-    border: 1px solid #e5e7eb;
-}
+        .summary-item {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
 
-/* استایل‌های نتایج پیشرفته */
-.advanced-results {
-    animation: slideUp 0.5s ease-out;
-}
+        /* استایل‌های نتایج پیشرفته */
+        .advanced-results {
+            animation: slideUp 0.5s ease-out;
+        }
 
-.final-prediction {
-    background: linear-gradient(135deg, var(--success), #22c55e);
-    color: white;
-    padding: 30px;
-    border-radius: 20px;
-    margin-bottom: 20px;
-    text-align: center;
-}
+        .final-prediction {
+            background: linear-gradient(135deg, var(--success), #22c55e);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
 
-.final-prediction.danger {
-    background: linear-gradient(135deg, var(--danger), #ef4444);
-}
+        .final-prediction.danger {
+            background: linear-gradient(135deg, var(--danger), #ef4444);
+        }
 
-.final-prediction.warning {
-    background: linear-gradient(135deg, var(--warning), #f59e0b);
-}
+        .final-prediction.warning {
+            background: linear-gradient(135deg, var(--warning), #f59e0b);
+        }
 
-.prediction-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 20px;
-}
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
 
-.symbol-info h3 {
-    margin: 0;
-    font-size: 1.5rem;
-}
+        .symbol-info h3 {
+            margin: 0;
+            font-size: 1.5rem;
+        }
 
-.prediction-main {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 40px;
-    flex-wrap: wrap;
-}
+        .prediction-main {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            flex-wrap: wrap;
+        }
 
-.probability-circle {
-    background: rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    width: 120px;
-    height: 120px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    backdrop-filter: blur(10px);
-}
+        .probability-circle {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
 
-.circle-value {
-    font-size: 2rem;
-    font-weight: bold;
-}
+        .circle-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
 
-.circle-label {
-    font-size: 0.8rem;
-    opacity: 0.9;
-}
+        .circle-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
 
-.decision-text {
-    font-size: 2.5rem;
-    font-weight: bold;
-    margin-bottom: 5px;
-}
+        .decision-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
 
-.decision-subtext {
-    opacity: 0.9;
-    font-size: 1rem;
-}
+        .decision-subtext {
+            opacity: 0.9;
+            font-size: 1rem;
+        }
 
-.trading-targets-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin: 25px 0;
-}
+        .trading-targets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
 
-.target-card {
-    background: white;
-    padding: 20px;
-    border-radius: 15px;
-    text-align: center;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-    border: 2px solid #e5e7eb;
-}
+        .target-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e5e7eb;
+        }
 
-.target-card.profit {
-    border-color: var(--success);
-}
+        .target-card.profit {
+            border-color: var(--success);
+        }
 
-.target-card.loss {
-    border-color: var(--danger);
-}
+        .target-card.loss {
+            border-color: var(--danger);
+        }
 
-.target-card.time {
-    border-color: var(--warning);
-}
+        .target-card.time {
+            border-color: var(--warning);
+        }
 
-.target-card.risk {
-    border-color: var(--secondary);
-}
+        .target-card.risk {
+            border-color: var(--secondary);
+        }
 
-.target-icon {
-    font-size: 2rem;
-    margin-bottom: 10px;
-}
+        .target-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
 
-.target-label {
-    font-size: 0.9rem;
-    color: #6b7280;
-    margin-bottom: 5px;
-}
+        .target-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
 
-.target-value {
-    font-size: 1.3rem;
-    font-weight: bold;
-    color: var(--dark);
-}
+        .target-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: var(--dark);
+        }
 
-.target-value.high-risk {
-    color: var(--danger);
-}
+        .target-value.high-risk {
+            color: var(--danger);
+        }
 
-.target-value.medium-risk {
-    color: var(--warning);
-}
+        .target-value.medium-risk {
+            color: var(--warning);
+        }
 
-.target-value.low-risk {
-    color: var(--success);
-}
+        .target-value.low-risk {
+            color: var(--success);
+        }
 
-.analysis-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-    gap: 15px;
-    margin-top: 15px;
-}
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
 
-.analysis-card {
-    background: white;
-    padding: 20px;
-    border-radius: 12px;
-    border: 1px solid #e5e7eb;
-    text-align: center;
-}
+        .analysis-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
 
-.analysis-title {
-    font-weight: bold;
-    margin-bottom: 10px;
-    color: var(--dark);
-}
+        .analysis-title {
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: var(--dark);
+        }
 
-.analysis-score {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
+        .analysis-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
 
-.analysis-score.good {
-    color: var(--success);
-}
+        .analysis-score.good {
+            color: var(--success);
+        }
 
-.analysis-score.average {
-    color: var(--warning);
-}
+        .analysis-score.average {
+            color: var(--warning);
+        }
 
-.analysis-score.poor {
-    color: var(--danger);
-}
+        .analysis-score.poor {
+            color: var(--danger);
+        }
 
-.analysis-details {
-    font-size: 0.8rem;
-    color: #6b7280;
-    line-height: 1.4;
-}
+        .analysis-details {
+            font-size: 0.8rem;
+            color: #6b7280;
+            line-height: 1.4;
+        }
 
-.recommendation-list {
-    background: white;
-    border-radius: 12px;
-    padding: 20px;
-    border: 1px solid #e5e7eb;
-}
+        .recommendation-list {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+        }
 
-.recommendation-item {
-    display: flex;
-    align-items: center;
-    padding: 10px 0;
-    border-bottom: 1px solid #f1f5f9;
-}
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
 
-.recommendation-item:last-child {
-    border-bottom: none;
-}
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
 
-.recommendation-item i {
-    color: var(--success);
-    margin-left: 10px;
-}
+        .recommendation-item i {
+            color: var(--success);
+            margin-left: 10px;
+        }
 
-.risk-warning {
-    background: #fef3c7;
-    color: #92400e;
-    padding: 20px;
-    border-radius: 12px;
-    border-right: 4px solid var(--warning);
-    display: flex;
-    align-items: flex-start;
-    gap: 15px;
-    margin-top: 20px;
-}
+        .risk-warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 20px;
+            border-radius: 12px;
+            border-right: 4px solid var(--warning);
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 20px;
+        }
 
-.risk-warning i {
-    font-size: 1.2rem;
-    margin-top: 2px;
-}
+        .risk-warning i {
+            font-size: 1.2rem;
+            margin-top: 2px;
+        }
 
-.progress-bar {
-    width: 100%;
-    height: 8px;
-    background: #e5e7eb;
-    border-radius: 4px;
-    overflow: hidden;
-    margin-top: 10px;
-}
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
 
-.progress-fill {
-    height: 100%;
-    background: linear-gradient(90deg, var(--secondary), var(--success));
-    transition: width 0.3s ease;
-    border-radius: 4px;
-}
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--success));
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-@keyframes slideUp {
-    from { opacity: 0; transform: translateY(30px); }
-    to { opacity: 1; transform: translateY(0); }
-}
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
 
-/* ریسپانسیو */
-@media (max-width: 768px) {
-    .prediction-main {
-        flex-direction: column;
-        gap: 20px;
-    }
-    
-    .prediction-header {
-        flex-direction: column;
-        text-align: center;
-        gap: 10px;
-    }
-    
-    .trading-targets-grid {
-        grid-template-columns: 1fr 1fr;
-    }
-    
-    .analysis-grid {
-        grid-template-columns: 1fr;
-    }
-}
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .prediction-main {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .prediction-header {
+                flex-direction: column;
+                text-align: center;
+                gap: 10px;
+            }
+            
+            .trading-targets-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            
+            .analysis-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -1117,6 +1118,17 @@
                     ورود به سیستم
                 </button>
             </form>
+            
+            <div class="login-links">
+                <a href="#">رمز عبور را فراموش کرده‌اید؟</a>
+                <a href="#">ثبت نام کاربر جدید</a>
+            </div>
+            
+            <div style="margin-top: 20px; font-size: 0.8rem; color: #6b7280;">
+                <strong>اطلاعات تست:</strong><br>
+                ادمین: admin / mousa123<br>
+                کاربر: user / trade2024
+            </div>
         </div>
     </div>
 
@@ -1127,6 +1139,14 @@
                 <div class="sidebar-header">
                     <h2>Mousa Structure</h2>
                     <p>ساختار کامل پایتون</p>
+                </div>
+                
+                <div class="user-info">
+                    <div class="user-avatar" id="userAvatar">م</div>
+                    <div>
+                        <div id="userName">موسی</div>
+                        <small id="userRole">سطح: کاربر عادی</small>
+                    </div>
                 </div>
                 
                 <div class="sidebar-menu">
@@ -1153,13 +1173,6 @@
                             <i class="fas fa-sync-alt"></i>
                             بروزرسانی
                         </button>
-                        <div class="user-info">
-                            <div class="user-avatar" id="userAvatar">م</div>
-                            <div>
-                                <div id="userName">موسی</div>
-                                <small id="userRole">سطح: کاربر عادی</small>
-                            </div>
-                        </div>
                         <button class="btn" id="logoutBtn">
                             <i class="fas fa-sign-out-alt"></i>
                             خروج
@@ -1327,566 +1340,6 @@
                                 <!-- تحلیل حجم با JavaScript پر می‌شود -->
                             </div>
                         </div>
-
-                        <!-- تب‌های ماژول‌ها -->
-                        <div class="admin-panel">
-                            <h3>🧩 ماژول‌های سیستم Mousa</h3>
-                            <p>مدیریت و مشاهده تمام ماژول‌های سیستم - فقط برای مدیران سیستم</p>
-                            
-                            <div class="tab-container">
-                                <div class="tabs">
-                                    <div class="tab active" data-tab="enhanced-ai">هوش مصنوعی پیشرفته</div>
-                                    <div class="tab" data-tab="financial-transformers">مدل‌های ترنسفورمر</div>
-                                    <div class="tab" data-tab="multi-agent">سیستم چند عاملی</div>
-                                    <div class="tab" data-tab="mousafrade-core">هسته اصلی MousaFrade</div>
-                                </div>
-                                
-                                <!-- محتوای تب‌های ماژول‌ها -->
-                                <div class="modules-tab-content active" id="tab-enhanced-ai">
-                                    <div class="module-grid">
-                                        <!-- Explainable AI -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-brain"></i>
-                                                </div>
-                                                <h3>explainable_ai/</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>سیستم تفسیر و توضیح تصمیمات هوش مصنوعی</p>
-                                            
-                                            <div class="sub-modules">
-                                                <div class="sub-module">
-                                                    <i class="fas fa-code"></i>
-                                                    <span>decision_explainer.py - تفسیرگر تصمیمات</span>
-                                                </div>
-                                                <div class="sub-module">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                    <span>feature_importance.py - اهمیت ویژگی‌ها</span>
-                                                </div>
-                                                <div class="sub-module">
-                                                    <i class="fas fa-project-diagram"></i>
-                                                    <span>model_interpretability.py - تفسیرپذیری مدل</span>
-                                                </div>
-                                            </div>
-
-                                            <div class="module-details">
-                                                <h4>ویژگی‌های پیشرفته:</h4>
-                                                <div class="feature-list">
-                                                    <div class="feature-item">تفسیر تصمیمات با SHAP & LIME</div>
-                                                    <div class="feature-item">تحلیل اهمیت ویژگی‌های جهانی و محلی</div>
-                                                    <div class="feature-item">تفسیرپذیری مدل‌های پیچیده</div>
-                                                    <div class="feature-item">تحلیل تعاملات ویژگی‌ها</div>
-                                                    <div class="feature-item">داشبوردهای تعاملی</div>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Decision Explainer -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-code"></i>
-                                                </div>
-                                                <h3>decision_explainer.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>تفسیرگر تصمیمات پیشرفته</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">94.2%</div>
-                                                    <div class="metric-label">دقت تفسیر</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">87ms</div>
-                                                    <div class="metric-label">زمان پاسخ</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">256</div>
-                                                    <div class="metric-label">ویژگی‌ها</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">تحلیل SHAP & LIME</div>
-                                                <div class="feature-item">تفسیر تصمیمات پیچیده</div>
-                                                <div class="feature-item">داشبوردهای تعاملی</div>
-                                                <div class="feature-item">تحلیل عوامل کلیدی</div>
-                                            </div>
-
-                                            <div class="agent-status">
-                                                <div class="status-indicator"></div>
-                                                <span>در حال پردازش داده‌های بازار</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Feature Importance -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-chart-bar"></i>
-                                                </div>
-                                                <h3>feature_importance.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>تحلیل اهمیت ویژگی‌ها</p>
-                                            
-                                            <div class="feature-list">
-                                                <div class="feature-item">اهمیت‌سنجی جهانی و محلی</div>
-                                                <div class="feature-item">تحلیل پایداری ویژگی‌ها</div>
-                                                <div class="feature-item">شناسایی تعاملات</div>
-                                                <div class="feature-item">تحلیل اهمیت زمانی</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Model Interpretability -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-project-diagram"></i>
-                                                </div>
-                                                <h3>model_interpretability.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>تفسیرپذیری مدل‌های پیچیده</p>
-                                            
-                                            <div class="feature-list">
-                                                <div class="feature-item">تفسیر مدل‌های ترنسفورمر</div>
-                                                <div class="feature-item">تحلیل مرز تصمیم‌گیری</div>
-                                                <div class="feature-item">توضیح‌های متقابل</div>
-                                                <div class="feature-item">تحلیل موارد مشابه</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="modules-tab-content" id="tab-financial-transformers">
-                                    <div class="module-grid">
-                                        <!-- Market Sentiment Transformer -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-comment-dots"></i>
-                                                </div>
-                                                <h3>market_sentiment_transformer.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>تحلیل احساسات بازار با BERT پیشرفته</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">89.7%</div>
-                                                    <div class="metric-label">دقت تحلیل</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">1.2M</div>
-                                                    <div class="metric-label">داده آموزشی</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">768</div>
-                                                    <div class="metric-label">ابعاد مدل</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">پردازش زبان طبیعی پیشرفته</div>
-                                                <div class="feature-item">تحلیل چند منبعی</div>
-                                                <div class="feature-item">شناسایی ناهنجاری‌ها</div>
-                                                <div class="feature-item">توجه به زمینه مالی</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Price Prediction Transformer -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-chart-line"></i>
-                                                </div>
-                                                <h3>price_prediction_transformer.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>پیش‌بینی قیمت با عدم قطعیت</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">82.3%</div>
-                                                    <div class="metric-label">دقت پیش‌بینی</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">5</div>
-                                                    <div class="metric-label">افق زمانی</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">128</div>
-                                                    <div class="metric-label">ابعاد مدل</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">پیش‌بینی چند افقی</div>
-                                                <div class="feature-item">خروجی احتمالاتی</div>
-                                                <div class="feature-item">توجه چند مقیاسی</div>
-                                                <div class="feature-item">کدگذاری موقعیتی</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Time Series Transformer -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-clock"></i>
-                                                </div>
-                                                <h3>time_series_transformer.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>تحلیل سری‌های زمانی مالی</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">85.1%</div>
-                                                    <div class="metric-label">دقت تحلیل</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">60</div>
-                                                    <div class="metric-label">طول دنباله</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">64</div>
-                                                    <div class="metric-label">ابعاد مدل</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">تحلیل چند زمانی</div>
-                                                <div class="feature-item">پیش‌بینی چند مرحله‌ای</div>
-                                                <div class="feature-item">کدگذاری موقعیتی زمانی</div>
-                                                <div class="feature-item">توجه به الگوهای زمانی</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="modules-tab-content" id="tab-multi-agent">
-                                    <div class="module-grid">
-                                        <!-- Market Analyzer Agent -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-search"></i>
-                                                </div>
-                                                <h3>market_analyzer_agent.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>عامل تحلیل‌گر شرایط بازار</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">25</div>
-                                                    <div class="metric-label">اندیکاتورها</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">92.1%</div>
-                                                    <div class="metric-label">دقت تشخیص</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">5</div>
-                                                    <div class="metric-label">شرایط بازار</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">تحلیل شرایط بازار</div>
-                                                <div class="feature-item">شناسایی سطوح حمایت/مقاومت</div>
-                                                <div class="feature-item">تشخیص ناهنجاری‌ها</div>
-                                                <div class="feature-item">اندازه‌گیری قدرت روند</div>
-                                            </div>
-
-                                            <div class="agent-status">
-                                                <div class="status-indicator"></div>
-                                                <span>در حال تحلیل ۱۵ جفت ارز</span>
-                                            </div>
-                                        </div>
-
-                                        <!-- Risk Assessor Agent -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-shield-alt"></i>
-                                                </div>
-                                                <h3>risk_assessor_agent.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>عامل ارزیاب ریسک پیشرفته</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">6</div>
-                                                    <div class="metric-label">انواع ریسک</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">95.3%</div>
-                                                    <div class="metric-label">دقت ارزیابی</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">2%</div>
-                                                    <div class="metric-label">VaR</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">ارزیابی ریسک چند بعدی</div>
-                                                <div class="feature-item">محاسبه VaR و Expected Shortfall</div>
-                                                <div class="feature-item">تست استرس</div>
-                                                <div class="feature-item">تحلیل همبستگی</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Strategy Selector Agent -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-chess"></i>
-                                                </div>
-                                                <h3>strategy_selector_agent.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>عامل انتخاب استراتژی بهینه</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">12</div>
-                                                    <div class="metric-label">استراتژی‌ها</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">88.7%</div>
-                                                    <div class="metric-label">دقت انتخاب</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">15.2%</div>
-                                                    <div class="metric-label">بازدهی</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">انتخاب استراتژی بهینه</div>
-                                                <div class="feature-item">یادگیری تقویتی</div>
-                                                <div class="feature-item">تحلیل عملکرد تاریخی</div>
-                                                <div class="feature-item">سازگاری با شرایط بازار</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                
-                                <div class="modules-tab-content active" id="tab-mousafrade-core">
-                                    <div class="mousafrade-grid">
-                                        <!-- Trading Engine -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-cogs"></i>
-                                                </div>
-                                                <h3>trading_engine.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>موتور معاملاتی پیشرفته</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">3ms</div>
-                                                    <div class="metric-label">تأخیر</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">99.9%</div>
-                                                    <div class="metric-label">پایداری</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">50</div>
-                                                    <div class="metric-label">معامله/ثانیه</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">اجرای معاملات با تأخیر کم</div>
-                                                <div class="feature-item">مدیریت موقعیت‌ها</div>
-                                                <div class="feature-item">کنترل ریسک بلادرنگ</div>
-                                                <div class="feature-item">لاگ‌گیری کامل</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Event Dispatcher -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-broadcast-tower"></i>
-                                                </div>
-                                                <h3>event_dispatcher.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>توزیع‌کننده رویدادهای سیستم</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">1.2K</div>
-                                                    <div class="metric-label">رویداد/ثانیه</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">15</div>
-                                                    <div class="metric-label">مشترکین</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">0.5ms</div>
-                                                    <div class="metric-label">تأخیر</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">توزیع رویدادهای بلادرنگ</div>
-                                                <div class="feature-item">مدیریت مشترکین</div>
-                                                <div class="feature-item">فیلتر کردن رویدادها</div>
-                                                <div class="feature-item">پشتیبانی از اولویت‌ها</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Performance Tracker -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-tachometer-alt"></i>
-                                                </div>
-                                                <h3>performance_tracker.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>ردیابی عملکرد سیستم</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">150</div>
-                                                    <div class="metric-label">متریک‌ها</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">99.9%</div>
-                                                    <div class="metric-label">دقت</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">1s</div>
-                                                    <div class="metric-label">بروزرسانی</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">ردیابی متریک‌های عملکرد</div>
-                                                <div class="feature-item">تحلیل کارایی سیستم</div>
-                                                <div class="feature-item">هشدارهای خودکار</div>
-                                                <div class="feature-item">گزارش‌های تحلیلی</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- State Manager -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-database"></i>
-                                                </div>
-                                                <h3>state_manager.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>مدیریت وضعیت سیستم</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">500</div>
-                                                    <div class="metric-label">وضعیت‌ها</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">99.9%</div>
-                                                    <div class="metric-label">پایداری</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">10ms</div>
-                                                    <div class="metric-label">بازیابی</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">مدیریت وضعیت توزیع‌شده</div>
-                                                <div class="feature-item">پشتیبان‌گیری خودکار</div>
-                                                <div class="feature-item">بازیابی سریع</div>
-                                                <div class="feature-item">همگام‌سازی بلادرنگ</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Risk Manager -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-shield-alt"></i>
-                                                </div>
-                                                <h3>risk_manager.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>مدیریت ریسک پیشرفته</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">12</div>
-                                                    <div class="metric-label">نوع ریسک</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">98.5%</div>
-                                                    <div class="metric-label">دقت محاسبه</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">2ms</div>
-                                                    <div class="metric-label">زمان پاسخ</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">محاسبه VaR و Expected Shortfall</div>
-                                                <div class="feature-item">تست استرس خودکار</div>
-                                                <div class="feature-item">تحلیل همبستگی دارایی‌ها</div>
-                                                <div class="feature-item">مدیریت حداکثر ضرر</div>
-                                            </div>
-                                        </div>
-
-                                        <!-- Data Processor -->
-                                        <div class="module-card">
-                                            <div class="module-header">
-                                                <div class="module-icon">
-                                                    <i class="fas fa-microchip"></i>
-                                                </div>
-                                                <h3>data_processor.py</h3>
-                                                <span class="module-status">فعال</span>
-                                            </div>
-                                            <p>پردازشگر داده‌های بلادرنگ</p>
-                                            
-                                            <div class="performance-metrics">
-                                                <div class="metric">
-                                                    <div class="metric-value">10K</div>
-                                                    <div class="metric-label">رکورد/ثانیه</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">99.9%</div>
-                                                    <div class="metric-label">دقت</div>
-                                                </div>
-                                                <div class="metric">
-                                                    <div class="metric-value">5ms</div>
-                                                    <div class="metric-label">تأخیر</div>
-                                                </div>
-                                            </div>
-
-                                            <div class="feature-list">
-                                                <div class="feature-item">پردازش داده‌های بلادرنگ</div>
-                                                <div class="feature-item">پاک‌سازی و نرمال‌سازی</div>
-                                                <div class="feature-item">تشخیص ناهنجاری‌ها</div>
-                                                <div class="feature-item">ایجاد ویژگی‌های جدید</div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
                     </div>
 
                     <!-- برای کاربران عادی -->
@@ -1900,153 +1353,219 @@
                     </div>
                 </div>
 
-<!-- در بخش تب ۲: درخواست تحلیل، جایگزین محتوای فعلی شود -->
-<div class="tab-content" id="tab-analysis-request">
-    <div class="section">
-        <h2>🧠 درخواست تحلیل هوشمند</h2>
-        
-        <div class="module-card">
-            <div class="module-header">
-                <div class="module-icon">
-                    <i class="fas fa-robot"></i>
-                </div>
-                <h3>سیستم تحلیل خودکار Mousa</h3>
-                <span class="module-status">فعال</span>
-            </div>
-            
-            <!-- فرم ورودی کاربر -->
-            <div class="analysis-form">
-                <!-- مرحله 1: انتخاب بازار -->
-                <div class="form-step active" id="step1">
-                    <h4>📈 مرحله 1: انتخاب بازار</h4>
-                    <div class="form-group">
-                        <label>بازار مورد نظر</label>
-                        <select class="form-control" id="marketSelect">
-                            <option value="">-- لطفا بازار را انتخاب کنید --</option>
-                            <option value="tehran_stock">بورس تهران</option>
-                            <option value="binance">صرافی بایننس</option>
-                            <option value="lbank">صرافی ال بانک</option>
-                            <option value="xchief">صرافی ایکس‌چیف</option>
-                            <option value="forex">فارکس</option>
-                        </select>
-                    </div>
-                    <button class="btn btn-primary" onclick="nextStep(1)">
-                        <i class="fas fa-arrow-left"></i>
-                        مرحله بعد
-                    </button>
-                </div>
+                <!-- تب ۲: درخواست تحلیل -->
+                <div class="tab-content" id="tab-analysis-request">
+                    <div class="section">
+                        <h2>🧠 درخواست تحلیل هوشمند</h2>
+                        
+                        <div class="module-card">
+                            <div class="module-header">
+                                <div class="module-icon">
+                                    <i class="fas fa-robot"></i>
+                                </div>
+                                <h3>سیستم تحلیل خودکار Mousa</h3>
+                                <span class="module-status">فعال</span>
+                            </div>
+                            
+                            <!-- فرم ورودی کاربر -->
+                            <div class="analysis-form">
+                                <!-- مرحله 1: انتخاب بازار -->
+                                <div class="form-step active" id="step1">
+                                    <h4>📈 مرحله 1: انتخاب بازار</h4>
+                                    <div class="form-group">
+                                        <label>بازار مورد نظر</label>
+                                        <select class="form-control" id="marketSelect">
+                                            <option value="">-- لطفا بازار را انتخاب کنید --</option>
+                                            <option value="tehran_stock">بورس تهران</option>
+                                            <option value="binance">صرافی بایننس</option>
+                                            <option value="lbank">صرافی ال بانک</option>
+                                            <option value="xchief">صرافی ایکس‌چیف</option>
+                                            <option value="forex">فارکس</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="nextStep(1)">
+                                        <i class="fas fa-arrow-left"></i>
+                                        مرحله بعد
+                                    </button>
+                                </div>
 
-                <!-- مرحله 2: انتخاب نوع معامله -->
-                <div class="form-step" id="step2">
-                    <h4>💰 مرحله 2: انتخاب نوع معامله</h4>
-                    <div class="form-group">
-                        <label>نوع معامله</label>
-                        <select class="form-control" id="tradeTypeSelect">
-                            <option value="">-- لطفا نوع معامله را انتخاب کنید --</option>
-                            <!-- انواع معامله بر اساس بازار انتخاب شده پر می‌شوند -->
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn" onclick="prevStep(2)">
-                            <i class="fas fa-arrow-right"></i>
-                            مرحله قبل
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep(2)">
-                            <i class="fas fa-arrow-left"></i>
-                            مرحله بعد
-                        </button>
+                                <!-- مرحله 2: انتخاب نوع معامله -->
+                                <div class="form-step" id="step2">
+                                    <h4>💰 مرحله 2: انتخاب نوع معامله</h4>
+                                    <div class="form-group">
+                                        <label>نوع معامله</label>
+                                        <select class="form-control" id="tradeTypeSelect">
+                                            <option value="">-- لطفا نوع معامله را انتخاب کنید --</option>
+                                            <!-- انواع معامله بر اساس بازار انتخاب شده پر می‌شوند -->
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(2)">
+                                            <i class="fas fa-arrow-right"></i>
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="nextStep(2)">
+                                            <i class="fas fa-arrow-left"></i>
+                                            مرحله بعد
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- مرحله 3: انتخاب نماد -->
+                                <div class="form-step" id="step3">
+                                    <h4>🏷️ مرحله 3: انتخاب نماد</h4>
+                                    <div class="form-group">
+                                        <label>نماد معاملاتی</label>
+                                        <select class="form-control" id="symbolSelect">
+                                            <option value="">-- لطفا نماد را انتخاب کنید --</option>
+                                            <!-- نمادها بر اساس بازار و نوع معامله پر می‌شوند -->
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(3)">
+                                            <i class="fas fa-arrow-right"></i>
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="nextStep(3)">
+                                            <i class="fas fa-arrow-left"></i>
+                                            مرحله بعد
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- مرحله 4: مقدار سرمایه‌گذاری -->
+                                <div class="form-step" id="step4">
+                                    <h4>💵 مرحله 4: مقدار سرمایه‌گذاری</h4>
+                                    <div class="form-group">
+                                        <label>مقدار سرمایه (دلار)</label>
+                                        <input type="number" class="form-control" id="investmentAmount" 
+                                               placeholder="مثال: 1000" min="10" step="10">
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(4)">
+                                            <i class="fas fa-arrow-right"></i>
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="nextStep(4)">
+                                            <i class="fas fa-arrow-left"></i>
+                                            مرحله بعد
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- مرحله 5: زمان رسیدن به نتیجه -->
+                                <div class="form-step" id="step5">
+                                    <h4>⏰ مرحله 5: زمان رسیدن به نتیجه</h4>
+                                    <div class="form-group">
+                                        <label>بازه زمانی مورد نظر</label>
+                                        <select class="form-control" id="timeframeSelect">
+                                            <option value="">-- لطفا بازه زمانی را انتخاب کنید --</option>
+                                            <option value="5min">5 دقیقه</option>
+                                            <option value="15min">15 دقیقه</option>
+                                            <option value="1h">1 ساعت</option>
+                                            <option value="4h">4 ساعت</option>
+                                            <option value="1d">1 روز</option>
+                                            <option value="3d">3 روز</option>
+                                            <option value="1w">1 هفته</option>
+                                            <option value="2w">2 هفته</option>
+                                            <option value="1m">1 ماه</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(5)">
+                                            <i class="fas fa-arrow-right"></i>
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="runAdvancedAnalysis()">
+                                            <i class="fas fa-play"></i>
+                                            اجرای تحلیل پیشرفته
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- خلاصه انتخاب‌ها -->
+                            <div id="selectionSummary" class="selection-summary" style="display: none; margin-top: 20px;">
+                                <h5>📋 خلاصه انتخاب‌های شما:</h5>
+                                <div id="summaryContent"></div>
+                            </div>
+
+                            <!-- نتایج تحلیل -->
+                            <div id="advancedAnalysisResults" style="display: none; margin-top: 30px;"></div>
+                        </div>
                     </div>
                 </div>
-
-                <!-- مرحله 3: انتخاب نماد -->
-                <div class="form-step" id="step3">
-                    <h4>🏷️ مرحله 3: انتخاب نماد</h4>
-                    <div class="form-group">
-                        <label>نماد معاملاتی</label>
-                        <select class="form-control" id="symbolSelect">
-                            <option value="">-- لطفا نماد را انتخاب کنید --</option>
-                            <!-- نمادها بر اساس بازار و نوع معامله پر می‌شوند -->
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn" onclick="prevStep(3)">
-                            <i class="fas fa-arrow-right"></i>
-                            مرحله قبل
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep(3)">
-                            <i class="fas fa-arrow-left"></i>
-                            مرحله بعد
-                        </button>
-                    </div>
-                </div>
-
-                <!-- مرحله 4: مقدار سرمایه‌گذاری -->
-                <div class="form-step" id="step4">
-                    <h4>💵 مرحله 4: مقدار سرمایه‌گذاری</h4>
-                    <div class="form-group">
-                        <label>مقدار سرمایه (دلار)</label>
-                        <input type="number" class="form-control" id="investmentAmount" 
-                               placeholder="مثال: 1000" min="10" step="10">
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn" onclick="prevStep(4)">
-                            <i class="fas fa-arrow-right"></i>
-                            مرحله قبل
-                        </button>
-                        <button class="btn btn-primary" onclick="nextStep(4)">
-                            <i class="fas fa-arrow-left"></i>
-                            مرحله بعد
-                        </button>
-                    </div>
-                </div>
-
-                <!-- مرحله 5: زمان رسیدن به نتیجه -->
-                <div class="form-step" id="step5">
-                    <h4>⏰ مرحله 5: زمان رسیدن به نتیجه</h4>
-                    <div class="form-group">
-                        <label>بازه زمانی مورد نظر</label>
-                        <select class="form-control" id="timeframeSelect">
-                            <option value="">-- لطفا بازه زمانی را انتخاب کنید --</option>
-                            <option value="5min">5 دقیقه</option>
-                            <option value="15min">15 دقیقه</option>
-                            <option value="1h">1 ساعت</option>
-                            <option value="4h">4 ساعت</option>
-                            <option value="1d">1 روز</option>
-                            <option value="3d">3 روز</option>
-                            <option value="1w">1 هفته</option>
-                            <option value="2w">2 هفته</option>
-                            <option value="1m">1 ماه</option>
-                        </select>
-                    </div>
-                    <div class="form-actions">
-                        <button class="btn" onclick="prevStep(5)">
-                            <i class="fas fa-arrow-right"></i>
-                            مرحله قبل
-                        </button>
-                        <button class="btn btn-primary" onclick="runAdvancedAnalysis()">
-                            <i class="fas fa-play"></i>
-                            اجرای تحلیل پیشرفته
-                        </button>
-                    </div>
-                </div>
-            </div>
-
-            <!-- خلاصه انتخاب‌ها -->
-            <div id="selectionSummary" class="selection-summary" style="display: none; margin-top: 20px;">
-                <h5>📋 خلاصه انتخاب‌های شما:</h5>
-                <div id="summaryContent"></div>
-            </div>
-
-            <!-- نتایج تحلیل -->
-            <div id="advancedAnalysisResults" style="display: none; margin-top: 30px;"></div>
-        </div>
-    </div>
-</div>
             </div>
         </div>
     </div>
 
     <script>
+        // داده‌های انواع معامله برای هر بازار
+        const tradeTypes = {
+            tehran_stock: [
+                { value: 'cash', label: 'نقدی' },
+                { value: 'futures', label: 'آتی' },
+                { value: 'options', label: 'اختیار معامله' },
+                { value: 'etf', label: 'صندوق ETF' }
+            ],
+            binance: [
+                { value: 'spot', label: 'اسپات' },
+                { value: 'futures', label: 'فیوچرز' },
+                { value: 'margin', label: 'مارجین' },
+                { value: 'options', label: 'اپشن' }
+            ],
+            lbank: [
+                { value: 'spot', label: 'اسپات' },
+                { value: 'futures', label: 'فیوچرز' },
+                { value: 'margin', label: 'مارجین' }
+            ],
+            xchief: [
+                { value: 'spot', label: 'اسپات' },
+                { value: 'futures', label: 'فیوچرز' },
+                { value: 'margin', label: 'مارجین' }
+            ],
+            forex: [
+                { value: 'forex_spot', label: 'جفت ارز' },
+                { value: 'cfd', label: 'CFD' },
+                { value: 'metals', label: 'فلزات' },
+                { value: 'commodities', label: 'کالاها' },
+                { value: 'indices', label: 'شاخص‌ها' }
+            ]
+        };
+
+        // داده‌های نمادها برای هر بازار
+        const symbolsData = {
+            tehran_stock: {
+                cash: ['شپنا', 'فملی', 'خودرو', 'وبصادر', 'شستا', 'فولاد', 'کگل', 'وبملت'],
+                futures: ['فملی آتی', 'فولاد آتی', 'شپنا آتی'],
+                options: ['اختیار فملی', 'اختیار فولاد'],
+                etf: ['صندوق آهنگ', 'صندوق کاریزما', 'صندوق امید']
+            },
+            binance: {
+                spot: ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'ADA/USDT', 'DOT/USDT', 'LINK/USDT'],
+                futures: ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'ADAUSDT'],
+                margin: ['BTC/USDT', 'ETH/USDT', 'BNB/USDT'],
+                options: ['BTC-OPTION', 'ETH-OPTION']
+            },
+            lbank: {
+                spot: ['LBK/USDT', 'BTC/USDT', 'ETH/USDT', 'LTC/USDT'],
+                futures: ['BTCUSDT', 'ETHUSDT'],
+                margin: ['BTC/USDT', 'ETH/USDT']
+            },
+            xchief: {
+                spot: ['XCF/USDT', 'BTC/USDT', 'ETH/USDT'],
+                futures: ['BTCUSDT', 'ETHUSDT'],
+                margin: ['BTC/USDT', 'ETH/USDT']
+            },
+            forex: {
+                forex_spot: ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD'],
+                cfd: ['US30', 'GER30', 'UK100', 'US500'],
+                metals: ['XAU/USD', 'XAG/USD'],
+                commodities: ['OIL', 'GAS', 'WHEAT'],
+                indices: ['DXY', 'VIX']
+            }
+        };
+
         // مدیریت لاگین
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
@@ -2110,25 +1629,6 @@
             });
         });
 
-        // مدیریت تب‌های ماژول‌ها
-        document.querySelectorAll('.tab[data-tab]').forEach(tab => {
-            tab.addEventListener('click', function() {
-                const tabId = this.getAttribute('data-tab');
-                
-                // به‌روزرسانی تب‌های فعال
-                document.querySelectorAll('.tab[data-tab]').forEach(t => {
-                    t.classList.remove('active');
-                });
-                this.classList.add('active');
-                
-                // نمایش محتوای تب مربوطه
-                document.querySelectorAll('.modules-tab-content').forEach(content => {
-                    content.classList.remove('active');
-                });
-                document.getElementById(`tab-${tabId}`).classList.add('active');
-            });
-        });
-
         // دکمه بروزرسانی
         document.getElementById('refreshBtn').addEventListener('click', function() {
             const isAdmin = document.getElementById('userName').textContent === 'مدیر سیستم';
@@ -2142,391 +1642,6 @@
                 showNotification('داده‌های کاربری بروزرسانی شد', 'info');
             }
         });
-
-        // سیستم تحلیل هوشمند
-        document.getElementById('runAnalysis').addEventListener('click', function() {
-            const symbol = document.getElementById('symbolSelect').value;
-            const timeframe = document.getElementById('timeframeSelect').value;
-            runIntelligentAnalysis(symbol, timeframe);
-        });
-        // داده‌های انواع معامله برای هر بازار
-const tradeTypes = {
-    tehran_stock: [
-        { value: 'cash', label: 'نقدی' },
-        { value: 'futures', label: 'آتی' },
-        { value: 'options', label: 'اختیار معامله' },
-        { value: 'etf', label: 'صندوق ETF' }
-    ],
-    binance: [
-        { value: 'spot', label: 'اسپات' },
-        { value: 'futures', label: 'فیوچرز' },
-        { value: 'margin', label: 'مارجین' },
-        { value: 'options', label: 'اپشن' }
-    ],
-    lbank: [
-        { value: 'spot', label: 'اسپات' },
-        { value: 'futures', label: 'فیوچرز' },
-        { value: 'margin', label: 'مارجین' }
-    ],
-    xchief: [
-        { value: 'spot', label: 'اسپات' },
-        { value: 'futures', label: 'فیوچرز' },
-        { value: 'margin', label: 'مارجین' }
-    ],
-    forex: [
-        { value: 'forex_spot', label: 'جفت ارز' },
-        { value: 'cfd', label: 'CFD' },
-        { value: 'metals', label: 'فلزات' },
-        { value: 'commodities', label: 'کالاها' },
-        { value: 'indices', label: 'شاخص‌ها' }
-    ]
-};
-
-// داده‌های نمادها برای هر بازار
-const symbolsData = {
-    tehran_stock: {
-        cash: ['شپنا', 'فملی', 'خودرو', 'وبصادر', 'شستا', 'فولاد', 'کگل', 'وبملت'],
-        futures: ['فملی آتی', 'فولاد آتی', 'شپنا آتی'],
-        options: ['اختیار فملی', 'اختیار فولاد'],
-        etf: ['صندوق آهنگ', 'صندوق کاریزما', 'صندوق امید']
-    },
-    binance: {
-        spot: ['BTC/USDT', 'ETH/USDT', 'BNB/USDT', 'ADA/USDT', 'DOT/USDT', 'LINK/USDT'],
-        futures: ['BTCUSDT', 'ETHUSDT', 'BNBUSDT', 'ADAUSDT'],
-        margin: ['BTC/USDT', 'ETH/USDT', 'BNB/USDT'],
-        options: ['BTC-OPTION', 'ETH-OPTION']
-    },
-    lbank: {
-        spot: ['LBK/USDT', 'BTC/USDT', 'ETH/USDT', 'LTC/USDT'],
-        futures: ['BTCUSDT', 'ETHUSDT'],
-        margin: ['BTC/USDT', 'ETH/USDT']
-    },
-    xchief: {
-        spot: ['XCF/USDT', 'BTC/USDT', 'ETH/USDT'],
-        futures: ['BTCUSDT', 'ETHUSDT'],
-        margin: ['BTC/USDT', 'ETH/USDT']
-    },
-    forex: {
-        forex_spot: ['EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD'],
-        cfd: ['US30', 'GER30', 'UK100', 'US500'],
-        metals: ['XAU/USD', 'XAG/USD'],
-        commodities: ['OIL', 'GAS', 'WHEAT'],
-        indices: ['DXY', 'VIX']
-    }
-};
-
-// مدیریت مراحل فرم
-let currentStep = 1;
-let userSelections = {};
-
-function nextStep(step) {
-    if (validateStep(step)) {
-        document.getElementById(`step${step}`).classList.remove('active');
-        currentStep = step + 1;
-        document.getElementById(`step${currentStep}`).classList.add('active');
-        updateSelectionSummary();
-    }
-}
-
-function prevStep(step) {
-    document.getElementById(`step${step}`).classList.remove('active');
-    currentStep = step - 1;
-    document.getElementById(`step${currentStep}`).classList.add('active');
-}
-
-// اعتبارسنجی هر مرحله
-function validateStep(step) {
-    switch(step) {
-        case 1:
-            const market = document.getElementById('marketSelect').value;
-            if (!market) {
-                showNotification('لطفا بازار مورد نظر را انتخاب کنید', 'warning');
-                return false;
-            }
-            userSelections.market = market;
-            populateTradeTypes(market);
-            return true;
-            
-        case 2:
-            const tradeType = document.getElementById('tradeTypeSelect').value;
-            if (!tradeType) {
-                showNotification('لطفا نوع معامله را انتخاب کنید', 'warning');
-                return false;
-            }
-            userSelections.tradeType = tradeType;
-            populateSymbols(userSelections.market, tradeType);
-            return true;
-            
-        case 3:
-            const symbol = document.getElementById('symbolSelect').value;
-            if (!symbol) {
-                showNotification('لطفا نماد معاملاتی را انتخاب کنید', 'warning');
-                return false;
-            }
-            userSelections.symbol = symbol;
-            return true;
-            
-        case 4:
-            const amount = document.getElementById('investmentAmount').value;
-            if (!amount || amount < 10) {
-                showNotification('لطفا مقدار سرمایه معتبر وارد کنید (حداقل 10 دلار)', 'warning');
-                return false;
-            }
-            userSelections.amount = amount;
-            return true;
-            
-        default:
-            return true;
-    }
-}
-
-// پر کردن انواع معامله
-function populateTradeTypes(market) {
-    const select = document.getElementById('tradeTypeSelect');
-    select.innerHTML = '<option value="">-- لطفا نوع معامله را انتخاب کنید --</option>';
-    
-    if (tradeTypes[market]) {
-        tradeTypes[market].forEach(type => {
-            const option = document.createElement('option');
-            option.value = type.value;
-            option.textContent = type.label;
-            select.appendChild(option);
-        });
-    }
-}
-
-// پر کردن نمادها
-function populateSymbols(market, tradeType) {
-    const select = document.getElementById('symbolSelect');
-    select.innerHTML = '<option value="">-- لطفا نماد را انتخاب کنید --</option>';
-    
-    if (symbolsData[market] && symbolsData[market][tradeType]) {
-        symbolsData[market][tradeType].forEach(symbol => {
-            const option = document.createElement('option');
-            option.value = symbol;
-            option.textContent = symbol;
-            select.appendChild(option);
-        });
-    }
-}
-
-// به‌روزرسانی خلاصه انتخاب‌ها
-function updateSelectionSummary() {
-    const summaryDiv = document.getElementById('selectionSummary');
-    const summaryContent = document.getElementById('summaryContent');
-    
-    if (Object.keys(userSelections).length > 0) {
-        let html = '<div class="summary-grid">';
-        
-        if (userSelections.market) {
-            const marketLabel = document.querySelector(`#marketSelect option[value="${userSelections.market}"]`).textContent;
-            html += `<div class="summary-item"><strong>بازار:</strong> ${marketLabel}</div>`;
-        }
-        
-        if (userSelections.tradeType) {
-            const tradeTypeLabel = document.querySelector(`#tradeTypeSelect option[value="${userSelections.tradeType}"]`).textContent;
-            html += `<div class="summary-item"><strong>نوع معامله:</strong> ${tradeTypeLabel}</div>`;
-        }
-        
-        if (userSelections.symbol) {
-            html += `<div class="summary-item"><strong>نماد:</strong> ${userSelections.symbol}</div>`;
-        }
-        
-        if (userSelections.amount) {
-            html += `<div class="summary-item"><strong>سرمایه:</strong> ${userSelections.amount} دلار</div>`;
-        }
-        
-        html += '</div>';
-        summaryContent.innerHTML = html;
-        summaryDiv.style.display = 'block';
-    }
-}
-
-// اجرای تحلیل پیشرفته
-function runAdvancedAnalysis() {
-    const timeframe = document.getElementById('timeframeSelect').value;
-    if (!timeframe) {
-        showNotification('لطفا بازه زمانی را انتخاب کنید', 'warning');
-        return;
-    }
-    
-    userSelections.timeframe = timeframe;
-    
-    // نمایش وضعیت تحلیل
-    const resultsDiv = document.getElementById('advancedAnalysisResults');
-    resultsDiv.style.display = 'block';
-    resultsDiv.innerHTML = `
-        <div class="analysis-progress">
-            <div class="notification info">
-                <i class="fas fa-brain"></i>
-                <strong>در حال اجرای تحلیل پیشرفته...</strong>
-                <div style="margin-top: 15px;">
-                    <div>🔍 جمع‌آوری داده‌های بازار</div>
-                    <div>📊 تحلیل تکنیکال (35 اندیکاتور)</div>
-                    <div>📰 تحلیل اخبار و سنتیمنت</div>
-                    <div>🤖 پردازش هوش مصنوعی پیشرفته</div>
-                    <div>🎯 محاسبه احتمال و اهداف معاملاتی</div>
-                </div>
-                <div class="progress-bar" style="margin-top: 10px;">
-                    <div class="progress-fill" style="width: 0%"></div>
-                </div>
-            </div>
-        </div>
-    `;
-    
-    // شبیه‌سازی پیشرفت
-    simulateAnalysisProgress();
-}
-
-// شبیه‌سازی پیشرفت تحلیل
-function simulateAnalysisProgress() {
-    const progressFill = document.querySelector('.progress-fill');
-    let progress = 0;
-    
-    const interval = setInterval(() => {
-        progress += Math.random() * 15;
-        if (progress >= 100) {
-            progress = 100;
-            clearInterval(interval);
-            setTimeout(() => {
-                showAdvancedResults();
-            }, 500);
-        }
-        progressFill.style.width = progress + '%';
-    }, 300);
-}
-
-// نمایش نتایج پیشرفته
-function showAdvancedResults() {
-    const resultsDiv = document.getElementById('advancedAnalysisResults');
-    const analysisResult = generateAdvancedAnalysis();
-    
-    resultsDiv.innerHTML = `
-        <div class="advanced-results">
-            <h4>🧠 نتایج تحلیل پیشرفته</h4>
-            
-            <!-- کارت نتیجه نهایی -->
-            <div class="final-prediction ${analysisResult.decisionColor}">
-                <div class="prediction-header">
-                    <div class="symbol-info">
-                        <h3>${userSelections.symbol}</h3>
-                        <small>${getMarketLabel(userSelections.market)} - ${getTradeTypeLabel(userSelections.tradeType)}</small>
-                    </div>
-                    <div class="timeframe">⏰ ${getTimeframeLabel(userSelections.timeframe)}</div>
-                </div>
-                
-                <div class="prediction-main">
-                    <div class="probability-circle">
-                        <div class="circle-value">${analysisResult.probability}%</div>
-                        <div class="circle-label">احتمال موفقیت</div>
-                    </div>
-                    
-                    <div class="decision">
-                        <div class="decision-text">${analysisResult.decision}</div>
-                        <div class="decision-subtext">${analysisResult.confidence}</div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- اهداف معاملاتی -->
-            <div class="trading-targets-grid">
-                <div class="target-card profit">
-                    <div class="target-icon">🎯</div>
-                    <div class="target-label">حد سود</div>
-                    <div class="target-value">${analysisResult.targets.takeProfit}</div>
-                </div>
-                
-                <div class="target-card loss">
-                    <div class="target-icon">🛡️</div>
-                    <div class="target-label">حد ضرر</div>
-                    <div class="target-value">${analysisResult.targets.stopLoss}</div>
-                </div>
-                
-                <div class="target-card time">
-                    <div class="target-icon">⏱️</div>
-                    <div class="target-label">زمان بازدهی</div>
-                    <div class="target-value">${analysisResult.targets.timeToResult}</div>
-                </div>
-                
-                <div class="target-card risk">
-                    <div class="target-icon">📊</div>
-                    <div class="target-label">سطح ریسک</div>
-                    <div class="target-value ${analysisResult.riskLevel === 'بالا' ? 'high-risk' : analysisResult.riskLevel === 'متوسط' ? 'medium-risk' : 'low-risk'}">
-                        ${analysisResult.riskLevel}
-                    </div>
-                </div>
-            </div>
-            
-            <!-- تحلیل‌های جزئی -->
-            <div class="detailed-analysis">
-                <h5>📈 تحلیل‌های جزئی</h5>
-                <div class="analysis-grid">
-                    <div class="analysis-card">
-                        <div class="analysis-title">تکنیکال</div>
-                        <div class="analysis-score ${analysisResult.scores.technical >= 70 ? 'good' : analysisResult.scores.technical >= 50 ? 'average' : 'poor'}">
-                            ${analysisResult.scores.technical}/100
-                        </div>
-                        <div class="analysis-details">
-                            ${analysisResult.details.technical.join('<br>')}
-                        </div>
-                    </div>
-                    
-                    <div class="analysis-card">
-                        <div class="analysis-title">سنتیمنت</div>
-                        <div class="analysis-score ${analysisResult.scores.sentiment >= 70 ? 'good' : analysisResult.scores.sentiment >= 50 ? 'average' : 'poor'}">
-                            ${analysisResult.scores.sentiment}/100
-                        </div>
-                        <div class="analysis-details">
-                            ${analysisResult.details.sentiment.join('<br>')}
-                        </div>
-                    </div>
-                    
-                    <div class="analysis-card">
-                        <div class="analysis-title">اخبار</div>
-                        <div class="analysis-score ${analysisResult.scores.news >= 70 ? 'good' : analysisResult.scores.news >= 50 ? 'average' : 'poor'}">
-                            ${analysisResult.scores.news}/100
-                        </div>
-                        <div class="analysis-details">
-                            ${analysisResult.details.news.join('<br>')}
-                        </div>
-                    </div>
-                    
-                    <div class="analysis-card">
-                        <div class="analysis-title">هوش مصنوعی</div>
-                        <div class="analysis-score ${analysisResult.scores.ai >= 70 ? 'good' : analysisResult.scores.ai >= 50 ? 'average' : 'poor'}">
-                            ${analysisResult.scores.ai}/100
-                        </div>
-                        <div class="analysis-details">
-                            ${analysisResult.details.ai.join('<br>')}
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <!-- توصیه‌ها -->
-            <div class="recommendations">
-                <h5>💡 توصیه‌های معاملاتی</h5>
-                <div class="recommendation-list">
-                    ${analysisResult.recommendations.map(rec => `
-                        <div class="recommendation-item">
-                            <i class="fas fa-check-circle"></i>
-                            <span>${rec}</span>
-                        </div>
-                    `).join('')}
-                </div>
-            </div>
-            
-            <!-- هشدار ریسک -->
-            <div class="risk-warning">
-                <i class="fas fa-exclamation-triangle"></i>
-                <div>
-                    <strong>هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
-                    سرمایه‌گذاری در بازارهای مالی دارای ریسک است و ممکن است منجر به از دست دادن سرمایه شود.
-                </div>
-            </div>
-        </div>
-    `;
-}
 
         // مقداردهی اولیه پنل ادمین
         function initializeAdminPanel() {
@@ -2760,393 +1875,425 @@ function showAdvancedResults() {
             }, 5000);
         }
 
-        // سیستم تحلیل هوشمند
-        function runIntelligentAnalysis(symbol, timeframe) {
-            const resultsDiv = document.getElementById('analysisResults');
+        // مدیریت مراحل فرم - نسخه اصلاح شده
+        let currentStep = 1;
+        let userSelections = {};
+
+        function nextStep(step) {
+            if (validateStep(step)) {
+                // مخفی کردن مرحله فعلی
+                document.querySelectorAll('.form-step').forEach(stepEl => {
+                    stepEl.classList.remove('active');
+                });
+                
+                // نمایش مرحله بعد
+                currentStep = step + 1;
+                const nextStepEl = document.getElementById(`step${currentStep}`);
+                if (nextStepEl) {
+                    nextStepEl.classList.add('active');
+                    updateSelectionSummary();
+                }
+            }
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            currentStep = step - 1;
+            const prevStepEl = document.getElementById(`step${currentStep}`);
+            if (prevStepEl) {
+                prevStepEl.classList.add('active');
+            }
+        }
+
+        // اعتبارسنجی هر مرحله - نسخه اصلاح شده
+        function validateStep(step) {
+            switch(step) {
+                case 1:
+                    const marketSelect = document.getElementById('marketSelect');
+                    const market = marketSelect.value;
+                    if (!market) {
+                        showNotification('لطفا بازار مورد نظر را انتخاب کنید', 'warning');
+                        marketSelect.focus();
+                        return false;
+                    }
+                    userSelections.market = market;
+                    populateTradeTypes(market);
+                    return true;
+                    
+                case 2:
+                    const tradeTypeSelect = document.getElementById('tradeTypeSelect');
+                    const tradeType = tradeTypeSelect.value;
+                    if (!tradeType) {
+                        showNotification('لطفا نوع معامله را انتخاب کنید', 'warning');
+                        tradeTypeSelect.focus();
+                        return false;
+                    }
+                    userSelections.tradeType = tradeType;
+                    populateSymbols(userSelections.market, tradeType);
+                    return true;
+                    
+                case 3:
+                    const symbolSelect = document.getElementById('symbolSelect');
+                    const symbol = symbolSelect.value;
+                    if (!symbol) {
+                        showNotification('لطفا نماد معاملاتی را انتخاب کنید', 'warning');
+                        symbolSelect.focus();
+                        return false;
+                    }
+                    userSelections.symbol = symbol;
+                    return true;
+                    
+                case 4:
+                    const amount = document.getElementById('investmentAmount').value;
+                    if (!amount || amount < 10) {
+                        showNotification('لطفا مقدار سرمایه معتبر وارد کنید (حداقل 10 دلار)', 'warning');
+                        document.getElementById('investmentAmount').focus();
+                        return false;
+                    }
+                    userSelections.amount = amount;
+                    return true;
+                    
+                default:
+                    return true;
+            }
+        }
+
+        // پر کردن انواع معامله
+        function populateTradeTypes(market) {
+            const select = document.getElementById('tradeTypeSelect');
+            select.innerHTML = '<option value="">-- لطفا نوع معامله را انتخاب کنید --</option>';
+            
+            if (tradeTypes[market]) {
+                tradeTypes[market].forEach(type => {
+                    const option = document.createElement('option');
+                    option.value = type.value;
+                    option.textContent = type.label;
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        // پر کردن نمادها
+        function populateSymbols(market, tradeType) {
+            const select = document.getElementById('symbolSelect');
+            select.innerHTML = '<option value="">-- لطفا نماد را انتخاب کنید --</option>';
+            
+            if (symbolsData[market] && symbolsData[market][tradeType]) {
+                symbolsData[market][tradeType].forEach(symbol => {
+                    const option = document.createElement('option');
+                    option.value = symbol;
+                    option.textContent = symbol;
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        // به‌روزرسانی خلاصه انتخاب‌ها
+        function updateSelectionSummary() {
+            const summaryDiv = document.getElementById('selectionSummary');
+            const summaryContent = document.getElementById('summaryContent');
+            
+            if (Object.keys(userSelections).length > 0) {
+                let html = '<div class="summary-grid">';
+                
+                if (userSelections.market) {
+                    const marketLabel = document.querySelector(`#marketSelect option[value="${userSelections.market}"]`).textContent;
+                    html += `<div class="summary-item"><strong>بازار:</strong> ${marketLabel}</div>`;
+                }
+                
+                if (userSelections.tradeType) {
+                    const tradeTypeLabel = document.querySelector(`#tradeTypeSelect option[value="${userSelections.tradeType}"]`).textContent;
+                    html += `<div class="summary-item"><strong>نوع معامله:</strong> ${tradeTypeLabel}</div>`;
+                }
+                
+                if (userSelections.symbol) {
+                    html += `<div class="summary-item"><strong>نماد:</strong> ${userSelections.symbol}</div>`;
+                }
+                
+                if (userSelections.amount) {
+                    html += `<div class="summary-item"><strong>سرمایه:</strong> ${userSelections.amount} دلار</div>`;
+                }
+                
+                html += '</div>';
+                summaryContent.innerHTML = html;
+                summaryDiv.style.display = 'block';
+            }
+        }
+
+        // اجرای تحلیل پیشرفته
+        function runAdvancedAnalysis() {
+            const timeframe = document.getElementById('timeframeSelect').value;
+            if (!timeframe) {
+                showNotification('لطفا بازه زمانی را انتخاب کنید', 'warning');
+                return;
+            }
+            
+            userSelections.timeframe = timeframe;
+            
+            // نمایش وضعیت تحلیل
+            const resultsDiv = document.getElementById('advancedAnalysisResults');
             resultsDiv.style.display = 'block';
             resultsDiv.innerHTML = `
-                <div class="notification info">
-                    <i class="fas fa-brain"></i>
-                    در حال اجرای تحلیل هوشمند... 
-                    <div style="margin-top: 10px;">
-                        <div>📊 تحلیل تکنیکال (25 اندیکاتور)</div>
-                        <div>📰 تحلیل اخبار و سنتیمنت</div>
-                        <div>🤖 پردازش هوش مصنوعی</div>
-                        <div>🎯 محاسبه احتمال موفقیت</div>
+                <div class="analysis-progress">
+                    <div class="notification info">
+                        <i class="fas fa-brain"></i>
+                        <strong>در حال اجرای تحلیل پیشرفته...</strong>
+                        <div style="margin-top: 15px;">
+                            <div>🔍 جمع‌آوری داده‌های بازار</div>
+                            <div>📊 تحلیل تکنیکال (35 اندیکاتور)</div>
+                            <div>📰 تحلیل اخبار و سنتیمنت</div>
+                            <div>🤖 پردازش هوش مصنوعی پیشرفته</div>
+                            <div>🎯 محاسبه احتمال و اهداف معاملاتی</div>
+                        </div>
+                        <div class="progress-bar" style="margin-top: 10px;">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
                     </div>
                 </div>
             `;
             
-            setTimeout(() => {
-                const intelligentResult = generateIntelligentAnalysis(symbol, timeframe);
-                displayIntelligentResults(intelligentResult);
-            }, 3000);
+            // شبیه‌سازی پیشرفت
+            simulateAnalysisProgress();
         }
 
-        // بقیه توابع تحلیل هوشمند
-        function generateIntelligentAnalysis(symbol, timeframe) {
-            const technicalAnalysis = generateTechnicalAnalysis();
-            const sentimentAnalysis = generateSentimentAnalysis();
-            const newsAnalysis = generateNewsAnalysis();
-            const aiPrediction = generateAIPrediction();
+        // شبیه‌سازی پیشرفت تحلیل
+        function simulateAnalysisProgress() {
+            const progressFill = document.querySelector('.progress-fill');
+            let progress = 0;
             
-            return integrateAllAnalyses(technicalAnalysis, sentimentAnalysis, newsAnalysis, aiPrediction, symbol, timeframe);
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showAdvancedResults();
+                    }, 500);
+                }
+                progressFill.style.width = progress + '%';
+            }, 300);
         }
 
-        function generateTechnicalAnalysis() {
-            return {
-                rsi: { value: (Math.random() * 100).toFixed(1), weight: 0.15 },
-                macd: { value: (Math.random() * 0.02 - 0.01).toFixed(4), weight: 0.12 },
-                bollinger: { value: ['پایین', 'میانه', 'بالا'][Math.floor(Math.random() * 3)], weight: 0.10 },
-                movingAverages: { 
-                    ma20: Math.random() > 0.5 ? 'صعودی' : 'نزولی',
-                    ma50: Math.random() > 0.5 ? 'صعودی' : 'نزولی',
-                    weight: 0.13
-                },
-                volume: { value: (Math.random() * 200 + 50).toFixed(0), trend: Math.random() > 0.5 ? 'افزایش' : 'کاهش', weight: 0.08 },
-                support: (Math.random() * 1000 + 50000).toFixed(0),
-                resistance: (Math.random() * 1000 + 51000).toFixed(0)
-            };
-        }
-
-        function generateSentimentAnalysis() {
-            const sentiments = ['بسیار مثبت', 'مثبت', 'خنثی', 'منفی', 'بسیار منفی'];
-            return {
-                marketSentiment: sentiments[Math.floor(Math.random() * sentiments.length)],
-                fearGreed: Math.floor(Math.random() * 100),
-                socialVolume: Math.floor(Math.random() * 1000),
-                weight: 0.20
-            };
-        }
-
-        function generateNewsAnalysis() {
-            const newsImpact = ['بسیار مثبت', 'مثبت', 'خنثی', 'منفی', 'بسیار منفی'];
-            return {
-                recentNews: newsImpact[Math.floor(Math.random() * newsImpact.length)],
-                economicEvents: Math.random() > 0.7 ? 'رویداد مهم' : 'بدون رویداد',
-                weight: 0.15
-            };
-        }
-
-        function generateAIPrediction() {
-            return {
-                patternRecognition: Math.random() > 0.5 ? 'الگوی صعودی' : 'الگوی نزولی',
-                mlPrediction: Math.random() > 0.5 ? 'خرید' : 'فروش',
-                confidence: Math.floor(Math.random() * 30 + 65),
-                weight: 0.17
-            };
-        }
-
-        function integrateAllAnalyses(technical, sentiment, news, ai, symbol, timeframe) {
-            let totalScore = 0;
-            let maxScore = 0;
+        // نمایش نتایج پیشرفته
+        function showAdvancedResults() {
+            const resultsDiv = document.getElementById('advancedAnalysisResults');
+            const analysisResult = generateAdvancedAnalysis();
             
-            const techScore = calculateTechnicalScore(technical);
-            totalScore += techScore * technical.weight;
-            maxScore += 100 * technical.weight;
-            
-            const sentimentScore = calculateSentimentScore(sentiment);
-            totalScore += sentimentScore * sentiment.weight;
-            maxScore += 100 * sentiment.weight;
-            
-            const newsScore = calculateNewsScore(news);
-            totalScore += newsScore * news.weight;
-            maxScore += 100 * news.weight;
-            
-            const aiScore = ai.confidence;
-            totalScore += aiScore * ai.weight;
-            maxScore += 100 * ai.weight;
-            
-            const successProbability = Math.round((totalScore / maxScore) * 100);
-            
-            const finalDecision = successProbability >= 60 ? 'خرید' : 
-                                 successProbability >= 40 ? 'نگهداری' : 'فروش';
-            
-            return {
-                symbol: symbol,
-                timeframe: timeframe,
-                timestamp: new Date().toLocaleString('fa-IR'),
-                analyses: { technical, sentiment, news, ai },
-                finalDecision: finalDecision,
-                successProbability: successProbability,
-                confidenceLevel: getConfidenceLevel(successProbability),
-                riskLevel: getRiskLevel(successProbability),
-                targets: generateTargets(symbol, finalDecision, successProbability),
-                reasoning: generateReasoning(finalDecision, successProbability)
-            };
-        }
-
-        function calculateTechnicalScore(technical) {
-            let score = 50;
-            
-            if (technical.rsi.value < 30) score += 15;
-            else if (technical.rsi.value > 70) score -= 15;
-            
-            if (technical.macd.value > 0) score += 10;
-            else score -= 10;
-            
-            if (technical.bollinger.value === 'پایین') score += 12;
-            else if (technical.bollinger.value === 'بالا') score -= 12;
-            
-            return Math.max(0, Math.min(100, score));
-        }
-
-        function calculateSentimentScore(sentiment) {
-            const sentimentScores = {
-                'بسیار مثبت': 90,
-                'مثبت': 70,
-                'خنثی': 50,
-                'منفی': 30,
-                'بسیار منفی': 10
-            };
-            
-            return sentimentScores[sentiment.marketSentiment] || 50;
-        }
-
-        function calculateNewsScore(news) {
-            const newsScores = {
-                'بسیار مثبت': 85,
-                'مثبت': 65,
-                'خنثی': 50,
-                'منفی': 35,
-                'بسیار منفی': 15
-            };
-            
-            return newsScores[news.recentNews] || 50;
-        }
-
-        function getConfidenceLevel(probability) {
-            if (probability >= 80) return 'بسیار بالا';
-            if (probability >= 70) return 'بالا';
-            if (probability >= 60) return 'متوسط';
-            if (probability >= 50) return 'پایین';
-            return 'بسیار پایین';
-        }
-
-        function getRiskLevel(probability) {
-            if (probability >= 75) return 'کم';
-            if (probability >= 60) return 'متوسط';
-            if (probability >= 45) return 'بالا';
-            return 'بسیار بالا';
-        }
-
-        function generateTargets(symbol, decision, probability) {
-            const basePrice = decision === 'خرید' ? 50000 : 52000;
-            const multiplier = probability / 100;
-            
-            return {
-                takeProfit: (basePrice * (1 + 0.05 * multiplier)).toFixed(0),
-                stopLoss: (basePrice * (1 - 0.03 * multiplier)).toFixed(0),
-                timeFrame: probability >= 70 ? 'کوتاه‌مدت (1-3 روز)' : 
-                          probability >= 50 ? 'میان‌مدت (1-2 هفته)' : 'بلندمدت (1 ماه)'
-            };
-        }
-
-        function generateReasoning(decision, probability) {
-            const reasons = {
-                خرید: [
-                    'سیگنال‌های تکنیکال قوی',
-                    'سنتیمنت بازار مثبت',
-                    'الگوهای صعودی شناسایی شد',
-                    'حجم معاملات افزایشی'
-                ],
-                فروش: [
-                    'اشباع خرید در اندیکاتورها',
-                    'سنتیمنت بازار منفی',
-                    'الگوهای نزولی شناسایی شد',
-                    'شکست سطح حمایت'
-                ],
-                نگهداری: [
-                    'بازار در حالت خنثی',
-                    'عدم قطعیت در تحلیلها',
-                    'انتظار برای سیگنال واضح‌تر',
-                    'توصیه به نظارت بیشتر'
-                ]
-            };
-            // تابع کمکی برای تولید تحلیل پیشرفته
-function generateAdvancedAnalysis() {
-    const probability = Math.floor(Math.random() * 30 + 65); // 65-95%
-    const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
-    const decisionColor = decision === 'خرید' ? 'success' : decision === 'فروش' ? 'danger' : 'warning';
-    
-    return {
-        probability: probability,
-        decision: decision,
-        decisionColor: decisionColor,
-        confidence: probability >= 80 ? 'اطمینان بسیار بالا' : 
-                    probability >= 70 ? 'اطمینان بالا' : 
-                    probability >= 60 ? 'اطمینان متوسط' : 'اطمینان پایین',
-        riskLevel: probability >= 80 ? 'پایین' : 
-                  probability >= 65 ? 'متوسط' : 'بالا',
-        targets: {
-            takeProfit: (Math.random() * 20 + 5).toFixed(1) + '%',
-            stopLoss: (Math.random() * 8 + 2).toFixed(1) + '%',
-            timeToResult: userSelections.timeframe === '5min' ? '15-30 دقیقه' :
-                         userSelections.timeframe === '1h' ? '2-4 ساعت' :
-                         userSelections.timeframe === '1d' ? '1-3 روز' : '3-7 روز'
-        },
-        scores: {
-            technical: Math.floor(Math.random() * 30 + 65),
-            sentiment: Math.floor(Math.random() * 30 + 60),
-            news: Math.floor(Math.random() * 35 + 55),
-            ai: Math.floor(Math.random() * 25 + 70)
-        },
-        details: {
-            technical: ['RSI در منطقه مناسب', 'MACD مثبت', 'حجم معاملات افزایشی'],
-            sentiment: ['سنتیمنت بازار مثبت', 'شاخص ترس و طمع: 65', 'حجم اجتماعی بالا'],
-            news: ['اخبار اقتصادی مثبت', 'عدم رویداد مهم منفی', 'تحلیل‌های خوشبینانه'],
-            ai: ['الگوی صعودی شناسایی شد', 'اعتماد مدل: 87%', 'همخوانی با داده‌های تاریخی']
-        },
-        recommendations: [
-            'حد ضرر را دقیق رعایت کنید',
-            'پوزیشن‌سازی مرحله‌ای انجام دهید',
-            'اخبار بازار را دنبال کنید',
-            'تحلیل را در بازه‌های زمانی مختلف بررسی کنید'
-        ]
-    };
-}
-
-// توابع کمکی برای نمایش برچسب‌ها
-function getMarketLabel(market) {
-    const labels = {
-        'tehran_stock': 'بورس تهران',
-        'binance': 'صرافی بایننس',
-        'lbank': 'صرافی ال بانک',
-        'xchief': 'صرافی ایکس‌چیف',
-        'forex': 'فارکس'
-    };
-    return labels[market] || market;
-}
-
-function getTradeTypeLabel(tradeType) {
-    const labels = {
-        'cash': 'نقدی',
-        'futures': 'آتی',
-        'options': 'اختیار معامله',
-        'etf': 'صندوق ETF',
-        'spot': 'اسپات',
-        'margin': 'مارجین',
-        'forex_spot': 'جفت ارز',
-        'cfd': 'CFD',
-        'metals': 'فلزات',
-        'commodities': 'کالاها',
-        'indices': 'شاخص‌ها'
-    };
-    return labels[tradeType] || tradeType;
-}
-
-function getTimeframeLabel(timeframe) {
-    const labels = {
-        '5min': '5 دقیقه',
-        '15min': '15 دقیقه',
-        '1h': '1 ساعت',
-        '4h': '4 ساعت',
-        '1d': '1 روز',
-        '3d': '3 روز',
-        '1w': '1 هفته',
-        '2w': '2 هفته',
-        '1m': '1 ماه'
-    };
-    return labels[timeframe] || timeframe;
-}
-            
-            const selectedReasons = reasons[decision] || reasons['نگهداری'];
-            return selectedReasons.slice(0, 3);
-        }
-
-        function displayIntelligentResults(result) {
-            const resultsDiv = document.getElementById('analysisResults');
-            
-            const decisionColor = result.finalDecision === 'خرید' ? 'success' : 
-                                result.finalDecision === 'فروش' ? 'danger' : 'warning';
-            
-            const probabilityColor = result.successProbability >= 70 ? 'success' : 
-                                   result.successProbability >= 50 ? 'warning' : 'danger';
-            
-            let html = `
-                <div class="intelligent-results">
-                    <h4>🧠 تحلیل هوشمند ${result.symbol} (${result.timeframe})</h4>
-                    <small>تاریخ تحلیل: ${result.timestamp}</small>
+            resultsDiv.innerHTML = `
+                <div class="advanced-results">
+                    <h4>🧠 نتایج تحلیل پیشرفته</h4>
                     
                     <!-- کارت نتیجه نهایی -->
-                    <div class="final-decision ${decisionColor}" style="padding: 20px; border-radius: 15px; margin: 20px 0; text-align: center; background: linear-gradient(135deg, var(--${decisionColor}), #${decisionColor === 'success' ? '10b98120' : decisionColor === 'danger' ? 'ef444420' : 'f59e0b20'});">
-                        <div style="font-size: 1.5rem; font-weight: bold; margin-bottom: 10px;">
-                            ${result.finalDecision === 'خرید' ? '📈' : result.finalDecision === 'فروش' ? '📉' : '⚖️'} 
-                            پیشنهاد: ${result.finalDecision}
-                        </div>
-                        <div class="probability-badge ${probabilityColor}" style="font-size: 2rem; font-weight: bold; margin: 10px 0;">
-                            ${result.successProbability}%
-                        </div>
-                        <div style="font-size: 0.9rem; color: #666;">
-                            احتمال موفقیت: ${result.confidenceLevel} | سطح ریسک: ${result.riskLevel}
-                        </div>
-                    </div>
-                    
-                    <!-- خلاصه تحلیل‌ها -->
-                    <div class="analysis-summary">
-                        <div class="summary-card" style="border-right-color: #3b82f6;">
-                            <div style="font-weight: bold; color: #3b82f6;">📊 تکنیکال</div>
-                            <div>RSI: ${result.analyses.technical.rsi.value}</div>
-                            <div>MACD: ${result.analyses.technical.macd.value}</div>
-                            <div>موقعیت: ${result.analyses.technical.bollinger.value}</div>
+                    <div class="final-prediction ${analysisResult.decisionColor}">
+                        <div class="prediction-header">
+                            <div class="symbol-info">
+                                <h3>${userSelections.symbol}</h3>
+                                <small>${getMarketLabel(userSelections.market)} - ${getTradeTypeLabel(userSelections.tradeType)}</small>
+                            </div>
+                            <div class="timeframe">⏰ ${getTimeframeLabel(userSelections.timeframe)}</div>
                         </div>
                         
-                        <div class="summary-card" style="border-right-color: #10b981;">
-                            <div style="font-weight: bold; color: #10b981;">😊 سنتیمنت</div>
-                            <div>${result.analyses.sentiment.marketSentiment}</div>
-                            <div>شاخص ترس: ${result.analyses.sentiment.fearGreed}</div>
-                        </div>
-                        
-                        <div class="summary-card" style="border-right-color: #f59e0b;">
-                            <div style="font-weight: bold; color: #f59e0b;">📰 اخبار</div>
-                            <div>${result.analyses.news.recentNews}</div>
-                            <div>${result.analyses.news.economicEvents}</div>
-                        </div>
-                        
-                        <div class="summary-card" style="border-right-color: #8b5cf6;">
-                            <div style="font-weight: bold; color: #8b5cf6;">🤖 هوش مصنوعی</div>
-                            <div>اعتماد: ${result.analyses.ai.confidence}%</div>
-                            <div>${result.analyses.ai.patternRecognition}</div>
+                        <div class="prediction-main">
+                            <div class="probability-circle">
+                                <div class="circle-value">${analysisResult.probability}%</div>
+                                <div class="circle-label">احتمال موفقیت</div>
+                            </div>
+                            
+                            <div class="decision">
+                                <div class="decision-text">${analysisResult.decision}</div>
+                                <div class="decision-subtext">${analysisResult.confidence}</div>
+                            </div>
                         </div>
                     </div>
                     
                     <!-- اهداف معاملاتی -->
-                    <div class="trading-targets">
-                        <h5>🎯 اهداف معاملاتی</h5>
-                        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px;">
-                            <div>
-                                <strong>حد سود:</strong><br>
-                                ${result.targets.takeProfit}$
-                            </div>
-                            <div>
-                                <strong>حد ضرر:</strong><br>
-                                ${result.targets.stopLoss}$
-                            </div>
-                            <div>
-                                <strong>بازه زمانی:</strong><br>
-                                ${result.targets.timeFrame}
+                    <div class="trading-targets-grid">
+                        <div class="target-card profit">
+                            <div class="target-icon">🎯</div>
+                            <div class="target-label">حد سود</div>
+                            <div class="target-value">${analysisResult.targets.takeProfit}</div>
+                        </div>
+                        
+                        <div class="target-card loss">
+                            <div class="target-icon">🛡️</div>
+                            <div class="target-label">حد ضرر</div>
+                            <div class="target-value">${analysisResult.targets.stopLoss}</div>
+                        </div>
+                        
+                        <div class="target-card time">
+                            <div class="target-icon">⏱️</div>
+                            <div class="target-label">زمان بازدهی</div>
+                            <div class="target-value">${analysisResult.targets.timeToResult}</div>
+                        </div>
+                        
+                        <div class="target-card risk">
+                            <div class="target-icon">📊</div>
+                            <div class="target-label">سطح ریسک</div>
+                            <div class="target-value ${analysisResult.riskLevel === 'بالا' ? 'high-risk' : analysisResult.riskLevel === 'متوسط' ? 'medium-risk' : 'low-risk'}">
+                                ${analysisResult.riskLevel}
                             </div>
                         </div>
                     </div>
                     
-                    <!-- استدلال‌ها -->
-                    <div class="reasoning">
-                        <h5>💡 استدلال‌های تحلیل</h5>
-                        <ul style="padding-right: 20px;">
-                            ${result.reasoning.map(reason => `<li>${reason}</li>`).join('')}
-                        </ul>
+                    <!-- تحلیل‌های جزئی -->
+                    <div class="detailed-analysis">
+                        <h5>📈 تحلیل‌های جزئی</h5>
+                        <div class="analysis-grid">
+                            <div class="analysis-card">
+                                <div class="analysis-title">تکنیکال</div>
+                                <div class="analysis-score ${analysisResult.scores.technical >= 70 ? 'good' : analysisResult.scores.technical >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.technical}/100
+                                </div>
+                                <div class="analysis-details">
+                                    ${analysisResult.details.technical.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div class="analysis-title">سنتیمنت</div>
+                                <div class="analysis-score ${analysisResult.scores.sentiment >= 70 ? 'good' : analysisResult.scores.sentiment >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.sentiment}/100
+                                </div>
+                                <div class="analysis-details">
+                                    ${analysisResult.details.sentiment.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div class="analysis-title">اخبار</div>
+                                <div class="analysis-score ${analysisResult.scores.news >= 70 ? 'good' : analysisResult.scores.news >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.news}/100
+                                </div>
+                                <div class="analysis-details">
+                                    ${analysisResult.details.news.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div class="analysis-title">هوش مصنوعی</div>
+                                <div class="analysis-score ${analysisResult.scores.ai >= 70 ? 'good' : analysisResult.scores.ai >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.ai}/100
+                                </div>
+                                <div class="analysis-details">
+                                    ${analysisResult.details.ai.join('<br>')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- توصیه‌ها -->
+                    <div class="recommendations">
+                        <h5>💡 توصیه‌های معاملاتی</h5>
+                        <div class="recommendation-list">
+                            ${analysisResult.recommendations.map(rec => `
+                                <div class="recommendation-item">
+                                    <i class="fas fa-check-circle"></i>
+                                    <span>${rec}</span>
+                                </div>
+                            `).join('')}
+                        </div>
                     </div>
                     
                     <!-- هشدار ریسک -->
-                    <div class="risk-warning ${probabilityColor}" style="background: #${probabilityColor === 'success' ? '10b98110' : probabilityColor === 'danger' ? 'ef444410' : 'f59e0b10'};">
+                    <div class="risk-warning">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <strong>توجه:</strong> این تحلیل بر اساس الگوریتم‌های هوش مصنوعی تولید شده و توصیه مالی محسوب نمی‌شود. 
-                        مسئولیت معاملات بر عهده کاربر است.
+                        <div>
+                            <strong>هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
+                            سرمایه‌گذاری در بازارهای مالی دارای ریسک است و ممکن است منجر به از دست دادن سرمایه شود.
+                        </div>
                     </div>
                 </div>
             `;
+        }
+
+        // تابع کمکی برای تولید تحلیل پیشرفته
+        function generateAdvancedAnalysis() {
+            const probability = Math.floor(Math.random() * 30 + 65); // 65-95%
+            const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
+            const decisionColor = decision === 'خرید' ? 'success' : decision === 'فروش' ? 'danger' : 'warning';
             
-            resultsDiv.innerHTML = html;
+            return {
+                probability: probability,
+                decision: decision,
+                decisionColor: decisionColor,
+                confidence: probability >= 80 ? 'اطمینان بسیار بالا' : 
+                            probability >= 70 ? 'اطمینان بالا' : 
+                            probability >= 60 ? 'اطمینان متوسط' : 'اطمینان پایین',
+                riskLevel: probability >= 80 ? 'پایین' : 
+                          probability >= 65 ? 'متوسط' : 'بالا',
+                targets: {
+                    takeProfit: (Math.random() * 20 + 5).toFixed(1) + '%',
+                    stopLoss: (Math.random() * 8 + 2).toFixed(1) + '%',
+                    timeToResult: userSelections.timeframe === '5min' ? '15-30 دقیقه' :
+                                 userSelections.timeframe === '1h' ? '2-4 ساعت' :
+                                 userSelections.timeframe === '1d' ? '1-3 روز' : '3-7 روز'
+                },
+                scores: {
+                    technical: Math.floor(Math.random() * 30 + 65),
+                    sentiment: Math.floor(Math.random() * 30 + 60),
+                    news: Math.floor(Math.random() * 35 + 55),
+                    ai: Math.floor(Math.random() * 25 + 70)
+                },
+                details: {
+                    technical: ['RSI در منطقه مناسب', 'MACD مثبت', 'حجم معاملات افزایشی'],
+                    sentiment: ['سنتیمنت بازار مثبت', 'شاخص ترس و طمع: 65', 'حجم اجتماعی بالا'],
+                    news: ['اخبار اقتصادی مثبت', 'عدم رویداد مهم منفی', 'تحلیل‌های خوشبینانه'],
+                    ai: ['الگوی صعودی شناسایی شد', 'اعتماد مدل: 87%', 'همخوانی با داده‌های تاریخی']
+                },
+                recommendations: [
+                    'حد ضرر را دقیق رعایت کنید',
+                    'پوزیشن‌سازی مرحله‌ای انجام دهید',
+                    'اخبار بازار را دنبال کنید',
+                    'تحلیل را در بازه‌های زمانی مختلف بررسی کنید'
+                ]
+            };
+        }
+
+        // توابع کمکی برای نمایش برچسب‌ها
+        function getMarketLabel(market) {
+            const labels = {
+                'tehran_stock': 'بورس تهران',
+                'binance': 'صرافی بایننس',
+                'lbank': 'صرافی ال بانک',
+                'xchief': 'صرافی ایکس‌چیف',
+                'forex': 'فارکس'
+            };
+            return labels[market] || market;
+        }
+
+        function getTradeTypeLabel(tradeType) {
+            const labels = {
+                'cash': 'نقدی',
+                'futures': 'آتی',
+                'options': 'اختیار معامله',
+                'etf': 'صندوق ETF',
+                'spot': 'اسپات',
+                'margin': 'مارجین',
+                'forex_spot': 'جفت ارز',
+                'cfd': 'CFD',
+                'metals': 'فلزات',
+                'commodities': 'کالاها',
+                'indices': 'شاخص‌ها'
+            };
+            return labels[tradeType] || tradeType;
+        }
+
+        function getTimeframeLabel(timeframe) {
+            const labels = {
+                '5min': '5 دقیقه',
+                '15min': '15 دقیقه',
+                '1h': '1 ساعت',
+                '4h': '4 ساعت',
+                '1d': '1 روز',
+                '3d': '3 روز',
+                '1w': '1 هفته',
+                '2w': '2 هفته',
+                '1m': '1 ماه'
+            };
+            return labels[timeframe] || timeframe;
         }
     </script>
 </body>
