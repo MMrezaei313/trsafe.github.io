@@ -1059,122 +1059,6 @@
             border-radius: 4px;
         }
 
-        /* استایل‌های جدید برای نمایش قیمت‌های واقعی */
-        .live-price {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--success);
-            margin: 10px 0;
-            padding: 10px;
-            background: #f0f9ff;
-            border-radius: 8px;
-            text-align: center;
-        }
-
-        .price-change {
-            font-size: 0.9rem;
-            margin-left: 10px;
-        }
-
-        .price-change.positive {
-            color: var(--success);
-        }
-
-        .price-change.negative {
-            color: var(--danger);
-        }
-
-        .profit-loss-calculator {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 12px;
-            margin: 20px 0;
-            border: 1px solid #e5e7eb;
-        }
-
-        .calculator-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .calculator-item {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            text-align: center;
-            border: 1px solid #e5e7eb;
-        }
-
-        .calculator-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-
-        .calculator-value.profit {
-            color: var(--success);
-        }
-
-        .calculator-value.loss {
-            color: var(--danger);
-        }
-
-        .calculator-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-        }
-
-        .leverage-control {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .leverage-slider {
-            flex: 1;
-        }
-
-        .leverage-value {
-            font-weight: bold;
-            color: var(--secondary);
-            min-width: 40px;
-        }
-
-        .position-type {
-            display: flex;
-            gap: 10px;
-            margin: 15px 0;
-        }
-
-        .position-btn {
-            flex: 1;
-            padding: 10px;
-            border: 2px solid #e5e7eb;
-            border-radius: 8px;
-            background: white;
-            cursor: pointer;
-            text-align: center;
-            transition: all 0.3s;
-        }
-
-        .position-btn.active {
-            border-color: var(--secondary);
-            background: #f0f9ff;
-        }
-
-        .position-btn.long.active {
-            border-color: var(--success);
-            background: #f0fdf4;
-        }
-
-        .position-btn.short.active {
-            border-color: var(--danger);
-            background: #fef2f2;
-        }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
@@ -1203,10 +1087,6 @@
             }
             
             .analysis-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .calculator-grid {
                 grid-template-columns: 1fr;
             }
         }
@@ -1541,15 +1421,6 @@
                                             <!-- نمادها بر اساس بازار و نوع معامله پر می‌شوند -->
                                         </select>
                                     </div>
-                                    
-                                    <!-- نمایش قیمت زنده نماد انتخاب شده -->
-                                    <div id="livePriceContainer" style="display: none;">
-                                        <div class="live-price">
-                                            قیمت زنده: <span id="livePriceValue">-</span>
-                                            <span id="priceChange" class="price-change"></span>
-                                        </div>
-                                    </div>
-                                    
                                     <div class="form-actions">
                                         <button class="btn" onclick="prevStep(3)">
                                             <i class="fas fa-arrow-right"></i>
@@ -1570,27 +1441,6 @@
                                         <input type="number" class="form-control" id="investmentAmount" 
                                                placeholder="مثال: 1000" min="10" step="10">
                                     </div>
-                                    
-                                    <!-- انتخاب نوع پوزیشن (لانگ/شورت) -->
-                                    <div class="position-type">
-                                        <div class="position-btn long" onclick="selectPosition('long')">
-                                            <i class="fas fa-arrow-up"></i>
-                                            <div>لانگ (خرید)</div>
-                                        </div>
-                                        <div class="position-btn short" onclick="selectPosition('short')">
-                                            <i class="fas fa-arrow-down"></i>
-                                            <div>شورت (فروش)</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <!-- انتخاب اهرم -->
-                                    <div class="leverage-control">
-                                        <label>اهرم:</label>
-                                        <input type="range" class="leverage-slider" id="leverageSlider" 
-                                               min="1" max="100" value="1" step="1">
-                                        <span class="leverage-value" id="leverageValue">1x</span>
-                                    </div>
-                                    
                                     <div class="form-actions">
                                         <button class="btn" onclick="prevStep(4)">
                                             <i class="fas fa-arrow-right"></i>
@@ -1714,31 +1564,6 @@
                 commodities: ['OIL', 'GAS', 'WHEAT'],
                 indices: ['DXY', 'VIX']
             }
-        };
-
-        // داده‌های قیمت‌های واقعی (شبیه‌سازی شده)
-        const realPrices = {
-            'شپنا': { price: 2850, change: 1.2 },
-            'فملی': { price: 32000, change: -0.5 },
-            'خودرو': { price: 18500, change: 2.1 },
-            'وبصادر': { price: 42000, change: 0.8 },
-            'شستا': { price: 9800, change: -1.5 },
-            'فولاد': { price: 15600, change: 0.3 },
-            'کگل': { price: 12400, change: 1.7 },
-            'وبملت': { price: 3200, change: -0.9 },
-            'BTC/USDT': { price: 52000, change: 2.3 },
-            'ETH/USDT': { price: 2800, change: 1.8 },
-            'BNB/USDT': { price: 350, change: 0.5 },
-            'ADA/USDT': { price: 0.45, change: -0.2 },
-            'DOT/USDT': { price: 6.8, change: 1.1 },
-            'LINK/USDT': { price: 14.2, change: 0.7 },
-            'EUR/USD': { price: 1.085, change: 0.1 },
-            'GBP/USD': { price: 1.265, change: -0.2 },
-            'USD/JPY': { price: 151.2, change: 0.3 },
-            'AUD/USD': { price: 0.655, change: -0.1 },
-            'USD/CAD': { price: 1.354, change: 0.2 },
-            'XAU/USD': { price: 2180, change: 0.5 },
-            'XAG/USD': { price: 24.5, change: 0.8 }
         };
 
         // مدیریت لاگین
@@ -1914,16 +1739,16 @@
                 marketHTML += `
                     <div class="data-card">
                         <div style="font-weight: bold;">بیت‌کوین</div>
-                        <div class="data-value">${realPrices['BTC/USDT'].price.toLocaleString()}$</div>
-                        <div style="color: ${realPrices['BTC/USDT'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['BTC/USDT'].change >= 0 ? '+' : ''}${realPrices['BTC/USDT'].change}%</div>
+                        <div class="data-value">${(52000 + Math.random() * 2000).toFixed(0)}$</div>
+                        <div style="color: var(--success);">+${(Math.random() * 5).toFixed(1)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
                             حجم: ${(25 + Math.random() * 10).toFixed(1)}B
                         </div>
                     </div>
                     <div class="data-card">
                         <div style="font-weight: bold;">اتریوم</div>
-                        <div class="data-value">${realPrices['ETH/USDT'].price.toLocaleString()}$</div>
-                        <div style="color: ${realPrices['ETH/USDT'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['ETH/USDT'].change >= 0 ? '+' : ''}${realPrices['ETH/USDT'].change}%</div>
+                        <div class="data-value">${(2800 + Math.random() * 200).toFixed(0)}$</div>
+                        <div style="color: var(--success);">+${(Math.random() * 3).toFixed(1)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
                             حجم: ${(12 + Math.random() * 8).toFixed(1)}B
                         </div>
@@ -1935,16 +1760,16 @@
                 marketHTML += `
                     <div class="data-card">
                         <div style="font-weight: bold;">EUR/USD</div>
-                        <div class="data-value">${realPrices['EUR/USD'].price.toFixed(4)}</div>
-                        <div style="color: ${realPrices['EUR/USD'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['EUR/USD'].change >= 0 ? '+' : ''}${realPrices['EUR/USD'].change}%</div>
+                        <div class="data-value">${(1.08 + Math.random() * 0.01).toFixed(4)}</div>
+                        <div style="color: ${Math.random() > 0.5 ? 'var(--success)' : 'var(--danger)'};">${(Math.random() > 0.5 ? '+' : '-')}${(Math.random() * 0.5).toFixed(2)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
                             نوسان: ${(Math.random() * 0.5).toFixed(2)}٪
                         </div>
                     </div>
                     <div class="data-card">
                         <div style="font-weight: bold;">GBP/USD</div>
-                        <div class="data-value">${realPrices['GBP/USD'].price.toFixed(4)}</div>
-                        <div style="color: ${realPrices['GBP/USD'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['GBP/USD'].change >= 0 ? '+' : ''}${realPrices['GBP/USD'].change}%</div>
+                        <div class="data-value">${(1.27 + Math.random() * 0.01).toFixed(4)}</div>
+                        <div style="color: ${Math.random() > 0.5 ? 'var(--success)' : 'var(--danger)'};">${(Math.random() > 0.5 ? '+' : '-')}${(Math.random() * 0.5).toFixed(2)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
                             نوسان: ${(Math.random() * 0.5).toFixed(2)}٪
                         </div>
@@ -1955,19 +1780,19 @@
             if (isTehranStockEnabled) {
                 marketHTML += `
                     <div class="data-card">
-                        <div style="font-weight: bold;">شپنا</div>
-                        <div class="data-value">${realPrices['شپنا'].price.toLocaleString()} تومان</div>
-                        <div style="color: ${realPrices['شپنا'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['شپنا'].change >= 0 ? '+' : ''}${realPrices['شپنا'].change}%</div>
+                        <div style="font-weight: bold;">شاخص کل</div>
+                        <div class="data-value">${(2100000 + Math.random() * 100000).toFixed(0)}</div>
+                        <div style="color: var(--success);">+${(Math.random() * 1.5).toFixed(1)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(3.5 + Math.random() * 2).toFixed(1)}M
+                            حجم: ${(3.5 + Math.random() * 2).toFixed(1)}T
                         </div>
                     </div>
                     <div class="data-card">
-                        <div style="font-weight: bold;">فملی</div>
-                        <div class="data-value">${realPrices['فملی'].price.toLocaleString()} تومان</div>
-                        <div style="color: ${realPrices['فملی'].change >= 0 ? 'var(--success)' : 'var(--danger)'};">${realPrices['فملی'].change >= 0 ? '+' : ''}${realPrices['فملی'].change}%</div>
+                        <div style="font-weight: bold;">شاخص هم وزن</div>
+                        <div class="data-value">${(480000 + Math.random() * 20000).toFixed(0)}</div>
+                        <div style="color: var(--success);">+${(Math.random() * 2).toFixed(1)}%</div>
                         <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(1.5 + Math.random() * 1.5).toFixed(1)}M
+                            حجم: ${(1.5 + Math.random() * 1.5).toFixed(1)}T
                         </div>
                     </div>
                 `;
@@ -1990,9 +1815,9 @@
             const volumeData = [
                 { symbol: 'BTC/USDT', current: 85, average: 65, trend: 'افزایشی', signal: 'قوی' },
                 { symbol: 'ETH/USDT', current: 72, average: 68, trend: 'کاهشی', signal: 'ضعیف' },
-                { symbol: 'شپنا', current: 45, average: 52, trend: 'کاهشی', signal: 'منفی' },
+                { symbol: 'AAPL', current: 45, average: 52, trend: 'کاهشی', signal: 'منفی' },
                 { symbol: 'EUR/USD', current: 88, average: 75, trend: 'افزایشی', signal: 'قوی' },
-                { symbol: 'فملی', current: 92, average: 78, trend: 'افزایشی', signal: 'بسیار قوی' }
+                { symbol: 'شاخص کل', current: 92, average: 78, trend: 'افزایشی', signal: 'بسیار قوی' }
             ];
             
             let volumeHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">';
@@ -2052,10 +1877,7 @@
 
         // مدیریت مراحل فرم - نسخه اصلاح شده
         let currentStep = 1;
-        let userSelections = {
-            position: 'long', // پیش‌فرض لانگ
-            leverage: 1
-        };
+        let userSelections = {};
 
         function nextStep(step) {
             if (validateStep(step)) {
@@ -2122,7 +1944,6 @@
                         return false;
                     }
                     userSelections.symbol = symbol;
-                    showLivePrice(symbol);
                     return true;
                     
                 case 4:
@@ -2133,11 +1954,6 @@
                         return false;
                     }
                     userSelections.amount = amount;
-                    
-                    // تنظیم اهرم
-                    const leverageSlider = document.getElementById('leverageSlider');
-                    userSelections.leverage = parseInt(leverageSlider.value);
-                    
                     return true;
                     
                 default:
@@ -2175,43 +1991,6 @@
             }
         }
 
-        // نمایش قیمت زنده نماد انتخاب شده
-        function showLivePrice(symbol) {
-            const container = document.getElementById('livePriceContainer');
-            const priceValue = document.getElementById('livePriceValue');
-            const priceChange = document.getElementById('priceChange');
-            
-            if (realPrices[symbol]) {
-                const priceData = realPrices[symbol];
-                priceValue.textContent = priceData.price.toLocaleString() + (symbol.includes('/USD') ? '$' : ' تومان');
-                priceChange.textContent = (priceData.change >= 0 ? '+' : '') + priceData.change + '%';
-                priceChange.className = 'price-change ' + (priceData.change >= 0 ? 'positive' : 'negative');
-                container.style.display = 'block';
-            } else {
-                container.style.display = 'none';
-            }
-        }
-
-        // انتخاب نوع پوزیشن (لانگ/شورت)
-        function selectPosition(position) {
-            userSelections.position = position;
-            
-            // به‌روزرسانی ظاهر دکمه‌ها
-            document.querySelectorAll('.position-btn').forEach(btn => {
-                btn.classList.remove('active');
-            });
-            
-            const selectedBtn = document.querySelector(`.position-btn.${position}`);
-            selectedBtn.classList.add('active');
-        }
-
-        // تنظیم اهرم
-        document.getElementById('leverageSlider').addEventListener('input', function() {
-            const leverageValue = document.getElementById('leverageValue');
-            leverageValue.textContent = this.value + 'x';
-            userSelections.leverage = parseInt(this.value);
-        });
-
         // به‌روزرسانی خلاصه انتخاب‌ها
         function updateSelectionSummary() {
             const summaryDiv = document.getElementById('selectionSummary');
@@ -2236,15 +2015,6 @@
                 
                 if (userSelections.amount) {
                     html += `<div class="summary-item"><strong>سرمایه:</strong> ${userSelections.amount} دلار</div>`;
-                }
-                
-                if (userSelections.position) {
-                    const positionLabel = userSelections.position === 'long' ? 'لانگ (خرید)' : 'شورت (فروش)';
-                    html += `<div class="summary-item"><strong>نوع پوزیشن:</strong> ${positionLabel}</div>`;
-                }
-                
-                if (userSelections.leverage) {
-                    html += `<div class="summary-item"><strong>اهرم:</strong> ${userSelections.leverage}x</div>`;
                 }
                 
                 html += '</div>';
@@ -2335,37 +2105,6 @@
                             <div class="decision">
                                 <div class="decision-text">${analysisResult.decision}</div>
                                 <div class="decision-subtext">${analysisResult.confidence}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- محاسبه سود و ضرر -->
-                    <div class="profit-loss-calculator">
-                        <h5>💰 محاسبه سود و ضرر احتمالی</h5>
-                        <div class="calculator-grid">
-                            <div class="calculator-item">
-                                <div class="calculator-label">سرمایه اولیه</div>
-                                <div class="calculator-value">${userSelections.amount} دلار</div>
-                            </div>
-                            <div class="calculator-item">
-                                <div class="calculator-label">اهرم</div>
-                                <div class="calculator-value">${userSelections.leverage}x</div>
-                            </div>
-                            <div class="calculator-item">
-                                <div class="calculator-label">سرمایه با اهرم</div>
-                                <div class="calculator-value">${(userSelections.amount * userSelections.leverage).toLocaleString()} دلار</div>
-                            </div>
-                            <div class="calculator-item">
-                                <div class="calculator-label">سود احتمالی</div>
-                                <div class="calculator-value profit">${analysisResult.profitLoss.potentialProfit.toLocaleString()} دلار</div>
-                            </div>
-                            <div class="calculator-item">
-                                <div class="calculator-label">ضرر احتمالی</div>
-                                <div class="calculator-value loss">${analysisResult.profitLoss.potentialLoss.toLocaleString()} دلار</div>
-                            </div>
-                            <div class="calculator-item">
-                                <div class="calculator-label">نسبت سود به ضرر</div>
-                                <div class="calculator-value">${analysisResult.profitLoss.riskRewardRatio}</div>
                             </div>
                         </div>
                     </div>
@@ -2464,7 +2203,6 @@
                         <div>
                             <strong>هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
                             سرمایه‌گذاری در بازارهای مالی دارای ریسک است و ممکن است منجر به از دست دادن سرمایه شود.
-                            استفاده از اهرم ریسک معاملات را به شدت افزایش می‌دهد.
                         </div>
                     </div>
                 </div>
@@ -2476,16 +2214,6 @@
             const probability = Math.floor(Math.random() * 30 + 65); // 65-95%
             const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
             const decisionColor = decision === 'خرید' ? 'success' : decision === 'فروش' ? 'danger' : 'warning';
-            
-            // محاسبه سود و ضرر احتمالی
-            const investment = parseFloat(userSelections.amount);
-            const leverage = userSelections.leverage;
-            const leveragedInvestment = investment * leverage;
-            
-            // سود و ضرر بر اساس احتمال و اهرم
-            const potentialProfit = Math.round(leveragedInvestment * (probability / 100) * 0.1);
-            const potentialLoss = Math.round(leveragedInvestment * ((100 - probability) / 100) * 0.05);
-            const riskRewardRatio = (potentialProfit / potentialLoss).toFixed(2) + ':1';
             
             return {
                 probability: probability,
@@ -2502,11 +2230,6 @@
                     timeToResult: userSelections.timeframe === '5min' ? '15-30 دقیقه' :
                                  userSelections.timeframe === '1h' ? '2-4 ساعت' :
                                  userSelections.timeframe === '1d' ? '1-3 روز' : '3-7 روز'
-                },
-                profitLoss: {
-                    potentialProfit: potentialProfit,
-                    potentialLoss: potentialLoss,
-                    riskRewardRatio: riskRewardRatio
                 },
                 scores: {
                     technical: Math.floor(Math.random() * 30 + 65),
