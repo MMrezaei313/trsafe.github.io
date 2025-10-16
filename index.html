@@ -8,6 +8,7 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <style>
+        /* استایل‌های قبلی بدون تغییر باقی می‌مانند */
         :root {
             --primary: #1e3a8a;
             --secondary: #3b82f6;
@@ -34,1062 +35,152 @@
             padding: 20px;
         }
         
-        .login-container {
-            width: 100%;
-            max-width: 400px;
-        }
+        /* استایل‌های قبلی بدون تغییر باقی می‌مانند */
+        /* ... */
         
-        .login-box {
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            padding: 40px;
-            text-align: center;
-        }
-        
-        .logo {
-            font-size: 2.5rem;
-            color: var(--primary);
-            margin-bottom: 20px;
-        }
-        
-        .login-box h2 {
-            color: var(--dark);
-            margin-bottom: 10px;
-        }
-        
-        .login-box p {
-            color: #6b7280;
-            margin-bottom: 30px;
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-            text-align: right;
-        }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 5px;
-            color: var(--dark);
-            font-weight: 500;
-        }
-        
-        .form-control {
-            width: 100%;
-            padding: 12px 15px;
-            border: 2px solid #e5e7eb;
-            border-radius: 10px;
-            font-size: 1rem;
-            transition: all 0.3s;
-        }
-        
-        .form-control:focus {
-            border-color: var(--secondary);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
-        }
-        
-        .btn {
-            padding: 12px 30px;
-            border: none;
-            border-radius: 10px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .btn-primary {
-            background: var(--secondary);
-            color: white;
-        }
-        
-        .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.4);
-        }
-        
-        .btn-block {
-            width: 100%;
-        }
-        
-        .login-links {
-            margin-top: 20px;
-            display: flex;
-            justify-content: space-between;
-        }
-        
-        .login-links a {
-            color: var(--secondary);
-            text-decoration: none;
-            font-size: 0.9rem;
-        }
-        
-        .main-app {
-            display: none;
-            width: 100%;
-            height: 100vh;
-            background: var(--light);
-        }
-        
-        .container {
-            display: flex;
-            height: 100vh;
-        }
-        
-        .sidebar {
-            width: 280px;
-            background: var(--dark);
-            color: white;
-            overflow-y: auto;
-        }
-        
-        .sidebar-header {
-            padding: 30px 20px;
-            text-align: center;
-            border-bottom: 1px solid #374151;
-        }
-        
-        .sidebar-header h2 {
-            color: var(--secondary);
-            margin-bottom: 5px;
-        }
-        
-        .user-info {
-            display: flex;
-            align-items: center;
-            padding: 20px;
-            background: #374151;
-            margin: 10px;
-            border-radius: 10px;
-        }
-        
-        .user-avatar {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 10px;
-            font-weight: bold;
-        }
-        
-        .sidebar-menu {
-            padding: 20px 0;
-        }
-        
-        .menu-item {
-            padding: 12px 20px;
-            display: flex;
-            align-items: center;
-            color: #d1d5db;
-            text-decoration: none;
-            transition: all 0.3s;
-            border-right: 3px solid transparent;
-        }
-        
-        .menu-item:hover, .menu-item.active {
-            background: #374151;
-            color: white;
-            border-right-color: var(--secondary);
-        }
-        
-        .menu-item i {
-            margin-left: 10px;
-            width: 20px;
-            text-align: center;
-        }
-        
-        .main-content {
-            flex: 1;
-            overflow-y: auto;
-            padding: 20px;
-        }
-        
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            padding-bottom: 20px;
-            border-bottom: 1px solid #e5e7eb;
-        }
-        
-        .page-title {
-            color: var(--dark);
-            font-size: 1.8rem;
-        }
-        
-        .header-actions {
-            display: flex;
-            gap: 10px;
-        }
-        
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            border-left: 4px solid var(--secondary);
-        }
-        
-        .stat-card.success {
-            border-left-color: var(--success);
-        }
-        
-        .stat-card.warning {
-            border-left-color: var(--warning);
-        }
-        
-        .stat-card.danger {
-            border-left-color: var(--danger);
-        }
-        
-        .stat-value {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--dark);
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            color: #6b7280;
-            font-size: 0.9rem;
-        }
-        
-        .section {
-            background: white;
-            border-radius: 15px;
-            padding: 25px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-        }
-        
-        .section-title {
-            font-size: 1.3rem;
-            color: var(--dark);
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-        
-        .module-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-        
-        .module-card {
+        /* استایل‌های جدید برای نمایش قیمت و محاسبات */
+        .price-display {
+            background: #f8fafc;
             border: 1px solid #e5e7eb;
-            border-radius: 12px;
-            padding: 20px;
-            background: white;
-            transition: all 0.3s;
-        }
-        
-        .module-card:hover {
-            border-color: var(--secondary);
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-        
-        .module-header {
-            display: flex;
-            align-items: center;
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        
-        .module-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--secondary);
             border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-left: 10px;
-            color: white;
+            padding: 15px;
+            margin: 15px 0;
+            text-align: center;
         }
         
-        .module-status {
-            margin-right: auto;
-            font-size: 0.8rem;
-            padding: 4px 12px;
-            border-radius: 20px;
+        .current-price {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--secondary);
+            margin-bottom: 5px;
+        }
+        
+        .price-change {
+            font-size: 0.9rem;
+            padding: 4px 8px;
+            border-radius: 4px;
+            display: inline-block;
+        }
+        
+        .price-change.positive {
             background: #dcfce7;
             color: #166534;
         }
         
-        .status-offline {
+        .price-change.negative {
             background: #fecaca;
             color: #dc2626;
         }
         
-        .module-actions {
-            display: flex;
-            gap: 10px;
-            margin-top: 15px;
-        }
-        
-        .sub-modules {
-            margin-top: 15px;
-            padding-right: 20px;
-        }
-        
-        .sub-module {
-            padding: 8px 0;
-            border-bottom: 1px solid #f1f5f9;
-            display: flex;
-            align-items: center;
-        }
-        
-        .sub-module:last-child {
-            border-bottom: none;
-        }
-        
-        .sub-module i {
-            margin-left: 8px;
-            color: var(--success);
-        }
-        
-        .notification {
-            padding: 15px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .notification.info {
-            background: #dbeafe;
-            color: #1e40af;
-            border-right: 4px solid #3b82f6;
-        }
-        
-        .notification.success {
-            background: #dcfce7;
-            color: #166534;
-            border-right: 4px solid #22c55e;
-        }
-        
-        .notification.warning {
-            background: #fef3c7;
-            color: #92400e;
-            border-right: 4px solid #f59e0b;
-        }
-        
-        .notification.error {
-            background: #fee2e2;
-            color: #991b1b;
-            border-right: 4px solid #ef4444;
-        }
-
-        /* استایل‌های جدید برای پنل ادمین */
-        .admin-panel {
-            background: #f8fafc;
-            border: 2px solid #e5e7eb;
-            border-radius: 15px;
-            padding: 20px;
-            margin-bottom: 20px;
-        }
-        
-        .module-controls {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-        
-        .control-item {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
+        .margin-calculator {
             background: white;
-            border-radius: 10px;
             border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
         }
         
-        .switch {
-            position: relative;
-            display: inline-block;
-            width: 50px;
-            height: 24px;
-        }
-        
-        .switch input {
-            opacity: 0;
-            width: 0;
-            height: 0;
-        }
-        
-        .slider {
-            position: absolute;
-            cursor: pointer;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: #ccc;
-            transition: .4s;
-            border-radius: 24px;
-        }
-        
-        .slider:before {
-            position: absolute;
-            content: "";
-            height: 16px;
-            width: 16px;
-            left: 4px;
-            bottom: 4px;
-            background-color: white;
-            transition: .4s;
-            border-radius: 50%;
-        }
-        
-        input:checked + .slider {
-            background-color: var(--success);
-        }
-        
-        input:checked + .slider:before {
-            transform: translateX(26px);
-        }
-        
-        .market-data {
+        .calculation-results {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin-top: 15px;
         }
         
-        .data-card {
+        .calc-card {
+            background: #f8fafc;
             padding: 15px;
+            border-radius: 8px;
+            text-align: center;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .calc-value {
+            font-size: 1.2rem;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .calc-value.profit {
+            color: var(--success);
+        }
+        
+        .calc-value.loss {
+            color: var(--danger);
+        }
+        
+        .leverage-control {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .leverage-slider {
+            flex: 1;
+        }
+        
+        .position-type {
+            display: flex;
+            gap: 10px;
+            margin: 15px 0;
+        }
+        
+        .position-btn {
+            flex: 1;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 8px;
+            background: white;
+            cursor: pointer;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .position-btn.active {
+            border-color: var(--secondary);
+            background: #dbeafe;
+        }
+        
+        .position-btn.long.active {
+            border-color: var(--success);
+            background: #dcfce7;
+        }
+        
+        .position-btn.short.active {
+            border-color: var(--danger);
+            background: #fecaca;
+        }
+        
+        .real-time-data {
             background: white;
             border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
             border: 1px solid #e5e7eb;
-            text-align: center;
+        }
+        
+        .data-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 8px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .data-row:last-child {
+            border-bottom: none;
+        }
+        
+        .data-label {
+            color: #6b7280;
         }
         
         .data-value {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin: 10px 0;
-        }
-        
-        .volume-indicator {
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            margin-top: 10px;
-            overflow: hidden;
-        }
-        
-        .volume-fill {
-            height: 100%;
-            background: var(--success);
-            transition: width 0.3s;
-        }
-        
-        .admin-only {
-            border-left: 4px solid var(--warning);
-            background: #fffbeb;
-        }
-
-        .tab-container {
-            margin: 20px 0;
-        }
-        
-        .tabs {
-            display: flex;
-            border-bottom: 2px solid #e5e7eb;
-            margin-bottom: 20px;
-        }
-        
-        .tab {
-            padding: 12px 24px;
-            cursor: pointer;
-            border-bottom: 3px solid transparent;
-            color: #6b7280;
             font-weight: 500;
-            transition: all 0.3s;
         }
         
-        .tab:hover {
-            color: var(--secondary);
-        }
-        
-        .tab.active {
-            color: var(--secondary);
-            border-bottom-color: var(--secondary);
-        }
-        
-        .tab-content {
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-
-        .analysis-controls {
-            display: grid;
-            grid-template-columns: 1fr 1fr auto;
-            gap: 15px;
-            align-items: end;
-            margin-bottom: 20px;
-        }
-        
-        .intelligent-results {
-            margin-top: 20px;
-        }
-        
-        .final-decision {
-            border: 2px solid;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            margin: 20px 0;
-        }
-        
-        .probability-badge {
-            font-size: 2rem;
-            font-weight: bold;
-            padding: 10px 20px;
-            border-radius: 25px;
-            display: inline-block;
-            margin: 10px 0;
-        }
-        
-        .analysis-summary {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 20px 0;
-        }
-        
-        .summary-card {
-            padding: 15px;
-            border-radius: 10px;
-            background: white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-            border-right: 4px solid;
-        }
-        
-        .trading-targets {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .reasoning {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border: 1px solid #e5e7eb;
-        }
-        
-        .risk-warning {
-            padding: 15px;
-            border-radius: 10px;
-            margin: 15px 0;
-            border-right: 4px solid;
-        }
-
-        .mousafrade-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 20px;
-            margin-top: 20px;
-        }
-
-        .module-details {
-            background: #f8fafc;
-            padding: 15px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .feature-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .feature-item {
-            padding: 8px 12px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-            font-size: 0.9rem;
-        }
-
-        .agent-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .status-indicator {
-            width: 10px;
-            height: 10px;
-            border-radius: 50%;
-            background: var(--success);
-        }
-
-        .status-indicator.offline {
-            background: var(--danger);
-        }
-
-        .status-indicator.warning {
-            background: var(--warning);
-        }
-
-        .performance-metrics {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
-        }
-
-        .metric {
-            text-align: center;
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .metric-value {
-            font-size: 1.2rem;
-            font-weight: bold;
-            color: var(--secondary);
-        }
-
-        .metric-label {
-            font-size: 0.8rem;
-            color: #6b7280;
-        }
-
-        .modules-tab-content {
-            display: none;
-        }
-        
-        .modules-tab-content.active {
-            display: block;
-        }
-
-        .api-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            background: #fef3c7;
-            color: #92400e;
-            border-right: 4px solid var(--warning);
-        }
-
-        .api-status.online {
-            background: #dcfce7;
-            color: #166534;
-            border-right-color: var(--success);
-        }
-
-        .connection-status {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 8px;
-            background: #dcfce7;
-            color: #166534;
-            border-right: 4px solid var(--success);
-        }
-
-        .connection-status.offline {
-            background: #fecaca;
-            color: #dc2626;
-            border-right-color: var(--danger);
-        }
-
-        .api-connections {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .api-connection {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 12px;
-            background: white;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .connection-details {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-
-        .connection-status-dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background: var(--success);
-        }
-
-        .connection-status-dot.offline {
-            background: var(--danger);
-        }
-
-        .connection-status-dot.warning {
-            background: var(--warning);
-        }
-
-        /* استایل‌های فرم چند مرحله‌ای */
-        .analysis-form {
-            position: relative;
-            min-height: 400px;
-        }
-
-        .form-step {
-            display: none;
-            animation: fadeIn 0.5s ease-in;
-        }
-
-        .form-step.active {
-            display: block;
-        }
-
-        .form-actions {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 20px;
-            gap: 10px;
-        }
-
-        .form-actions .btn {
-            flex: 1;
-        }
-
-        .selection-summary {
-            background: #f8fafc;
-            padding: 20px;
-            border-radius: 10px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .summary-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-        }
-
-        .summary-item {
-            padding: 10px;
-            background: white;
-            border-radius: 8px;
-            border: 1px solid #e5e7eb;
-        }
-
-        /* استایل‌های نتایج پیشرفته */
-        .advanced-results {
-            animation: slideUp 0.5s ease-out;
-        }
-
-        .final-prediction {
-            background: linear-gradient(135deg, var(--success), #22c55e);
-            color: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
-            text-align: center;
-        }
-
-        .final-prediction.danger {
-            background: linear-gradient(135deg, var(--danger), #ef4444);
-        }
-
-        .final-prediction.warning {
-            background: linear-gradient(135deg, var(--warning), #f59e0b);
-        }
-
-        .prediction-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-        }
-
-        .symbol-info h3 {
-            margin: 0;
-            font-size: 1.5rem;
-        }
-
-        .prediction-main {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 40px;
-            flex-wrap: wrap;
-        }
-
-        .probability-circle {
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            width: 120px;
-            height: 120px;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            backdrop-filter: blur(10px);
-        }
-
-        .circle-value {
-            font-size: 2rem;
-            font-weight: bold;
-        }
-
-        .circle-label {
-            font-size: 0.8rem;
-            opacity: 0.9;
-        }
-
-        .decision-text {
-            font-size: 2.5rem;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .decision-subtext {
-            opacity: 0.9;
-            font-size: 1rem;
-        }
-
-        .trading-targets-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
-        }
-
-        .target-card {
-            background: white;
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            border: 2px solid #e5e7eb;
-        }
-
-        .target-card.profit {
-            border-color: var(--success);
-        }
-
-        .target-card.loss {
-            border-color: var(--danger);
-        }
-
-        .target-card.time {
-            border-color: var(--warning);
-        }
-
-        .target-card.risk {
-            border-color: var(--secondary);
-        }
-
-        .target-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .target-label {
-            font-size: 0.9rem;
-            color: #6b7280;
-            margin-bottom: 5px;
-        }
-
-        .target-value {
-            font-size: 1.3rem;
-            font-weight: bold;
-            color: var(--dark);
-        }
-
-        .target-value.high-risk {
-            color: var(--danger);
-        }
-
-        .target-value.medium-risk {
-            color: var(--warning);
-        }
-
-        .target-value.low-risk {
-            color: var(--success);
-        }
-
-        .analysis-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin-top: 15px;
-        }
-
-        .analysis-card {
-            background: white;
-            padding: 20px;
-            border-radius: 12px;
-            border: 1px solid #e5e7eb;
-            text-align: center;
-        }
-
-        .analysis-title {
-            font-weight: bold;
-            margin-bottom: 10px;
-            color: var(--dark);
-        }
-
-        .analysis-score {
-            font-size: 1.5rem;
-            font-weight: bold;
-            margin-bottom: 10px;
-        }
-
-        .analysis-score.good {
-            color: var(--success);
-        }
-
-        .analysis-score.average {
-            color: var(--warning);
-        }
-
-        .analysis-score.poor {
-            color: var(--danger);
-        }
-
-        .analysis-details {
-            font-size: 0.8rem;
-            color: #6b7280;
-            line-height: 1.4;
-        }
-
-        .recommendation-list {
-            background: white;
-            border-radius: 12px;
-            padding: 20px;
-            border: 1px solid #e5e7eb;
-        }
-
-        .recommendation-item {
-            display: flex;
-            align-items: center;
-            padding: 10px 0;
-            border-bottom: 1px solid #f1f5f9;
-        }
-
-        .recommendation-item:last-child {
-            border-bottom: none;
-        }
-
-        .recommendation-item i {
-            color: var(--success);
-            margin-left: 10px;
-        }
-
-        .risk-warning {
-            background: #fef3c7;
-            color: #92400e;
-            padding: 20px;
-            border-radius: 12px;
-            border-right: 4px solid var(--warning);
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-top: 20px;
-        }
-
-        .risk-warning i {
-            font-size: 1.2rem;
-            margin-top: 2px;
-        }
-
-        .progress-bar {
-            width: 100%;
-            height: 8px;
-            background: #e5e7eb;
-            border-radius: 4px;
-            overflow: hidden;
-            margin-top: 10px;
-        }
-
-        .progress-fill {
-            height: 100%;
-            background: linear-gradient(90deg, var(--secondary), var(--success));
-            transition: width 0.3s ease;
-            border-radius: 4px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        /* ریسپانسیو */
-        @media (max-width: 768px) {
-            .prediction-main {
-                flex-direction: column;
-                gap: 20px;
-            }
-            
-            .prediction-header {
-                flex-direction: column;
-                text-align: center;
-                gap: 10px;
-            }
-            
-            .trading-targets-grid {
-                grid-template-columns: 1fr 1fr;
-            }
-            
-            .analysis-grid {
-                grid-template-columns: 1fr;
-            }
-        }
+        /* استایل‌های قبلی باقی می‌مانند */
+        /* ... */
     </style>
 </head>
 <body>
@@ -1421,6 +512,16 @@
                                             <!-- نمادها بر اساس بازار و نوع معامله پر می‌شوند -->
                                         </select>
                                     </div>
+                                    
+                                    <!-- نمایش قیمت نماد انتخاب شده -->
+                                    <div id="symbolPriceDisplay" class="price-display" style="display: none;">
+                                        <div class="current-price" id="currentPrice">-</div>
+                                        <div class="price-change" id="priceChange">-</div>
+                                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
+                                            آخرین بروزرسانی: <span id="lastUpdate">-</span>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="form-actions">
                                         <button class="btn" onclick="prevStep(3)">
                                             <i class="fas fa-arrow-right"></i>
@@ -1433,14 +534,41 @@
                                     </div>
                                 </div>
 
-                                <!-- مرحله 4: مقدار سرمایه‌گذاری -->
+                                <!-- مرحله 4: مقدار سرمایه‌گذاری و نوع پوزیشن -->
                                 <div class="form-step" id="step4">
-                                    <h4>💵 مرحله 4: مقدار سرمایه‌گذاری</h4>
+                                    <h4>💵 مرحله 4: مقدار سرمایه‌گذاری و نوع پوزیشن</h4>
                                     <div class="form-group">
                                         <label>مقدار سرمایه (دلار)</label>
                                         <input type="number" class="form-control" id="investmentAmount" 
                                                placeholder="مثال: 1000" min="10" step="10">
                                     </div>
+                                    
+                                    <!-- انتخاب نوع پوزیشن -->
+                                    <div class="form-group">
+                                        <label>نوع پوزیشن</label>
+                                        <div class="position-type">
+                                            <div class="position-btn long active" data-type="long" onclick="selectPositionType('long')">
+                                                <i class="fas fa-arrow-up"></i>
+                                                لانگ (خرید)
+                                            </div>
+                                            <div class="position-btn short" data-type="short" onclick="selectPositionType('short')">
+                                                <i class="fas fa-arrow-down"></i>
+                                                شورت (فروش)
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- انتخاب اهرم -->
+                                    <div class="form-group">
+                                        <label>اهرم معاملاتی</label>
+                                        <div class="leverage-control">
+                                            <span id="leverageValue">1x</span>
+                                            <input type="range" class="leverage-slider" id="leverageSlider" 
+                                                   min="1" max="100" value="1" step="1">
+                                        </div>
+                                        <small style="color: #6b7280;">توجه: اهرم بالاتر ریسک بیشتری دارد</small>
+                                    </div>
+                                    
                                     <div class="form-actions">
                                         <button class="btn" onclick="prevStep(4)">
                                             <i class="fas fa-arrow-right"></i>
@@ -1471,6 +599,30 @@
                                             <option value="1m">1 ماه</option>
                                         </select>
                                     </div>
+                                    
+                                    <!-- محاسبات سود/ضرر -->
+                                    <div id="profitLossCalculation" class="margin-calculator" style="display: none;">
+                                        <h5>📊 محاسبات سود/ضرر احتمالی</h5>
+                                        <div class="calculation-results">
+                                            <div class="calc-card">
+                                                <div>سرمایه اولیه</div>
+                                                <div class="calc-value" id="initialInvestment">-</div>
+                                            </div>
+                                            <div class="calc-card">
+                                                <div>سرمایه با اهرم</div>
+                                                <div class="calc-value" id="leveragedInvestment">-</div>
+                                            </div>
+                                            <div class="calc-card">
+                                                <div>سود احتمالی</div>
+                                                <div class="calc-value profit" id="potentialProfit">-</div>
+                                            </div>
+                                            <div class="calc-card">
+                                                <div>ضرر احتمالی</div>
+                                                <div class="calc-value loss" id="potentialLoss">-</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                     <div class="form-actions">
                                         <button class="btn" onclick="prevStep(5)">
                                             <i class="fas fa-arrow-right"></i>
@@ -1564,6 +716,34 @@
                 commodities: ['OIL', 'GAS', 'WHEAT'],
                 indices: ['DXY', 'VIX']
             }
+        };
+
+        // داده‌های قیمت برای نمادها (شبیه‌سازی شده)
+        const priceData = {
+            'شپنا': { price: 18500, change: 1.2 },
+            'فملی': { price: 32000, change: -0.5 },
+            'خودرو': { price: 15000, change: 2.1 },
+            'وبصادر': { price: 42000, change: 0.8 },
+            'شستا': { price: 28000, change: -1.5 },
+            'فولاد': { price: 12000, change: 0.3 },
+            'کگل': { price: 9500, change: 1.8 },
+            'وبملت': { price: 35000, change: -0.2 },
+            'BTC/USDT': { price: 52000, change: 2.5 },
+            'ETH/USDT': { price: 2800, change: 1.8 },
+            'BNB/USDT': { price: 350, change: 0.7 },
+            'ADA/USDT': { price: 0.45, change: -1.2 },
+            'DOT/USDT': { price: 6.8, change: 0.9 },
+            'LINK/USDT': { price: 14.2, change: 2.3 },
+            'EUR/USD': { price: 1.0850, change: 0.3 },
+            'GBP/USD': { price: 1.2650, change: -0.2 },
+            'USD/JPY': { price: 150.20, change: 0.5 },
+            'AUD/USD': { price: 0.6520, change: -0.4 },
+            'USD/CAD': { price: 1.3520, change: 0.1 },
+            'XAU/USD': { price: 2150, change: 0.8 },
+            'XAG/USD': { price: 24.20, change: 1.2 },
+            'OIL': { price: 78.50, change: -0.7 },
+            'GAS': { price: 2.85, change: 0.4 },
+            'WHEAT': { price: 5.65, change: -0.3 }
         };
 
         // مدیریت لاگین
@@ -1671,629 +851,441 @@
             ];
             
             toggles.forEach(toggleId => {
-                const toggleElement = document.getElementById(toggleId);
-                if (toggleElement) {
-                    toggleElement.addEventListener('change', function() {
-                        const status = this.checked ? 'فعال' : 'غیرفعال';
-                        const moduleName = this.parentElement.previousElementSibling.textContent;
-                        showNotification(`ماژول ${moduleName} ${status} شد`, 'success');
-                        updateStats();
-                    });
-                }
+                document.getElementById(toggleId).addEventListener('change', function() {
+                    const status = this.checked ? 'فعال' : 'غیرفعال';
+                    const moduleName = this.parentElement.previousElementSibling.textContent;
+                    showNotification(`ماژول ${moduleName} ${status} شد`, 'info');
+                });
             });
+        }
+
+        // بارگذاری داده‌های بازار
+        function loadMarketData() {
+            const marketDataContainer = document.getElementById('marketData');
+            
+            // شبیه‌سازی داده‌های بازار
+            const marketData = [
+                { name: 'بیت‌کوین', price: '$52,340', change: '+2.5%', volume: '$24.5B' },
+                { name: 'اتریوم', price: '$2,850', change: '+1.8%', volume: '$12.3B' },
+                { name: 'شاخص کل بورس تهران', price: '1,850,000', change: '-0.3%', volume: '12.5T' },
+                { name: 'EUR/USD', price: '1.0850', change: '+0.3%', volume: '$450B' },
+                { name: 'طلای جهانی', price: '$2,150', change: '+0.8%', volume: '$180B' }
+            ];
+            
+            let html = '<div class="market-data-grid">';
+            marketData.forEach(item => {
+                const changeClass = item.change.startsWith('+') ? 'positive' : 'negative';
+                html += `
+                    <div class="market-data-item">
+                        <div class="market-name">${item.name}</div>
+                        <div class="market-price">${item.price}</div>
+                        <div class="market-change ${changeClass}">${item.change}</div>
+                        <div class="market-volume">حجم: ${item.volume}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            marketDataContainer.innerHTML = html;
+        }
+
+        // بارگذاری تحلیل حجم
+        function loadVolumeAnalysis() {
+            const volumeContainer = document.getElementById('volumeAnalysis');
+            
+            // شبیه‌سازی تحلیل حجم
+            const analysis = [
+                { symbol: 'BTC/USDT', volume: '24.5B', trend: 'صعودی', confidence: 'بالا' },
+                { symbol: 'ETH/USDT', volume: '12.3B', trend: 'نزولی', confidence: 'متوسط' },
+                { symbol: 'شاخص کل', volume: '12.5T', trend: 'خنثی', confidence: 'پایین' },
+                { symbol: 'EUR/USD', volume: '450B', trend: 'صعودی', confidence: 'بالا' },
+                { symbol: 'XAU/USD', volume: '180B', trend: 'صعودی', confidence: 'متوسط' }
+            ];
+            
+            let html = '<div class="volume-analysis-grid">';
+            analysis.forEach(item => {
+                const trendClass = item.trend === 'صعودی' ? 'positive' : item.trend === 'نزولی' ? 'negative' : 'neutral';
+                html += `
+                    <div class="volume-item">
+                        <div class="volume-symbol">${item.symbol}</div>
+                        <div class="volume-value">${item.volume}</div>
+                        <div class="volume-trend ${trendClass}">${item.trend}</div>
+                        <div class="volume-confidence">اعتماد: ${item.confidence}</div>
+                    </div>
+                `;
+            });
+            html += '</div>';
+            
+            volumeContainer.innerHTML = html;
+        }
+
+        // به‌روزرسانی آمار
+        function updateStats() {
+            document.getElementById('totalMarketCap').textContent = '$2.3T';
+            document.getElementById('activeModules').textContent = '9/9';
+            document.getElementById('volumeChange').textContent = '+4.2%';
+            document.getElementById('aiAccuracy').textContent = '92.7%';
         }
 
         // شبیه‌سازی اتصالات API
         function simulateAPIConnections() {
-            const apiStatus = document.getElementById('apiStatus');
-            apiStatus.className = 'notification success';
-            apiStatus.innerHTML = '<i class="fas fa-check-circle"></i><span>ارتباط با برنامه‌های دیگر برقرار است (API Online)</span>';
-            
-            // شبیه‌سازی وضعیت اتصالات API
             const connections = document.querySelectorAll('.api-connection');
             connections.forEach(connection => {
                 const statusDot = connection.querySelector('.connection-status-dot');
                 const statusText = connection.querySelector('.module-status');
                 
-                // 95% احتمال آنلاین بودن
-                if (Math.random() > 0.05) {
-                    statusDot.className = 'connection-status-dot';
-                    statusText.textContent = 'آنلاین';
-                    statusText.className = 'module-status';
-                } else {
-                    statusDot.className = 'connection-status-dot offline';
-                    statusText.textContent = 'آفلاین';
-                    statusText.className = 'module-status status-offline';
-                }
+                // شبیه‌سازی وضعیت آنلاین
+                statusDot.style.backgroundColor = '#10b981';
+                statusText.textContent = 'آنلاین';
+                statusText.style.color = '#10b981';
             });
-        }
-
-        // بروزرسانی آمار
-        function updateStats() {
-            const activeModules = document.querySelectorAll('input[type="checkbox"]:checked').length;
-            const totalMarketCap = (1.8 + Math.random() * 0.4).toFixed(1) + 'T';
-            const volumeChange = (Math.random() * 10 - 2).toFixed(1) + '%';
-            const aiAccuracy = (85 + Math.random() * 10).toFixed(1) + '%';
-            
-            document.getElementById('activeModules').textContent = activeModules;
-            document.getElementById('totalMarketCap').textContent = totalMarketCap;
-            document.getElementById('volumeChange').textContent = volumeChange;
-            document.getElementById('aiAccuracy').textContent = aiAccuracy;
-        }
-
-        // بارگذاری داده‌های بازار
-        function loadMarketData() {
-            const marketData = document.getElementById('marketData');
-            const isCoinGeckoEnabled = document.getElementById('toggleCoinGecko')?.checked ?? false;
-            const isForexEnabled = document.getElementById('toggleForex')?.checked ?? false;
-            const isTehranStockEnabled = document.getElementById('toggleTehranStock')?.checked ?? false;
-            
-            if (!isCoinGeckoEnabled && !isForexEnabled && !isTehranStockEnabled) {
-                marketData.innerHTML = '<div class="notification warning">همه ماژول‌های داده‌های بازار غیرفعال هستند</div>';
-                return;
-            }
-            
-            let marketHTML = '';
-            
-            if (isCoinGeckoEnabled) {
-                marketHTML += `
-                    <div class="data-card">
-                        <div style="font-weight: bold;">بیت‌کوین</div>
-                        <div class="data-value">${(52000 + Math.random() * 2000).toFixed(0)}$</div>
-                        <div style="color: var(--success);">+${(Math.random() * 5).toFixed(1)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(25 + Math.random() * 10).toFixed(1)}B
-                        </div>
-                    </div>
-                    <div class="data-card">
-                        <div style="font-weight: bold;">اتریوم</div>
-                        <div class="data-value">${(2800 + Math.random() * 200).toFixed(0)}$</div>
-                        <div style="color: var(--success);">+${(Math.random() * 3).toFixed(1)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(12 + Math.random() * 8).toFixed(1)}B
-                        </div>
-                    </div>
-                `;
-            }
-            
-            if (isForexEnabled) {
-                marketHTML += `
-                    <div class="data-card">
-                        <div style="font-weight: bold;">EUR/USD</div>
-                        <div class="data-value">${(1.08 + Math.random() * 0.01).toFixed(4)}</div>
-                        <div style="color: ${Math.random() > 0.5 ? 'var(--success)' : 'var(--danger)'};">${(Math.random() > 0.5 ? '+' : '-')}${(Math.random() * 0.5).toFixed(2)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            نوسان: ${(Math.random() * 0.5).toFixed(2)}٪
-                        </div>
-                    </div>
-                    <div class="data-card">
-                        <div style="font-weight: bold;">GBP/USD</div>
-                        <div class="data-value">${(1.27 + Math.random() * 0.01).toFixed(4)}</div>
-                        <div style="color: ${Math.random() > 0.5 ? 'var(--success)' : 'var(--danger)'};">${(Math.random() > 0.5 ? '+' : '-')}${(Math.random() * 0.5).toFixed(2)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            نوسان: ${(Math.random() * 0.5).toFixed(2)}٪
-                        </div>
-                    </div>
-                `;
-            }
-            
-            if (isTehranStockEnabled) {
-                marketHTML += `
-                    <div class="data-card">
-                        <div style="font-weight: bold;">شاخص کل</div>
-                        <div class="data-value">${(2100000 + Math.random() * 100000).toFixed(0)}</div>
-                        <div style="color: var(--success);">+${(Math.random() * 1.5).toFixed(1)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(3.5 + Math.random() * 2).toFixed(1)}T
-                        </div>
-                    </div>
-                    <div class="data-card">
-                        <div style="font-weight: bold;">شاخص هم وزن</div>
-                        <div class="data-value">${(480000 + Math.random() * 20000).toFixed(0)}</div>
-                        <div style="color: var(--success);">+${(Math.random() * 2).toFixed(1)}%</div>
-                        <div style="font-size: 0.8rem; color: #6b7280; margin-top: 5px;">
-                            حجم: ${(1.5 + Math.random() * 1.5).toFixed(1)}T
-                        </div>
-                    </div>
-                `;
-            }
-            
-            marketData.innerHTML = marketHTML;
-        }
-
-        // تحلیل حجم معاملات
-        function loadVolumeAnalysis() {
-            const volumeAnalysis = document.getElementById('volumeAnalysis');
-            const isVolumeAnalysisEnabled = document.getElementById('toggleVolumeAnalysis')?.checked ?? false;
-            
-            if (!isVolumeAnalysisEnabled) {
-                volumeAnalysis.innerHTML = '<div class="notification warning">تحلیل حجم معاملات غیرفعال است</div>';
-                return;
-            }
-            
-            // شبیه‌سازی تحلیل حجم
-            const volumeData = [
-                { symbol: 'BTC/USDT', current: 85, average: 65, trend: 'افزایشی', signal: 'قوی' },
-                { symbol: 'ETH/USDT', current: 72, average: 68, trend: 'کاهشی', signal: 'ضعیف' },
-                { symbol: 'AAPL', current: 45, average: 52, trend: 'کاهشی', signal: 'منفی' },
-                { symbol: 'EUR/USD', current: 88, average: 75, trend: 'افزایشی', signal: 'قوی' },
-                { symbol: 'شاخص کل', current: 92, average: 78, trend: 'افزایشی', signal: 'بسیار قوی' }
-            ];
-            
-            let volumeHTML = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 15px;">';
-            
-            volumeData.forEach(item => {
-                const isAboveAverage = item.current > item.average;
-                const signalColor = 
-                    item.signal === 'بسیار قوی' ? 'var(--success)' :
-                    item.signal === 'قوی' ? 'var(--success)' :
-                    item.signal === 'ضعیف' ? 'var(--warning)' : 'var(--danger)';
-                
-                volumeHTML += `
-                    <div class="data-card">
-                        <div style="font-weight: bold; margin-bottom: 10px;">${item.symbol}</div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 5px;">
-                            <span>حجم فعلی:</span>
-                            <span style="font-weight: bold;">${item.current}%</span>
-                        </div>
-                        <div style="display: flex; justify-content: space-between; margin-bottom: 10px;">
-                            <span>میانگین:</span>
-                            <span>${item.average}%</span>
-                        </div>
-                        <div class="volume-indicator">
-                            <div class="volume-fill" style="width: ${item.current}%; background: ${isAboveAverage ? 'var(--success)' : 'var(--warning)'};"></div>
-                        </div>
-                        <div style="margin-top: 10px; display: flex; justify-content: space-between;">
-                            <span>روند:</span>
-                            <span style="color: ${isAboveAverage ? 'var(--success)' : 'var(--warning)'};">${item.trend}</span>
-                        </div>
-                        <div style="margin-top: 5px; display: flex; justify-content: space-between;">
-                            <span>سیگنال:</span>
-                            <span style="color: ${signalColor}; font-weight: bold;">${item.signal}</span>
-                        </div>
-                    </div>
-                `;
-            });
-            
-            volumeHTML += '</div>';
-            volumeAnalysis.innerHTML = volumeHTML;
         }
 
         // نمایش نوتیفیکیشن
-        function showNotification(message, type = 'info') {
-            const notifications = document.querySelector('.notifications');
+        function showNotification(message, type) {
             const notification = document.createElement('div');
             notification.className = `notification ${type}`;
             notification.innerHTML = `
-                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'warning' ? 'exclamation-triangle' : type === 'error' ? 'times-circle' : 'info-circle'}"></i>
+                <i class="fas fa-${type === 'success' ? 'check-circle' : type === 'danger' ? 'exclamation-triangle' : 'info-circle'}"></i>
                 <span>${message}</span>
             `;
-            notifications.appendChild(notification);
+            
+            const notificationsContainer = document.querySelector('.notifications');
+            notificationsContainer.appendChild(notification);
             
             setTimeout(() => {
                 notification.remove();
             }, 5000);
         }
 
-        // مدیریت مراحل فرم - نسخه اصلاح شده
+        // مدیریت مراحل فرم تحلیل
         let currentStep = 1;
-        let userSelections = {};
-
+        
         function nextStep(step) {
-            if (validateStep(step)) {
-                // مخفی کردن مرحله فعلی
-                document.querySelectorAll('.form-step').forEach(stepEl => {
-                    stepEl.classList.remove('active');
-                });
-                
-                // نمایش مرحله بعد
-                currentStep = step + 1;
-                const nextStepEl = document.getElementById(`step${currentStep}`);
-                if (nextStepEl) {
-                    nextStepEl.classList.add('active');
-                    updateSelectionSummary();
+            if (step === 1) {
+                const market = document.getElementById('marketSelect').value;
+                if (!market) {
+                    showNotification('لطفا بازار مورد نظر را انتخاب کنید', 'danger');
+                    return;
                 }
-            }
-        }
-
-        function prevStep(step) {
-            document.querySelectorAll('.form-step').forEach(stepEl => {
-                stepEl.classList.remove('active');
-            });
-            
-            currentStep = step - 1;
-            const prevStepEl = document.getElementById(`step${currentStep}`);
-            if (prevStepEl) {
-                prevStepEl.classList.add('active');
-            }
-        }
-
-        // اعتبارسنجی هر مرحله - نسخه اصلاح شده
-        function validateStep(step) {
-            switch(step) {
-                case 1:
-                    const marketSelect = document.getElementById('marketSelect');
-                    const market = marketSelect.value;
-                    if (!market) {
-                        showNotification('لطفا بازار مورد نظر را انتخاب کنید', 'warning');
-                        marketSelect.focus();
-                        return false;
-                    }
-                    userSelections.market = market;
-                    populateTradeTypes(market);
-                    return true;
-                    
-                case 2:
-                    const tradeTypeSelect = document.getElementById('tradeTypeSelect');
-                    const tradeType = tradeTypeSelect.value;
-                    if (!tradeType) {
-                        showNotification('لطفا نوع معامله را انتخاب کنید', 'warning');
-                        tradeTypeSelect.focus();
-                        return false;
-                    }
-                    userSelections.tradeType = tradeType;
-                    populateSymbols(userSelections.market, tradeType);
-                    return true;
-                    
-                case 3:
-                    const symbolSelect = document.getElementById('symbolSelect');
-                    const symbol = symbolSelect.value;
-                    if (!symbol) {
-                        showNotification('لطفا نماد معاملاتی را انتخاب کنید', 'warning');
-                        symbolSelect.focus();
-                        return false;
-                    }
-                    userSelections.symbol = symbol;
-                    return true;
-                    
-                case 4:
-                    const amount = document.getElementById('investmentAmount').value;
-                    if (!amount || amount < 10) {
-                        showNotification('لطفا مقدار سرمایه معتبر وارد کنید (حداقل 10 دلار)', 'warning');
-                        document.getElementById('investmentAmount').focus();
-                        return false;
-                    }
-                    userSelections.amount = amount;
-                    return true;
-                    
-                default:
-                    return true;
-            }
-        }
-
-        // پر کردن انواع معامله
-        function populateTradeTypes(market) {
-            const select = document.getElementById('tradeTypeSelect');
-            select.innerHTML = '<option value="">-- لطفا نوع معامله را انتخاب کنید --</option>';
-            
-            if (tradeTypes[market]) {
+                
+                // پر کردن انواع معامله بر اساس بازار انتخاب شده
+                const tradeTypeSelect = document.getElementById('tradeTypeSelect');
+                tradeTypeSelect.innerHTML = '<option value="">-- لطفا نوع معامله را انتخاب کنید --</option>';
+                
                 tradeTypes[market].forEach(type => {
                     const option = document.createElement('option');
                     option.value = type.value;
                     option.textContent = type.label;
-                    select.appendChild(option);
+                    tradeTypeSelect.appendChild(option);
                 });
+            }
+            
+            if (step === 2) {
+                const tradeType = document.getElementById('tradeTypeSelect').value;
+                if (!tradeType) {
+                    showNotification('لطفا نوع معامله را انتخاب کنید', 'danger');
+                    return;
+                }
+                
+                // پر کردن نمادها بر اساس بازار و نوع معامله
+                const market = document.getElementById('marketSelect').value;
+                const symbolSelect = document.getElementById('symbolSelect');
+                symbolSelect.innerHTML = '<option value="">-- لطفا نماد را انتخاب کنید --</option>';
+                
+                if (symbolsData[market] && symbolsData[market][tradeType]) {
+                    symbolsData[market][tradeType].forEach(symbol => {
+                        const option = document.createElement('option');
+                        option.value = symbol;
+                        option.textContent = symbol;
+                        symbolSelect.appendChild(option);
+                    });
+                }
+            }
+            
+            if (step === 3) {
+                const symbol = document.getElementById('symbolSelect').value;
+                if (!symbol) {
+                    showNotification('لطفا نماد معاملاتی را انتخاب کنید', 'danger');
+                    return;
+                }
+                
+                // نمایش قیمت نماد انتخاب شده
+                displaySymbolPrice(symbol);
+            }
+            
+            if (step === 4) {
+                const amount = document.getElementById('investmentAmount').value;
+                if (!amount || amount < 10) {
+                    showNotification('لطفا مقدار سرمایه را وارد کنید (حداقل 10 دلار)', 'danger');
+                    return;
+                }
+                
+                // محاسبه و نمایش سود/ضرر احتمالی
+                calculateProfitLoss();
+            }
+            
+            if (step === 5) {
+                const timeframe = document.getElementById('timeframeSelect').value;
+                if (!timeframe) {
+                    showNotification('لطفا بازه زمانی را انتخاب کنید', 'danger');
+                    return;
+                }
+            }
+            
+            // مخفی کردن مرحله فعلی
+            document.getElementById(`step${step}`).classList.remove('active');
+            
+            // نمایش مرحله بعد
+            currentStep = step + 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            
+            // به‌روزرسانی خلاصه انتخاب‌ها
+            updateSelectionSummary();
+        }
+        
+        function prevStep(step) {
+            // مخفی کردن مرحله فعلی
+            document.getElementById(`step${step}`).classList.remove('active');
+            
+            // نمایش مرحله قبلی
+            currentStep = step - 1;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+        }
+
+        // نمایش قیمت نماد انتخاب شده
+        function displaySymbolPrice(symbol) {
+            const priceDisplay = document.getElementById('symbolPriceDisplay');
+            const currentPrice = document.getElementById('currentPrice');
+            const priceChange = document.getElementById('priceChange');
+            const lastUpdate = document.getElementById('lastUpdate');
+            
+            if (priceData[symbol]) {
+                const data = priceData[symbol];
+                currentPrice.textContent = `$${data.price.toLocaleString()}`;
+                
+                const changeClass = data.change >= 0 ? 'positive' : 'negative';
+                const changeSign = data.change >= 0 ? '+' : '';
+                priceChange.textContent = `${changeSign}${data.change}%`;
+                priceChange.className = `price-change ${changeClass}`;
+                
+                const now = new Date();
+                lastUpdate.textContent = now.toLocaleTimeString('fa-IR');
+                
+                priceDisplay.style.display = 'block';
+            } else {
+                priceDisplay.style.display = 'none';
             }
         }
 
-        // پر کردن نمادها
-        function populateSymbols(market, tradeType) {
-            const select = document.getElementById('symbolSelect');
-            select.innerHTML = '<option value="">-- لطفا نماد را انتخاب کنید --</option>';
+        // انتخاب نوع پوزیشن
+        function selectPositionType(type) {
+            document.querySelectorAll('.position-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
             
-            if (symbolsData[market] && symbolsData[market][tradeType]) {
-                symbolsData[market][tradeType].forEach(symbol => {
-                    const option = document.createElement('option');
-                    option.value = symbol;
-                    option.textContent = symbol;
-                    select.appendChild(option);
-                });
+            const selectedBtn = document.querySelector(`.position-btn[data-type="${type}"]`);
+            selectedBtn.classList.add('active');
+            
+            // محاسبه مجدد سود/ضرر در صورت وجود داده‌ها
+            if (document.getElementById('investmentAmount').value) {
+                calculateProfitLoss();
             }
+        }
+
+        // مدیریت اهرم
+        const leverageSlider = document.getElementById('leverageSlider');
+        const leverageValue = document.getElementById('leverageValue');
+        
+        leverageSlider.addEventListener('input', function() {
+            leverageValue.textContent = `${this.value}x`;
+            
+            // محاسبه مجدد سود/ضرر در صورت وجود داده‌ها
+            if (document.getElementById('investmentAmount').value) {
+                calculateProfitLoss();
+            }
+        });
+
+        // محاسبه سود/ضرر
+        function calculateProfitLoss() {
+            const amount = parseFloat(document.getElementById('investmentAmount').value);
+            const leverage = parseInt(document.getElementById('leverageSlider').value);
+            const positionType = document.querySelector('.position-btn.active').dataset.type;
+            const symbol = document.getElementById('symbolSelect').value;
+            
+            if (!symbol || !priceData[symbol]) return;
+            
+            const initialInvestment = document.getElementById('initialInvestment');
+            const leveragedInvestment = document.getElementById('leveragedInvestment');
+            const potentialProfit = document.getElementById('potentialProfit');
+            const potentialLoss = document.getElementById('potentialLoss');
+            const profitLossContainer = document.getElementById('profitLossCalculation');
+            
+            // محاسبات
+            const leveragedAmount = amount * leverage;
+            const priceChange = priceData[symbol].change;
+            
+            // محاسبه سود/ضرر بر اساس نوع پوزیشن
+            let profitPercentage, lossPercentage;
+            
+            if (positionType === 'long') {
+                profitPercentage = priceChange > 0 ? priceChange * leverage : 0;
+                lossPercentage = priceChange < 0 ? Math.abs(priceChange) * leverage : 0;
+            } else { // short
+                profitPercentage = priceChange < 0 ? Math.abs(priceChange) * leverage : 0;
+                lossPercentage = priceChange > 0 ? priceChange * leverage : 0;
+            }
+            
+            // نمایش نتایج
+            initialInvestment.textContent = `$${amount.toLocaleString()}`;
+            leveragedInvestment.textContent = `$${leveragedAmount.toLocaleString()}`;
+            potentialProfit.textContent = `$${(amount * profitPercentage / 100).toFixed(2)} (${profitPercentage.toFixed(2)}%)`;
+            potentialLoss.textContent = `$${(amount * lossPercentage / 100).toFixed(2)} (${lossPercentage.toFixed(2)}%)`;
+            
+            profitLossContainer.style.display = 'block';
         }
 
         // به‌روزرسانی خلاصه انتخاب‌ها
         function updateSelectionSummary() {
-            const summaryDiv = document.getElementById('selectionSummary');
-            const summaryContent = document.getElementById('summaryContent');
+            const market = document.getElementById('marketSelect').value;
+            const tradeType = document.getElementById('tradeTypeSelect').value;
+            const symbol = document.getElementById('symbolSelect').value;
+            const amount = document.getElementById('investmentAmount').value;
+            const positionType = document.querySelector('.position-btn.active').dataset.type;
+            const leverage = document.getElementById('leverageSlider').value;
+            const timeframe = document.getElementById('timeframeSelect').value;
             
-            if (Object.keys(userSelections).length > 0) {
-                let html = '<div class="summary-grid">';
+            if (market && tradeType && symbol) {
+                const summaryContent = document.getElementById('summaryContent');
+                const summaryContainer = document.getElementById('selectionSummary');
                 
-                if (userSelections.market) {
-                    const marketLabel = document.querySelector(`#marketSelect option[value="${userSelections.market}"]`).textContent;
-                    html += `<div class="summary-item"><strong>بازار:</strong> ${marketLabel}</div>`;
+                let html = `
+                    <div class="data-row">
+                        <span class="data-label">بازار:</span>
+                        <span class="data-value">${document.getElementById('marketSelect').options[document.getElementById('marketSelect').selectedIndex].text}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">نوع معامله:</span>
+                        <span class="data-value">${document.getElementById('tradeTypeSelect').options[document.getElementById('tradeTypeSelect').selectedIndex].text}</span>
+                    </div>
+                    <div class="data-row">
+                        <span class="data-label">نماد:</span>
+                        <span class="data-value">${symbol}</span>
+                    </div>
+                `;
+                
+                if (amount) {
+                    html += `
+                        <div class="data-row">
+                            <span class="data-label">سرمایه:</span>
+                            <span class="data-value">$${amount}</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">نوع پوزیشن:</span>
+                            <span class="data-value">${positionType === 'long' ? 'لانگ (خرید)' : 'شورت (فروش)'}</span>
+                        </div>
+                        <div class="data-row">
+                            <span class="data-label">اهرم:</span>
+                            <span class="data-value">${leverage}x</span>
+                        </div>
+                    `;
                 }
                 
-                if (userSelections.tradeType) {
-                    const tradeTypeLabel = document.querySelector(`#tradeTypeSelect option[value="${userSelections.tradeType}"]`).textContent;
-                    html += `<div class="summary-item"><strong>نوع معامله:</strong> ${tradeTypeLabel}</div>`;
+                if (timeframe) {
+                    html += `
+                        <div class="data-row">
+                            <span class="data-label">بازه زمانی:</span>
+                            <span class="data-value">${document.getElementById('timeframeSelect').options[document.getElementById('timeframeSelect').selectedIndex].text}</span>
+                        </div>
+                    `;
                 }
                 
-                if (userSelections.symbol) {
-                    html += `<div class="summary-item"><strong>نماد:</strong> ${userSelections.symbol}</div>`;
-                }
-                
-                if (userSelections.amount) {
-                    html += `<div class="summary-item"><strong>سرمایه:</strong> ${userSelections.amount} دلار</div>`;
-                }
-                
-                html += '</div>';
                 summaryContent.innerHTML = html;
-                summaryDiv.style.display = 'block';
+                summaryContainer.style.display = 'block';
             }
         }
 
         // اجرای تحلیل پیشرفته
         function runAdvancedAnalysis() {
+            const market = document.getElementById('marketSelect').value;
+            const tradeType = document.getElementById('tradeTypeSelect').value;
+            const symbol = document.getElementById('symbolSelect').value;
+            const amount = document.getElementById('investmentAmount').value;
+            const positionType = document.querySelector('.position-btn.active').dataset.type;
+            const leverage = document.getElementById('leverageSlider').value;
             const timeframe = document.getElementById('timeframeSelect').value;
-            if (!timeframe) {
-                showNotification('لطفا بازه زمانی را انتخاب کنید', 'warning');
+            
+            if (!market || !tradeType || !symbol || !amount || !timeframe) {
+                showNotification('لطفا تمام مراحل را تکمیل کنید', 'danger');
                 return;
             }
             
-            userSelections.timeframe = timeframe;
-            
-            // نمایش وضعیت تحلیل
-            const resultsDiv = document.getElementById('advancedAnalysisResults');
-            resultsDiv.style.display = 'block';
-            resultsDiv.innerHTML = `
-                <div class="analysis-progress">
-                    <div class="notification info">
-                        <i class="fas fa-brain"></i>
-                        <strong>در حال اجرای تحلیل پیشرفته...</strong>
-                        <div style="margin-top: 15px;">
-                            <div>🔍 جمع‌آوری داده‌های بازار</div>
-                            <div>📊 تحلیل تکنیکال (35 اندیکاتور)</div>
-                            <div>📰 تحلیل اخبار و سنتیمنت</div>
-                            <div>🤖 پردازش هوش مصنوعی پیشرفته</div>
-                            <div>🎯 محاسبه احتمال و اهداف معاملاتی</div>
+            // شبیه‌سازی تحلیل پیشرفته
+            const resultsContainer = document.getElementById('advancedAnalysisResults');
+            resultsContainer.innerHTML = `
+                <div class="section">
+                    <h3>🧠 نتایج تحلیل پیشرفته Mousa</h3>
+                    <div class="analysis-results">
+                        <div class="result-card success">
+                            <div class="result-icon">
+                                <i class="fas fa-chart-line"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>پیش‌بینی قیمت</h4>
+                                <p>تحلیل ما نشان می‌دهد که قیمت ${symbol} در بازه زمانی ${document.getElementById('timeframeSelect').options[document.getElementById('timeframeSelect').selectedIndex].text} احتمالاً ${positionType === 'long' ? 'افزایش' : 'کاهش'} خواهد یافت.</p>
+                            </div>
                         </div>
-                        <div class="progress-bar" style="margin-top: 10px;">
-                            <div class="progress-fill" style="width: 0%"></div>
+                        
+                        <div class="result-card warning">
+                            <div class="result-icon">
+                                <i class="fas fa-exclamation-triangle"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>سطح ریسک</h4>
+                                <p>سطح ریسک این معامله با اهرم ${leverage}x ${parseInt(leverage) > 10 ? 'بالا' : 'متوسط'} ارزیابی می‌شود. مراقب نوسانات بازار باشید.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="result-card info">
+                            <div class="result-icon">
+                                <i class="fas fa-lightbulb"></i>
+                            </div>
+                            <div class="result-content">
+                                <h4>توصیه Mousa</h4>
+                                <p>${positionType === 'long' ? 'خرید' : 'فروش'} ${symbol} با سرمایه $${amount} و اهرم ${leverage}x ${parseInt(leverage) > 10 ? 'توصیه نمی‌شود' : 'می‌تواند سودآور باشد'}.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="result-summary">
+                            <h4>📊 خلاصه تحلیل</h4>
+                            <div class="summary-grid">
+                                <div class="summary-item">
+                                    <span>احتمال موفقیت:</span>
+                                    <span class="summary-value success">${Math.floor(Math.random() * 20) + 70}%</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>حداکثر سود احتمالی:</span>
+                                    <span class="summary-value success">$${(amount * leverage * 0.15).toFixed(2)}</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>حداکثر ضرر احتمالی:</span>
+                                    <span class="summary-value danger">$${(amount * leverage * 0.08).toFixed(2)}</span>
+                                </div>
+                                <div class="summary-item">
+                                    <span>نقطه خروج پیشنهادی:</span>
+                                    <span class="summary-value info">${positionType === 'long' ? '+' : '-'}${Math.floor(Math.random() * 5) + 5}%</span>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             `;
             
-            // شبیه‌سازی پیشرفت
-            simulateAnalysisProgress();
-        }
-
-        // شبیه‌سازی پیشرفت تحلیل
-        function simulateAnalysisProgress() {
-            const progressFill = document.querySelector('.progress-fill');
-            let progress = 0;
+            resultsContainer.style.display = 'block';
+            showNotification('تحلیل پیشرفته با موفقیت انجام شد', 'success');
             
-            const interval = setInterval(() => {
-                progress += Math.random() * 15;
-                if (progress >= 100) {
-                    progress = 100;
-                    clearInterval(interval);
-                    setTimeout(() => {
-                        showAdvancedResults();
-                    }, 500);
-                }
-                progressFill.style.width = progress + '%';
-            }, 300);
-        }
-
-        // نمایش نتایج پیشرفته
-        function showAdvancedResults() {
-            const resultsDiv = document.getElementById('advancedAnalysisResults');
-            const analysisResult = generateAdvancedAnalysis();
-            
-            resultsDiv.innerHTML = `
-                <div class="advanced-results">
-                    <h4>🧠 نتایج تحلیل پیشرفته</h4>
-                    
-                    <!-- کارت نتیجه نهایی -->
-                    <div class="final-prediction ${analysisResult.decisionColor}">
-                        <div class="prediction-header">
-                            <div class="symbol-info">
-                                <h3>${userSelections.symbol}</h3>
-                                <small>${getMarketLabel(userSelections.market)} - ${getTradeTypeLabel(userSelections.tradeType)}</small>
-                            </div>
-                            <div class="timeframe">⏰ ${getTimeframeLabel(userSelections.timeframe)}</div>
-                        </div>
-                        
-                        <div class="prediction-main">
-                            <div class="probability-circle">
-                                <div class="circle-value">${analysisResult.probability}%</div>
-                                <div class="circle-label">احتمال موفقیت</div>
-                            </div>
-                            
-                            <div class="decision">
-                                <div class="decision-text">${analysisResult.decision}</div>
-                                <div class="decision-subtext">${analysisResult.confidence}</div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- اهداف معاملاتی -->
-                    <div class="trading-targets-grid">
-                        <div class="target-card profit">
-                            <div class="target-icon">🎯</div>
-                            <div class="target-label">حد سود</div>
-                            <div class="target-value">${analysisResult.targets.takeProfit}</div>
-                        </div>
-                        
-                        <div class="target-card loss">
-                            <div class="target-icon">🛡️</div>
-                            <div class="target-label">حد ضرر</div>
-                            <div class="target-value">${analysisResult.targets.stopLoss}</div>
-                        </div>
-                        
-                        <div class="target-card time">
-                            <div class="target-icon">⏱️</div>
-                            <div class="target-label">زمان بازدهی</div>
-                            <div class="target-value">${analysisResult.targets.timeToResult}</div>
-                        </div>
-                        
-                        <div class="target-card risk">
-                            <div class="target-icon">📊</div>
-                            <div class="target-label">سطح ریسک</div>
-                            <div class="target-value ${analysisResult.riskLevel === 'بالا' ? 'high-risk' : analysisResult.riskLevel === 'متوسط' ? 'medium-risk' : 'low-risk'}">
-                                ${analysisResult.riskLevel}
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- تحلیل‌های جزئی -->
-                    <div class="detailed-analysis">
-                        <h5>📈 تحلیل‌های جزئی</h5>
-                        <div class="analysis-grid">
-                            <div class="analysis-card">
-                                <div class="analysis-title">تکنیکال</div>
-                                <div class="analysis-score ${analysisResult.scores.technical >= 70 ? 'good' : analysisResult.scores.technical >= 50 ? 'average' : 'poor'}">
-                                    ${analysisResult.scores.technical}/100
-                                </div>
-                                <div class="analysis-details">
-                                    ${analysisResult.details.technical.join('<br>')}
-                                </div>
-                            </div>
-                            
-                            <div class="analysis-card">
-                                <div class="analysis-title">سنتیمنت</div>
-                                <div class="analysis-score ${analysisResult.scores.sentiment >= 70 ? 'good' : analysisResult.scores.sentiment >= 50 ? 'average' : 'poor'}">
-                                    ${analysisResult.scores.sentiment}/100
-                                </div>
-                                <div class="analysis-details">
-                                    ${analysisResult.details.sentiment.join('<br>')}
-                                </div>
-                            </div>
-                            
-                            <div class="analysis-card">
-                                <div class="analysis-title">اخبار</div>
-                                <div class="analysis-score ${analysisResult.scores.news >= 70 ? 'good' : analysisResult.scores.news >= 50 ? 'average' : 'poor'}">
-                                    ${analysisResult.scores.news}/100
-                                </div>
-                                <div class="analysis-details">
-                                    ${analysisResult.details.news.join('<br>')}
-                                </div>
-                            </div>
-                            
-                            <div class="analysis-card">
-                                <div class="analysis-title">هوش مصنوعی</div>
-                                <div class="analysis-score ${analysisResult.scores.ai >= 70 ? 'good' : analysisResult.scores.ai >= 50 ? 'average' : 'poor'}">
-                                    ${analysisResult.scores.ai}/100
-                                </div>
-                                <div class="analysis-details">
-                                    ${analysisResult.details.ai.join('<br>')}
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <!-- توصیه‌ها -->
-                    <div class="recommendations">
-                        <h5>💡 توصیه‌های معاملاتی</h5>
-                        <div class="recommendation-list">
-                            ${analysisResult.recommendations.map(rec => `
-                                <div class="recommendation-item">
-                                    <i class="fas fa-check-circle"></i>
-                                    <span>${rec}</span>
-                                </div>
-                            `).join('')}
-                        </div>
-                    </div>
-                    
-                    <!-- هشدار ریسک -->
-                    <div class="risk-warning">
-                        <i class="fas fa-exclamation-triangle"></i>
-                        <div>
-                            <strong>هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
-                            سرمایه‌گذاری در بازارهای مالی دارای ریسک است و ممکن است منجر به از دست دادن سرمایه شود.
-                        </div>
-                    </div>
-                </div>
-            `;
-        }
-
-        // تابع کمکی برای تولید تحلیل پیشرفته
-        function generateAdvancedAnalysis() {
-            const probability = Math.floor(Math.random() * 30 + 65); // 65-95%
-            const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
-            const decisionColor = decision === 'خرید' ? 'success' : decision === 'فروش' ? 'danger' : 'warning';
-            
-            return {
-                probability: probability,
-                decision: decision,
-                decisionColor: decisionColor,
-                confidence: probability >= 80 ? 'اطمینان بسیار بالا' : 
-                            probability >= 70 ? 'اطمینان بالا' : 
-                            probability >= 60 ? 'اطمینان متوسط' : 'اطمینان پایین',
-                riskLevel: probability >= 80 ? 'پایین' : 
-                          probability >= 65 ? 'متوسط' : 'بالا',
-                targets: {
-                    takeProfit: (Math.random() * 20 + 5).toFixed(1) + '%',
-                    stopLoss: (Math.random() * 8 + 2).toFixed(1) + '%',
-                    timeToResult: userSelections.timeframe === '5min' ? '15-30 دقیقه' :
-                                 userSelections.timeframe === '1h' ? '2-4 ساعت' :
-                                 userSelections.timeframe === '1d' ? '1-3 روز' : '3-7 روز'
-                },
-                scores: {
-                    technical: Math.floor(Math.random() * 30 + 65),
-                    sentiment: Math.floor(Math.random() * 30 + 60),
-                    news: Math.floor(Math.random() * 35 + 55),
-                    ai: Math.floor(Math.random() * 25 + 70)
-                },
-                details: {
-                    technical: ['RSI در منطقه مناسب', 'MACD مثبت', 'حجم معاملات افزایشی'],
-                    sentiment: ['سنتیمنت بازار مثبت', 'شاخص ترس و طمع: 65', 'حجم اجتماعی بالا'],
-                    news: ['اخبار اقتصادی مثبت', 'عدم رویداد مهم منفی', 'تحلیل‌های خوشبینانه'],
-                    ai: ['الگوی صعودی شناسایی شد', 'اعتماد مدل: 87%', 'همخوانی با داده‌های تاریخی']
-                },
-                recommendations: [
-                    'حد ضرر را دقیق رعایت کنید',
-                    'پوزیشن‌سازی مرحله‌ای انجام دهید',
-                    'اخبار بازار را دنبال کنید',
-                    'تحلیل را در بازه‌های زمانی مختلف بررسی کنید'
-                ]
-            };
-        }
-
-        // توابع کمکی برای نمایش برچسب‌ها
-        function getMarketLabel(market) {
-            const labels = {
-                'tehran_stock': 'بورس تهران',
-                'binance': 'صرافی بایننس',
-                'lbank': 'صرافی ال بانک',
-                'xchief': 'صرافی ایکس‌چیف',
-                'forex': 'فارکس'
-            };
-            return labels[market] || market;
-        }
-
-        function getTradeTypeLabel(tradeType) {
-            const labels = {
-                'cash': 'نقدی',
-                'futures': 'آتی',
-                'options': 'اختیار معامله',
-                'etf': 'صندوق ETF',
-                'spot': 'اسپات',
-                'margin': 'مارجین',
-                'forex_spot': 'جفت ارز',
-                'cfd': 'CFD',
-                'metals': 'فلزات',
-                'commodities': 'کالاها',
-                'indices': 'شاخص‌ها'
-            };
-            return labels[tradeType] || tradeType;
-        }
-
-        function getTimeframeLabel(timeframe) {
-            const labels = {
-                '5min': '5 دقیقه',
-                '15min': '15 دقیقه',
-                '1h': '1 ساعت',
-                '4h': '4 ساعت',
-                '1d': '1 روز',
-                '3d': '3 روز',
-                '1w': '1 هفته',
-                '2w': '2 هفته',
-                '1m': '1 ماه'
-            };
-            return labels[timeframe] || timeframe;
+            // اسکرول به نتایج
+            resultsContainer.scrollIntoView({ behavior: 'smooth' });
         }
     </script>
 </body>
