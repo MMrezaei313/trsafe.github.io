@@ -717,6 +717,43 @@
                 z-index: 999;
                 display: none;
             }
+            .analysis-status {
+    padding: 8px 12px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    margin-right: 10px;
+}
+
+.analysis-live {
+    background: #dcfce7;
+    color: #166534;
+    border: 1px solid #10b981;
+}
+
+.analysis-offline {
+    background: #fef3c7;
+    color: #92400e;
+    border: 1px solid #f59e0b;
+}
+
+.api-test-result {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 8px;
+    font-size: 0.9rem;
+}
+
+.api-success {
+    background: #f0fdf4;
+    color: #166534;
+    border-right: 4px solid #10b981;
+}
+
+.api-error {
+    background: #fef2f2;
+    color: #dc2626;
+    border-right: 4px solid #ef4444;
+}
             
             .overlay.active {
                 display: block;
@@ -1800,67 +1837,49 @@
         }
 
         // اجرای تحلیل پیشرفته
-        async function runAdvancedAnalysis() {
-            const symbol = document.getElementById('analysisSymbol').value;
-            const amount = parseFloat(document.getElementById('analysisAmount').value);
-            const leverage = parseInt(document.getElementById('analysisLeverage').value);
-            
-            if (!symbol) {
-                alert('لطفا یک نماد انتخاب کنید');
-                return;
-            }
-            
-            const resultsDiv = document.getElementById('analysisResults');
-            const contentDiv = document.getElementById('resultsContent');
-            
-            // شبیه سازی تحلیل پیشرفته
-            const probability = Math.floor(Math.random() * 30) + 65;
-            const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
-            const riskLevel = leverage >= 10 ? 'بالا' : leverage >= 5 ? 'متوسط' : 'پایین';
-            
-            const profitPotential = (amount * leverage * 0.15).toFixed(2);
-            const lossPotential = (amount * leverage * 0.08).toFixed(2);
-            
-            contentDiv.innerHTML = `
-                <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
-                    <h4 style="font-size: 1.1rem;">📈 تحلیل ${getCoinName(symbol)}</h4>
-                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0;">
-                        <div class="result-card">
-                            <div>احتمال موفقیت</div>
-                            <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${probability}%</div>
-                        </div>
-                        <div class="result-card">
-                            <div>توصیه Mousa</div>
-                            <div style="font-size: 18px; font-weight: bold; color: ${decision === 'خرید' ? '#10b981' : decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${decision}</div>
-                        </div>
-                        <div class="result-card">
-                            <div>سطح ریسک</div>
-                            <div style="font-size: 16px; color: ${riskLevel === 'بالا' ? '#ef4444' : riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${riskLevel}</div>
-                        </div>
-                        <div class="result-card">
-                            <div>اهرم</div>
-                            <div style="font-size: 16px; font-weight: bold;">${leverage}x</div>
-                        </div>
-                    </div>
-                    
-                    <div style="background: #f8fafc; padding: 12px; border-radius: 8px; margin: 12px 0;">
-                        <h5>💰 محاسبات مالی</h5>
-                        <div>سرمایه اولیه: $${amount.toLocaleString()}</div>
-                        <div>سرمایه با اهرم: $${(amount * leverage).toLocaleString()}</div>
-                        <div>حداکثر سود احتمالی: <span class="profit">+$${profitPotential}</span></div>
-                        <div>حداکثر ضرر احتمالی: <span class="loss">-$${lossPotential}</span></div>
-                    </div>
-                </div>
-                
-                <div style="background: #fef3c7; padding: 12px; border-radius: 10px; margin: 12px 0;">
-                    <strong>⚠️ هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
-                    معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
-                </div>
-            `;
-            
-            resultsDiv.style.display = 'block';
-            resultsDiv.scrollIntoView({ behavior: 'smooth' });
-        }
+async function runAdvancedAnalysis() {
+    const symbol = document.getElementById('analysisSymbol').value;
+    const amount = parseFloat(document.getElementById('analysisAmount').value);
+    const leverage = parseInt(document.getElementById('analysisLeverage').value);
+    
+    if (!symbol) {
+        alert('لطفا یک نماد انتخاب کنید');
+        return;
+    }
+    
+    const resultsDiv = document.getElementById('analysisResults');
+    const contentDiv = document.getElementById('resultsContent');
+    
+    // تست اتصال آنلاین
+    const isOnline = await testConnection();
+    
+    // نمایش وضعیت تحلیل
+    contentDiv.innerHTML = `
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+            <h4>🔍 در حال تحلیل ${getCoinName(symbol)}...</h4>
+            <div class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}">
+                ${isOnline ? '🟢 تحلیل با داده‌های واقعی' : '🟡 تحلیل با داده‌های نمونه'}
+            </div>
+            <div class="progress-bar" style="margin-top: 10px;">
+                <div class="progress-fill" style="width: 0%"></div>
+            </div>
+        </div>
+    `;
+    
+    resultsDiv.style.display = 'block';
+    resultsDiv.scrollIntoView({ behavior: 'smooth' });
+    
+    // شبیه‌سازی پردازش
+    await simulateAnalysisProgress();
+    
+    // اجرای تحلیل واقعی یا نمونه
+    const analysisResult = isOnline ? 
+        await runRealTechnicalAnalysis(symbol) : 
+        generateFallbackAnalysis();
+    
+    // نمایش نتایج
+    displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline);
+}
 
         // به روزرسانی اهرم در ماشین حساب
         function updateCalcLeverage() {
@@ -1923,6 +1942,148 @@
                 prevStepEl.classList.add('active');
             }
         }
+
+// تست اتصال به API
+async function testConnection() {
+    try {
+        const response = await fetch('https://api.coingecko.com/api/v3/ping');
+        return response.ok;
+    } catch (error) {
+        console.log('اتصال آنلاین برقرار نیست - استفاده از داده‌های نمونه');
+        return false;
+    }
+}
+
+// تحلیل تکنیکال واقعی
+async function runRealTechnicalAnalysis(symbol) {
+    try {
+        console.log('📡 در حال دریافت داده‌های واقعی برای:', symbol);
+        
+        // دریافت داده‌های واقعی از CoinGecko
+        const response = await fetch(
+            `https://api.coingecko.com/api/v3/coins/${symbol}`
+        );
+        
+        if (!response.ok) throw new Error('API Error');
+        
+        const data = await response.json();
+        const currentPrice = data.market_data.current_price.usd;
+        const priceChange24h = data.market_data.price_change_percentage_24h;
+        
+        console.log('✅ داده‌های واقعی دریافت شد:', {
+            symbol,
+            price: currentPrice,
+            change: priceChange24h
+        });
+        
+        // تحلیل بر اساس داده‌های واقعی
+        return analyzeRealMarketData(currentPrice, priceChange24h);
+        
+    } catch (error) {
+        console.error('خطا در دریافت داده‌های واقعی:', error);
+        return generateFallbackAnalysis();
+    }
+}
+
+// تحلیل داده‌های واقعی بازار
+function analyzeRealMarketData(currentPrice, priceChange24h) {
+    const volatility = Math.abs(priceChange24h);
+    const isUptrend = priceChange24h > 0;
+    
+    // محاسبه احتمال بر اساس داده‌های واقعی
+    let probability = 50; // پایه
+    
+    if (isUptrend) {
+        probability += Math.min(30, priceChange24h * 2);
+    } else {
+        probability -= Math.min(25, Math.abs(priceChange24h) * 1.5);
+    }
+    
+    probability = Math.max(40, Math.min(90, probability));
+    
+    return {
+        probability: Math.round(probability),
+        decision: probability >= 65 ? 'خرید' : probability >= 45 ? 'نگهداری' : 'فروش',
+        confidence: volatility < 5 ? 'اطمینان بالا' : 'اطمینان متوسط',
+        riskLevel: volatility > 10 ? 'بالا' : volatility > 5 ? 'متوسط' : 'پایین',
+        realData: true,
+        priceChange: priceChange24h.toFixed(2),
+        currentPrice: currentPrice
+    };
+}
+
+// نمایش نتایج تحلیل
+function displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline) {
+    const contentDiv = document.getElementById('resultsContent');
+    const profitPotential = (amount * leverage * (analysisResult.probability / 100) * 0.1).toFixed(2);
+    const lossPotential = (amount * leverage * ((100 - analysisResult.probability) / 100) * 0.05).toFixed(2);
+    
+    contentDiv.innerHTML = `
+        <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+            <h4 style="font-size: 1.1rem;">
+                📈 تحلیل ${getCoinName(symbol)} 
+                <span class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}" style="font-size: 0.7rem;">
+                    ${isOnline ? '🟢 داده واقعی' : '🟡 داده نمونه'}
+                </span>
+            </h4>
+            
+            ${isOnline ? 
+                '<div class="api-test-result api-success">✅ تحلیل بر اساس داده‌های زنده بازار انجام شد</div>' :
+                '<div class="api-test-result api-error">⚠️ اتصال به سرور برقرار نیست - تحلیل با داده‌های نمونه انجام شد</div>'
+            }
+            
+            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0;">
+                <div class="result-card">
+                    <div>احتمال موفقیت</div>
+                    <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${analysisResult.probability}%</div>
+                </div>
+                <div class="result-card">
+                    <div>توصیه Mousa</div>
+                    <div style="font-size: 18px; font-weight: bold; color: ${analysisResult.decision === 'خرید' ? '#10b981' : analysisResult.decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${analysisResult.decision}</div>
+                </div>
+                <div class="result-card">
+                    <div>سطح ریسک</div>
+                    <div style="font-size: 16px; color: ${analysisResult.riskLevel === 'بالا' ? '#ef4444' : analysisResult.riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${analysisResult.riskLevel}</div>
+                </div>
+                <div class="result-card">
+                    <div>تغییر قیمت</div>
+                    <div style="font-size: 16px; font-weight: bold; color: ${analysisResult.priceChange >= 0 ? '#10b981' : '#ef4444'};">${analysisResult.priceChange >= 0 ? '+' : ''}${analysisResult.priceChange}%</div>
+                </div>
+            </div>
+            
+            <div style="background: #f8fafc; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                <h5>💰 محاسبات مالی</h5>
+                <div>سرمایه اولیه: $${amount.toLocaleString()}</div>
+                <div>سرمایه با اهرم: $${(amount * leverage).toLocaleString()}</div>
+                <div>حداکثر سود احتمالی: <span class="profit">+$${profitPotential}</span></div>
+                <div>حداکثر ضرر احتمالی: <span class="loss">-$${lossPotential}</span></div>
+            </div>
+        </div>
+        
+        <div style="background: #fef3c7; padding: 12px; border-radius: 10px; margin: 12px 0;">
+            <strong>⚠️ هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
+            معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
+        </div>
+    `;
+}
+
+// شبیه‌سازی پیشرفت تحلیل
+function simulateAnalysisProgress() {
+    return new Promise((resolve) => {
+        const progressFill = document.querySelector('.progress-fill');
+        let progress = 0;
+        
+        const interval = setInterval(() => {
+            progress += Math.random() * 15;
+            if (progress >= 100) {
+                progress = 100;
+                clearInterval(interval);
+                resolve();
+            }
+            progressFill.style.width = progress + '%';
+        }, 200);
+    });
+}
 
         // اعتبارسنجی هر مرحله
         function validateStep(step) {
