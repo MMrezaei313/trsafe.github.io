@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mousa Trading - سیستم آنلاین</title>
+    <title>Mousa Trading - سیستم آنلاین پیشرفته</title>
     <style>
         * {
             margin: 0;
@@ -214,6 +214,388 @@
         
         .online { background: #dcfce7; color: #166534; }
         .offline { background: #fecaca; color: #dc2626; }
+
+        /* استایل‌های جدید برای قابلیت‌های Mousa */
+        .admin-panel {
+            background: #fffbeb;
+            border: 2px solid #f59e0b;
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        
+        .module-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .control-item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .switch {
+            position: relative;
+            display: inline-block;
+            width: 50px;
+            height: 24px;
+        }
+        
+        .switch input {
+            opacity: 0;
+            width: 0;
+            height: 0;
+        }
+        
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: #ccc;
+            transition: .4s;
+            border-radius: 24px;
+        }
+        
+        .slider:before {
+            position: absolute;
+            content: "";
+            height: 16px;
+            width: 16px;
+            left: 4px;
+            bottom: 4px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+        }
+        
+        input:checked + .slider {
+            background-color: #10b981;
+        }
+        
+        input:checked + .slider:before {
+            transform: translateX(26px);
+        }
+        
+        .api-connections {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .api-connection {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px;
+            background: white;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .connection-details {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .connection-status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #10b981;
+        }
+        
+        .connection-status-dot.offline {
+            background: #ef4444;
+        }
+        
+        .connection-status-dot.warning {
+            background: #f59e0b;
+        }
+        
+        .module-status {
+            font-size: 0.8rem;
+            padding: 4px 12px;
+            border-radius: 20px;
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .status-offline {
+            background: #fecaca;
+            color: #dc2626;
+        }
+        
+        .advanced-analysis-form {
+            position: relative;
+            min-height: 400px;
+        }
+        
+        .form-step {
+            display: none;
+            animation: fadeIn 0.5s ease-in;
+        }
+        
+        .form-step.active {
+            display: block;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+            gap: 10px;
+        }
+        
+        .form-actions .btn {
+            flex: 1;
+        }
+        
+        .selection-summary {
+            background: #f8fafc;
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .summary-item {
+            padding: 10px;
+            background: white;
+            border-radius: 8px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .final-prediction {
+            background: linear-gradient(135deg, #10b981, #22c55e);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .final-prediction.danger {
+            background: linear-gradient(135deg, #ef4444, #dc2626);
+        }
+        
+        .final-prediction.warning {
+            background: linear-gradient(135deg, #f59e0b, #d97706);
+        }
+        
+        .prediction-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .probability-circle {
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 50%;
+            width: 120px;
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+        }
+        
+        .circle-value {
+            font-size: 2rem;
+            font-weight: bold;
+        }
+        
+        .circle-label {
+            font-size: 0.8rem;
+            opacity: 0.9;
+        }
+        
+        .decision-text {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .trading-targets-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 25px 0;
+        }
+        
+        .target-card {
+            background: white;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            border: 2px solid #e5e7eb;
+        }
+        
+        .target-card.profit {
+            border-color: #10b981;
+        }
+        
+        .target-card.loss {
+            border-color: #ef4444;
+        }
+        
+        .target-card.time {
+            border-color: #f59e0b;
+        }
+        
+        .target-card.risk {
+            border-color: #3b82f6;
+        }
+        
+        .target-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .target-label {
+            font-size: 0.9rem;
+            color: #6b7280;
+            margin-bottom: 5px;
+        }
+        
+        .target-value {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #1f2937;
+        }
+        
+        .analysis-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .analysis-card {
+            background: white;
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+            text-align: center;
+        }
+        
+        .analysis-score {
+            font-size: 1.5rem;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        
+        .analysis-score.good {
+            color: #10b981;
+        }
+        
+        .analysis-score.average {
+            color: #f59e0b;
+        }
+        
+        .analysis-score.poor {
+            color: #ef4444;
+        }
+        
+        .recommendation-list {
+            background: white;
+            border-radius: 12px;
+            padding: 20px;
+            border: 1px solid #e5e7eb;
+        }
+        
+        .recommendation-item {
+            display: flex;
+            align-items: center;
+            padding: 10px 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        
+        .recommendation-item:last-child {
+            border-bottom: none;
+        }
+        
+        .recommendation-item i {
+            color: #10b981;
+            margin-left: 10px;
+        }
+        
+        .risk-warning {
+            background: #fef3c7;
+            color: #92400e;
+            padding: 20px;
+            border-radius: 12px;
+            border-right: 4px solid #f59e0b;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin-top: 10px;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #3b82f6, #10b981);
+            transition: width 0.3s ease;
+            border-radius: 4px;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        /* ریسپانسیو */
+        @media (max-width: 768px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+            
+            .sidebar {
+                display: none;
+            }
+            
+            .prediction-main {
+                flex-direction: column;
+                gap: 20px;
+            }
+            
+            .trading-targets-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -240,7 +622,7 @@
         <!-- برنامه اصلی -->
         <div class="main-app" id="mainApp">
             <div class="app-header">
-                <h2>Mousa Trading System</h2>
+                <h2>Mousa Trading System - نسخه پیشرفته</h2>
                 <div>
                     <span id="currentTime">--:--:--</span>
                     <button class="btn" onclick="logout()" style="width: auto; margin-left: 15px;">خروج</button>
@@ -261,6 +643,8 @@
                     <div class="menu-item active" onclick="showTab('tab-market')">📊 بازار زنده</div>
                     <div class="menu-item" onclick="showTab('tab-analysis')">🧠 تحلیل پیشرفته</div>
                     <div class="menu-item" onclick="showTab('tab-calculator')">🧮 ماشین حساب معاملاتی</div>
+                    <div class="menu-item" onclick="showTab('tab-admin')">⚙️ پنل مدیریت</div>
+                    <div class="menu-item" onclick="showTab('tab-advanced')">🤖 هوش مصنوعی Mousa</div>
                     
                     <div style="margin-top: 30px;">
                         <div class="connection-status online" id="connectionStatus">
@@ -400,6 +784,205 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- تب پنل مدیریت -->
+                    <div class="tab-content" id="tab-admin">
+                        <h2>پنل مدیریت Mousa</h2>
+                        <div class="admin-panel">
+                            <h3>🛡️ کنترل ماژول‌های پیشرفته</h3>
+                            <p>تنظیمات پیشرفته سیستم - فقط برای مدیران سیستم</p>
+                            
+                            <!-- وضعیت اتصال API -->
+                            <div style="margin-top: 20px;">
+                                <h4>🔗 وضعیت اتصال API</h4>
+                                <div class="api-connections">
+                                    <div class="api-connection">
+                                        <div class="connection-details">
+                                            <div class="connection-status-dot"></div>
+                                            <span>CoinGecko API</span>
+                                        </div>
+                                        <span class="module-status">آنلاین</span>
+                                    </div>
+                                    <div class="api-connection">
+                                        <div class="connection-details">
+                                            <div class="connection-status-dot"></div>
+                                            <span>Reuters News API</span>
+                                        </div>
+                                        <span class="module-status">آنلاین</span>
+                                    </div>
+                                    <div class="api-connection">
+                                        <div class="connection-details">
+                                            <div class="connection-status-dot"></div>
+                                            <span>BBC News API</span>
+                                        </div>
+                                        <span class="module-status">آنلاین</span>
+                                    </div>
+                                    <div class="api-connection">
+                                        <div class="connection-details">
+                                            <div class="connection-status-dot"></div>
+                                            <span>Forex Data API</span>
+                                        </div>
+                                        <span class="module-status">آنلاین</span>
+                                    </div>
+                                    <div class="api-connection">
+                                        <div class="connection-details">
+                                            <div class="connection-status-dot"></div>
+                                            <span>Tehran Stock API</span>
+                                        </div>
+                                        <span class="module-status">آنلاین</span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 20px;">
+                                <h4>کنترل ماژول‌های تحلیلی</h4>
+                                <div class="module-controls">
+                                    <div class="control-item">
+                                        <span>هوش مصنوعی پیشرفته</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleEnhancedAI" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="control-item">
+                                        <span>تحلیل اخبار رویترز</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleReuters" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="control-item">
+                                        <span>تحلیل اخبار بی‌بی‌سی</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleBBC" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="control-item">
+                                        <span>تحلیل حجم معاملات</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleVolumeAnalysis" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="control-item">
+                                        <span>تحلیل تکنیکال پیشرفته</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleTechnical" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                    <div class="control-item">
+                                        <span>تحلیل سنتیمنت بازار</span>
+                                        <label class="switch">
+                                            <input type="checkbox" id="toggleSentiment" checked>
+                                            <span class="slider"></span>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- تب هوش مصنوعی Mousa -->
+                    <div class="tab-content" id="tab-advanced">
+                        <h2>🤖 هوش مصنوعی Mousa - تحلیل چندمرحله‌ای</h2>
+                        
+                        <div class="calculator">
+                            <div class="advanced-analysis-form">
+                                <!-- مرحله 1: انتخاب بازار -->
+                                <div class="form-step active" id="step1">
+                                    <h4>📈 مرحله 1: انتخاب بازار</h4>
+                                    <div class="form-group">
+                                        <label>بازار مورد نظر</label>
+                                        <select class="form-control" id="marketSelect">
+                                            <option value="">-- لطفا بازار را انتخاب کنید --</option>
+                                            <option value="crypto">ارزهای دیجیتال</option>
+                                            <option value="forex">فارکس</option>
+                                            <option value="stocks">بورس سهام</option>
+                                            <option value="commodities">کالاها</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn btn-primary" onclick="nextStep(1)">
+                                        مرحله بعد
+                                    </button>
+                                </div>
+
+                                <!-- مرحله 2: انتخاب نماد -->
+                                <div class="form-step" id="step2">
+                                    <h4>🏷️ مرحله 2: انتخاب نماد</h4>
+                                    <div class="form-group">
+                                        <label>نماد معاملاتی</label>
+                                        <select class="form-control" id="symbolSelect">
+                                            <option value="">-- لطفا نماد را انتخاب کنید --</option>
+                                            <!-- نمادها بر اساس بازار پر می‌شوند -->
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(2)">
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="nextStep(2)">
+                                            مرحله بعد
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- مرحله 3: مقدار سرمایه‌گذاری -->
+                                <div class="form-step" id="step3">
+                                    <h4>💵 مرحله 3: مقدار سرمایه‌گذاری</h4>
+                                    <div class="form-group">
+                                        <label>مقدار سرمایه (دلار)</label>
+                                        <input type="number" class="form-control" id="investmentAmount" 
+                                               placeholder="مثال: 1000" min="10" step="10" value="1000">
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(3)">
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="nextStep(3)">
+                                            مرحله بعد
+                                        </button>
+                                    </div>
+                                </div>
+
+                                <!-- مرحله 4: زمان رسیدن به نتیجه -->
+                                <div class="form-step" id="step4">
+                                    <h4>⏰ مرحله 4: زمان رسیدن به نتیجه</h4>
+                                    <div class="form-group">
+                                        <label>بازه زمانی مورد نظر</label>
+                                        <select class="form-control" id="timeframeSelect">
+                                            <option value="">-- لطفا بازه زمانی را انتخاب کنید --</option>
+                                            <option value="5min">5 دقیقه</option>
+                                            <option value="15min">15 دقیقه</option>
+                                            <option value="1h">1 ساعت</option>
+                                            <option value="4h">4 ساعت</option>
+                                            <option value="1d">1 روز</option>
+                                            <option value="3d">3 روز</option>
+                                            <option value="1w">1 هفته</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevStep(4)">
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn btn-primary" onclick="runMousaAIAnalysis()">
+                                            اجرای تحلیل هوش مصنوعی
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- خلاصه انتخاب‌ها -->
+                            <div id="selectionSummary" class="selection-summary" style="display: none; margin-top: 20px;">
+                                <h5>📋 خلاصه انتخاب‌های شما:</h5>
+                                <div id="summaryContent"></div>
+                            </div>
+
+                            <!-- نتایج تحلیل -->
+                            <div id="mousaAIResults" style="display: none; margin-top: 30px;"></div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -410,6 +993,29 @@
         const API_BASE = 'https://api.coingecko.com/api/v3';
         let currentPrices = {};
         let updateInterval;
+        let currentStep = 1;
+        let userSelections = {};
+
+        // داده‌های نمادها برای هر بازار
+        const symbolsData = {
+            crypto: [
+                'بیت‌کوین (BTC)', 'اتریوم (ETH)', 'بایننس کوین (BNB)', 
+                'ریپل (XRP)', 'کاردانو (ADA)', 'سولانا (SOL)', 'دوج کوین (DOGE)'
+            ],
+            forex: [
+                'EUR/USD', 'GBP/USD', 'USD/JPY', 'AUD/USD', 'USD/CAD',
+                'USD/CHF', 'NZD/USD', 'EUR/GBP'
+            ],
+            stocks: [
+                'اپل (AAPL)', 'مایکروسافت (MSFT)', 'آمازون (AMZN)', 
+                'تسلا (TSLA)', 'فیسبوک (META)', 'گوگل (GOOGL)',
+                'نفتیا (NFLX)', 'نویدیا (NVDA)'
+            ],
+            commodities: [
+                'طلا (XAU)', 'نقره (XAG)', 'نفت خام (OIL)', 
+                'گاز طبیعی (GAS)', 'مس (COPPER)', 'قهوه (COFFEE)'
+            ]
+        };
 
         // مدیریت لاگین
         document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -437,6 +1043,75 @@
             
             // محاسبه اولیه
             calculateTrade();
+            
+            // تنظیم کنترل‌های ماژول
+            setupModuleControls();
+            
+            // شبیه‌سازی اتصالات API
+            simulateAPIConnections();
+        }
+
+        // تنظیم کنترل‌های ماژول
+        function setupModuleControls() {
+            const toggles = [
+                'toggleEnhancedAI', 'toggleReuters', 'toggleBBC',
+                'toggleVolumeAnalysis', 'toggleTechnical', 'toggleSentiment'
+            ];
+            
+            toggles.forEach(toggleId => {
+                const toggleElement = document.getElementById(toggleId);
+                if (toggleElement) {
+                    toggleElement.addEventListener('change', function() {
+                        const status = this.checked ? 'فعال' : 'غیرفعال';
+                        const moduleName = this.parentElement.previousElementSibling.textContent;
+                        showNotification(`ماژول ${moduleName} ${status} شد`);
+                    });
+                }
+            });
+        }
+
+        // شبیه‌سازی اتصالات API
+        function simulateAPIConnections() {
+            // شبیه‌سازی وضعیت اتصالات API
+            const connections = document.querySelectorAll('.api-connection');
+            connections.forEach(connection => {
+                const statusDot = connection.querySelector('.connection-status-dot');
+                const statusText = connection.querySelector('.module-status');
+                
+                // 95% احتمال آنلاین بودن
+                if (Math.random() > 0.05) {
+                    statusDot.className = 'connection-status-dot';
+                    statusText.textContent = 'آنلاین';
+                    statusText.className = 'module-status';
+                } else {
+                    statusDot.className = 'connection-status-dot offline';
+                    statusText.textContent = 'آفلاین';
+                    statusText.className = 'module-status status-offline';
+                }
+            });
+        }
+
+        // نمایش نوتیفیکیشن
+        function showNotification(message) {
+            // ایجاد یک نوتیفیکیشن موقت
+            const notification = document.createElement('div');
+            notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                background: #10b981;
+                color: white;
+                padding: 15px 20px;
+                border-radius: 8px;
+                z-index: 1000;
+                box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            `;
+            notification.textContent = message;
+            document.body.appendChild(notification);
+            
+            setTimeout(() => {
+                notification.remove();
+            }, 3000);
         }
 
         // به روزرسانی زمان
@@ -670,6 +1345,365 @@
         function updateCalcPrice() {
             // این تابع می تواند قیمت فعلی را برای محاسبات دقیق تر به روز کند
             calculateTrade();
+        }
+
+        // مدیریت مراحل فرم هوش مصنوعی Mousa
+        function nextStep(step) {
+            if (validateStep(step)) {
+                // مخفی کردن مرحله فعلی
+                document.querySelectorAll('.form-step').forEach(stepEl => {
+                    stepEl.classList.remove('active');
+                });
+                
+                // نمایش مرحله بعد
+                currentStep = step + 1;
+                const nextStepEl = document.getElementById(`step${currentStep}`);
+                if (nextStepEl) {
+                    nextStepEl.classList.add('active');
+                    
+                    // اگر مرحله 2 است، نمادها را پر کن
+                    if (currentStep === 2) {
+                        populateSymbols();
+                    }
+                    
+                    updateSelectionSummary();
+                }
+            }
+        }
+
+        function prevStep(step) {
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            currentStep = step - 1;
+            const prevStepEl = document.getElementById(`step${currentStep}`);
+            if (prevStepEl) {
+                prevStepEl.classList.add('active');
+            }
+        }
+
+        // اعتبارسنجی هر مرحله
+        function validateStep(step) {
+            switch(step) {
+                case 1:
+                    const marketSelect = document.getElementById('marketSelect');
+                    const market = marketSelect.value;
+                    if (!market) {
+                        alert('لطفا بازار مورد نظر را انتخاب کنید');
+                        marketSelect.focus();
+                        return false;
+                    }
+                    userSelections.market = market;
+                    return true;
+                    
+                case 2:
+                    const symbolSelect = document.getElementById('symbolSelect');
+                    const symbol = symbolSelect.value;
+                    if (!symbol) {
+                        alert('لطفا نماد معاملاتی را انتخاب کنید');
+                        symbolSelect.focus();
+                        return false;
+                    }
+                    userSelections.symbol = symbol;
+                    return true;
+                    
+                case 3:
+                    const amount = document.getElementById('investmentAmount').value;
+                    if (!amount || amount < 10) {
+                        alert('لطفا مقدار سرمایه معتبر وارد کنید (حداقل 10 دلار)');
+                        document.getElementById('investmentAmount').focus();
+                        return false;
+                    }
+                    userSelections.amount = amount;
+                    return true;
+                    
+                default:
+                    return true;
+            }
+        }
+
+        // پر کردن نمادها
+        function populateSymbols() {
+            const select = document.getElementById('symbolSelect');
+            select.innerHTML = '<option value="">-- لطفا نماد را انتخاب کنید --</option>';
+            
+            const market = userSelections.market;
+            if (symbolsData[market]) {
+                symbolsData[market].forEach(symbol => {
+                    const option = document.createElement('option');
+                    option.value = symbol;
+                    option.textContent = symbol;
+                    select.appendChild(option);
+                });
+            }
+        }
+
+        // به‌روزرسانی خلاصه انتخاب‌ها
+        function updateSelectionSummary() {
+            const summaryDiv = document.getElementById('selectionSummary');
+            const summaryContent = document.getElementById('summaryContent');
+            
+            if (Object.keys(userSelections).length > 0) {
+                let html = '<div class="summary-grid">';
+                
+                if (userSelections.market) {
+                    html += `<div class="summary-item"><strong>بازار:</strong> ${userSelections.market}</div>`;
+                }
+                
+                if (userSelections.symbol) {
+                    html += `<div class="summary-item"><strong>نماد:</strong> ${userSelections.symbol}</div>`;
+                }
+                
+                if (userSelections.amount) {
+                    html += `<div class="summary-item"><strong>سرمایه:</strong> ${userSelections.amount} دلار</div>`;
+                }
+                
+                html += '</div>';
+                summaryContent.innerHTML = html;
+                summaryDiv.style.display = 'block';
+            }
+        }
+
+        // اجرای تحلیل هوش مصنوعی Mousa
+        function runMousaAIAnalysis() {
+            const timeframe = document.getElementById('timeframeSelect').value;
+            if (!timeframe) {
+                alert('لطفا بازه زمانی را انتخاب کنید');
+                return;
+            }
+            
+            userSelections.timeframe = timeframe;
+            
+            // نمایش وضعیت تحلیل
+            const resultsDiv = document.getElementById('mousaAIResults');
+            resultsDiv.style.display = 'block';
+            resultsDiv.innerHTML = `
+                <div class="analysis-progress">
+                    <div style="background: #f0f9ff; padding: 20px; border-radius: 10px;">
+                        <h4>🧠 در حال اجرای تحلیل پیشرفته هوش مصنوعی Mousa...</h4>
+                        <div style="margin-top: 15px;">
+                            <div>🔍 جمع‌آوری داده‌های بازار</div>
+                            <div>📊 تحلیل تکنیکال (35 اندیکاتور)</div>
+                            <div>📰 تحلیل اخبار و سنتیمنت</div>
+                            <div>🤖 پردازش هوش مصنوعی پیشرفته</div>
+                            <div>🎯 محاسبه احتمال و اهداف معاملاتی</div>
+                        </div>
+                        <div class="progress-bar" style="margin-top: 10px;">
+                            <div class="progress-fill" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+            // شبیه‌سازی پیشرفت
+            simulateMousaAnalysisProgress();
+        }
+
+        // شبیه‌سازی پیشرفت تحلیل Mousa
+        function simulateMousaAnalysisProgress() {
+            const progressFill = document.querySelector('.progress-fill');
+            let progress = 0;
+            
+            const interval = setInterval(() => {
+                progress += Math.random() * 15;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    setTimeout(() => {
+                        showMousaAdvancedResults();
+                    }, 500);
+                }
+                progressFill.style.width = progress + '%';
+            }, 300);
+        }
+
+        // نمایش نتایج پیشرفته Mousa
+        function showMousaAdvancedResults() {
+            const resultsDiv = document.getElementById('mousaAIResults');
+            const analysisResult = generateMousaAdvancedAnalysis();
+            
+            resultsDiv.innerHTML = `
+                <div class="advanced-results">
+                    <h4>🧠 نتایج تحلیل پیشرفته هوش مصنوعی Mousa</h4>
+                    
+                    <!-- کارت نتیجه نهایی -->
+                    <div class="final-prediction ${analysisResult.decisionColor}">
+                        <div class="prediction-header">
+                            <div class="symbol-info">
+                                <h3>${userSelections.symbol}</h3>
+                                <small>${userSelections.market} - ${getTimeframeLabel(userSelections.timeframe)}</small>
+                            </div>
+                            <div class="timeframe">⏰ ${getTimeframeLabel(userSelections.timeframe)}</div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+                            <div class="probability-circle">
+                                <div class="circle-value">${analysisResult.probability}%</div>
+                                <div class="circle-label">احتمال موفقیت</div>
+                            </div>
+                            
+                            <div class="decision">
+                                <div class="decision-text">${analysisResult.decision}</div>
+                                <div class="decision-subtext">${analysisResult.confidence}</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- اهداف معاملاتی -->
+                    <div class="trading-targets-grid">
+                        <div class="target-card profit">
+                            <div class="target-icon">🎯</div>
+                            <div class="target-label">حد سود</div>
+                            <div class="target-value">${analysisResult.targets.takeProfit}</div>
+                        </div>
+                        
+                        <div class="target-card loss">
+                            <div class="target-icon">🛡️</div>
+                            <div class="target-label">حد ضرر</div>
+                            <div class="target-value">${analysisResult.targets.stopLoss}</div>
+                        </div>
+                        
+                        <div class="target-card time">
+                            <div class="target-icon">⏱️</div>
+                            <div class="target-label">زمان بازدهی</div>
+                            <div class="target-value">${analysisResult.targets.timeToResult}</div>
+                        </div>
+                        
+                        <div class="target-card risk">
+                            <div class="target-icon">📊</div>
+                            <div class="target-label">سطح ریسک</div>
+                            <div class="target-value" style="color: ${analysisResult.riskLevel === 'بالا' ? '#ef4444' : analysisResult.riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'}">
+                                ${analysisResult.riskLevel}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- تحلیل‌های جزئی -->
+                    <div style="margin-top: 25px;">
+                        <h5>📈 تحلیل‌های جزئی</h5>
+                        <div class="analysis-grid">
+                            <div class="analysis-card">
+                                <div style="font-weight: bold; margin-bottom: 10px;">تکنیکال</div>
+                                <div class="analysis-score ${analysisResult.scores.technical >= 70 ? 'good' : analysisResult.scores.technical >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.technical}/100
+                                </div>
+                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                    ${analysisResult.details.technical.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div style="font-weight: bold; margin-bottom: 10px;">سنتیمنت</div>
+                                <div class="analysis-score ${analysisResult.scores.sentiment >= 70 ? 'good' : analysisResult.scores.sentiment >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.sentiment}/100
+                                </div>
+                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                    ${analysisResult.details.sentiment.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div style="font-weight: bold; margin-bottom: 10px;">اخبار</div>
+                                <div class="analysis-score ${analysisResult.scores.news >= 70 ? 'good' : analysisResult.scores.news >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.news}/100
+                                </div>
+                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                    ${analysisResult.details.news.join('<br>')}
+                                </div>
+                            </div>
+                            
+                            <div class="analysis-card">
+                                <div style="font-weight: bold; margin-bottom: 10px;">هوش مصنوعی</div>
+                                <div class="analysis-score ${analysisResult.scores.ai >= 70 ? 'good' : analysisResult.scores.ai >= 50 ? 'average' : 'poor'}">
+                                    ${analysisResult.scores.ai}/100
+                                </div>
+                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                    ${analysisResult.details.ai.join('<br>')}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- توصیه‌ها -->
+                    <div style="margin-top: 25px;">
+                        <h5>💡 توصیه‌های معاملاتی</h5>
+                        <div class="recommendation-list">
+                            ${analysisResult.recommendations.map(rec => `
+                                <div class="recommendation-item">
+                                    <span>${rec}</span>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                    
+                    <!-- هشدار ریسک -->
+                    <div class="risk-warning">
+                        <div>⚠️</div>
+                        <div>
+                            <strong>هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
+                            سرمایه‌گذاری در بازارهای مالی دارای ریسک است و ممکن است منجر به از دست دادن سرمایه شود.
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // تابع کمکی برای تولید تحلیل پیشرفته Mousa
+        function generateMousaAdvancedAnalysis() {
+            const probability = Math.floor(Math.random() * 30 + 65); // 65-95%
+            const decision = probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش';
+            const decisionColor = decision === 'خرید' ? '' : decision === 'فروش' ? 'danger' : 'warning';
+            
+            return {
+                probability: probability,
+                decision: decision,
+                decisionColor: decisionColor,
+                confidence: probability >= 80 ? 'اطمینان بسیار بالا' : 
+                            probability >= 70 ? 'اطمینان بالا' : 
+                            probability >= 60 ? 'اطمینان متوسط' : 'اطمینان پایین',
+                riskLevel: probability >= 80 ? 'پایین' : 
+                          probability >= 65 ? 'متوسط' : 'بالا',
+                targets: {
+                    takeProfit: (Math.random() * 20 + 5).toFixed(1) + '%',
+                    stopLoss: (Math.random() * 8 + 2).toFixed(1) + '%',
+                    timeToResult: userSelections.timeframe === '5min' ? '15-30 دقیقه' :
+                                 userSelections.timeframe === '1h' ? '2-4 ساعت' :
+                                 userSelections.timeframe === '1d' ? '1-3 روز' : '3-7 روز'
+                },
+                scores: {
+                    technical: Math.floor(Math.random() * 30 + 65),
+                    sentiment: Math.floor(Math.random() * 30 + 60),
+                    news: Math.floor(Math.random() * 35 + 55),
+                    ai: Math.floor(Math.random() * 25 + 70)
+                },
+                details: {
+                    technical: ['RSI در منطقه مناسب', 'MACD مثبت', 'حجم معاملات افزایشی'],
+                    sentiment: ['سنتیمنت بازار مثبت', 'شاخص ترس و طمع: 65', 'حجم اجتماعی بالا'],
+                    news: ['اخبار اقتصادی مثبت', 'عدم رویداد مهم منفی', 'تحلیل‌های خوشبینانه'],
+                    ai: ['الگوی صعودی شناسایی شد', 'اعتماد مدل: 87%', 'همخوانی با داده‌های تاریخی']
+                },
+                recommendations: [
+                    'حد ضرر را دقیق رعایت کنید',
+                    'پوزیشن‌سازی مرحله‌ای انجام دهید',
+                    'اخبار بازار را دنبال کنید',
+                    'تحلیل را در بازه‌های زمانی مختلف بررسی کنید'
+                ]
+            };
+        }
+
+        // توابع کمکی برای نمایش برچسب‌ها
+        function getTimeframeLabel(timeframe) {
+            const labels = {
+                '5min': '5 دقیقه',
+                '15min': '15 دقیقه',
+                '1h': '1 ساعت',
+                '4h': '4 ساعت',
+                '1d': '1 روز',
+                '3d': '3 روز',
+                '1w': '1 هفته'
+            };
+            return labels[timeframe] || timeframe;
         }
 
         // رویدادهای محاسبه خودکار
