@@ -15,50 +15,52 @@
         body {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             min-height: 100vh;
-            padding: 20px;
+            padding: 10px;
         }
         
         .container {
-            max-width: 1200px;
+            max-width: 100%;
             margin: 0 auto;
         }
         
         .login-box {
-            max-width: 400px;
-            margin: 50px auto;
+            max-width: 100%;
+            margin: 20px auto;
             background: white;
-            padding: 30px;
+            padding: 20px;
             border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .login-box h2 {
             text-align: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
             color: #1e3a8a;
+            font-size: 1.4rem;
         }
         
         .form-group {
-            margin-bottom: 15px;
+            margin-bottom: 12px;
         }
         
         .form-group label {
             display: block;
             margin-bottom: 5px;
             font-weight: bold;
+            font-size: 0.9rem;
         }
         
         .form-control {
             width: 100%;
-            padding: 10px;
+            padding: 12px;
             border: 2px solid #ddd;
             border-radius: 8px;
-            font-size: 16px;
+            font-size: 16px; /* جلوگیری از زوم در iOS */
         }
         
         .btn {
             width: 100%;
-            padding: 12px;
+            padding: 14px;
             background: #3b82f6;
             color: white;
             border: none;
@@ -77,22 +79,44 @@
             background: white;
             border-radius: 15px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
         
         .app-header {
             background: #1f2937;
             color: white;
-            padding: 20px;
+            padding: 15px;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .app-header h2 {
+            font-size: 1.2rem;
+            margin-bottom: 5px;
+        }
+        
+        .header-controls {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 1.5rem;
+            cursor: pointer;
         }
         
         .market-ticker {
             background: #374151;
-            padding: 10px;
+            padding: 8px;
             overflow: hidden;
+            font-size: 0.85rem;
         }
         
         .ticker-content {
@@ -101,7 +125,7 @@
         }
         
         .ticker-item {
-            margin: 0 20px;
+            margin: 0 15px;
             white-space: nowrap;
         }
         
@@ -112,18 +136,23 @@
         
         .dashboard {
             display: grid;
-            grid-template-columns: 250px 1fr;
+            grid-template-columns: 1fr;
             min-height: 80vh;
         }
         
         .sidebar {
             background: #1f2937;
             color: white;
-            padding: 20px;
+            padding: 15px;
+            display: none;
+        }
+        
+        .sidebar.active {
+            display: block;
         }
         
         .main-content {
-            padding: 20px;
+            padding: 15px;
             overflow-y: auto;
         }
         
@@ -133,6 +162,7 @@
             cursor: pointer;
             border-radius: 5px;
             transition: background 0.3s;
+            font-size: 0.95rem;
         }
         
         .menu-item:hover, .menu-item.active {
@@ -149,23 +179,23 @@
         
         .price-card {
             background: #f8fafc;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 10px 0;
             border: 2px solid #e5e7eb;
             text-align: center;
         }
         
         .current-price {
-            font-size: 28px;
+            font-size: 1.5rem;
             font-weight: bold;
             color: #3b82f6;
-            margin: 10px 0;
+            margin: 8px 0;
         }
         
         .price-change {
-            font-size: 16px;
-            padding: 5px 10px;
+            font-size: 0.9rem;
+            padding: 4px 8px;
             border-radius: 20px;
             display: inline-block;
         }
@@ -177,23 +207,24 @@
             background: white;
             border: 2px solid #e5e7eb;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 15px 0;
         }
         
         .results-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-top: 15px;
         }
         
         .result-card {
             background: #f8fafc;
-            padding: 15px;
+            padding: 12px;
             border-radius: 8px;
             text-align: center;
             border: 1px solid #e5e7eb;
+            font-size: 0.9rem;
         }
         
         .profit { color: #10b981; }
@@ -201,15 +232,16 @@
         
         .loading {
             text-align: center;
-            padding: 20px;
+            padding: 15px;
             color: #6b7280;
         }
         
         .connection-status {
-            padding: 10px;
+            padding: 8px;
             border-radius: 5px;
-            margin: 10px 0;
+            margin: 8px 0;
             text-align: center;
+            font-size: 0.9rem;
         }
         
         .online { background: #dcfce7; color: #166534; }
@@ -220,14 +252,14 @@
             background: #fffbeb;
             border: 2px solid #f59e0b;
             border-radius: 10px;
-            padding: 20px;
-            margin: 20px 0;
+            padding: 15px;
+            margin: 15px 0;
         }
         
         .module-controls {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 10px;
             margin-top: 15px;
         }
         
@@ -288,8 +320,8 @@
         
         .api-connections {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 15px;
+            grid-template-columns: 1fr;
+            gap: 10px;
             margin-top: 15px;
         }
         
@@ -325,8 +357,8 @@
         }
         
         .module-status {
-            font-size: 0.8rem;
-            padding: 4px 12px;
+            font-size: 0.7rem;
+            padding: 4px 8px;
             border-radius: 20px;
             background: #dcfce7;
             color: #166534;
@@ -364,30 +396,31 @@
         
         .selection-summary {
             background: #f8fafc;
-            padding: 20px;
+            padding: 15px;
             border-radius: 10px;
             border: 1px solid #e5e7eb;
         }
         
         .summary-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
         }
         
         .summary-item {
-            padding: 10px;
+            padding: 8px;
             background: white;
             border-radius: 8px;
             border: 1px solid #e5e7eb;
+            font-size: 0.9rem;
         }
         
         .final-prediction {
             background: linear-gradient(135deg, #10b981, #22c55e);
             color: white;
-            padding: 30px;
-            border-radius: 20px;
-            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
             text-align: center;
         }
         
@@ -403,50 +436,52 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            flex-wrap: wrap;
         }
         
         .probability-circle {
             background: rgba(255, 255, 255, 0.2);
             border-radius: 50%;
-            width: 120px;
-            height: 120px;
+            width: 100px;
+            height: 100px;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             backdrop-filter: blur(10px);
+            margin: 10px auto;
         }
         
         .circle-value {
-            font-size: 2rem;
+            font-size: 1.5rem;
             font-weight: bold;
         }
         
         .circle-label {
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             opacity: 0.9;
         }
         
         .decision-text {
-            font-size: 2.5rem;
+            font-size: 1.8rem;
             font-weight: bold;
             margin-bottom: 5px;
         }
         
         .trading-targets-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
-            margin: 25px 0;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 15px 0;
         }
         
         .target-card {
             background: white;
-            padding: 20px;
-            border-radius: 15px;
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
             border: 2px solid #e5e7eb;
         }
         
@@ -467,41 +502,41 @@
         }
         
         .target-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
+            font-size: 1.5rem;
+            margin-bottom: 8px;
         }
         
         .target-label {
-            font-size: 0.9rem;
+            font-size: 0.8rem;
             color: #6b7280;
             margin-bottom: 5px;
         }
         
         .target-value {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             font-weight: bold;
             color: #1f2937;
         }
         
         .analysis-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 15px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
             margin-top: 15px;
         }
         
         .analysis-card {
             background: white;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             border: 1px solid #e5e7eb;
             text-align: center;
         }
         
         .analysis-score {
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             font-weight: bold;
-            margin-bottom: 10px;
+            margin-bottom: 8px;
         }
         
         .analysis-score.good {
@@ -518,16 +553,17 @@
         
         .recommendation-list {
             background: white;
-            border-radius: 12px;
-            padding: 20px;
+            border-radius: 10px;
+            padding: 15px;
             border: 1px solid #e5e7eb;
         }
         
         .recommendation-item {
             display: flex;
             align-items: center;
-            padding: 10px 0;
+            padding: 8px 0;
             border-bottom: 1px solid #f1f5f9;
+            font-size: 0.9rem;
         }
         
         .recommendation-item:last-child {
@@ -536,28 +572,29 @@
         
         .recommendation-item i {
             color: #10b981;
-            margin-left: 10px;
+            margin-left: 8px;
         }
         
         .risk-warning {
             background: #fef3c7;
             color: #92400e;
-            padding: 20px;
-            border-radius: 12px;
+            padding: 15px;
+            border-radius: 10px;
             border-right: 4px solid #f59e0b;
             display: flex;
             align-items: flex-start;
-            gap: 15px;
-            margin-top: 20px;
+            gap: 10px;
+            margin-top: 15px;
+            font-size: 0.9rem;
         }
         
         .progress-bar {
             width: 100%;
-            height: 8px;
+            height: 6px;
             background: #e5e7eb;
             border-radius: 4px;
             overflow: hidden;
-            margin-top: 10px;
+            margin-top: 8px;
         }
         
         .progress-fill {
@@ -569,17 +606,17 @@
         
         .data-source-selector {
             background: #f8fafc;
-            padding: 15px;
+            padding: 12px;
             border-radius: 10px;
-            margin: 15px 0;
+            margin: 12px 0;
             border: 1px solid #e5e7eb;
         }
         
         .source-options {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 10px;
-            margin-top: 10px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 8px;
+            margin-top: 8px;
         }
         
         .source-option {
@@ -590,6 +627,7 @@
             cursor: pointer;
             text-align: center;
             transition: all 0.3s;
+            font-size: 0.9rem;
         }
         
         .source-option:hover {
@@ -611,23 +649,132 @@
             to { opacity: 1; transform: translateY(0); }
         }
         
-        /* ریسپانسیو */
+        /* ریسپانسیو برای موبایل */
         @media (max-width: 768px) {
             .dashboard {
                 grid-template-columns: 1fr;
             }
             
             .sidebar {
+                position: fixed;
+                top: 0;
+                right: 0;
+                width: 80%;
+                height: 100%;
+                z-index: 1000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                overflow-y: auto;
+            }
+            
+            .sidebar.active {
+                transform: translateX(0);
+            }
+            
+            .menu-toggle {
+                display: block;
+            }
+            
+            .overlay {
+                position: fixed;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100%;
+                background: rgba(0,0,0,0.5);
+                z-index: 999;
                 display: none;
+            }
+            
+            .overlay.active {
+                display: block;
             }
             
             .prediction-main {
                 flex-direction: column;
-                gap: 20px;
+                gap: 15px;
             }
             
             .trading-targets-grid {
                 grid-template-columns: 1fr 1fr;
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .analysis-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .source-options {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* ریسپانسیو برای تبلت */
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                display: block;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            .dashboard {
+                grid-template-columns: 250px 1fr;
+            }
+            
+            .trading-targets-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .analysis-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        /* ریسپانسیو برای دسکتاپ */
+        @media (min-width: 1025px) {
+            .sidebar {
+                display: block;
+            }
+            
+            .menu-toggle {
+                display: none;
+            }
+            
+            .dashboard {
+                grid-template-columns: 250px 1fr;
+            }
+            
+            .trading-targets-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .results-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .analysis-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .summary-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .source-options {
+                grid-template-columns: repeat(4, 1fr);
             }
         }
     </style>
@@ -656,10 +803,11 @@
         <!-- برنامه اصلی -->
         <div class="main-app" id="mainApp">
             <div class="app-header">
-                <h2>Mousa Trading System - نسخه کامل API</h2>
-                <div>
+                <h2>Mousa Trading System</h2>
+                <div class="header-controls">
                     <span id="currentTime">--:--:--</span>
-                    <button class="btn" onclick="logout()" style="width: auto; margin-left: 15px;">خروج</button>
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <button class="btn" onclick="logout()" style="width: auto; margin-left: 10px; padding: 8px 12px;">خروج</button>
                 </div>
             </div>
 
@@ -672,7 +820,7 @@
 
             <div class="dashboard">
                 <!-- نوار کناری -->
-                <div class="sidebar">
+                <div class="sidebar" id="sidebar">
                     <h3>منوی سیستم</h3>
                     <div class="menu-item active" onclick="showTab('tab-market')">📊 بازار زنده</div>
                     <div class="menu-item" onclick="showTab('tab-analysis')">🧠 تحلیل پیشرفته</div>
@@ -750,20 +898,18 @@
 
                         <div class="calculator">
                             <h4>تنظیمات تحلیل</h4>
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin: 15px 0;">
-                                <div>
-                                    <label>سرمایه (دلار)</label>
-                                    <input type="number" id="analysisAmount" class="form-control" value="1000" min="10">
-                                </div>
-                                <div>
-                                    <label>اهرم</label>
-                                    <select id="analysisLeverage" class="form-control">
-                                        <option value="1">1x</option>
-                                        <option value="5">5x</option>
-                                        <option value="10">10x</option>
-                                        <option value="20">20x</option>
-                                    </select>
-                                </div>
+                            <div class="form-group">
+                                <label>سرمایه (دلار)</label>
+                                <input type="number" id="analysisAmount" class="form-control" value="1000" min="10">
+                            </div>
+                            <div class="form-group">
+                                <label>اهرم</label>
+                                <select id="analysisLeverage" class="form-control">
+                                    <option value="1">1x</option>
+                                    <option value="5">5x</option>
+                                    <option value="10">10x</option>
+                                    <option value="20">20x</option>
+                                </select>
                             </div>
                             
                             <button class="btn" onclick="runAdvancedAnalysis()">اجرای تحلیل هوشمند</button>
@@ -779,66 +925,64 @@
                     <div class="tab-content" id="tab-calculator">
                         <h2>ماشین حساب معاملاتی</h2>
                         <div class="calculator">
-                            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
-                                <div>
-                                    <h4>ورودی ها</h4>
-                                    <div class="form-group">
-                                        <label>نماد معاملاتی</label>
-                                        <select id="calcSymbol" class="form-control" onchange="updateCalcPrice()">
-                                            <option value="bitcoin">بیت‌کوین (BTC)</option>
-                                            <option value="ethereum">اتریوم (ETH)</option>
-                                            <option value="binancecoin">بایننس کوین (BNB)</option>
-                                        </select>
+                            <div>
+                                <h4>ورودی ها</h4>
+                                <div class="form-group">
+                                    <label>نماد معاملاتی</label>
+                                    <select id="calcSymbol" class="form-control" onchange="updateCalcPrice()">
+                                        <option value="bitcoin">بیت‌کوین (BTC)</option>
+                                        <option value="ethereum">اتریوم (ETH)</option>
+                                        <option value="binancecoin">بایننس کوین (BNB)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>سرمایه اولیه (دلار)</label>
+                                    <input type="number" id="calcAmount" class="form-control" value="1000" min="10">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>نوع پوزیشن</label>
+                                    <select id="calcPosition" class="form-control">
+                                        <option value="long">لانگ (خرید)</option>
+                                        <option value="short">شورت (فروش)</option>
+                                    </select>
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>اهرم: <span id="calcLeverageValue">5x</span></label>
+                                    <input type="range" id="calcLeverage" class="form-control" min="1" max="20" value="5" oninput="updateCalcLeverage()">
+                                </div>
+                                
+                                <div class="form-group">
+                                    <label>تغییر قیمت مورد انتظار (%)</label>
+                                    <input type="number" id="calcPriceChange" class="form-control" value="10" step="0.1">
+                                </div>
+                            </div>
+                            
+                            <div>
+                                <h4>نتایج محاسبات</h4>
+                                <div class="results-grid">
+                                    <div class="result-card">
+                                        <div>سرمایه اولیه</div>
+                                        <div id="calcInitial">$1,000</div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label>سرمایه اولیه (دلار)</label>
-                                        <input type="number" id="calcAmount" class="form-control" value="1000" min="10">
+                                    <div class="result-card">
+                                        <div>سرمایه با اهرم</div>
+                                        <div id="calcLeveraged">$5,000</div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label>نوع پوزیشن</label>
-                                        <select id="calcPosition" class="form-control">
-                                            <option value="long">لانگ (خرید)</option>
-                                            <option value="short">شورت (فروش)</option>
-                                        </select>
+                                    <div class="result-card">
+                                        <div>سود احتمالی</div>
+                                        <div id="calcProfit" class="profit">+$500</div>
                                     </div>
-                                    
-                                    <div class="form-group">
-                                        <label>اهرم: <span id="calcLeverageValue">5x</span></label>
-                                        <input type="range" id="calcLeverage" class="form-control" min="1" max="20" value="5" oninput="updateCalcLeverage()">
-                                    </div>
-                                    
-                                    <div class="form-group">
-                                        <label>تغییر قیمت مورد انتظار (%)</label>
-                                        <input type="number" id="calcPriceChange" class="form-control" value="10" step="0.1">
+                                    <div class="result-card">
+                                        <div>ضرر احتمالی</div>
+                                        <div id="calcLoss" class="loss">-$500</div>
                                     </div>
                                 </div>
                                 
-                                <div>
-                                    <h4>نتایج محاسبات</h4>
-                                    <div class="results-grid">
-                                        <div class="result-card">
-                                            <div>سرمایه اولیه</div>
-                                            <div id="calcInitial">$1,000</div>
-                                        </div>
-                                        <div class="result-card">
-                                            <div>سرمایه با اهرم</div>
-                                            <div id="calcLeveraged">$5,000</div>
-                                        </div>
-                                        <div class="result-card">
-                                            <div>سود احتمالی</div>
-                                            <div id="calcProfit" class="profit">+$500</div>
-                                        </div>
-                                        <div class="result-card">
-                                            <div>ضرر احتمالی</div>
-                                            <div id="calcLoss" class="loss">-$500</div>
-                                        </div>
-                                    </div>
-                                    
-                                    <div style="margin-top: 20px;">
-                                        <button class="btn" onclick="calculateTrade()">محاسبه سود/ضرر</button>
-                                    </div>
+                                <div style="margin-top: 20px;">
+                                    <button class="btn" onclick="calculateTrade()">محاسبه سود/ضرر</button>
                                 </div>
                             </div>
                         </div>
@@ -928,7 +1072,7 @@
                                             <option value="commodities">کالاها</option>
                                         </select>
                                     </div>
-                                    <button class="btn btn-primary" onclick="nextStep(1)">
+                                    <button class="btn" onclick="nextStep(1)">
                                         مرحله بعد
                                     </button>
                                 </div>
@@ -947,7 +1091,7 @@
                                         <button class="btn" onclick="prevStep(2)">
                                             مرحله قبل
                                         </button>
-                                        <button class="btn btn-primary" onclick="nextStep(2)">
+                                        <button class="btn" onclick="nextStep(2)">
                                             مرحله بعد
                                         </button>
                                     </div>
@@ -965,7 +1109,7 @@
                                         <button class="btn" onclick="prevStep(3)">
                                             مرحله قبل
                                         </button>
-                                        <button class="btn btn-primary" onclick="nextStep(3)">
+                                        <button class="btn" onclick="nextStep(3)">
                                             مرحله بعد
                                         </button>
                                     </div>
@@ -991,7 +1135,7 @@
                                         <button class="btn" onclick="prevStep(4)">
                                             مرحله قبل
                                         </button>
-                                        <button class="btn btn-primary" onclick="runMousaAIAnalysis()">
+                                        <button class="btn" onclick="runMousaAIAnalysis()">
                                             اجرای تحلیل هوش مصنوعی
                                         </button>
                                     </div>
@@ -1036,6 +1180,9 @@
                 </div>
             </div>
         </div>
+        
+        <!-- overlay برای منوی موبایل -->
+        <div class="overlay" id="overlay" onclick="toggleSidebar()"></div>
     </div>
 
     <script>
@@ -1086,6 +1233,15 @@
                 alert('نام کاربری یا رمز عبور اشتباه است!');
             }
         });
+
+        // نمایش/پنهان کردن منو در موبایل
+        function toggleSidebar() {
+            const sidebar = document.getElementById('sidebar');
+            const overlay = document.getElementById('overlay');
+            
+            sidebar.classList.toggle('active');
+            overlay.classList.toggle('active');
+        }
 
         // مقداردهی اولیه برنامه
         function initializeApp() {
@@ -1230,6 +1386,11 @@
                 loadMarketData();
             } else if (tabId === 'tab-news') {
                 loadNewsData();
+            }
+            
+            // در موبایل، پس از انتخاب تب منو را ببند
+            if (window.innerWidth <= 768) {
+                toggleSidebar();
             }
         }
 
@@ -1458,10 +1619,10 @@
             
             news.forEach(item => {
                 html += `
-                    <div style="background: #f8fafc; padding: 20px; border-radius: 10px; border-right: 4px solid #3b82f6;">
-                        <h4 style="margin-bottom: 10px;">${item.title}</h4>
-                        <p style="color: #6b7280; margin-bottom: 10px;">${item.description}</p>
-                        <div style="display: flex; justify-content: space-between; font-size: 0.9rem; color: #9ca3af;">
+                    <div style="background: #f8fafc; padding: 15px; border-radius: 10px; border-right: 4px solid #3b82f6;">
+                        <h4 style="margin-bottom: 10px; font-size: 1.1rem;">${item.title}</h4>
+                        <p style="color: #6b7280; margin-bottom: 10px; font-size: 0.9rem;">${item.description}</p>
+                        <div style="display: flex; justify-content: space-between; font-size: 0.8rem; color: #9ca3af;">
                             <span>منبع: ${item.source}</span>
                             <span>${item.time}</span>
                         </div>
@@ -1478,7 +1639,7 @@
             const marketDataDiv = document.getElementById('marketData');
             const loadingDiv = document.getElementById('marketLoading');
             
-            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 15px;">';
+            let html = '<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 12px;">';
             
             for (const [coin, info] of Object.entries(data)) {
                 const coinName = getCoinName(coin);
@@ -1489,10 +1650,10 @@
                 
                 html += `
                     <div class="price-card">
-                        <h3>${coinName}</h3>
+                        <h3 style="font-size: 1.1rem;">${coinName}</h3>
                         <div class="current-price">$${price}</div>
                         <div class="price-change ${changeClass}">${changeSign}${change}%</div>
-                        <div style="margin-top: 10px; font-size: 14px; color: #6b7280;">
+                        <div style="margin-top: 10px; font-size: 12px; color: #6b7280;">
                             منبع: ${getDataSourceName(currentDataSource)}
                         </div>
                     </div>
@@ -1603,24 +1764,28 @@
             const lossPotential = (amount * leverage * 0.08).toFixed(2);
             
             contentDiv.innerHTML = `
-                <div style="background: #f0f9ff; padding: 20px; border-radius: 10px; margin: 15px 0;">
-                    <h4>📈 تحلیل ${getCoinName(symbol)}</h4>
-                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; margin: 15px 0;">
+                <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+                    <h4 style="font-size: 1.1rem;">📈 تحلیل ${getCoinName(symbol)}</h4>
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0;">
                         <div class="result-card">
                             <div>احتمال موفقیت</div>
-                            <div style="font-size: 24px; font-weight: bold; color: #3b82f6;">${probability}%</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${probability}%</div>
                         </div>
                         <div class="result-card">
                             <div>توصیه Mousa</div>
-                            <div style="font-size: 20px; font-weight: bold; color: ${decision === 'خرید' ? '#10b981' : decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${decision}</div>
+                            <div style="font-size: 18px; font-weight: bold; color: ${decision === 'خرید' ? '#10b981' : decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${decision}</div>
                         </div>
                         <div class="result-card">
                             <div>سطح ریسک</div>
-                            <div style="font-size: 18px; color: ${riskLevel === 'بالا' ? '#ef4444' : riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${riskLevel}</div>
+                            <div style="font-size: 16px; color: ${riskLevel === 'بالا' ? '#ef4444' : riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${riskLevel}</div>
+                        </div>
+                        <div class="result-card">
+                            <div>اهرم</div>
+                            <div style="font-size: 16px; font-weight: bold;">${leverage}x</div>
                         </div>
                     </div>
                     
-                    <div style="background: #f8fafc; padding: 15px; border-radius: 8px; margin: 15px 0;">
+                    <div style="background: #f8fafc; padding: 12px; border-radius: 8px; margin: 12px 0;">
                         <h5>💰 محاسبات مالی</h5>
                         <div>سرمایه اولیه: $${amount.toLocaleString()}</div>
                         <div>سرمایه با اهرم: $${(amount * leverage).toLocaleString()}</div>
@@ -1629,7 +1794,7 @@
                     </div>
                 </div>
                 
-                <div style="background: #fef3c7; padding: 15px; border-radius: 10px; margin: 15px 0;">
+                <div style="background: #fef3c7; padding: 12px; border-radius: 10px; margin: 12px 0;">
                     <strong>⚠️ هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
                     معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
                 </div>
@@ -1798,9 +1963,9 @@
             resultsDiv.style.display = 'block';
             resultsDiv.innerHTML = `
                 <div class="analysis-progress">
-                    <div style="background: #f0f9ff; padding: 20px; border-radius: 10px;">
+                    <div style="background: #f0f9ff; padding: 15px; border-radius: 10px;">
                         <h4>🧠 در حال اجرای تحلیل پیشرفته هوش مصنوعی Mousa...</h4>
-                        <div style="margin-top: 15px;">
+                        <div style="margin-top: 12px;">
                             <div>🔍 جمع‌آوری داده‌های بازار</div>
                             <div>📊 تحلیل تکنیکال (35 اندیکاتور)</div>
                             <div>📰 تحلیل اخبار و سنتیمنت</div>
@@ -1849,13 +2014,13 @@
                     <div class="final-prediction ${analysisResult.decisionColor}">
                         <div class="prediction-header">
                             <div class="symbol-info">
-                                <h3>${userSelections.symbol}</h3>
+                                <h3 style="font-size: 1.2rem;">${userSelections.symbol}</h3>
                                 <small>${userSelections.market} - ${getTimeframeLabel(userSelections.timeframe)}</small>
                             </div>
                             <div class="timeframe">⏰ ${getTimeframeLabel(userSelections.timeframe)}</div>
                         </div>
                         
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 40px; flex-wrap: wrap;">
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
                             <div class="probability-circle">
                                 <div class="circle-value">${analysisResult.probability}%</div>
                                 <div class="circle-label">احتمال موفقیت</div>
@@ -1898,45 +2063,45 @@
                     </div>
                     
                     <!-- تحلیل‌های جزئی -->
-                    <div style="margin-top: 25px;">
+                    <div style="margin-top: 20px;">
                         <h5>📈 تحلیل‌های جزئی</h5>
                         <div class="analysis-grid">
                             <div class="analysis-card">
-                                <div style="font-weight: bold; margin-bottom: 10px;">تکنیکال</div>
+                                <div style="font-weight: bold; margin-bottom: 8px;">تکنیکال</div>
                                 <div class="analysis-score ${analysisResult.scores.technical >= 70 ? 'good' : analysisResult.scores.technical >= 50 ? 'average' : 'poor'}">
                                     ${analysisResult.scores.technical}/100
                                 </div>
-                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                <div style="font-size: 0.75rem; color: #6b7280; line-height: 1.4; margin-top: 8px;">
                                     ${analysisResult.details.technical.join('<br>')}
                                 </div>
                             </div>
                             
                             <div class="analysis-card">
-                                <div style="font-weight: bold; margin-bottom: 10px;">سنتیمنت</div>
+                                <div style="font-weight: bold; margin-bottom: 8px;">سنتیمنت</div>
                                 <div class="analysis-score ${analysisResult.scores.sentiment >= 70 ? 'good' : analysisResult.scores.sentiment >= 50 ? 'average' : 'poor'}">
                                     ${analysisResult.scores.sentiment}/100
                                 </div>
-                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                <div style="font-size: 0.75rem; color: #6b7280; line-height: 1.4; margin-top: 8px;">
                                     ${analysisResult.details.sentiment.join('<br>')}
                                 </div>
                             </div>
                             
                             <div class="analysis-card">
-                                <div style="font-weight: bold; margin-bottom: 10px;">اخبار</div>
+                                <div style="font-weight: bold; margin-bottom: 8px;">اخبار</div>
                                 <div class="analysis-score ${analysisResult.scores.news >= 70 ? 'good' : analysisResult.scores.news >= 50 ? 'average' : 'poor'}">
                                     ${analysisResult.scores.news}/100
                                 </div>
-                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                <div style="font-size: 0.75rem; color: #6b7280; line-height: 1.4; margin-top: 8px;">
                                     ${analysisResult.details.news.join('<br>')}
                                 </div>
                             </div>
                             
                             <div class="analysis-card">
-                                <div style="font-weight: bold; margin-bottom: 10px;">هوش مصنوعی</div>
+                                <div style="font-weight: bold; margin-bottom: 8px;">هوش مصنوعی</div>
                                 <div class="analysis-score ${analysisResult.scores.ai >= 70 ? 'good' : analysisResult.scores.ai >= 50 ? 'average' : 'poor'}">
                                     ${analysisResult.scores.ai}/100
                                 </div>
-                                <div style="font-size: 0.8rem; color: #6b7280; line-height: 1.4; margin-top: 10px;">
+                                <div style="font-size: 0.75rem; color: #6b7280; line-height: 1.4; margin-top: 8px;">
                                     ${analysisResult.details.ai.join('<br>')}
                                 </div>
                             </div>
@@ -1944,7 +2109,7 @@
                     </div>
                     
                     <!-- توصیه‌ها -->
-                    <div style="margin-top: 25px;">
+                    <div style="margin-top: 20px;">
                         <h5>💡 توصیه‌های معاملاتی</h5>
                         <div class="recommendation-list">
                             ${analysisResult.recommendations.map(rec => `
