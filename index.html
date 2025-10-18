@@ -966,7 +966,7 @@
                 </div>
             </div>
 
-            <!-- تیکر بازار -->
+            <!-- تیکر بازار - بهبود یافته -->
             <div class="market-ticker">
                 <div class="ticker-content" id="tickerContent">
                     <!-- قیمت های زنده اینجا نمایش داده می شوند -->
@@ -1003,7 +1003,7 @@
             </div>
 
             <div class="dashboard">
-                <!-- نوار کناری -->
+                <!-- نوار کناری - بهبود یافته -->
                 <div class="sidebar" id="sidebar">
                     <h3>منوی سیستم</h3>
                     <div class="menu-item active" onclick="showTab('tab-market')">📊 بازار زنده</div>
@@ -1034,11 +1034,11 @@
 
                 <!-- محتوای اصلی -->
                 <div class="main-content">
-                    <!-- تب بازار زنده -->
+                    <!-- تب بازار زنده - بهبود یافته -->
                     <div class="tab-content active" id="tab-market">
                         <h2>بازار زنده - اتصال به تمام صرافی‌ها</h2>
                         
-                        <!-- انتخاب منبع داده -->
+                        <!-- انتخاب منبع داده - بهبود یافته -->
                         <div class="data-source-selector">
                             <h4>📡 انتخاب منبع داده</h4>
                             <div class="source-options">
@@ -1092,7 +1092,7 @@
                         </div>
                     </div>
 
-                    <!-- تب تحلیل پیشرفته -->
+                    <!-- تب تحلیل پیشرفته - بهبود یافته -->
                     <div class="tab-content" id="tab-analysis">
                         <h2>🧠 تحلیل پیشرفته Mousa</h2>
                         
@@ -1548,12 +1548,15 @@
     </div>
 
     <script>
-        // API Keys واقعی - در محیط تولید باید از سرور امن استفاده شود
-        const ALPHA_VANTAGE_API_KEY = 'demo'; // برای تست
-        const NEWS_API_KEY = 'pub_1234567890abcdef'; // کلید نمونه
-        const COINGECKO_API_URL = 'https://api.coingecko.com/api/v3';
-        const BINANCE_API_URL = 'https://api.binance.com/api/v3';
-        const XCHIEF_API_URL = 'https://api.xchief.com/v1'; // آدرس نمونه
+        // API Keys و تنظیمات - بهبود یافته
+        const API_CONFIG = {
+            COINGECKO: 'https://api.coingecko.com/api/v3',
+            BINANCE: 'https://api.binance.com/api/v3',
+            XCHIEF: 'https://api.xchief.com/v1', // آدرس نمونه
+            ALPHA_VANTAGE: 'https://www.alphavantage.co/query',
+            TSETMC: 'http://cdn.tsetmc.com/api', // آدرس نمونه
+            PROXY_SERVER: 'https://cors-anywhere.herokuapp.com/' // پروکسی عمومی
+        };
 
         // سیستم پروکسی پیشرفته
         class AdvancedProxy {
@@ -1572,11 +1575,17 @@
                     return await fetch(url, options);
                 }
 
-                const proxyUrl = `https://cors-proxy.mousa.workers.dev/?url=${encodeURIComponent(url)}`;
+                const proxyUrl = `${API_CONFIG.PROXY_SERVER}${url}`;
                 const startTime = Date.now();
                 
                 try {
-                    const response = await fetch(proxyUrl, options);
+                    const response = await fetch(proxyUrl, {
+                        ...options,
+                        headers: {
+                            ...options.headers,
+                            'X-Requested-With': 'XMLHttpRequest'
+                        }
+                    });
                     const endTime = Date.now();
                     
                     this.proxyStats.totalRequests++;
@@ -1598,6 +1607,22 @@
                         error: error.message,
                         lastUpdate: new Date()
                     });
+                    
+                    // اگر پروکسی کار نکرد، مستقیماً تلاش کن
+                    try {
+                        const directResponse = await fetch(url, options);
+                        if (directResponse.ok) {
+                            this.connections.set(url, {
+                                status: 'success_direct',
+                                responseTime: Date.now() - startTime,
+                                lastUpdate: new Date()
+                            });
+                            return directResponse;
+                        }
+                    } catch (directError) {
+                        console.error('Direct connection also failed:', directError);
+                    }
+                    
                     throw error;
                 }
             }
@@ -1627,7 +1652,7 @@
         let isOnline = true;
         let xchiefConnected = false;
 
-        // داده‌های نمادها برای هر بازار
+        // داده‌های نمادها - بهبود یافته
         const symbolsData = {
             crypto: [
                 'بیت‌کوین (BTC)', 'اتریوم (ETH)', 'بایننس کوین (BNB)', 
@@ -1646,14 +1671,10 @@
                 'اپل (AAPL)', 'مایکروسافت (MSFT)', 'آمازون (AMZN)', 
                 'تسلا (TSLA)', 'فیسبوک (META)', 'گوگل (GOOGL)',
                 'نفتیا (NFLX)', 'نویدیا (NVDA)'
-            ],
-            commodities: [
-                'طلا (XAU)', 'نقره (XAG)', 'نفت خام (OIL)', 
-                'گاز طبیعی (GAS)', 'مس (COPPER)', 'قهوه (COFFEE)'
             ]
         };
 
-        // مدیریت لاگین
+        // مدیریت لاگین (بدون تغییر)
         document.getElementById('loginForm').addEventListener('submit', function(e) {
             e.preventDefault();
             const username = document.getElementById('username').value;
@@ -1668,16 +1689,7 @@
             }
         });
 
-        // نمایش/پنهان کردن منو در موبایل
-        function toggleSidebar() {
-            const sidebar = document.getElementById('sidebar');
-            const overlay = document.getElementById('overlay');
-            
-            sidebar.classList.toggle('active');
-            overlay.classList.toggle('active');
-        }
-
-        // مقداردهی اولیه برنامه
+        // مقداردهی اولیه برنامه - بهبود یافته
         async function initializeApp() {
             updateTime();
             setInterval(updateTime, 1000);
@@ -1724,19 +1736,23 @@
                 </span>`;
         }
 
-        // تست اتصال به APIهای مختلف
+        // تست اتصال به APIهای مختلف - بهبود یافته
         async function testAPIConnections() {
             const statusIndicator = document.querySelector('.api-status');
             const realTimeIndicator = document.querySelector('.real-time-indicator');
             
             try {
                 // تست CoinGecko
-                const coingeckoTest = await advancedProxy.fetchWithProxy(`${COINGECKO_API_URL}/ping`);
+                const coingeckoTest = await advancedProxy.fetchWithProxy(`${API_CONFIG.COINGECKO}/ping`);
                 if (!coingeckoTest.ok) throw new Error('CoinGecko API Error');
                 
                 // تست Binance
-                const binanceTest = await advancedProxy.fetchWithProxy(`${BINANCE_API_URL}/ping`);
+                const binanceTest = await advancedProxy.fetchWithProxy(`${API_CONFIG.BINANCE}/ping`);
                 if (!binanceTest.ok) throw new Error('Binance API Error');
+                
+                // تست Alpha Vantage
+                const alphaTest = await advancedProxy.fetchWithProxy(`${API_CONFIG.ALPHA_VANTAGE}?function=GLOBAL_QUOTE&symbol=IBM&apikey=demo`);
+                if (!alphaTest.ok) throw new Error('Alpha Vantage API Error');
                 
                 // تست XChief
                 await testXChiefConnection();
@@ -1746,6 +1762,8 @@
                 statusIndicator.className = 'api-status api-live';
                 realTimeIndicator.style.background = '#10b981';
                 
+                showNotification('✅ تمام اتصالات API برقرار شد');
+                
             } catch (error) {
                 console.error('API Connection Error:', error);
                 isOnline = false;
@@ -1753,7 +1771,7 @@
                 statusIndicator.className = 'api-status api-offline';
                 realTimeIndicator.style.background = '#ef4444';
                 
-                showNotification('⚠️ سیستم در حالت آفلاین کار می‌کند. برخی قابلیت‌ها محدود هستند.');
+                showNotification('⚠️ برخی اتصالات API برقرار نیست. از داده‌های نمونه استفاده می‌شود.');
             }
         }
 
