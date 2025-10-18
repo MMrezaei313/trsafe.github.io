@@ -648,12 +648,6 @@
             animation: pulse 2s infinite;
         }
         
-        @keyframes pulse {
-            0% { opacity: 1; }
-            50% { opacity: 0.5; }
-            100% { opacity: 1; }
-        }
-        
         .api-status {
             font-size: 0.7rem;
             padding: 4px 8px;
@@ -671,14 +665,53 @@
             color: #dc2626;
         }
         
+        .analysis-status {
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+        
+        .analysis-live {
+            background: #dcfce7;
+            color: #166534;
+            border: 1px solid #10b981;
+        }
+        
+        .analysis-offline {
+            background: #fef3c7;
+            color: #92400e;
+            border: 1px solid #f59e0b;
+        }
+        
+        .api-test-result {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 8px;
+            font-size: 0.9rem;
+        }
+        
+        .api-success {
+            background: #f0fdf4;
+            color: #166534;
+            border-right: 4px solid #10b981;
+        }
+        
+        .api-error {
+            background: #fef2f2;
+            color: #dc2626;
+            border-right: 4px solid #ef4444;
+        }
+        
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(10px); }
             to { opacity: 1; transform: translateY(0); }
         }
         
-        @keyframes slideUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
         }
         
         /* ریسپانسیو برای موبایل */
@@ -717,43 +750,6 @@
                 z-index: 999;
                 display: none;
             }
-            .analysis-status {
-    padding: 8px 12px;
-    border-radius: 20px;
-    font-size: 0.8rem;
-    margin-right: 10px;
-}
-
-.analysis-live {
-    background: #dcfce7;
-    color: #166534;
-    border: 1px solid #10b981;
-}
-
-.analysis-offline {
-    background: #fef3c7;
-    color: #92400e;
-    border: 1px solid #f59e0b;
-}
-
-.api-test-result {
-    padding: 10px;
-    margin: 10px 0;
-    border-radius: 8px;
-    font-size: 0.9rem;
-}
-
-.api-success {
-    background: #f0fdf4;
-    color: #166534;
-    border-right: 4px solid #10b981;
-}
-
-.api-error {
-    background: #fef2f2;
-    color: #dc2626;
-    border-right: 4px solid #ef4444;
-}
             
             .overlay.active {
                 display: block;
@@ -900,6 +896,7 @@
                     <div class="menu-item" onclick="showTab('tab-admin')">⚙️ پنل مدیریت</div>
                     <div class="menu-item" onclick="showTab('tab-advanced')">🤖 هوش مصنوعی Mousa</div>
                     <div class="menu-item" onclick="showTab('tab-news')">📰 اخبار مالی</div>
+                    <div class="menu-item" onclick="showTab('tab-saved-analyses')" id="adminSavedAnalyses">📊 تحلیل‌های ذخیره شده</div>
                     
                     <div style="margin-top: 30px;">
                         <div class="connection-status online" id="connectionStatus">
@@ -950,46 +947,55 @@
 
                     <!-- تب تحلیل پیشرفته -->
                     <div class="tab-content" id="tab-analysis">
-                        <h2>تحلیل پیشرفته</h2>
-                        <div class="price-card">
-                            <h4>انتخاب نماد برای تحلیل</h4>
-                            <select id="analysisSymbol" class="form-control" onchange="updateAnalysisPrice()">
-                                <option value="">لطفا نماد را انتخاب کنید</option>
-                                <option value="bitcoin">بیت‌کوین (BTC)</option>
-                                <option value="ethereum">اتریوم (ETH)</option>
-                                <option value="binancecoin">بایننس کوین (BNB)</option>
-                                <option value="ripple">ریپل (XRP)</option>
-                                <option value="cardano">کاردانو (ADA)</option>
-                            </select>
-                            
-                            <div id="analysisPriceDisplay" style="margin-top: 15px; display: none;">
-                                <div class="current-price" id="analysisCurrentPrice">-</div>
-                                <div id="analysisPriceChange">-</div>
-                            </div>
-                        </div>
-
+                        <h2>🧠 تحلیل پیشرفته Mousa</h2>
+                        
                         <div class="calculator">
-                            <h4>تنظیمات تحلیل</h4>
-                            <div class="form-group">
-                                <label>سرمایه (دلار)</label>
-                                <input type="number" id="analysisAmount" class="form-control" value="1000" min="10">
-                            </div>
-                            <div class="form-group">
-                                <label>اهرم</label>
-                                <select id="analysisLeverage" class="form-control">
-                                    <option value="1">1x</option>
-                                    <option value="5">5x</option>
-                                    <option value="10">10x</option>
-                                    <option value="20">20x</option>
-                                </select>
-                            </div>
-                            
-                            <button class="btn" onclick="runAdvancedAnalysis()">اجرای تحلیل هوشمند</button>
-                        </div>
+                            <div class="advanced-analysis-form">
+                                <!-- مرحله 1: انتخاب نماد -->
+                                <div class="form-step active" id="analysisStep1">
+                                    <h4>📈 مرحله 1: انتخاب نماد</h4>
+                                    <div class="form-group">
+                                        <label>نماد معاملاتی</label>
+                                        <select id="analysisSymbol" class="form-control">
+                                            <option value="">-- لطفا نماد را انتخاب کنید --</option>
+                                        </select>
+                                    </div>
+                                    <button class="btn" onclick="nextAnalysisStep(1)">
+                                        مرحله بعد
+                                    </button>
+                                </div>
 
-                        <div id="analysisResults" style="display: none;">
-                            <h4>نتایج تحلیل Mousa</h4>
-                            <div id="resultsContent"></div>
+                                <!-- مرحله 2: تنظیمات سرمایه -->
+                                <div class="form-step" id="analysisStep2">
+                                    <h4>💵 مرحله 2: تنظیمات سرمایه</h4>
+                                    <div class="form-group">
+                                        <label>مقدار سرمایه (دلار)</label>
+                                        <input type="number" id="analysisAmount" class="form-control" value="1000" min="10">
+                                    </div>
+                                    <div class="form-group">
+                                        <label>اهرم</label>
+                                        <select id="analysisLeverage" class="form-control">
+                                            <option value="1">1x</option>
+                                            <option value="5">5x</option>
+                                            <option value="10">10x</option>
+                                            <option value="20">20x</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-actions">
+                                        <button class="btn" onclick="prevAnalysisStep(2)">
+                                            مرحله قبل
+                                        </button>
+                                        <button class="btn" onclick="runAdvancedAnalysis()">
+                                            اجرای تحلیل پیشرفته
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div id="analysisResults" style="display: none;">
+                                <h4>نتایج تحلیل Mousa</h4>
+                                <div id="resultsContent"></div>
+                            </div>
                         </div>
                     </div>
 
@@ -1249,6 +1255,28 @@
                             <!-- اخبار اینجا نمایش داده می‌شوند -->
                         </div>
                     </div>
+
+                    <!-- تب تحلیل‌های ذخیره شده -->
+                    <div class="tab-content" id="tab-saved-analyses">
+                        <h2>📊 تحلیل‌های ذخیره شده - پنل مدیریت</h2>
+                        
+                        <div class="admin-panel">
+                            <h4>تاریخچه تحلیل‌های انجام شده</h4>
+                            
+                            <div style="margin-bottom: 15px;">
+                                <button class="btn" onclick="loadSavedAnalyses()" style="width: auto; margin-left: 10px;">
+                                    🔄 بروزرسانی
+                                </button>
+                                <button class="btn" onclick="clearAllAnalyses()" style="width: auto; background: #ef4444;">
+                                    🗑️ حذف همه
+                                </button>
+                            </div>
+                            
+                            <div id="savedAnalysesList">
+                                <!-- لیست تحلیل‌های ذخیره شده -->
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -1270,6 +1298,7 @@
         let currentPrices = {};
         let updateInterval;
         let currentStep = 1;
+        let currentAnalysisStep = 1;
         let userSelections = {};
         let isOnline = true;
 
@@ -1325,6 +1354,9 @@
             
             // تست اتصال به APIها
             await testAPIConnections();
+            
+            // بارگذاری نمادهای اولیه
+            await loadExchangeSymbols(currentDataSource);
             
             // شروع به روزرسانی داده های بازار
             await loadMarketData();
@@ -1383,8 +1415,165 @@
             });
             event.target.closest('.source-option').classList.add('active');
             
+            // بارگذاری نمادهای مربوط به صرافی انتخاب شده
+            loadExchangeSymbols(source);
+            
             // بارگذاری داده‌های جدید
             loadMarketData();
+        }
+
+        // بارگذاری نمادهای صرافی
+        async function loadExchangeSymbols(exchange) {
+            console.log('در حال بارگذاری نمادهای صرافی:', exchange);
+            
+            const symbolSelects = [
+                document.getElementById('analysisSymbol'),
+                document.getElementById('calcSymbol'),
+                document.getElementById('symbolSelect') // برای هوش مصنوعی
+            ];
+            
+            // پاک کردن گزینه‌های قبلی
+            symbolSelects.forEach(select => {
+                if (select) {
+                    select.innerHTML = '<option value="">در حال بارگذاری نمادها...</option>';
+                }
+            });
+            
+            try {
+                let symbols = [];
+                
+                switch(exchange) {
+                    case 'binance':
+                        symbols = await loadBinanceSymbols();
+                        break;
+                    case 'coingecko':
+                        symbols = await loadCoinGeckoSymbols();
+                        break;
+                    case 'alphavantage':
+                        symbols = await loadAlphaVantageSymbols();
+                        break;
+                    case 'tsetmc':
+                        symbols = await loadTSETMCSymbols();
+                        break;
+                    default:
+                        symbols = getDefaultSymbols();
+                }
+                
+                // پر کردن selectها
+                symbolSelects.forEach(select => {
+                    if (select) {
+                        select.innerHTML = '<option value="">لطفا نماد را انتخاب کنید</option>';
+                        symbols.forEach(symbol => {
+                            const option = document.createElement('option');
+                            option.value = symbol.id;
+                            option.textContent = symbol.name + (symbol.symbol ? ` (${symbol.symbol})` : '');
+                            select.appendChild(option);
+                        });
+                    }
+                });
+                
+                showNotification(`✅ نمادهای ${exchange} بارگذاری شدند`);
+                
+            } catch (error) {
+                console.error('Error loading symbols:', error);
+                loadDefaultSymbols();
+                showNotification('⚠️ خطا در بارگذاری نمادها. از نمادهای پیش‌فرض استفاده می‌شود.');
+            }
+        }
+
+        // نمادهای Binance
+        async function loadBinanceSymbols() {
+            try {
+                const response = await fetch('https://api.binance.com/api/v3/exchangeInfo');
+                const data = await response.json();
+                
+                return data.symbols
+                    .filter(s => s.status === 'TRADING' && s.symbol.endsWith('USDT'))
+                    .slice(0, 20)
+                    .map(s => ({
+                        id: s.symbol.toLowerCase().replace('usdt', ''),
+                        name: s.baseAsset,
+                        symbol: s.symbol
+                    }));
+            } catch (error) {
+                return getDefaultCryptoSymbols();
+            }
+        }
+
+        // نمادهای CoinGecko
+        async function loadCoinGeckoSymbols() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&order=market_cap_desc&per_page=20&page=1');
+                const data = await response.json();
+                
+                return data.map(coin => ({
+                    id: coin.id,
+                    name: coin.name,
+                    symbol: coin.symbol.toUpperCase()
+                }));
+            } catch (error) {
+                return getDefaultCryptoSymbols();
+            }
+        }
+
+        // نمادهای Alpha Vantage
+        async function loadAlphaVantageSymbols() {
+            return [
+                { id: 'AAPL', name: 'اپل', symbol: 'AAPL' },
+                { id: 'MSFT', name: 'مایکروسافت', symbol: 'MSFT' },
+                { id: 'GOOGL', name: 'گوگل', symbol: 'GOOGL' },
+                { id: 'AMZN', name: 'آمازون', symbol: 'AMZN' },
+                { id: 'TSLA', name: 'تسلا', symbol: 'TSLA' },
+                { id: 'EUR/USD', name: 'یورو/دلار', symbol: 'EURUSD' },
+                { id: 'GBP/USD', name: 'پوند/دلار', symbol: 'GBPUSD' }
+            ];
+        }
+
+        // نمادهای TSETMC
+        async function loadTSETMCSymbols() {
+            return [
+                { id: 'شاخص کل', name: 'شاخص کل بورس' },
+                { id: 'فملی', name: 'فولاد مبارکه' },
+                { id: 'فولاد', name: 'فولاد خوزستان' },
+                { id: 'کگل', name: 'کگل' },
+                { id: 'وبصادر', name: 'وبصادر' }
+            ];
+        }
+
+        // نمادهای پیش‌فرض
+        function getDefaultCryptoSymbols() {
+            return [
+                { id: 'bitcoin', name: 'بیت‌کوین', symbol: 'BTC' },
+                { id: 'ethereum', name: 'اتریوم', symbol: 'ETH' },
+                { id: 'binancecoin', name: 'بایننس کوین', symbol: 'BNB' },
+                { id: 'ripple', name: 'ریپل', symbol: 'XRP' },
+                { id: 'cardano', name: 'کاردانو', symbol: 'ADA' },
+                { id: 'solana', name: 'سولانا', symbol: 'SOL' },
+                { id: 'polkadot', name: 'پولکادات', symbol: 'DOT' },
+                { id: 'dogecoin', name: 'دوج کوین', symbol: 'DOGE' }
+            ];
+        }
+
+        function loadDefaultSymbols() {
+            const symbolSelects = [
+                document.getElementById('analysisSymbol'),
+                document.getElementById('calcSymbol'),
+                document.getElementById('symbolSelect')
+            ];
+            
+            const defaultSymbols = getDefaultCryptoSymbols();
+            
+            symbolSelects.forEach(select => {
+                if (select) {
+                    select.innerHTML = '<option value="">لطفا نماد را انتخاب کنید</option>';
+                    defaultSymbols.forEach(symbol => {
+                        const option = document.createElement('option');
+                        option.value = symbol.id;
+                        option.textContent = symbol.name + (symbol.symbol ? ` (${symbol.symbol})` : '');
+                        select.appendChild(option);
+                    });
+                }
+            });
         }
 
         // انتخاب منبع اخبار
@@ -1494,6 +1683,8 @@
                 loadMarketData();
             } else if (tabId === 'tab-news') {
                 loadNewsData();
+            } else if (tabId === 'tab-saved-analyses') {
+                loadSavedAnalyses();
             }
             
             // در موبایل، پس از انتخاب تب منو را ببند
@@ -1814,72 +2005,241 @@
             return names[coinId] || coinId;
         }
 
-        // به روزرسانی قیمت در تحلیل
-        function updateAnalysisPrice() {
-            const symbol = document.getElementById('analysisSymbol').value;
-            const display = document.getElementById('analysisPriceDisplay');
-            const priceElement = document.getElementById('analysisCurrentPrice');
-            const changeElement = document.getElementById('analysisPriceChange');
-            
-            if (symbol && currentPrices[symbol]) {
-                const info = currentPrices[symbol];
-                const price = info.usd.toLocaleString();
-                const change = info.usd_24h_change.toFixed(2);
-                const changeClass = change >= 0 ? 'positive' : 'negative';
-                const changeSign = change >= 0 ? '+' : '';
+        // مدیریت مراحل تحلیل پیشرفته
+        function nextAnalysisStep(step) {
+            if (validateAnalysisStep(step)) {
+                document.querySelectorAll('.form-step').forEach(stepEl => {
+                    stepEl.classList.remove('active');
+                });
                 
-                priceElement.textContent = `$${price}`;
-                changeElement.innerHTML = `<span class="price-change ${changeClass}">${changeSign}${change}%</span>`;
-                display.style.display = 'block';
-            } else {
-                display.style.display = 'none';
+                currentAnalysisStep = step + 1;
+                document.getElementById(`analysisStep${currentAnalysisStep}`).classList.add('active');
+            }
+        }
+
+        function prevAnalysisStep(step) {
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            currentAnalysisStep = step - 1;
+            document.getElementById(`analysisStep${currentAnalysisStep}`).classList.add('active');
+        }
+
+        function validateAnalysisStep(step) {
+            if (step === 1) {
+                const symbol = document.getElementById('analysisSymbol').value;
+                if (!symbol) {
+                    alert('لطفا نماد معاملاتی را انتخاب کنید');
+                    return false;
+                }
+            }
+            return true;
+        }
+
+        // تست اتصال به API
+        async function testConnection() {
+            try {
+                const response = await fetch('https://api.coingecko.com/api/v3/ping');
+                return response.ok;
+            } catch (error) {
+                console.log('اتصال آنلاین برقرار نیست - استفاده از داده‌های نمونه');
+                return false;
             }
         }
 
         // اجرای تحلیل پیشرفته
-async function runAdvancedAnalysis() {
-    const symbol = document.getElementById('analysisSymbol').value;
-    const amount = parseFloat(document.getElementById('analysisAmount').value);
-    const leverage = parseInt(document.getElementById('analysisLeverage').value);
-    
-    if (!symbol) {
-        alert('لطفا یک نماد انتخاب کنید');
-        return;
-    }
-    
-    const resultsDiv = document.getElementById('analysisResults');
-    const contentDiv = document.getElementById('resultsContent');
-    
-    // تست اتصال آنلاین
-    const isOnline = await testConnection();
-    
-    // نمایش وضعیت تحلیل
-    contentDiv.innerHTML = `
-        <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
-            <h4>🔍 در حال تحلیل ${getCoinName(symbol)}...</h4>
-            <div class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}">
-                ${isOnline ? '🟢 تحلیل با داده‌های واقعی' : '🟡 تحلیل با داده‌های نمونه'}
-            </div>
-            <div class="progress-bar" style="margin-top: 10px;">
-                <div class="progress-fill" style="width: 0%"></div>
-            </div>
-        </div>
-    `;
-    
-    resultsDiv.style.display = 'block';
-    resultsDiv.scrollIntoView({ behavior: 'smooth' });
-    
-    // شبیه‌سازی پردازش
-    await simulateAnalysisProgress();
-    
-    // اجرای تحلیل واقعی یا نمونه
-    const analysisResult = isOnline ? 
-        await runRealTechnicalAnalysis(symbol) : 
-        generateFallbackAnalysis();
-    
-    // نمایش نتایج
-    displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline);
-}
+        async function runAdvancedAnalysis() {
+            const symbol = document.getElementById('analysisSymbol').value;
+            const amount = parseFloat(document.getElementById('analysisAmount').value);
+            const leverage = parseInt(document.getElementById('analysisLeverage').value);
+            
+            if (!symbol) {
+                alert('لطفا یک نماد انتخاب کنید');
+                return;
+            }
+            
+            const resultsDiv = document.getElementById('analysisResults');
+            const contentDiv = document.getElementById('resultsContent');
+            
+            // تست اتصال آنلاین
+            const isOnline = await testConnection();
+            
+            // نمایش وضعیت تحلیل
+            contentDiv.innerHTML = `
+                <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+                    <h4>🔍 در حال تحلیل ${getCoinName(symbol)}...</h4>
+                    <div class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}">
+                        ${isOnline ? '🟢 تحلیل با داده‌های واقعی' : '🟡 تحلیل با داده‌های نمونه'}
+                    </div>
+                    <div class="progress-bar" style="margin-top: 10px;">
+                        <div class="progress-fill" style="width: 0%"></div>
+                    </div>
+                </div>
+            `;
+            
+            resultsDiv.style.display = 'block';
+            resultsDiv.scrollIntoView({ behavior: 'smooth' });
+            
+            // شبیه‌سازی پردازش
+            await simulateAnalysisProgress();
+            
+            // اجرای تحلیل واقعی یا نمونه
+            const analysisResult = isOnline ? 
+                await runRealTechnicalAnalysis(symbol) : 
+                generateFallbackAnalysis();
+            
+            // نمایش نتایج
+            displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline);
+        }
+
+        // تحلیل تکنیکال واقعی
+        async function runRealTechnicalAnalysis(symbol) {
+            try {
+                console.log('📡 در حال دریافت داده‌های واقعی برای:', symbol);
+                
+                // دریافت داده‌های واقعی از CoinGecko
+                const response = await fetch(
+                    `https://api.coingecko.com/api/v3/coins/${symbol}`
+                );
+                
+                if (!response.ok) throw new Error('API Error');
+                
+                const data = await response.json();
+                const currentPrice = data.market_data.current_price.usd;
+                const priceChange24h = data.market_data.price_change_percentage_24h;
+                
+                console.log('✅ داده‌های واقعی دریافت شد:', {
+                    symbol,
+                    price: currentPrice,
+                    change: priceChange24h
+                });
+                
+                // تحلیل بر اساس داده‌های واقعی
+                return analyzeRealMarketData(currentPrice, priceChange24h);
+                
+            } catch (error) {
+                console.error('خطا در دریافت داده‌های واقعی:', error);
+                return generateFallbackAnalysis();
+            }
+        }
+
+        // تحلیل داده‌های واقعی بازار
+        function analyzeRealMarketData(currentPrice, priceChange24h) {
+            const volatility = Math.abs(priceChange24h);
+            const isUptrend = priceChange24h > 0;
+            
+            // محاسبه احتمال بر اساس داده‌های واقعی
+            let probability = 50; // پایه
+            
+            if (isUptrend) {
+                probability += Math.min(30, priceChange24h * 2);
+            } else {
+                probability -= Math.min(25, Math.abs(priceChange24h) * 1.5);
+            }
+            
+            probability = Math.max(40, Math.min(90, probability));
+            
+            return {
+                probability: Math.round(probability),
+                decision: probability >= 65 ? 'خرید' : probability >= 45 ? 'نگهداری' : 'فروش',
+                confidence: volatility < 5 ? 'اطمینان بالا' : 'اطمینان متوسط',
+                riskLevel: volatility > 10 ? 'بالا' : volatility > 5 ? 'متوسط' : 'پایین',
+                realData: true,
+                priceChange: priceChange24h.toFixed(2),
+                currentPrice: currentPrice
+            };
+        }
+
+        // تحلیل پشتیبان
+        function generateFallbackAnalysis() {
+            const probability = Math.floor(Math.random() * 30) + 65;
+            return {
+                probability: probability,
+                decision: probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش',
+                confidence: probability >= 80 ? 'اطمینان بسیار بالا' : 
+                            probability >= 70 ? 'اطمینان بالا' : 
+                            probability >= 60 ? 'اطمینان متوسط' : 'اطمینان پایین',
+                riskLevel: probability >= 80 ? 'پایین' : 
+                          probability >= 65 ? 'متوسط' : 'بالا',
+                realData: false,
+                priceChange: (Math.random() * 10 - 5).toFixed(2),
+                currentPrice: (Math.random() * 1000 + 100).toFixed(2)
+            };
+        }
+
+        // نمایش نتایج تحلیل
+        function displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline) {
+            const contentDiv = document.getElementById('resultsContent');
+            const profitPotential = (amount * leverage * (analysisResult.probability / 100) * 0.1).toFixed(2);
+            const lossPotential = (amount * leverage * ((100 - analysisResult.probability) / 100) * 0.05).toFixed(2);
+            
+            contentDiv.innerHTML = `
+                <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+                    <h4 style="font-size: 1.1rem;">
+                        📈 تحلیل ${getCoinName(symbol)} 
+                        <span class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}" style="font-size: 0.7rem;">
+                            ${isOnline ? '🟢 داده واقعی' : '🟡 داده نمونه'}
+                        </span>
+                    </h4>
+                    
+                    ${isOnline ? 
+                        '<div class="api-test-result api-success">✅ تحلیل بر اساس داده‌های زنده بازار انجام شد</div>' :
+                        '<div class="api-test-result api-error">⚠️ اتصال به سرور برقرار نیست - تحلیل با داده‌های نمونه انجام شد</div>'
+                    }
+                    
+                    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0;">
+                        <div class="result-card">
+                            <div>احتمال موفقیت</div>
+                            <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${analysisResult.probability}%</div>
+                        </div>
+                        <div class="result-card">
+                            <div>توصیه Mousa</div>
+                            <div style="font-size: 18px; font-weight: bold; color: ${analysisResult.decision === 'خرید' ? '#10b981' : analysisResult.decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${analysisResult.decision}</div>
+                        </div>
+                        <div class="result-card">
+                            <div>سطح ریسک</div>
+                            <div style="font-size: 16px; color: ${analysisResult.riskLevel === 'بالا' ? '#ef4444' : analysisResult.riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${analysisResult.riskLevel}</div>
+                        </div>
+                        <div class="result-card">
+                            <div>تغییر قیمت</div>
+                            <div style="font-size: 16px; font-weight: bold; color: ${analysisResult.priceChange >= 0 ? '#10b981' : '#ef4444'};">${analysisResult.priceChange >= 0 ? '+' : ''}${analysisResult.priceChange}%</div>
+                        </div>
+                    </div>
+                    
+                    <div style="background: #f8fafc; padding: 12px; border-radius: 8px; margin: 12px 0;">
+                        <h5>💰 محاسبات مالی</h5>
+                        <div>سرمایه اولیه: $${amount.toLocaleString()}</div>
+                        <div>سرمایه با اهرم: $${(amount * leverage).toLocaleString()}</div>
+                        <div>حداکثر سود احتمالی: <span class="profit">+$${profitPotential}</span></div>
+                        <div>حداکثر ضرر احتمالی: <span class="loss">-$${lossPotential}</span></div>
+                    </div>
+                </div>
+                
+                <div style="background: #fef3c7; padding: 12px; border-radius: 10px; margin: 12px 0;">
+                    <strong>⚠️ هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
+                    معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
+                </div>
+            `;
+        }
+
+        // شبیه‌سازی پیشرفت تحلیل
+        function simulateAnalysisProgress() {
+            return new Promise((resolve) => {
+                const progressFill = document.querySelector('.progress-fill');
+                let progress = 0;
+                
+                const interval = setInterval(() => {
+                    progress += Math.random() * 15;
+                    if (progress >= 100) {
+                        progress = 100;
+                        clearInterval(interval);
+                        resolve();
+                    }
+                    progressFill.style.width = progress + '%';
+                }, 200);
+            });
+        }
 
         // به روزرسانی اهرم در ماشین حساب
         function updateCalcLeverage() {
@@ -1942,148 +2302,6 @@ async function runAdvancedAnalysis() {
                 prevStepEl.classList.add('active');
             }
         }
-
-// تست اتصال به API
-async function testConnection() {
-    try {
-        const response = await fetch('https://api.coingecko.com/api/v3/ping');
-        return response.ok;
-    } catch (error) {
-        console.log('اتصال آنلاین برقرار نیست - استفاده از داده‌های نمونه');
-        return false;
-    }
-}
-
-// تحلیل تکنیکال واقعی
-async function runRealTechnicalAnalysis(symbol) {
-    try {
-        console.log('📡 در حال دریافت داده‌های واقعی برای:', symbol);
-        
-        // دریافت داده‌های واقعی از CoinGecko
-        const response = await fetch(
-            `https://api.coingecko.com/api/v3/coins/${symbol}`
-        );
-        
-        if (!response.ok) throw new Error('API Error');
-        
-        const data = await response.json();
-        const currentPrice = data.market_data.current_price.usd;
-        const priceChange24h = data.market_data.price_change_percentage_24h;
-        
-        console.log('✅ داده‌های واقعی دریافت شد:', {
-            symbol,
-            price: currentPrice,
-            change: priceChange24h
-        });
-        
-        // تحلیل بر اساس داده‌های واقعی
-        return analyzeRealMarketData(currentPrice, priceChange24h);
-        
-    } catch (error) {
-        console.error('خطا در دریافت داده‌های واقعی:', error);
-        return generateFallbackAnalysis();
-    }
-}
-
-// تحلیل داده‌های واقعی بازار
-function analyzeRealMarketData(currentPrice, priceChange24h) {
-    const volatility = Math.abs(priceChange24h);
-    const isUptrend = priceChange24h > 0;
-    
-    // محاسبه احتمال بر اساس داده‌های واقعی
-    let probability = 50; // پایه
-    
-    if (isUptrend) {
-        probability += Math.min(30, priceChange24h * 2);
-    } else {
-        probability -= Math.min(25, Math.abs(priceChange24h) * 1.5);
-    }
-    
-    probability = Math.max(40, Math.min(90, probability));
-    
-    return {
-        probability: Math.round(probability),
-        decision: probability >= 65 ? 'خرید' : probability >= 45 ? 'نگهداری' : 'فروش',
-        confidence: volatility < 5 ? 'اطمینان بالا' : 'اطمینان متوسط',
-        riskLevel: volatility > 10 ? 'بالا' : volatility > 5 ? 'متوسط' : 'پایین',
-        realData: true,
-        priceChange: priceChange24h.toFixed(2),
-        currentPrice: currentPrice
-    };
-}
-
-// نمایش نتایج تحلیل
-function displayAnalysisResults(analysisResult, symbol, amount, leverage, isOnline) {
-    const contentDiv = document.getElementById('resultsContent');
-    const profitPotential = (amount * leverage * (analysisResult.probability / 100) * 0.1).toFixed(2);
-    const lossPotential = (amount * leverage * ((100 - analysisResult.probability) / 100) * 0.05).toFixed(2);
-    
-    contentDiv.innerHTML = `
-        <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
-            <h4 style="font-size: 1.1rem;">
-                📈 تحلیل ${getCoinName(symbol)} 
-                <span class="analysis-status ${isOnline ? 'analysis-live' : 'analysis-offline'}" style="font-size: 0.7rem;">
-                    ${isOnline ? '🟢 داده واقعی' : '🟡 داده نمونه'}
-                </span>
-            </h4>
-            
-            ${isOnline ? 
-                '<div class="api-test-result api-success">✅ تحلیل بر اساس داده‌های زنده بازار انجام شد</div>' :
-                '<div class="api-test-result api-error">⚠️ اتصال به سرور برقرار نیست - تحلیل با داده‌های نمونه انجام شد</div>'
-            }
-            
-            <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin: 12px 0;">
-                <div class="result-card">
-                    <div>احتمال موفقیت</div>
-                    <div style="font-size: 20px; font-weight: bold; color: #3b82f6;">${analysisResult.probability}%</div>
-                </div>
-                <div class="result-card">
-                    <div>توصیه Mousa</div>
-                    <div style="font-size: 18px; font-weight: bold; color: ${analysisResult.decision === 'خرید' ? '#10b981' : analysisResult.decision === 'فروش' ? '#ef4444' : '#f59e0b'};">${analysisResult.decision}</div>
-                </div>
-                <div class="result-card">
-                    <div>سطح ریسک</div>
-                    <div style="font-size: 16px; color: ${analysisResult.riskLevel === 'بالا' ? '#ef4444' : analysisResult.riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'};">${analysisResult.riskLevel}</div>
-                </div>
-                <div class="result-card">
-                    <div>تغییر قیمت</div>
-                    <div style="font-size: 16px; font-weight: bold; color: ${analysisResult.priceChange >= 0 ? '#10b981' : '#ef4444'};">${analysisResult.priceChange >= 0 ? '+' : ''}${analysisResult.priceChange}%</div>
-                </div>
-            </div>
-            
-            <div style="background: #f8fafc; padding: 12px; border-radius: 8px; margin: 12px 0;">
-                <h5>💰 محاسبات مالی</h5>
-                <div>سرمایه اولیه: $${amount.toLocaleString()}</div>
-                <div>سرمایه با اهرم: $${(amount * leverage).toLocaleString()}</div>
-                <div>حداکثر سود احتمالی: <span class="profit">+$${profitPotential}</span></div>
-                <div>حداکثر ضرر احتمالی: <span class="loss">-$${lossPotential}</span></div>
-            </div>
-        </div>
-        
-        <div style="background: #fef3c7; padding: 12px; border-radius: 10px; margin: 12px 0;">
-            <strong>⚠️ هشدار ریسک:</strong> این تحلیل صرفاً جنبه آموزشی دارد و توصیه مالی محسوب نمی‌شود. 
-            معاملات اهرمی ریسک بالایی دارند و ممکن است منجر به از دست دادن کل سرمایه شوند.
-        </div>
-    `;
-}
-
-// شبیه‌سازی پیشرفت تحلیل
-function simulateAnalysisProgress() {
-    return new Promise((resolve) => {
-        const progressFill = document.querySelector('.progress-fill');
-        let progress = 0;
-        
-        const interval = setInterval(() => {
-            progress += Math.random() * 15;
-            if (progress >= 100) {
-                progress = 100;
-                clearInterval(interval);
-                resolve();
-            }
-            progressFill.style.width = progress + '%';
-        }, 200);
-    });
-}
 
         // اعتبارسنجی هر مرحله
         function validateStep(step) {
@@ -2225,6 +2443,9 @@ function simulateAnalysisProgress() {
             const resultsDiv = document.getElementById('mousaAIResults');
             const analysisResult = generateMousaAdvancedAnalysis();
             
+            // ذخیره نتایج در localStorage
+            saveAnalysisResult(analysisResult);
+            
             resultsDiv.innerHTML = `
                 <div class="advanced-results">
                     <h4>🧠 نتایج تحلیل پیشرفته هوش مصنوعی Mousa</h4>
@@ -2339,6 +2560,19 @@ function simulateAnalysisProgress() {
                         </div>
                     </div>
                     
+                    <!-- دکمه‌های action -->
+                    <div class="form-actions" style="margin-top: 20px;">
+                        <button class="btn" onclick="restartAnalysis()" style="background: #6b7280;">
+                            🔄 شروع مجدد
+                        </button>
+                        <button class="btn" onclick="saveCurrentAnalysis()" style="background: #10b981;">
+                            💾 ذخیره تحلیل
+                        </button>
+                        <button class="btn" onclick="viewSavedAnalyses()" style="background: #3b82f6;">
+                            📊 مشاهده تحلیل‌های ذخیره شده
+                        </button>
+                    </div>
+                    
                     <!-- هشدار ریسک -->
                     <div class="risk-warning">
                         <div>⚠️</div>
@@ -2406,6 +2640,122 @@ function simulateAnalysisProgress() {
                 '1w': '1 هفته'
             };
             return labels[timeframe] || timeframe;
+        }
+
+        // ذخیره تحلیل
+        function saveAnalysisResult(result) {
+            const savedAnalyses = JSON.parse(localStorage.getItem('mousaSavedAnalyses') || '[]');
+            
+            const analysisData = {
+                id: Date.now(),
+                timestamp: new Date().toLocaleString('fa-IR'),
+                symbol: userSelections.symbol,
+                market: userSelections.market,
+                amount: userSelections.amount,
+                timeframe: userSelections.timeframe,
+                result: result,
+                userSelections: {...userSelections}
+            };
+            
+            savedAnalyses.unshift(analysisData); // اضافه به ابتدای لیست
+            localStorage.setItem('mousaSavedAnalyses', JSON.stringify(savedAnalyses.slice(0, 100))); // محدودیت 100 تحلیل
+            
+            showNotification('✅ تحلیل با موفقیت ذخیره شد');
+        }
+
+        // شروع مجدد
+        function restartAnalysis() {
+            currentStep = 1;
+            userSelections = {};
+            
+            document.querySelectorAll('.form-step').forEach(stepEl => {
+                stepEl.classList.remove('active');
+            });
+            
+            document.getElementById('step1').classList.add('active');
+            document.getElementById('selectionSummary').style.display = 'none';
+            document.getElementById('mousaAIResults').style.display = 'none';
+            
+            showNotification('🔄 تحلیل جدید شروع شد');
+        }
+
+        function saveCurrentAnalysis() {
+            showNotification('✅ تحلیل فعلی ذخیره شد');
+        }
+
+        // مشاهده تحلیل‌های ذخیره شده
+        function viewSavedAnalyses() {
+            showTab('tab-saved-analyses');
+        }
+
+        // بارگذاری تحلیل‌های ذخیره شده
+        function loadSavedAnalyses() {
+            const savedAnalyses = JSON.parse(localStorage.getItem('mousaSavedAnalyses') || '[]');
+            const listDiv = document.getElementById('savedAnalysesList');
+            
+            if (savedAnalyses.length === 0) {
+                listDiv.innerHTML = '<div class="loading">هیچ تحلیلی ذخیره نشده است</div>';
+                return;
+            }
+            
+            let html = '<div style="display: grid; gap: 15px;">';
+            
+            savedAnalyses.forEach(analysis => {
+                html += `
+                    <div style="background: white; padding: 15px; border-radius: 10px; border: 2px solid #e5e7eb;">
+                        <div style="display: flex; justify-content: between; align-items: center; margin-bottom: 10px;">
+                            <h4>${analysis.symbol} - ${analysis.market}</h4>
+                            <div>
+                                <small style="color: #6b7280;">${analysis.timestamp}</small>
+                                <button onclick="deleteAnalysis(${analysis.id})" style="background: #ef4444; color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-right: 10px; cursor: pointer;">
+                                    حذف
+                                </button>
+                            </div>
+                        </div>
+                        
+                        <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 10px;">
+                            <div><strong>سرمایه:</strong> $${analysis.amount}</div>
+                            <div><strong>بازه زمانی:</strong> ${getTimeframeLabel(analysis.timeframe)}</div>
+                            <div><strong>توصیه:</strong> ${analysis.result.decision}</div>
+                            <div><strong>احتمال:</strong> ${analysis.result.probability}%</div>
+                        </div>
+                        
+                        <button onclick="viewAnalysisDetails(${analysis.id})" class="btn" style="width: auto; padding: 8px 15px;">
+                            مشاهده جزئیات
+                        </button>
+                    </div>
+                `;
+            });
+            
+            html += '</div>';
+            listDiv.innerHTML = html;
+        }
+
+        // حذف تحلیل
+        function deleteAnalysis(id) {
+            const savedAnalyses = JSON.parse(localStorage.getItem('mousaSavedAnalyses') || '[]');
+            const filtered = savedAnalyses.filter(a => a.id !== id);
+            localStorage.setItem('mousaSavedAnalyses', JSON.stringify(filtered));
+            loadSavedAnalyses();
+            showNotification('تحلیل حذف شد');
+        }
+
+        // حذف همه تحلیل‌ها
+        function clearAllAnalyses() {
+            if (confirm('آیا از حذف تمام تحلیل‌های ذخیره شده اطمینان دارید؟')) {
+                localStorage.removeItem('mousaSavedAnalyses');
+                loadSavedAnalyses();
+                showNotification('تمام تحلیل‌ها حذف شدند');
+            }
+        }
+
+        function viewAnalysisDetails(id) {
+            const savedAnalyses = JSON.parse(localStorage.getItem('mousaSavedAnalyses') || '[]');
+            const analysis = savedAnalyses.find(a => a.id === id);
+            
+            if (analysis) {
+                alert(`جزئیات تحلیل:\n\nنماد: ${analysis.symbol}\nبازار: ${analysis.market}\nسرمایه: $${analysis.amount}\nبازه زمانی: ${analysis.timeframe}\nتوصیه: ${analysis.result.decision}\nاحتمال: ${analysis.result.probability}%`);
+            }
         }
 
         // رویدادهای محاسبه خودکار
