@@ -1231,30 +1231,40 @@
                         </div>
                     </div>
 
-                    <!-- تب اخبار مالی -->
-                    <div class="tab-content" id="tab-news">
-                        <h2>📰 اخبار مالی لحظه‌ای</h2>
-                        <div class="data-source-selector">
-                            <h4>منبع اخبار</h4>
-                            <div class="source-options">
-                                <div class="source-option active" onclick="selectNewsSource('reuters')">
-                                    <div>🌍 رویترز</div>
-                                    <small>اخبار بین‌المللی</small>
-                                </div>
-                                <div class="source-option" onclick="selectNewsSource('bbc')">
-                                    <div>📻 بی‌بی‌سی</div>
-                                    <small>اخبار جهانی</small>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="loading" id="newsLoading">
-                            در حال دریافت آخرین اخبار...
-                        </div>
-                        <div id="newsData" style="display: none;">
-                            <!-- اخبار اینجا نمایش داده می‌شوند -->
-                        </div>
-                    </div>
+<!-- در تب اخبار -->
+<div class="tab-content" id="tab-news">
+    <h2>📰 اخبار مالی لحظه‌ای</h2>
+    
+    <div class="data-source-selector">
+        <h4>منبع اخبار</h4>
+        <div class="source-options">
+            <div class="source-option active" onclick="selectNewsSource('bloomberg')">
+                <div>🌍 Bloomberg</div>
+                <small>بازارهای جهانی</small>
+            </div>
+            <div class="source-option" onclick="selectNewsSource('reuters')">
+                <div>📊 Reuters</div>
+                <small>اخبار اقتصادی</small>
+            </div>
+            <div class="source-option" onclick="selectNewsSource('coindesk')">
+                <div>₿ CoinDesk</div>
+                <small>ارزهای دیجیتال</small>
+            </div>
+            <div class="source-option" onclick="selectNewsSource('cointelegraph')">
+                <div>🔗 Cointelegraph</div>
+                <small>بلاکچین و کریپتو</small>
+            </div>
+        </div>
+    </div>
+    
+    <div class="loading" id="newsLoading">
+        در حال دریافت آخرین اخبار از <span id="newsSourceName">Bloomberg</span>...
+    </div>
+    
+    <div id="newsData" style="display: none;">
+        <!-- اخبار اینجا نمایش داده می‌شوند -->
+    </div>
+</div>
 
                     <!-- تب تحلیل‌های ذخیره شده -->
                     <div class="tab-content" id="tab-saved-analyses">
@@ -1808,42 +1818,92 @@
                 'فولاد': { usd: 38000, usd_24h_change: 1.8 }
             };
         }
+// منابع خبری به روز شده
+const newsSources = {
+    'bloomberg': {
+        name: 'Bloomberg',
+        url: 'https://feeds.bloomberg.com/markets/news',
+        type: 'international'
+    },
+    'reuters': {
+        name: 'Reuters',
+        url: 'https://feeds.reuters.com/reuters/businessNews',
+        type: 'international'
+    },
+    'coindesk': {
+        name: 'CoinDesk',
+        url: 'https://feeds.feedburner.com/CoinDesk',
+        type: 'crypto'
+    },
+    'cointelegraph': {
+        name: 'Cointelegraph',
+        url: 'https://cointelegraph.com/rss',
+        type: 'crypto'
+    }
+};
 
-        // دریافت اخبار واقعی
-        async function loadRealNewsData() {
-            try {
-                const newsLoading = document.getElementById('newsLoading');
-                const newsData = document.getElementById('newsData');
+// تابع بهبود یافته برای دریافت اخبار
+async function loadRealNewsData() {
+    try {
+        const newsLoading = document.getElementById('newsLoading');
+        const newsData = document.getElementById('newsData');
+        
+        newsLoading.style.display = 'block';
+        newsData.style.display = 'none';
+        
+        const source = newsSources[currentNewsSource];
+        let news = [];
+        
+        // استفاده از CORS proxy برای دور زدن محدودیت‌ها
+        const proxyUrl = 'https://api.allorigins.win/raw?url=';
+        const response = await fetch(proxyUrl + encodeURIComponent(source.url));
+        
+        if (response.ok) {
+            const text = await response.text();
+            const parser = new DOMParser();
+            const xml = parser.parseFromString(text, "text/xml");
+            
+            // پارس کردن RSS
+            const items = xml.querySelectorAll('item');
+            news = Array.from(items).slice(0, 8).map(item => {
+                const title = item.querySelector('title')?.textContent || 'بدون عنوان';
+                const description = item.querySelector('description')?.textContent || 'بدون توضیح';
+                const pubDate = item.querySelector('pubDate')?.textContent || new Date().toISOString();
+                const link = item.querySelector('link')?.textContent || '#';
                 
-                newsLoading.style.display = 'block';
-                newsData.style.display = 'none';
-                
-                // استفاده از API رایگان برای اخبار
-                const response = await fetch('https://api.rss2json.com/v1/api.json?rss_url=https://rss.cnn.com/rss/edition.rss');
-                
-                if (response.ok) {
-                    const data = await response.json();
-                    const news = data.items.slice(0, 6).map(item => ({
-                        title: item.title,
-                        description: item.description.replace(/<[^>]*>/g, '').substring(0, 150) + '...',
-                        source: 'CNN',
-                        time: formatTimeAgo(item.pubDate),
-                        url: item.link
-                    }));
-                    
-                    displayNewsData(news);
-                } else {
-                    throw new Error('News API failed');
-                }
-                
-                newsLoading.style.display = 'none';
-                newsData.style.display = 'block';
-                
-            } catch (error) {
-                console.error('Error fetching real news:', error);
-                loadFallbackNews();
-            }
+                return {
+                    title: this.cleanText(title),
+                    description: this.cleanText(description.substring(0, 200) + '...'),
+                    source: source.name,
+                    time: this.formatTimeAgo(pubDate),
+                    url: link
+                };
+            });
         }
+        
+        this.displayNewsData(news);
+        
+        newsLoading.style.display = 'none';
+        newsData.style.display = 'block';
+        
+    } catch (error) {
+        console.error('Error fetching real news:', error);
+        this.loadFallbackNews();
+    }
+}
+
+// تابع پاکسازی متن
+function cleanText(text) {
+    return text
+        .replace(/<[^>]*>/g, '') // حذف تگ‌های HTML
+        .replace(/&nbsp;/g, ' ')
+        .replace(/&amp;/g, '&')
+        .replace(/&lt;/g, '<')
+        .replace(/&gt;/g, '>')
+        .replace(/&quot;/g, '"')
+        .replace(/&#39;/g, "'")
+        .trim();
+}
 
         // اخبار پشتیبان
         function loadFallbackNews() {
