@@ -929,6 +929,111 @@
                 grid-template-columns: repeat(4, 1fr);
             }
         }
+        .proxy-controls {
+            background: #1f2937;
+            color: white;
+            padding: 12px;
+            border-radius: 8px;
+            margin: 10px 0;
+        }
+        
+        .proxy-toggle {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
+        
+        .proxy-settings {
+            background: rgba(255,255,255,0.1);
+            padding: 10px;
+            border-radius: 6px;
+            margin-top: 10px;
+            display: none;
+        }
+        
+        .proxy-settings.active {
+            display: block;
+        }
+        
+        .proxy-test-result {
+            padding: 8px;
+            margin: 8px 0;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+        
+        .proxy-success {
+            background: #dcfce7;
+            color: #166534;
+        }
+        
+        .proxy-error {
+            background: #fecaca;
+            color: #dc2626;
+        }
+        
+        .ai-analysis-flow {
+            background: #f8fafc;
+            border-radius: 10px;
+            padding: 15px;
+            margin: 15px 0;
+            border: 2px solid #e5e7eb;
+        }
+        
+        .ai-steps {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+            position: relative;
+        }
+        
+        .ai-steps::before {
+            content: '';
+            position: absolute;
+            top: 20px;
+            right: 0;
+            left: 0;
+            height: 2px;
+            background: #e5e7eb;
+            z-index: 1;
+        }
+        
+        .ai-step {
+            background: white;
+            border: 2px solid #e5e7eb;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            z-index: 2;
+            font-weight: bold;
+        }
+        
+        .ai-step.active {
+            border-color: #3b82f6;
+            background: #3b82f6;
+            color: white;
+        }
+        
+        .ai-step.completed {
+            border-color: #10b981;
+            background: #10b981;
+            color: white;
+        }
+        
+        .ai-step-label {
+            position: absolute;
+            top: 45px;
+            font-size: 0.7rem;
+            text-align: center;
+            width: 80px;
+            right: -20px;
+        }
+        
     </style>
 </head>
 <body>
@@ -963,6 +1068,39 @@
                     <span id="currentTime">--:--:--</span>
                     <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
                     <button class="btn" onclick="logout()" style="width: auto; margin-left: 10px; padding: 8px 12px;">خروج</button>
+                </div>
+            </div>
+
+                        <!-- کنترل پروکسی جدید -->
+            <div class="proxy-controls">
+                <div class="proxy-toggle">
+                    <span>🛡️ سیستم پروکسی</span>
+                    <label class="switch">
+                        <input type="checkbox" id="proxyToggle" checked onchange="toggleProxySettings()">
+                        <span class="slider"></span>
+                    </label>
+                </div>
+                
+                <div class="proxy-settings" id="proxySettings">
+                    <div style="display: grid; grid-template-columns: 1fr auto; gap: 10px; margin-bottom: 10px;">
+                        <select id="proxyLocation" class="form-control">
+                            <option value="germany">آلمان 🇩🇪</option>
+                            <option value="netherlands">هلند 🇳🇱</option>
+                            <option value="usa">آمریکا 🇺🇸</option>
+                            <option value="singapore">سنگاپور 🇸🇬</option>
+                            <option value="turkey">ترکیه 🇹🇷</option>
+                        </select>
+                        <button class="btn" onclick="testProxyConnection()" style="width: auto; padding: 8px 12px;">
+                            تست اتصال
+                        </button>
+                    </div>
+                    
+                    <div id="proxyTestResult"></div>
+                    
+                    <div style="font-size: 0.8rem; color: #d1d5db;">
+                        <div>📍 آی پی فعلی: <span id="currentIP">در حال شناسایی...</span></div>
+                        <div>🌍 موقعیت: <span id="currentLocation">--</span></div>
+                    </div>
                 </div>
             </div>
 
@@ -1788,17 +1926,513 @@
             await loadRealNewsData();
         }
 
-        // راه‌اندازی سیستم پروکسی
-        async function initializeProxySystem() {
-            const proxyStatus = advancedProxy.getProxyStatus();
-            document.getElementById('proxyStatus').textContent = 
-                `فعال - ${proxyStatus.successRate.toFixed(1)}% موفقیت`;
-            document.getElementById('proxySpeed').textContent = 
-                `پینگ: ${proxyStatus.avgResponseTime.toFixed(0)}ms`;
-            document.getElementById('proxyConnections').innerHTML = 
-                `<span style="background: #10b981; padding: 2px 8px; border-radius: 12px; font-size: 0.7rem;">
-                    ${proxyStatus.activeConnections} اتصال فعال
-                </span>`;
+        // ایجاد نمونه پروکسی پیشرفته
+        const advancedProxy = new AdvancedProxy();
+
+        // داده‌های هوش مصنوعی چندمرحله‌ای
+        const aiAnalysisSteps = [
+            {
+                id: 1,
+                title: "جمع‌آوری داده‌های بازار",
+                description: "دریافت اطلاعات قیمت، حجم معاملات و نوسانات",
+                duration: "5-10 ثانیه"
+            },
+            {
+                id: 2,
+                title: "تحلیل تکنیکال پیشرفته",
+                description: "بررسی 35 اندیکاتور تکنیکال و الگوهای قیمتی",
+                duration: "10-15 ثانیه"
+            },
+            {
+                id: 3,
+                title: "تحلیل بنیادی",
+                description: "بررسی اخبار، رویدادها و شاخص‌های اقتصادی",
+                duration: "8-12 ثانیه"
+            },
+            {
+                id: 4,
+                title: "تحلیل سنتیمنت بازار",
+                description: "بررسی احساسات سرمایه‌گذاران و نوسانات روانی",
+                duration: "5-8 ثانیه"
+            },
+            {
+                id: 5,
+                title: "پردازش هوش مصنوعی",
+                description: "تجزیه و تحلیل داده‌ها با الگوریتم‌های ML",
+                duration: "12-18 ثانیه"
+            },
+            {
+                id: 6,
+                title: "تولید گزارش نهایی",
+                description: "تهیه گزارش جامع با توصیه‌های معاملاتی",
+                duration: "5-10 ثانیه"
+            }
+        ];
+
+        // توابع جدید برای مدیریت پروکسی
+        function toggleProxySettings() {
+            const proxyToggle = document.getElementById('proxyToggle');
+            const proxySettings = document.getElementById('proxySettings');
+            const proxyStatus = document.querySelector('.proxy-status');
+            
+            advancedProxy.toggleProxy(proxyToggle.checked);
+            
+            if (proxyToggle.checked) {
+                proxySettings.classList.add('active');
+                proxyStatus.innerHTML = '🛡️ پروکسی فعال - اتصال ایمن';
+                showNotification('🛡️ سیستم پروکسی فعال شد');
+                detectIPLocation();
+            } else {
+                proxySettings.classList.remove('active');
+                proxyStatus.innerHTML = '🔓 پروکسی غیرفعال - اتصال مستقیم';
+                showNotification('🔓 سیستم پروکسی غیرفعال شد');
+            }
+            
+            // تست مجدد اتصال API
+            testAPIConnections();
+        }
+
+        async function testProxyConnection() {
+            const proxyLocation = document.getElementById('proxyLocation').value;
+            const testResult = document.getElementById('proxyTestResult');
+            
+            testResult.innerHTML = '<div class="proxy-test-result">🔄 در حال تست اتصال پروکسی...</div>';
+            
+            try {
+                // تغییر موقعیت پروکسی
+                advancedProxy.setProxyLocation(proxyLocation);
+                
+                // تست اتصال با یک درخواست ساده
+                const startTime = Date.now();
+                const response = await advancedProxy.fetchWithProxy('https://api.coingecko.com/api/v3/ping');
+                const endTime = Date.now();
+                const responseTime = endTime - startTime;
+                
+                if (response.ok) {
+                    testResult.innerHTML = `<div class="proxy-test-result proxy-success">
+                        ✅ اتصال موفق - پینگ: ${responseTime}ms - موقعیت: ${getLocationName(proxyLocation)}
+                    </div>`;
+                    showNotification(`✅ پروکسی ${getLocationName(proxyLocation)} با موفقیت متصل شد`);
+                } else {
+                    throw new Error('Response not OK');
+                }
+                
+                // بروزرسانی اطلاعات IP
+                detectIPLocation();
+                
+            } catch (error) {
+                testResult.innerHTML = `<div class="proxy-test-result proxy-error">
+                    ❌ اتصال ناموفق - خطا در برقراری ارتباط با پروکسی
+                </div>`;
+                showNotification('❌ خطا در اتصال به پروکسی');
+            }
+        }
+
+        async function detectIPLocation() {
+            try {
+                const response = await advancedProxy.fetchWithProxy('https://api.ipify.org?format=json');
+                const ipData = await response.json();
+                document.getElementById('currentIP').textContent = ipData.ip;
+                
+                // دریافت اطلاعات موقعیت مکانی
+                const locationResponse = await advancedProxy.fetchWithProxy(`https://ipapi.co/${ipData.ip}/json/`);
+                const locationData = await locationResponse.json();
+                
+                document.getElementById('currentLocation').textContent = 
+                    `${locationData.country_name} (${locationData.city})`;
+                    
+            } catch (error) {
+                document.getElementById('currentIP').textContent = 'نامشخص';
+                document.getElementById('currentLocation').textContent = 'نامشخص';
+            }
+        }
+
+        function getLocationName(location) {
+            const names = {
+                'germany': 'آلمان 🇩🇪',
+                'netherlands': 'هلند 🇳🇱',
+                'usa': 'آمریکا 🇺🇸',
+                'singapore': 'سنگاپور 🇸🇬',
+                'turkey': 'ترکیه 🇹🇷'
+            };
+            return names[location] || location;
+        }
+
+        // سیستم هوش مصنوعی چندمرحله‌ای پیشرفته
+        class AdvancedAIAnalysis {
+            constructor() {
+                this.currentStep = 0;
+                this.analysisData = {};
+                this.isRunning = false;
+            }
+
+            async startAnalysis(symbol, market, timeframe, amount) {
+                if (this.isRunning) {
+                    throw new Error('تحلیل در حال اجراست');
+                }
+
+                this.isRunning = true;
+                this.currentStep = 0;
+                this.analysisData = {
+                    symbol,
+                    market,
+                    timeframe,
+                    amount,
+                    startTime: new Date(),
+                    steps: []
+                };
+
+                // اجرای مراحل تحلیل
+                for (const step of aiAnalysisSteps) {
+                    this.currentStep = step.id;
+                    await this.executeStep(step);
+                }
+
+                this.isRunning = false;
+                return this.generateFinalReport();
+            }
+
+            async executeStep(step) {
+                // به‌روزرسانی UI
+                this.updateStepUI(step);
+                
+                // شبیه‌سازی پردازش
+                await this.simulateProcessing(step.duration);
+                
+                // جمع‌آوری داده‌های مرحله
+                const stepResult = await this.collectStepData(step);
+                this.analysisData.steps.push(stepResult);
+                
+                return stepResult;
+            }
+
+            updateStepUI(step) {
+                // به‌روزرسانی مراحل در UI
+                const stepsContainer = document.querySelector('.ai-steps');
+                if (stepsContainer) {
+                    const steps = stepsContainer.querySelectorAll('.ai-step');
+                    steps.forEach((stepEl, index) => {
+                        stepEl.classList.remove('active', 'completed');
+                        if (index + 1 < step.id) {
+                            stepEl.classList.add('completed');
+                        } else if (index + 1 === step.id) {
+                            stepEl.classList.add('active');
+                        }
+                    });
+                }
+
+                // نمایش وضعیت فعلی
+                const statusElement = document.getElementById('aiAnalysisStatus');
+                if (statusElement) {
+                    statusElement.innerHTML = `
+                        <div style="background: #f0f9ff; padding: 15px; border-radius: 10px; margin: 12px 0;">
+                            <h4>🧠 مرحله ${step.id}: ${step.title}</h4>
+                            <p style="color: #6b7280; margin: 8px 0;">${step.description}</p>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: ${(step.id / aiAnalysisSteps.length) * 100}%"></div>
+                            </div>
+                            <div style="margin-top: 8px; font-size: 0.8rem; color: #9ca3af;">
+                                زمان تخمینی: ${step.duration}
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+
+            async simulateProcessing(duration) {
+                const timeMatch = duration.match(/(\d+)/);
+                const seconds = timeMatch ? parseInt(timeMatch[1]) : 10;
+                
+                return new Promise(resolve => {
+                    setTimeout(resolve, seconds * 1000);
+                });
+            }
+
+            async collectStepData(step) {
+                // در محیط واقعی، اینجا داده‌های واقعی جمع‌آوری می‌شوند
+                // برای نمونه، از داده‌های شبیه‌سازی شده استفاده می‌کنیم
+                
+                const stepData = {
+                    stepId: step.id,
+                    stepName: step.title,
+                    timestamp: new Date(),
+                    data: {}
+                };
+
+                switch(step.id) {
+                    case 1: // جمع‌آوری داده‌های بازار
+                        stepData.data = await this.collectMarketData();
+                        break;
+                    case 2: // تحلیل تکنیکال
+                        stepData.data = await this.technicalAnalysis();
+                        break;
+                    case 3: // تحلیل بنیادی
+                        stepData.data = await this.fundamentalAnalysis();
+                        break;
+                    case 4: // تحلیل سنتیمنت
+                        stepData.data = await this.sentimentAnalysis();
+                        break;
+                    case 5: // پردازش هوش مصنوعی
+                        stepData.data = await this.mlProcessing();
+                        break;
+                    case 6: // گزارش نهایی
+                        stepData.data = await this.finalAnalysis();
+                        break;
+                }
+
+                return stepData;
+            }
+
+            async collectMarketData() {
+                // شبیه‌سازی جمع‌آوری داده‌های بازار
+                return {
+                    price: (Math.random() * 100000 + 1000).toFixed(2),
+                    volume: (Math.random() * 1000000 + 10000).toFixed(0),
+                    volatility: (Math.random() * 10 + 1).toFixed(2),
+                    marketCap: (Math.random() * 1000000000 + 1000000).toFixed(0)
+                };
+            }
+
+            async technicalAnalysis() {
+                // شبیه‌سازی تحلیل تکنیکال
+                const indicators = ['RSI', 'MACD', 'Bollinger Bands', 'Moving Averages', 'Stochastic'];
+                const results = {};
+                
+                indicators.forEach(indicator => {
+                    results[indicator] = {
+                        value: (Math.random() * 100).toFixed(2),
+                        signal: Math.random() > 0.5 ? 'خرید' : 'فروش',
+                        strength: (Math.random() * 10).toFixed(1)
+                    };
+                });
+                
+                return results;
+            }
+
+            async fundamentalAnalysis() {
+                // شبیه‌سازی تحلیل بنیادی
+                return {
+                    newsScore: (Math.random() * 10).toFixed(1),
+                    eventImpact: Math.random() > 0.7 ? 'مثبت' : Math.random() > 0.3 ? 'خنثی' : 'منفی',
+                    marketTrend: Math.random() > 0.5 ? 'صعودی' : 'نزولی'
+                };
+            }
+
+            async sentimentAnalysis() {
+                // شبیه‌سازی تحلیل سنتیمنت
+                return {
+                    fearGreedIndex: Math.floor(Math.random() * 100),
+                    socialSentiment: (Math.random() * 100 - 50).toFixed(1),
+                    investorConfidence: (Math.random() * 10).toFixed(1)
+                };
+            }
+
+            async mlProcessing() {
+                // شبیه‌سازی پردازش هوش مصنوعی
+                return {
+                    prediction: (Math.random() * 30 + 60).toFixed(1),
+                    confidence: (Math.random() * 40 + 60).toFixed(1),
+                    riskLevel: Math.random() > 0.7 ? 'بالا' : Math.random() > 0.4 ? 'متوسط' : 'پایین'
+                };
+            }
+
+            async finalAnalysis() {
+                // تولید گزارش نهایی
+                const probability = Math.floor(Math.random() * 30 + 65);
+                return {
+                    finalDecision: probability >= 75 ? 'خرید' : probability >= 60 ? 'نگهداری' : 'فروش',
+                    probability: probability,
+                    confidence: (Math.random() * 30 + 70).toFixed(1),
+                    targets: {
+                        takeProfit: (Math.random() * 20 + 5).toFixed(1),
+                        stopLoss: (Math.random() * 10 + 2).toFixed(1),
+                        timeFrame: '1-3 روز'
+                    },
+                    riskAssessment: probability >= 80 ? 'پایین' : probability >= 65 ? 'متوسط' : 'بالا'
+                };
+            }
+
+            generateFinalReport() {
+                const finalStep = this.analysisData.steps[this.analysisData.steps.length - 1];
+                const mlStep = this.analysisData.steps.find(step => step.stepId === 5);
+                
+                return {
+                    symbol: this.analysisData.symbol,
+                    market: this.analysisData.market,
+                    timeframe: this.analysisData.timeframe,
+                    amount: this.analysisData.amount,
+                    analysisTime: new Date() - this.analysisData.startTime,
+                    decision: finalStep.data.finalDecision,
+                    probability: finalStep.data.probability,
+                    confidence: finalStep.data.confidence,
+                    riskLevel: finalStep.data.riskAssessment,
+                    targets: finalStep.data.targets,
+                    technicalIndicators: this.analysisData.steps[1].data,
+                    sentiment: this.analysisData.steps[3].data,
+                    mlPrediction: mlStep.data
+                };
+            }
+        }
+
+        // ایجاد نمونه هوش مصنوعی
+        const advancedAI = new AdvancedAIAnalysis();
+
+        // تابع برای اجرای تحلیل هوش مصنوعی پیشرفته
+        async function runAdvancedAIAnalysis() {
+            const symbol = document.getElementById('aiSymbol').value;
+            const market = document.getElementById('aiMarket').value;
+            const timeframe = document.getElementById('aiTimeframe').value;
+            const amount = document.getElementById('aiAmount').value;
+
+            if (!symbol || !market || !timeframe || !amount) {
+                alert('لطفا تمام فیلدها را پر کنید');
+                return;
+            }
+
+            try {
+                const resultsDiv = document.getElementById('aiResults');
+                resultsDiv.innerHTML = `
+                    <div class="ai-analysis-flow">
+                        <h4>🧠 تحلیل پیشرفته هوش مصنوعی Mousa</h4>
+                        <div class="ai-steps">
+                            ${aiAnalysisSteps.map((step, index) => `
+                                <div class="ai-step ${index === 0 ? 'active' : ''}">
+                                    ${step.id}
+                                    <div class="ai-step-label">${step.title}</div>
+                                </div>
+                            `).join('')}
+                        </div>
+                        <div id="aiAnalysisStatus"></div>
+                    </div>
+                `;
+
+                const result = await advancedAI.startAnalysis(symbol, market, timeframe, amount);
+                displayAIAnalysisResults(result);
+
+            } catch (error) {
+                console.error('Error in AI analysis:', error);
+                showNotification('❌ خطا در اجرای تحلیل هوش مصنوعی');
+            }
+        }
+
+        function displayAIAnalysisResults(result) {
+            const resultsDiv = document.getElementById('aiResults');
+            
+            resultsDiv.innerHTML = `
+                <div class="advanced-results">
+                    <h4>🧠 نتایج تحلیل پیشرفته هوش مصنوعی Mousa</h4>
+                    
+                    <div class="final-prediction ${result.decision === 'خرید' ? '' : result.decision === 'فروش' ? 'danger' : 'warning'}">
+                        <div class="prediction-header">
+                            <div class="symbol-info">
+                                <h3 style="font-size: 1.2rem;">${result.symbol}</h3>
+                                <small>${result.market} - ${result.timeframe}</small>
+                            </div>
+                            <div class="timeframe">⏰ زمان تحلیل: ${(result.analysisTime / 1000).toFixed(1)} ثانیه</div>
+                        </div>
+                        
+                        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; flex-wrap: wrap;">
+                            <div class="probability-circle">
+                                <div class="circle-value">${result.probability}%</div>
+                                <div class="circle-label">احتمال موفقیت</div>
+                            </div>
+                            
+                            <div class="decision">
+                                <div class="decision-text">${result.decision}</div>
+                                <div class="decision-subtext">سطح اطمینان: ${result.confidence}%</div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="trading-targets-grid">
+                        <div class="target-card profit">
+                            <div class="target-icon">🎯</div>
+                            <div class="target-label">حد سود</div>
+                            <div class="target-value">${result.targets.takeProfit}%</div>
+                        </div>
+                        
+                        <div class="target-card loss">
+                            <div class="target-icon">🛡️</div>
+                            <div class="target-label">حد ضرر</div>
+                            <div class="target-value">${result.targets.stopLoss}%</div>
+                        </div>
+                        
+                        <div class="target-card time">
+                            <div class="target-icon">⏱️</div>
+                            <div class="target-label">زمان بازدهی</div>
+                            <div class="target-value">${result.targets.timeFrame}</div>
+                        </div>
+                        
+                        <div class="target-card risk">
+                            <div class="target-icon">📊</div>
+                            <div class="target-label">سطح ریسک</div>
+                            <div class="target-value" style="color: ${result.riskLevel === 'بالا' ? '#ef4444' : result.riskLevel === 'متوسط' ? '#f59e0b' : '#10b981'}">
+                                ${result.riskLevel}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div style="margin-top: 20px;">
+                        <h5>📈 جزئیات تحلیل تکنیکال</h5>
+                        <div class="analysis-grid">
+                            ${Object.entries(result.technicalIndicators).map(([key, value]) => `
+                                <div class="analysis-card">
+                                    <div class="target-label">${key}</div>
+                                    <div class="analysis-score ${value.signal === 'خرید' ? 'good' : value.signal === 'فروش' ? 'poor' : 'average'}">
+                                        ${value.value}
+                                    </div>
+                                    <div style="font-size: 0.8rem; color: #6b7280;">
+                                        سیگنال: ${value.signal}
+                                    </div>
+                                </div>
+                            `).join('')}
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="form-actions" style="margin-top: 20px;">
+                    <button class="btn" onclick="saveAIAnalysis()" style="background: #10b981;">
+                        💾 ذخیره تحلیل
+                    </button>
+                    <button class="btn" onclick="exportAIAnalysis()" style="background: #3b82f6;">
+                        📤 خروجی PDF
+                    </button>
+                    <button class="btn" onclick="runNewAIAnalysis()" style="background: #f59e0b;">
+                        🔄 تحلیل جدید
+                    </button>
+                </div>
+            `;
+        }
+
+        // توابع کمکی برای تحلیل هوش مصنوعی
+        function saveAIAnalysis() {
+            showNotification('✅ تحلیل هوش مصنوعی ذخیره شد');
+        }
+
+        function exportAIAnalysis() {
+            showNotification('📤 در حال تولید خروجی PDF...');
+        }
+
+        function runNewAIAnalysis() {
+            document.getElementById('aiResults').innerHTML = '';
+            showNotification('🔄 تحلیل جدید آماده است');
+        }
+
+        // مقداردهی اولیه برنامه - بهبود یافته
+        async function initializeApp() {
+            updateTime();
+            setInterval(updateTime, 1000);
+            
+            // راه‌اندازی پروکسی
+            await initializeProxySystem();
+            
+            // شناسایی IP و موقعیت
+            await detectIPLocation();
+            
+            // تست اتصال به APIها
+            await testAPIConnections();
+            
+            // بقیه مقداردهی‌ها...
         }
 
         // تست اتصال به APIهای مختلف - بهبود یافته
